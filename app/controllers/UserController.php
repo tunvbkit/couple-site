@@ -153,6 +153,47 @@ class UserController extends \BaseController {
 						"firstname"		=> $firstname,
 						"lastname"		=> $lastname
 					));
+
+		// delete usertask in table usertask then update
+		UserTask::where('user', $this->id_user())->delete();
+
+		//kiểm tra nếu startdate so với hiện tại đã qua, thì lưu startdate của user bằng startdate hiện tại
+		$dateNow 			= New DateTime('now');
+		$date_wedding 		= new DateTime($weddingdate);
+
+		if(date_timestamp_get($dateNow) > date_timestamp_get($date_wedding))
+		{
+			$NowToWedding 	= (date_timestamp_get($dateNow)- date_timestamp_get($date_wedding))/(3600*24);
+		}
+		else
+		{
+			$NowToWedding 	= (date_timestamp_get($date_wedding)- date_timestamp_get($dateNow))/(3600*24);
+		}
+			
+			//truyền dữ liệu sang bảng usertask
+			$id_user 		= User::where('email','=',Input::get('email'))->get()->first()->id; 
+				
+			$tasks 			= Task::get();
+			foreach($tasks as $task){
+				if( $NowToWedding > $task->startdate){
+					$startdate = $task->startdate;
+				}
+				else
+				{
+					$startdate = $NowToWedding+1;
+				}
+				
+				$usertask 				= new UserTask();
+				$usertask->title 		= $task->title;
+				$usertask->user 		= $id_user;
+				$usertask->startdate 	= $startdate;
+				$usertask->category 	= $task->category;
+				$usertask->description 	= $task->description;
+				$usertask->todo 		= 0;
+				$usertask->save();
+
+			}
+
 		$msg 				= "Cập nhật thông tin thành công";
 
 		$user 				= User::where( 'id', $this->id_user() )->get();
@@ -193,19 +234,36 @@ class UserController extends \BaseController {
 		else 
 		{
 			$img_del = User::where('id',$id_user)->get()->first()->avatar;
-			$path_delete=public_path($img_del);
-			File::delete($path_delete);
 
-        	File::makeDirectory(public_path('update'),$mode = 0775,true,true);
-			$filename 		= $id_user.'_' .str_random(10).'.' .$file->getClientOriginalExtension();
-			$pathsave 		= 'update/'.$filename;
-			$path 			= public_path('update/'.$filename);
-			Image::make($file->getRealPath())->resize(200, 200)->save($path);
+			if ( $img_del == 'update/bg22.gif' ) {
 
-			// update to database
-			User::where( "id", $id_user )->update(
-					array("avatar"=>$pathsave));
+				File::makeDirectory(public_path('update'),$mode = 0775,true,true);
+				$filename 		= $id_user.'_' .str_random(10).'.' .$file->getClientOriginalExtension();
+				$pathsave 		= 'update/'.$filename;
+				$path 			= public_path('update/'.$filename);
+				Image::make($file->getRealPath())->resize(200, 200)->save($path);
 
+				// update to database
+				User::where( "id", $id_user )->update(
+						array("avatar"=>$pathsave));
+
+			} else {
+				
+				$path_delete=public_path($img_del);
+				File::delete($path_delete);
+
+	        	File::makeDirectory(public_path('update'),$mode = 0775,true,true);
+				$filename 		= $id_user.'_' .str_random(10).'.' .$file->getClientOriginalExtension();
+				$pathsave 		= 'update/'.$filename;
+				$path 			= public_path('update/'.$filename);
+				Image::make($file->getRealPath())->resize(200, 200)->save($path);
+
+				// update to database
+				User::where( "id", $id_user )->update(
+						array("avatar"=>$pathsave));
+
+			}
+			
 			return Response::json(
 				['success' => true,
 				'file' => asset($pathsave)]
@@ -296,9 +354,13 @@ class UserController extends \BaseController {
 			"password_confirm"=>"required|min:3"
 			);
 		$validator=Validator::make(Input::all(),$rules);
-		if($validator->passes())
+		if($validator->fails())
 		{
-
+			$errors = $validator->messages();
+			return Redirect::route("index")->with("errors",$errors);
+		}
+		else
+		{
 			// get avatar default
 			$avatar_default 	= User::where('role_id', '=', 1)->get()->first()->avatar;
 
@@ -341,7 +403,6 @@ class UserController extends \BaseController {
 							$startdate = $NowToWedding+1;
 						}
 						
-
 						$usertask 				= new UserTask();
 						$usertask->title 		= $task->title;
 						$usertask->user 		= $id_user;
@@ -353,30 +414,16 @@ class UserController extends \BaseController {
 
 					}
 
-			$IdUser=User::where('email','=',Input::get('email'))->get()->first()->id;
-
 			Session::put("email",Input::get('email'));
-
-			// go to view request
-			// if ( Session::get('url')==NULL ) {
-			// 	return Redirect::route('index');
-			// } else {
-			// 	$url = Session::get('url');
-			// 	return Redirect::route($url);
-			// }
 			return Redirect::to('dashboard');
-			
-			
-		}else{
-			$errors=$validator->messages();
-			// return Redirect::route("register")->with("errors",$errors);
-			return Redirect::route("index")->with("errors",$errors);
 		}
 	}
 
 	public function check_user_email(){
 		return (User::where("email",Input::get('email'))->count()==0? "true": "false");
 	}
+
+	/* Changed 19/01/2015
 
 	public function loginFacebook($action = "")
 	{
@@ -474,9 +521,6 @@ class UserController extends \BaseController {
 				Session::put('url',$url);
 
 				return View::make('after-login-fb');
-
-				// go to view request
-				// return Redirect::to(URL::previous());
 				
 	        } else {
 	        	$IdUser = User::where('email','=',$email)->get()->first()->id;
@@ -499,8 +543,88 @@ class UserController extends \BaseController {
 	    }
 	} // end function loginFacebook
 
+	*/
+
+	/**Login use Facebook Dialog
+	| @param: email, first_name, last_name
+	|
+	*/ 
+	public function loginFacebookDialog()
+	{
+		$email 		= Input::get('email');
+		$first_name	= Input::get('first_name');
+		$last_name 	= Input::get('last_name');
+
+		if( User::where("email", $email)->count()==0 )
+        {
+        	// get avatar default
+			$avatar_default 	= User::where('role_id', '=', 1)->get()->first()->avatar;
+
+			$user 				= new User();
+			$user->firstname 	= $first_name;
+			$user->lastname 	= $last_name;
+			$user->email 		= $email;
+			$user->avatar 		= $avatar_default;
+			$user->role_id 		= 2;
+			$user->budget 		= 0;
+			$user->save();
+
+			Session::put("email", $email);
+
+			return $view = 'facebook-step';
+			
+        } else {
+
+			Session::put("email", $email);
+
+			// go to view request
+			return $view = 'dashboard';
+        }
+
+	}
+
+
 	public function loginFacebookUpdate(){
+
 		$weddingdateInput 	= Input::get("weddingdate");
+
+		//kiểm tra nếu startdate so với hiện tại đã qua, thì lưu startdate của user bằng startdate hiện tại
+		$dateNow 			= New DateTime('now');
+		$date_wedding 		= new DateTime($weddingdateInput);
+
+		if(date_timestamp_get($dateNow) > date_timestamp_get($date_wedding))
+		{
+			$NowToWedding 	= (date_timestamp_get($dateNow)- date_timestamp_get($date_wedding))/(3600*24);
+		}
+		else
+		{
+			$NowToWedding 	= (date_timestamp_get($date_wedding)- date_timestamp_get($dateNow))/(3600*24);
+		}
+			
+		//truyền dữ liệu sang bảng usertask
+		$id_user 			= User::where('email', Session::get('email'))->get()->first()->id; 
+			
+		$tasks 				= Task::get();
+		foreach($tasks as $task){
+
+			if( $NowToWedding > $task->startdate){
+				$startdate = $task->startdate;
+			} else {
+				$startdate = $NowToWedding+1;
+			}
+			
+			$usertask 			   = new UserTask();
+			$usertask->title 	   = $task->title;
+			$usertask->user 	   = $id_user;
+			$usertask->startdate   = $startdate;
+			$usertask->category    = $task->category;
+			$usertask->description = $task->description;
+			$usertask->todo 	   = 0;
+			$usertask->save();
+
+		}
+
+
 		$cover_weddingdate 	= Carbon::parse($weddingdateInput)->format('Y-m-d');
 
 		// update to database
@@ -512,5 +636,80 @@ class UserController extends \BaseController {
 		return Redirect::to('dashboard');
 
 	} // end loginFacebookUpdate
+
+	/**
+	* get avatar user
+	*
+	*/ 
+	public static function getAvatar()
+	{
+		return User::where('email',Session::get('email'))->get()->first()->avatar;
+	}
+
+	/**
+	* get username user
+	*
+	*/ 
+	public static function getUserName()
+	{
+		$lastname = User::where('email',Session::get('email'))->get()->first()->lastname;
+		$firstname = User::where('email',Session::get('email'))->get()->first()->firstname;
+
+		return $firstname." ".$lastname;
+	}
+
+	/**
+	* get avatar user
+	*
+	*/ 
+	public static function getUserAvatar()
+	{
+		$avatar = User::where('email',Session::get('email'))->get()->first()->avatar;
+	
+		return $avatar;
+	}
+
+	/**
+	* get site map for dashboard
+	*
+	*/ 
+	public static function getUrl()
+	{
+		$url 	= URL::current();
+		$arUrl 	= explode('/', $url);
+
+		if ($arUrl[count($arUrl)-2]=='fortune') {
+			$output 	= 'Xem ngày cưới';
+		} elseif ($arUrl[count($arUrl)-2]=='songs') {
+			$output 	= 'Âm nhạc';
+		} else {
+			switch (end($arUrl)) {
+				case 'guest-list':
+					$output = 'Danh sách khách mời';
+					break;
+				case 'user-checklist':
+					$output = 'Danh sách công việc';
+					break;
+				case 'budget':
+					$output = 'Quản lý ngân sách';
+					break;
+				case 'website':
+					$output = 'Website cưới';
+					break;
+				case 'profile':
+					$output = 'THÔNG TIN CÁ NHÂN';
+					break;
+
+				
+				default:
+					$output = 'Trang chủ';
+					break;
+			}
+		}
+		
+		
+		return $output;
+
+	}
 
 }

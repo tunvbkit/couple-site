@@ -1,23 +1,151 @@
 
 @extends('main-dashboard')
 @section('title')
-Danh sách khách mời
+Danh sách khách mời | thuna.vn
 @endsection
-@section('nav-bar')
-@include('nav')
+@section('nav-dash')
+	<!-- Navigation -->
+	<div class="row bg-menu-top">
+		<div class="navbar">
+		  	<div class="navbar-header">
+			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+		        	<span class="sr-only">Toggle navigation</span>
+		        	<span class="icon-bar"></span>
+		        	<span class="icon-bar"></span>
+		        	<span class="icon-bar"></span>
+		      	</button>
+		  	</div>
+		  	<div class="navbar-collapse collapse navbar-responsive-collapse">
+			    <ul class="nav navbar-nav">
+			      	<li>
+			      		<a href="{{URL::route('index')}}" title="Trang chủ">
+			      			Trang chủ
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('website')}}" title="Website cưới">
+			        		Website cưới
+			        	</a>
+			        </li>
+			      	<li><a href="{{URL::route('user-checklist')}}" title="Danh sách công việc">
+			      			Danh sách công việc
+	 		      		</a>
+			      	</li>
+			      	<li class="active"><a href="{{URL::route('guest-list')}}" title="Danh sách khác mời">
+			      			Danh sách khách mời
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('budget')}}" title="Quăn lí ngân sách">
+			      			Quản lí ngân sách
+	 		      		</a>
+			      	</li>
+			      	<li class="dropdown">
+				        <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Âm nhạc">
+							Âm nhạc
+				        </a>
+				        <ul class="dropdown-menu oneUl" role="menu">
+				          	<li role="presentation" class="dropdown-header"><span>Nghi lễ</span>
+					            <div class="row">
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('mo-dau'))}}">Mở đầu</a></li>
+					                  <li><a href="{{URL::route('songs', array('doan-ruoc'))}}">Đoàn rước</a></li>
+					                </ul>
+					              </div>
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('nghi-thuc'))}}">Nghi thức</a></li>
+					                  <li><a href="{{URL::route('songs', array('ket-thuc'))}}">Kết thúc</a></li>
+					                </ul>
+					              </div>
+					            </div>
+				          	</li>
+				          	<li role="presentation" class="dropdown-header"><span>Đãi tiệc</span>
+					            <div class="row">
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('khai-tiec'))}}">Khai tiệc</a></li>
+					                  <li><a href="{{URL::route('songs', array('phat-bieu'))}}">Phát biểu</a></li>
+					                  <li><a href="{{URL::route('songs', array('cat-banh'))}}">Cắt bánh</a></li>
+					                </ul>
+					              </div>
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('vao-tiec'))}}">Vào tiệc</a></li>
+					                  <li><a href="{{URL::route('songs', array('chuc-mung'))}}">Chúc mừng</a></li>
+					                  <li><a href="{{URL::route('songs', array('cuoi-tiec'))}}">Cuối tiệc</a></li>
+					                </ul>
+					              </div>
+					            </div>
+				          	</li>
+				        </ul>
+			      	</li> <!--/music-->
+
+			      	<li><a href="{{URL::action('FortuneController@getIndex')}}" title="Xem ngày cưới">
+			      			Xem ngày cưới
+			      		</a>
+			      	</li>
+			    
+			    </ul>
+		  	</div>
+		</div><!--/.nav-->
+	</div><!--/.bg-menu-top-->
+@endsection
+@section('total')
+	@include('total')
 @endsection
 @section('content')
 
-	<div class="col-xs-12">
-		<div class="row sort-by">
-			<div class="col-xs-12">
-				<h2>Danh sách khách mời</h2>
-			</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<h2 style="color:#E75292; padding-left:15px;">Danh sách khách mời</h2>
 		</div>
+	</div>
+
+	<div class="col-md-12 thong-ke-chi-tiet-cong-viec">
+
+		<div class="table-responsive">
+	 		<table class="table table-hover">
+	 			<tbody>
+	 				<tr>
+	 					<td style="border-top:none; padding: 15px 8px 0 8px;">Khách chưa mời</td>
+						<td style="border-top:none; padding: 15px 8px 0 8px;">Khách đã mời</td>
+						<td style="border-top:none; padding: 15px 8px 0 8px;">Tổng số khách</td>
+	 				</tr>
+	 				<tr>
+	 					<td>
+	 						<div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" >
+                                    {{ GuestController::getGuestOverInvitedPercent() }}%
+                                </div>
+                            </div>
+						</td>
+	 					<td>
+	 						<div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" >
+                                    {{ GuestController::getGuestInvitedPercent() }}%
+                                </div>
+                            </div>
+						</td>
+						<td>
+	 						<div class="progress progress-striped active">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" >
+                                    {{ GuestController::getAllGuest() }}
+                                </div>
+                            </div>
+						</td>
+	 				</tr>
+	 			</tbody>
+	 		</table>
+	 	</div>
+	</div><!--/.thong-ke-chi-tiet-cong-viec-->
+
+
+	<div class="col-xs-12">
+
 		<div class="submenu">
-			<div class="row">
-				<div class="col-lg-2 col-sm-3 col-xs-4">
-					<a href="" id="add-group-webding" style="cursor:pointer;" data-toggle="modal" data-target="#myGroup" data-backdrop="static" >
+			<div class="row guest-action-btn">
+				<div class="col-md-2 col-sm-3 col-xs-4">
+					<a href="" id="add-group-webding" class="btn btn-primary" data-toggle="modal" data-target="#myGroup" data-backdrop="static" >
 						<span class="hidden-xs">
 							<i class="glyphicon glyphicon-plus"></i>
 							Thêm Nhóm
@@ -37,13 +165,21 @@ Danh sách khách mời
 							      
 							        <form id="form_add_group" action="{{Asset('guest-list/add_group')}}" method="post">
 										<div class="modal-body">
-											<label for="name" class="control-label hidden-xs">Tên nhóm:</label>
-											<input type="text" class="form-control" name="name" id="name" placeholder="Tên nhóm mới">
+											<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="margin-top:1%;">
+												<label for="name" class="control-label hidden-xs">Tên nhóm:</label>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+												<input type="text" class="form-control" name="name" id="name" placeholder="Tên nhóm mới">
+											</div>
+											
+											<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+												
+											</div>
 											
 									   	</div>
-									   	<div class="modal-footer" style="text-align:center;">								  		
+									   	<div class="modal-footer" style="text-align:center;border-top:none;">								  		
 									    	<button type="submit" class="btn btn-primary" id="submit_add"> Thêm </button>
-									    	<a data-dismiss="modal" style="cursor:pointer; margin-left: 10px;"> Huỷ bỏ </a>								  										  		
+									    	<a data-dismiss="modal" class="btn btn-primary" style="cursor:pointer; margin-left: 10px;"> Huỷ bỏ </a>								  										  		
 										</div> 
 										<!-- end modal body -->
 									</form>	
@@ -54,8 +190,8 @@ Danh sách khách mời
 						<!-- end modal Add -->
 						<script type="text/javascript" src="{{Asset('assets/js/script_thuy.js')}}"></script>
 				</div>
-				<div class="col-lg-2 col-sm-3 col-xs-4">
-					<a href="" onclick="showHideAddGuest()" id="add-guest-wedding" style="cursor:pointer;" data-toggle="modal" data-target="" >
+				<div class="col-md-2 col-sm-3 col-xs-4">
+					<a href="" onclick="showHideAddGuest()" id="add-guest-wedding" class="btn btn-primary" data-toggle="modal" data-target="" >
 						<span class="hidden-xs">
 							<i class="glyphicon glyphicon-plus"></i>
 							Thêm Khách
@@ -153,8 +289,8 @@ Danh sách khách mời
 							<script type="text/javascript" src="{{Asset('assets/js/script-binh.js')}}"></script>
 					</div>
 
-					<div class="col-lg-2 col-sm-3 col-xs-4">
-						<a href="{{URL::route('guest-list/exportfile')}}" >
+					<div class="col-md-2 col-sm-3 col-xs-4">
+						<a href="{{URL::route('guest-list/exportfile')}}" class="btn btn-warning" >
 							<span class="hidden-xs">
 								<i class="fa fa-print"></i>
 								Xuất file
@@ -164,34 +300,34 @@ Danh sách khách mời
 							</span>
 						</a>
 					</div>
+
+					<div class="col-md-6 text-right">
+						<span style="color: #19b5bc; cursor:pointer; margin-right: 5px;" id="guest_all_item_sign_down"><i class="glyphicon glyphicon-chevron-down"></i></span>
+						<span style="color: #19b5bc; cursor:pointer; " id="guest_all_item_sign_up"><i class="glyphicon glyphicon-chevron-up"></i></span>
+					</div>
+
 				</div>
 			</div>
 			<!-- /.row -->
-				<div class="col-xs-12" align="right">
-					<span style="color: #19b5bc; cursor:pointer; margin-right: 5px;" id="guest_all_item_sign_down"><i class="glyphicon glyphicon-chevron-down"></i></span>
-					<span style="color: #19b5bc; cursor:pointer; " id="guest_all_item_sign_up"><i class="glyphicon glyphicon-chevron-up"></i></span>
-					<!-- display or hide all items -->
-					
-				</div>
 			</div>
 			<!-- /.sub_menu -->
 
 			<div class="row" style="margin-left:0">
 				<div class="col-xs-12">
 					<table class="table table-hover table-guest">
-						<tr class="table-guest-thead-fixed hidden-xs">
-							<th style="width:180px;">Nhóm</th>
-					 		<th style="width:180px;">Mã khách mời</th>
-					 		<th style="width:200px;">Số điện thoại</th>
-					 		<th style="width:200px;">Email</th>
-					 		<th style="width:200px;">Tham dự</th>
-					 		<th style="width:60px;"></th>
+						<tr class="table-guest-thead-fixed hidden-xs sum-table">
+							<th style="width:10%;">Nhóm</th>
+							<th style="width:35%;">Mã khách mời</th>
+							<th style="width:15%;">Số điện thoại</th>
+							<th style="width:19%;">Email</th>
+							<th style="width:13%;">Tham dự</th>
+							<th style="width:1%;"></th>
 					 		<th></th>
 
 					 	</tr>
 					 	<script type="text/javascript">
 						 	$(window).scroll(function(){
-								if ($(this).scrollTop() > 240) {
+								if ($(this).scrollTop() > 800) {
 							        $('.table-guest-thead-fixed').show();
 							    } else {
 							        $('.table-guest-thead-fixed').hide();
@@ -329,13 +465,12 @@ Danh sách khách mời
 						 				</div>
 						 				
 						 			</td><!-- Due -->
-						 			<td>
+						 			<td width="10px">
 						 				@if($guest->invited==false)
 						 				<input onclick="invited1_click({{$guest->id}})" type="submit" name="invited1" id="invited1{{$guest->id}}" class="invited1 form-control " value="Chưa mời" required="required" title="">
 						 				<input type="hidden" name="{{$guest->id}}" value="{{$guest->id}}">
 						 				<input onclick="invited2_click({{$guest->id}})" type="submit" style="display:none" name="invited2" id="invited2{{$guest->id}}" class="form-control invited2" value="Đã mời" required="required" title="">
 						 				<input type="hidden" name="{{$guest->id}}" value="{{$guest->id}}">
-						 				
 						 				@else
 						 				<input onclick="invited1_click({{$guest->id}})" type="submit" style="display:none" name="invited1" id="invited1{{$guest->id}}" class="form-control invited1" value="Chưa mời" required="required" title="">
 						 				<input type="hidden" name="{{$guest->id}}" value="{{$guest->id}}">
@@ -357,7 +492,8 @@ Danh sách khách mời
 						 	@endif	
 						 		<tr class="guest_list_item_cat{{$group->id}}" id="guest_list_item_cat{{$group->id}}">
 						 			
-						 			<td style="text-align: left;" colspan="7"><a onclick="add_guest({{$group->id}})" href="javascript:void(0)" class="guest_list_add{{$group->id}}" style="cursor:pointer;">
+						 			<td style="text-align: left;" colspan="7">
+						 				<a onclick="add_guest({{$group->id}})" href="javascript:void(0)" class="guest_list_add{{$group->id}} btn btn-primary">
 											<i class="glyphicon glyphicon-plus"></i>&nbsp Thêm Khách
 										</a>
 										<input type="hidden" value="{{$group->id}}" name="{{$group->id}}">
@@ -404,7 +540,7 @@ Danh sách khách mời
 		    <div class="modal-content">
 		    	<div class="modal-header">
 		        	<button style="color:red" type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		        	<h4 style="color:#3276B1;" class="modal-title">Thông báo</h4>
+		        	<h4 style="color:#3276B1;" class="modal-title text-center">Thông báo</h4>
 		      	</div>		      
 		      	<div class="modal-body">										        
 				    <div class="row form-group algin-delete">
@@ -941,6 +1077,45 @@ Danh sách khách mời
 				 $('.attend_error'+id).hide();
             	};           	
             };
+
+            $("#form_add_guest").validate({
+		rules:{
+			fullname:{
+				required:true
+			},
+			email:{
+                    
+                     email:true,
+                     remote:{
+                                url:"{{URL::route('check-email-guest')}}",
+                                type:"POST"
+                            }
+                    },
+            
+             phone:{
+             	
+                minlength:9
+
+             	},
+           
+		},
+		messages:{
+			fullname:{
+				required:"Bạn chưa nhập Tên Khách"
+			},
+			email:{
+				
+                email:"Không đúng định dạng Email",
+                remote:"Email đã tồn tại"
+			},
+			
+			phone:{
+             	
+                minlength:"Yêu cầu nhập trên 9 kí tự"
+             	},
+             
+		}
+	});
 		</script>	
 		</div>
 

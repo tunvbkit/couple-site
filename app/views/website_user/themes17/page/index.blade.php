@@ -1,16 +1,20 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Dịch vụ cưới hỏi chuyên nghiệp">
+    <title>{{$firstname}}'s wedding</title>
+    <meta name="description" content="Tạo website cưới miễn phí">
     <meta name="author" content="Thuna.vn">
-	
-	<title>{{$firstname}}'s wedding</title>
+    <meta property="og:title" content="{{$firstname}}'s wedding">
+	<meta property="og:description" content="Chào mừng đến với website cưới của chúng tôi">
+	<meta property="og:url" content="http://thuna.vn/website/{{$url}}">
+	<meta property="og:type" content="article">
+	<meta property="og:image" content="{{Asset("{$web_fb}")}}" />
 
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.min.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap/bootstrap.min.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/template-font.css")}}">
     <script src="{{Asset("assets/js/jquery.min.js")}}"></script>
     <script type="text/javascript" src="{{Asset("assets/js/bootstrap.min.js")}}"></script>
    	
@@ -32,18 +36,27 @@
         .fancybox-custom .fancybox-skin {
             box-shadow: 0 0 50px #222;
         }
-
-        .fb-comments, .fb-comments iframe[style], .fb-like-box, .fb-like-box iframe[style]
-	       {width: 100% !important;}
-	      .fb-comments span, .fb-comments iframe span[style], .fb-like-box span, .fb-like-box iframe span[style] 
-	      {width: 100% !important;}
     </style>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes17.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes17.css")}}">
     <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
    
 </head>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=943743042306339&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+    $(document).ready(function() {
+        $('.fb-share-button').attr("data-href", document.URL);
+    });
+</script>
 <div class=" background-themes" style="background-image: url({{Asset("images/website/themes17/temp_17.jpg")}});">
 
 <!-- <img src="{{Asset("{$backgrounds}")}}" class=" img-responsive" alt="Image">	 -->
@@ -135,6 +148,10 @@
 </div>
 @endforeach
 @endif
+
+<script type="text/javascript">
+	$('.modal').appendTo("body");
+</script>
 
 </html>
 

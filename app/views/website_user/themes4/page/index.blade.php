@@ -1,19 +1,24 @@
-<!DOCTYPE html>
-<html lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Dịch vụ cưới hỏi chuyên nghiệp">
-    	<meta name="author" content="Thuna.vn">
-		<title>{{$firstname}}'s wedding</title>
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>{{$firstname}}'s wedding</title>
+	    <meta name="description" content="Tạo website cưới miễn phí">
+	    <meta name="author" content="Thuna.vn">
+	    <meta property="og:title" content="{{$firstname}}'s wedding">
+		<meta property="og:description" content="Chào mừng đến với website cưới của chúng tôi">
+		<meta property="og:url" content="http://thuna.vn/website/{{$url}}">
+		<meta property="og:type" content="article">
+		<meta property="og:image" content="{{Asset("{$web_fb}")}}" />
 
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.min.css")}}">
+		<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap/bootstrap.min.css")}}">
 		<link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
 		<!-- Custom CSS -->
-		<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes4new.css")}}">
+		<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes4new.css")}}">
 		<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
+		<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/template-font.css")}}">
 
 		<!-- Bootstrap JS -->
 		<script src="{{Asset('assets/js/jquery.min.js')}}"></script>
@@ -59,6 +64,20 @@
 
 	</head>
 	<body  style="background-color: #F5EBEF;position:relative;overflow-x:hidden">
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=943743042306339&version=v2.0";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+		<script>
+		    $(document).ready(function() {
+		        $('.fb-share-button').attr("data-href", document.URL);
+		    });
+		</script>
 		<!-- header -->
 @if($website)
 	@foreach( $website as $website_item )
@@ -93,11 +112,11 @@
 				        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 about">
 				        	<hgroup>
 				        		<h2 class="text-center" style="text-transform: uppercase; color: #{{$website_item->color1}}; font-family: {{$website_item->font}};"> Ours Wedding </h2>
-				        		<h1 style="font-family: 'Great Vibes',cursive; text-transform: uppercase; color: #{{$website_item->color2}};" class="font-name text-center name-g">
+				        		<h1 style="font-family: 'UVF Before the Rain',font-size:16px;,cursive; text-transform: uppercase; color: #{{$website_item->color2}};" class="font-name text-center name-g">
 				        			{{$website_item->name_groom}} 
 				        		</h1>
 				        		<h6 class="text-center" style="font-size:20px;">&</h6>
-				        		<h1 style="font-family: 'Great Vibes',cursive; text-transform: uppercase; color: #{{$website_item->color2}};" class="font-name text-center name-b">
+				        		<h1 style="font-family: 'UVF Before the Rain',font-size:16px;,cursive; text-transform: uppercase; color: #{{$website_item->color2}};" class="font-name text-center name-b">
 				        			{{$website_item->name_bride}}
 				        		</h1>
 				        		<h6>on</h6>
@@ -125,8 +144,8 @@
 										@endif
 									</a>
 								</figure>
-								<h3 style="font-family: 'Great Vibes',cursive; color: #{{$website_item->color2}};" class="title-bg name-g">{{$website_item->name_groom}}</h3>
-								<p class="about-g">{{$website_item->about_groom}} </p>
+								<h3 style="font-family: 'UVF Before the Rain',cursive; color: #{{$website_item->color2}};" class="title-bg name-g">{{$website_item->name_groom}}</h3>
+								<p class="about-g" style="font-family:'UVF Before the Rain';">{{$website_item->about_groom}} </p>
 							</div>
 							<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 text-center">
 								<figure class="theme-border-big border">
@@ -138,8 +157,8 @@
 										@endif
 									</a>
 								</figure>
-								<h3 style="font-family: 'Great Vibes',cursive; color: #{{$website_item->color2}};" class="title-tab title-bg name-b">{{$website_item->name_bride}}</h3>
-								<p class="about-b">{{$website_item->about_bride}}</p>
+								<h3 style="font-family: 'UVF Before the Rain',cursive; color: #{{$website_item->color2}};" class="title-tab title-bg name-b">{{$website_item->name_bride}}</h3>
+								<p class="about-b" style="font-family:'UVF Before the Rain';">{{$website_item->about_bride}}</p>
 							</div>
 						</div>
 						<div class="dt-sc-hr-invisible  "></div>
@@ -178,7 +197,10 @@
 				                    <img  style='width: 350px;height: 350px;'  class="img-responsive img-circle" src="{{Asset("images/website/themes1/images.jpg")}}" alt="">
 
 				                @endif
-		            			</div>			
+		            			</div>
+		            			<div class="btn-share">
+					                <div class="fb-share-button" data-layout="button"></div>
+					            </div>			
 		            		</div>
 		            		
 		            	</div>
@@ -268,7 +290,10 @@
 					                    <img  style='width: 350px;height: 350px;' class="img-responsive img-circle" src="{{Asset("images/website/themes1/images.jpg")}}" alt="">
 
 					                @endif
-		            			</div>			
+		            			</div>
+		            			<div class="btn-share">
+					                <div class="fb-share-button" data-layout="button"></div>
+					            </div>			
 		            		</div>
 		            		
 		            	</div>

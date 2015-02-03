@@ -1,19 +1,12 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 phara-temp main-template text-center" >
 			<!-- count datime to weddingdate -->
-				@if(empty($website_item->count_down))
-					@foreach( $date = explode('-', WebsiteController::getDates()) as $index=>$dd )
-						<div id="getD{{$index}}" style="display:none;">
-							{{$dd}}
-						</div>
-					@endforeach
-				@else
-				@foreach( $date = explode('-', WebsiteController::getCountDown()) as $index=>$dd )
-						<div id="getD{{$index}}" style="display:none;">
-							{{$dd}}
-						</div>
-					@endforeach
-				@endif
 				
+  					@foreach( $date = explode('-', WebsiteController::getDates()) as $index=>$dd )
+  						<div id="getD{{$index}}" style="display:none;">
+  							{{$dd}}
+  						</div>
+  					@endforeach
+  				
 			<div id="count_dateTime" >
 			
 				<table align="center">
@@ -39,11 +32,11 @@
 					</tr>
 				</table>
 			</div>
-			<h2 class="section-title " id="showName" onclick="editName();">
+			<h3 class="section-title " id="showName" onclick="editName();">
 				<span class="name-g" id="topNameGroom">{{$website_item->name_groom}}</span>
 					<em>&</em>
 				<span class="name-b" id="topNameBride">{{$website_item->name_bride}}</span>
-			</h2>
+			</h3>
 			<div id="editName">
 				<input name="name_groom" value="{{$website_item->name_groom}}">
 				<input name="name_bride" value="{{$website_item->name_bride}}">

@@ -1,339 +1,145 @@
 
 @extends('main-dashboard')
 @section('title')
-Dashboard
+Dashboard | thuna.vn
 @endsection
+@section('nav-dash')
+	<!-- Navigation -->
+	<div class="row bg-menu-top">
+		<div class="navbar">
+		  	<div class="navbar-header">
+			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+		        	<span class="sr-only">Toggle navigation</span>
+		        	<span class="icon-bar"></span>
+		        	<span class="icon-bar"></span>
+		        	<span class="icon-bar"></span>
+		      	</button>
+		  	</div>
+		  	<div class="navbar-collapse collapse navbar-responsive-collapse">
+			    <ul class="nav navbar-nav">
+			      	<li class="active">
+			      		<a href="{{URL::route('index')}}" title="Trang chủ">
+			      			Trang chủ
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('website')}}" title="Website cưới">
+			        		Website cưới
+			        	</a>
+			        </li>
+			      	<li><a href="{{URL::route('user-checklist')}}" title="Danh sách công việc">
+			      			Danh sách công việc
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('guest-list')}}" title="Danh sách khác mời">
+			      			Danh sách khách mời
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('budget')}}" title="Quăn lí ngân sách">
+			      			Quản lí ngân sách
+	 		      		</a>
+			      	</li>
+			      	<li class="dropdown">
+				        <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Âm nhạc">
+							Âm nhạc
+				        </a>
+				        <ul class="dropdown-menu oneUl" role="menu">
+				          	<li role="presentation" class="dropdown-header"><span>Nghi lễ</span>
+					            <div class="row">
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('mo-dau'))}}">Mở đầu</a></li>
+					                  <li><a href="{{URL::route('songs', array('doan-ruoc'))}}">Đoàn rước</a></li>
+					                </ul>
+					              </div>
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('nghi-thuc'))}}">Nghi thức</a></li>
+					                  <li><a href="{{URL::route('songs', array('ket-thuc'))}}">Kết thúc</a></li>
+					                </ul>
+					              </div>
+					            </div>
+				          	</li>
+				          	<li role="presentation" class="dropdown-header"><span>Đãi tiệc</span>
+					            <div class="row">
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('khai-tiec'))}}">Khai tiệc</a></li>
+					                  <li><a href="{{URL::route('songs', array('phat-bieu'))}}">Phát biểu</a></li>
+					                  <li><a href="{{URL::route('songs', array('cat-banh'))}}">Cắt bánh</a></li>
+					                </ul>
+					              </div>
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('vao-tiec'))}}">Vào tiệc</a></li>
+					                  <li><a href="{{URL::route('songs', array('chuc-mung'))}}">Chúc mừng</a></li>
+					                  <li><a href="{{URL::route('songs', array('cuoi-tiec'))}}">Cuối tiệc</a></li>
+					                </ul>
+					              </div>
+					            </div>
+				          	</li>
+				        </ul>
+			      	</li> <!--/music-->
 
+			      	<li><a href="{{URL::action('FortuneController@getIndex')}}" title="Xem ngày cưới">
+			      			Xem ngày cưới
+			      		</a>
+			      	</li>
+			    
+			    </ul>
+		  	</div>
+		</div><!--/.nav-->
+	</div><!--/.bg-menu-top-->
+@endsection
 @section('content')
-	<div class="content">
-		<div class="col-md-3 col-sm-6 content-index-item">
-			<div class="div-1">
-				<i class="fa fa-file-text-o"></i>
-				Danh sách công việc
-			</div>
-			<div class="div-2">
-				Hoàn thành<br />
-				<span>
-					{{ChecklistController::countTasksComplete()}}/{{ChecklistController::countTasksToDo()}}
-					&nbsp({{ChecklistController::countTasksCompletePercent()}}%)
-				</span>
-			</div>
-			<div class="div-3">
-				<a href="{{URL::route('user-checklist')}}">
-					Xem chi tiết
-					<i class="fa fa-arrow-circle-right"></i>
-				</a>
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 content-index-item">
-			<div class="div-1">
-				<i class="fa fa-group"></i>
-				Danh sách khách mời
-			</div>
-			<div class="div-2">
-				Hoàn thành<br />
-				<span>
-					{{GuestController::getGuestInvited()}}/{{GuestController::getAllGuest()}}
-					&nbsp({{GuestController::getGuestInvitedPercent()}}%)
-				</span>
-			</div>
-			<div class="div-3">
-				<a href="{{URL::route('guest-list')}}">
-					Xem chi tiết
-					<i class="fa fa-arrow-circle-right"></i>
-				</a>
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 content-index-item">
-			<div class="div-1">
-				<i class="fa fa-dollar"></i>
-				Quản lý ngân sách
-			</div>
-			<div class="div-2">
-				Hoàn thành<br />
-				<span>
-					{{UserBudgetController::getDisplayMoneyTotal('pay')}}/{{UserBudgetController::getDisplayMoneyTotal('actual')}}
-					&nbsp({{UserBudgetController::getDisplayMoneyTotalPercent()}}%)
-				</span>
-			</div>
-			<div class="div-3">
-				<a href="{{URL::route('budget')}}">
-					Xem chi tiết
-					<i class="fa fa-arrow-circle-right"></i>
-				</a>
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 content-index-item">
-			<div class="div-1">
-				<i class="fa fa-globe"></i>
-				Website cưới
-			</div>
-			<div class="div-2">
-				Hoàn thành<br />
-				<span>
-					{{WebsiteController::getCountDataPercent()}}%
-				</span>
-			</div>
-			<div class="div-3">
-				<a href="{{URL::route('website')}}">
-					Xem chi tiết
-					<i class="fa fa-arrow-circle-right"></i>
-				</a>
-			</div>
-		</div>
-		<div style="clear:both;"></div>
-
-		<div class="panel panel-default hidden-xs">
-            <div class="panel-heading">
-                <i class="fa fa-bar-chart-o fa-fw"></i> Biểu đồ thống kê
-                <div class="pull-right">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                            <span class="txt">Danh sách công việc</span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu pull-right" role="menu" id="myStatistic">
-                            <li value="checklist">
-                            	<a href="javascript:;">Danh sách công việc</a>
-                            </li>
-                            <li value="guestlist">
-                            	<a href="javascript:;">Danh sách khách mời</a>
-                            </li>
-                            <li value="budget">
-                            	<a href="javascript:;">Quản lý ngân sách</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li value="website">
-                            	<a href="javascript:;">Website cưới</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-            	<!-- checklist -->
-            	<div class="col-lg-12 active" id="checklist">
-            		 <div id="morris-bar-chart" style="height: 300px;"></div>
-            	</div>
-
-            	<div class="col-lg-12" id="budget">
-            		 <div id="morris-donut-chart" ></div>
-            	</div>
-
-            	
-            	<div class="col-lg-12" id="guestlist">
-            		 	<div class="table-responsive">
-            		 		<table class="table table-hover">
-            		 			<thead>
-            		 				<tr>
-            		 					<th>#</th>
-            		 					<th>Chi tiết</th>
-            		 				</tr>
-            		 			</thead>
-            		 			<tbody>
-            		 				<tr class="success">
-            		 					<td>Đã mời</td>
-            		 					<td>
-            		 						<div class="progress progress-striped active">
-		                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" >
-		                                            {{ GuestController::getGuestInvitedPercent() }}%
-		                                        </div>
-		                                    </div>
-										</td>
-            		 				</tr>
-            		 				<tr class="warning">
-            		 					<td>Chưa mời</td>
-            		 					<td>
-            		 						<div class="progress progress-striped active">
-		                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" >
-		                                            {{ GuestController::getGuestOverInvitedPercent() }}%
-		                                        </div>
-		                                    </div>
-										</td>
-            		 				</tr>
-            		 				<tr class="info">
-            		 					<td>Đã xác nhận</td>
-            		 					<td>
-            		 						<div class="progress progress-striped active">
-		                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" >
-		                                            {{ GuestController::getGuestConfirmPercent() }}%
-		                                        </div>
-		                                    </div>
-										</td>
-            		 				</tr>
-            		 				<tr class="danger">
-            		 					<td>Chưa xác nhận</td>
-            		 					<td>
-            		 						<div class="progress progress-striped active">
-		                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" >
-		                                            {{ GuestController::getGuestNotConfirmPercent() }}%
-		                                        </div>
-		                                    </div>
-										</td>
-            		 				</tr>
-            		 				<tr class="active">
-            		 					<td>Tổng số khách</td>
-            		 					<td>
-            		 						<div class="progress">
-	            		 						<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%" >
-												    {{ GuestController::getAllGuest() }}
-												</div>
-											</div>
-										</td>
-            		 				</tr>
-            		 			</tbody>
-            		 		</table>
-            		 	</div>
-            	</div>
-
-        		<div class="col-lg-12" id="website">
-		           		<table class="table table-striped table-hover">
-		            		<thead>
-		            			<tr>
-		            				<th>#</th>
-		            				<th>Tình trạng</th>
-		            			</tr>
-		            		</thead>
-		            		<tbody class="tbl-website">
-		            			@foreach( WebsiteController::getDataDashboard() as $item )
-		            			<tr>
-		            				<td>Hình nền</td>
-		            				<td>
-		            					@if( $item->background == null )
-		            					Chưa có
-		            					@else
-		            					Sẵn sàng
-		            					@endif
-		            				</td>
-		            			</tr>
-		            			<tr>
-		            				<td>Ảnh chú rể</td>
-		            				<td>
-		            					@if( $item->avatar_groom == null )
-		            					Chưa có
-		            					@else
-		            					Sẵn sàng
-		            					@endif
-		            				</td>
-		            			</tr>
-		            			<tr>
-		            				<td>Ảnh cô dâu</td>
-		            				<td>
-		            					@if( $item->avatar_bride == null )
-		            					Chưa có
-		            					@else
-		            					Sẵn sàng
-		            					@endif
-		            				</td>
-		            			</tr>
-		            			<tr>
-		            				<td>Tên chú rể</td>
-		            				<td>
-		            				@if( $item->name_groom == null )
-		            					Chưa có
-		            					@else
-		            					Sẵn sàng
-		            					@endif
-		            				</td>
-		            			</tr>
-		            			<tr>
-		            				<td>Tên cô dâu</td>
-		            				<td>
-		            					@if( $item->name_bride == null )
-		            					Chưa có
-		            					@else
-		            					Sẵn sàng
-		            					@endif
-		            				</td>
-		            			</tr>
-		            			<tr>
-		            				<td>Giới thiệu chú rể</td>
-		            				<td>
-		            					@if( $item->about_groom == null )
-		            					Chưa có
-		            					@else
-		            					Sẵn sàng
-		            					@endif
-		            				</td>
-		            			</tr>
-		            			<tr>
-		            				<td>Giới thiệu cô dâu</td>
-		            				<td>
-		            					@if( $item->about_bride == null )
-		            					Chưa có
-		            					@else
-		            					Sẵn sàng
-		            					@endif
-		            				</td>
-		            			</tr>
-		            			@endforeach
-		            		</tbody>
-		            	</table>
-		        </div>
-            	
-                	
-            </div>
-            <!-- /.panel-body -->
-        </div>
-        <!-- /.panel -->
-        <script type="text/javascript">
-        	$('#myStatistic li').click(function(){
-        		var $liValue 	= $(this).attr('value');
-        		var $txt 		= $(this).text();
-        		$('span.txt').text($txt);
-
-        		$('.panel-body div').removeClass('active');
-        		$('#'+$liValue).addClass('active');
-        		$('.panel-body div.active').show();
-
-        	});
-
-
-        	var $cssSuccess = $('.progress-bar-success').text();
-        	var $cssWarning = $('.progress-bar-warning').text();
-        	var $cssInfo = $('.progress-bar-info').text();
-        	var $cssDanger = $('.progress-bar-danger').text();
-
-        	$('.progress-bar-success').css("width", ""+$cssSuccess+"");
-        	$('.progress-bar-warning').css("width", ""+$cssWarning+"");
-        	$('.progress-bar-info').css("width", ""+$cssInfo+"");
-        	$('.progress-bar-danger').css("width", ""+$cssDanger+"");
-
-        	if ( ($('.tbl-website tr td:eq(1)').text())==='Chưa có' ) {
-        		$('.tbl-website tr').addClass('warning');
-        	} else {
-        		$('.tbl-website tr').addClass('success');
-        	};
-        	
-
-
-        </script>
-
-
-	</div>
-	<!-- /.content -->
-
-	<div class="data-hidden" style="display:none;">
-		<div class="task-do-not">
-			{{ChecklistController::countTasksToDo()-(ChecklistController::countTasksComplete()+ChecklistController::overdue())}}
-		</div>
-		<div class="task-did">
-			{{ChecklistController::countTasksComplete()}}
-		</div>
-		<div class="task-over-do">
-			{{ChecklistController::overdue()}}
-		</div>
-		<div class="task-to-do">
-			{{ChecklistController::countTasksToDo()}}
+	
+	<div class="row">
+		<div class="col-xs-12">
+			<h2 style="color:#E75292;">Trang chủ</h2>
 		</div>
 	</div>
 
-	<script type="text/javascript" src="{{Asset("assets/js/morris/raphael.min.js")}}"></script>
-    <script type="text/javascript" src="{{Asset("assets/js/morris/morris.js")}}"></script>
-    <script type="text/javascript" src="{{Asset("assets/js/morris/morris-data.js")}}"></script>
+	<div class="row" style="margin-top: 1%;">
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 bg-introduce">
+			<h4>Chọn giao diện và cài đặt website của bạn</h4>
+			<p>Giao diện website luôn được cập nhật liên tục, có nhiều giao diện đẹp đang chờ bạn.</p>
+			<a class="btn btn-sd" href="{{URL::route('website')}}">Sử dụng ngay</a>
+		</div>
+		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 bg-img-dash" style="margin-left:2%;">
+			<img class="img-responsive" src="{{Asset('images/tool/website.gif')}}">
+		</div>
+	</div>
+
+	<div class="row" style="margin-top: 3%;">
+		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 bg-img-dash" style="margin-right:2%;">
+			<img class="img-responsive" src="{{Asset('images/tool/checklist.gif')}}">
+		</div>
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 bg-introduce">
+			<h4>Công cụ quản lí danh sách công việc đám cưới</h4>
+			<p>Cập nhật công việc mỗi ngày sẽ giúp bạn chủ động trong mọi việc.Mọi việc sẽ sẽ diễn ra như ý muốn của bạn.</p>
+			<a class="btn btn-sd" href="{{URL::route('user-checklist')}}">Sử dụng ngay</a>
+		</div>
+	</div>
+
+	<div class="row" style="margin-top: 3%;">
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 bg-introduce">
+			<h4>Công cụ quản lí ngân sách đám cưới</h4>
+			<p>Kiểm tra ngân sách mỗi ngày sẽ giúp bạn quản lí ngân sách của đám cưới một cách chính xác, mọi việc đều nằm trong tầm kiểm soát của bạn.</p>
+			<a class="btn btn-sd" href="{{URL::route('budget')}}">Sử dụng ngay</a>
+		</div>
+		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 bg-img-dash" style="margin-left:2%;">
+			<img class="img-responsive" src="{{Asset('images/tool/budget.gif')}}">
+		</div>
+	</div>
+
+	<div class="row" style="margin-top: 3%;">
+		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 bg-img-dash" style="margin-right:2%;">
+			<img class="img-responsive" src="{{Asset('images/tool/guestlist.gif')}}">
+		</div>
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 bg-introduce">
+			<h4>Công cụ quản lí khách mời đám cưới</h4>
+			<p>Luôn luôn kiểm tra danh sách khách mời để đảm bảo rằng bạn sẽ không thiếu sót bất kì một người thân hay bạn bè đến chung vui cùng đám cưới của bạn.</p>
+			<a class="btn btn-sd" href="{{URL::route('guest-list')}}">Sử dụng ngay</a>
+		</div>
+	</div>
 
 @endsection

@@ -1,28 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 
 <head>
-	<title>{{$firstname}}'s Wedding Website | thuna.vn</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=false" />
-
-	<meta name="description" content="Dịch vụ cưới hỏi chuyên nghiệp">
-	<meta property="og:image" itemprop="thumbnailUrl" content="{{Asset("assets/img/logo.png")}}">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta property="og:title" content="Dịch vụ cưới hỏi Thuna.vn">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="{{Asset("assets/img/logo.png")}}" />
-	<meta property="fb:app_id" content="692038267552175" />
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{$firstname}}'s wedding</title>
+    <meta name="description" content="Tạo website cưới miễn phí">
+    <meta name="author" content="Thuna.vn">
+    <meta property="og:title" content="{{$firstname}}'s wedding">
+	<meta property="og:description" content="Chào mừng đến với website cưới của chúng tôi">
+	<meta property="og:url" content="http://thuna.vn/website/{{$url}}">
+	<meta property="og:type" content="article">
+	<meta property="og:image" content="{{Asset("{$web_fb}")}}" />
 	
-	
-
 	<!-- style css -->
-	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes18.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes18.css")}}">
 	<!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes.css")}}">
     <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
-
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/template-font.css")}}">
     <!-- css -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap/bootstrap.css")}}">
     <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
 
 
@@ -47,7 +45,20 @@
 </head>
 
 <body>
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=943743042306339&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+    $(document).ready(function() {
+        $('.fb-share-button').attr("data-href", document.URL);
+    });
+</script>
 @if($website)
 @foreach( $website as $website_item )
 
@@ -121,10 +132,11 @@
 					    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
 					</ol>
 					<!-- Wrapper for slides -->
+					<?php $check=PhotoTab::where('user',$website_item->user)->get()->count();?>
 					<div class="carousel-inner">
 
 						<?php $albums=PhotoTab::where('user',$website_item->user)->get();?>
-			            @if($albums)
+			            @if( $check > 0 )
 			                @foreach($albums as $index => $album)
 			                	@if($index==0)
 			                    	<div class="item active">

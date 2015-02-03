@@ -78,7 +78,7 @@ return array(
 	|
 	*/
 
-	'key' => 'YourSecretKey!!!',
+	'key' => 'DGfrync76J0FdCoTTgqGSgmN9lMGOjDC',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -123,7 +123,6 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Maatwebsite\Excel\ExcelServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
-		'Artdarek\OAuth\OAuthServiceProvider',
 		'Cviebrock\EloquentSluggable\SluggableServiceProvider'
 	),
 
@@ -193,8 +192,7 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
 		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 		'Carbon' => 'Carbon\Carbon',
-		'Image' => 'Intervention\Image\Facades\Image',
-		'OAuth' => 'Artdarek\OAuth\Facade\OAuth'
+		'Image' => 'Intervention\Image\Facades\Image'
 
 	),
 

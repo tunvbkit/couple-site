@@ -12,7 +12,37 @@ class GuestController extends \BaseController {
 	{
 		return View::make('guest.guest');
 	}
-	public static function id_user(){
+
+	/**====================================
+	* return id_user to view
+	*
+	*/ 
+	public static function checkIfUrl($url)
+	{
+		if ( (Session::has('email')) || ($url==NULL) ) {
+			$id_user = GuestController::id_user();
+		} else {
+			$id_user = GuestController::id_user_url($url);
+		}
+
+		return $id_user;
+		
+	}
+
+	/**=====================================
+	* @return when call url of user
+	*
+	*/ 
+	private static function id_user_url($url) {	
+		$id_user = WeddingWebsite::where( 'url', $url )->get()->first()->user;
+		return $id_user;
+	}
+
+	/**=====================================
+	* @return when call id of user
+	*
+	*/ 
+	public static function id_user() {	
 		$id_user = User::where( 'email', Session::get('email') )->get()->first()->id;
 		return $id_user;
 	}
@@ -60,14 +90,15 @@ class GuestController extends \BaseController {
                
 		}
 		$guest 				= new Guests();
-		$guest->fullname 	= "New Guest";
+		$guest->fullname 	= "Họ và tên";
 		$guest->email 		= "Email";
-		$guest->address 	= $id_user.str_random(5);
-		$guest->phone 		= "Phone";
-		$guest->attending 	= "0";
+		$guest->address 	= str_random(4);
+		$guest->phone 		= "Số điện thoại";
+		$guest->attending 	= "1";		
 		$guest->group 		= $id_group;
 		$guest->user 		= $id_user;
         $guest->invited 	= false;
+        $guest->confirm 	= false;
 		$guest->save(); 
 		$total_guest 		= Guests::where('user',GuestController::id_user())->sum('attending');
 		$total_invited 		= Guests::where('user',GuestController::id_user())->where('invited',true)->sum('attending');
@@ -80,49 +111,49 @@ class GuestController extends \BaseController {
 	 			<td style="width:18%;text-align: left;">
 	 				<div>
 					 <a onclick="name_click('.$guest_add->id.')" class="'.$guest_add->id.'show_name">
-					 	'.$guest->fullname.'
+					 	'.$guest_add->fullname.'
 					 </a> 										 	
-					    <input onblur="name_change('.$guest_add->id.')" ondblclick="name_dblclick('.$guest_add->id.')" type="text" class="'.$guest_add->id.'name form-control input-edit-guest" name="fullname" value="'.$guest->fullname.'">   
+					    <input onblur="name_change('.$guest_add->id.')" ondblclick="name_dblclick('.$guest_add->id.')" type="text" class="'.$guest_add->id.'name form-control input-edit-guest" name="fullname" value="'.$guest_add->fullname.'">   
 						<input type="hidden" name="'.$guest_add->id.'" value="'.$guest_add->id.'">
 						 <p style="display:none;color:red;" class="name_error'.$guest_add->id.'">Nhập tên khách mời</p>
 					 </div>			 
 	 			</td>
 	 			<td style="width:18%; text-align: left;">
-					<div> 
+					<div class="text-center"> 
 						<a class="span-id-guest" title="Tìm hiểu thêm" data-toggle="modal" data-target="#alert-id-guest" data-backdrop="static">
-							'.$guest->address.'
+							'.$guest_add->address.'
 						</a> 										 	
 					</div>				
 				</td>
 		 		<td style="width:14%;">
 	 				<div >
-					 <a onclick="phone_click('.$guest_add->id.')" class="'.$guest_add->id.'show_phone">'.$guest->phone.'</a> 										 	
-					    <input onkeyup="key_phone(event,'.$guest_add->id.')" onblur="phone_change('.$guest_add->id.')" ondblclick="phone_dblclick('.$guest_add->id.')" type="text" class="'.$guest_add->id.'phone form-control input-edit-guest" name="phone" value="'.$guest->phone.'">   
+					 <a onclick="phone_click('.$guest_add->id.')" class="'.$guest_add->id.'show_phone">'.$guest_add->phone.'</a> 										 	
+					    <input onkeyup="key_phone(event,'.$guest_add->id.')" onblur="phone_change('.$guest_add->id.')" ondblclick="phone_dblclick('.$guest_add->id.')" type="text" class="'.$guest_add->id.'phone form-control input-edit-guest" name="phone" value="'.$guest_add->phone.'">   
 						<input type="hidden" name="'.$guest_add->id.'" value="'.$guest_add->id.'">
 					 </div>	
 					  <p style="display:none;color:red;" class="phone_error'.$guest_add->id.'">phone không đúng</p>				 
 		 		</td>
 		 		<td style="width:18%;">
 	 				<div> 
-						<a onclick="email_click('.$guest_add->id.')" class="'.$guest_add->id.'show_email">'.$guest->email.'</a> 										 	
-					    <input onblur="email_change('.$guest_add->id.')"  type="text" class="'.$guest_add->id.'email form-control input-edit-guest" name="email" value="'.$guest->email.'">   
+						<a onclick="email_click('.$guest_add->id.')" class="'.$guest_add->id.'show_email">'.$guest_add->email.'</a> 										 	
+					    <input onblur="email_change('.$guest_add->id.')"  type="text" class="'.$guest_add->id.'email form-control input-edit-guest" name="email" value="'.$guest_add->email.'">   
 						<input type="hidden" name="'.$guest_add->id.'" value="'.$guest_add->id.'">
 					</div>
 					<p style="display:none;color:red;" class="email_format'.$guest_add->id.'">email không đúng</p>
  				</td><!-- pay -->
 	 			<td style="width:10%;">
 	 				<div>
-		 				<a onclick="attend_click('.$guest_add->id.')" class="'.$guest_add->id.'show_attend">'.$guest->attending.'</a> 										 	
-					    <input onblur="attend_change('.$guest_add->id.')" ondblclick="attend_dblclick('.$guest_add->id.')" onchange="sum_attending('.$guest->id.')"type="text" class="'.$guest_add->id.'attend form-control input-edit-guest" name="attending" value="'.$guest->attending.'">   
+		 				<a onclick="attend_click('.$guest_add->id.')" class="'.$guest_add->id.'show_attend">'.$guest_add->attending.'</a> 										 	
+					    <input onblur="attend_change('.$guest_add->id.')" ondblclick="attend_dblclick('.$guest_add->id.')" onchange="sum_attending('.$guest_add->id.')"type="text" class="'.$guest_add->id.'attend form-control input-edit-guest" name="attending" value="'.$guest_add->attending.'">   
 						<input type="hidden" name="'.$guest_add->id.'" value="'.$guest_add->id.'">
 	 				</div>
 	 			</td><!-- Due -->
 	 			<td style="width:10%;">
                      
-	 				<input onclick="invited1_click('.$guest->id.')" type="submit" name="invited1" id="invited1'.$guest_add->id.'" class="form-control invited1" value="Chưa mời" required="required" title="">
-	 				<input type="hidden" name="'.$guest->id.'" value="'.$guest->id.'">
-	 				<input onclick="invited2_click('.$guest->id.')"  type="submit" name="invited2" style="display:none" id="invited2'.$guest_add->id.'" class="form-control invited2" value="Đã mời" required="required" title="">
-	 				<input type="hidden" name="'.$guest->id.'" value="'.$guest->id.'">
+	 				<input onclick="invited1_click('.$guest_add->id.')" type="submit" name="invited1" id="invited1'.$guest_add->id.'" class="form-control invited1" value="Chưa mời" required="required" title="">
+	 				<input type="hidden" name="'.$guest_add->id.'" value="'.$guest_add->id.'">
+	 				<input onclick="invited2_click('.$guest_add->id.')"  type="submit" name="invited2" style="display:none" id="invited2'.$guest_add->id.'" class="form-control invited2" value="Đã mời" required="required" title="">
+	 				<input type="hidden" name="'.$guest_add->id.'" value="'.$guest_add->id.'">
 	 			</td>
 	 			<td style="width:10%;">	 				
 	 				<a onclick="get_guest('.$guest_add->id.')" href="javascript:void(0)" data-toggle="modal" data-target="#modalDeleteGuest" class="guest_list_icon_trash guest_del'.$guest_add->id.'">
@@ -487,38 +518,46 @@ public function update_name()
 	public function checkAttending()
 	{
 		$code_check_attending		= Input::get('checkAttendingCode');
+		$num_person 				= Input::get('numPerson');
 		$id_guest					= Input::get('idGuest');
 
 		$guest 						= new Guests();
-		if ( $guest->where('id', $id_guest)->get()->first()->attending == 1 ) {
-			$attending 				= 0;
+		if ( $guest->where('id', $id_guest)->get()->first()->confirm == 1 ) {
+			$confirm 				= 0;
 		} else {
-			$attending 				= 1;
+			$confirm 				= 1;
 		}
 
 		if ( $code_check_attending == null ) {
 			$msg = "Xác nhận không thành công";
+			$tiny = 0;
 		} else {
 			
-			if ( $code_check_attending 	= $guest->where('id', $id_guest)->get()->first()->address ) {
+			if ( $code_check_attending 	!= ($guest->where('id', $id_guest)->get()->first()->address) ) {
+				
+				$msg = "Xác nhận không thành công";
+				$tiny = 0;
+
+			} else {
+				
 				$guest->where('id', $id_guest)->update(
 						array(
-							"attending" 		=> $attending,
+							"attending" 		=> $num_person,
+							"confirm"			=> $confirm
 						));
 
 				$msg = "Xác nhận thành công";
-			} else {
-				$msg = "Xác nhận không thành công";
+				$tiny = 1;
 			}
 		}
 
-		$guest_gh_attending = $guest->where('id', $id_guest)->get()->first()->attending;
+		$guest_gh_confirm 	= $guest->where('id', $id_guest)->get()->first()->confirm;
 		$guest_gh_id 		= $guest->where('id', $id_guest)->get()->first()->id;
 
-		if ( $guest_gh_attending == 1 ) {
+		if ( $guest_gh_confirm == 1 ) {
 			$returnCheckAttending = '';
 			$returnCheckAttending .= '
-				<div class="slideThree">	
+				<div class="slideThree">
 					<input type="checkbox" checked="checked" value="'.$guest_gh_id.'" id="slideThreeChk'.$guest_gh_id.'" name="checkAttending" />
 					<label for="slideThree" class="labelChk'.$guest_gh_id.'"></label>
 				</div>
@@ -535,7 +574,7 @@ public function update_name()
 		
 		
 
-		echo json_encode( array("msg"=>$msg, "replace"=>$returnCheckAttending) );
+		echo json_encode( array("msg"=>$msg, "tiny"=>$tiny, "replace"=>$returnCheckAttending) );
 		exit();
 
 		

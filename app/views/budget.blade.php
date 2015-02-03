@@ -1,10 +1,97 @@
 
 @extends('main-dashboard')
 @section('title')
-Quản lý ngân sách
+Quản lý ngân sách | thuna.vn
 @endsection
-@section('nav-bar')
-@include('nav')
+@section('nav-dash')
+	<!-- Navigation -->
+	<div class="row bg-menu-top">
+		<div class="navbar">
+		  	<div class="navbar-header">
+			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+		        	<span class="sr-only">Toggle navigation</span>
+		        	<span class="icon-bar"></span>
+		        	<span class="icon-bar"></span>
+		        	<span class="icon-bar"></span>
+		      	</button>
+		  	</div>
+		  	<div class="navbar-collapse collapse navbar-responsive-collapse">
+			    <ul class="nav navbar-nav">
+			      	<li>
+			      		<a href="{{URL::route('index')}}" title="Trang chủ">
+			      			Trang chủ
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('website')}}" title="Website cưới">
+			        		Website cưới
+			        	</a>
+			        </li>
+			      	<li><a href="{{URL::route('user-checklist')}}" title="Danh sách công việc">
+			      			Danh sách công việc
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('guest-list')}}" title="Danh sách khác mời">
+			      			Danh sách khách mời
+	 		      		</a>
+			      	</li>
+			      	<li class="active"><a href="{{URL::route('budget')}}" title="Quăn lí ngân sách">
+			      			Quản lí ngân sách
+	 		      		</a>
+			      	</li>
+			      	<li class="dropdown">
+				        <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Âm nhạc">
+							Âm nhạc
+				        </a>
+				        <ul class="dropdown-menu oneUl" role="menu">
+				          	<li role="presentation" class="dropdown-header"><span>Nghi lễ</span>
+					            <div class="row">
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('mo-dau'))}}">Mở đầu</a></li>
+					                  <li><a href="{{URL::route('songs', array('doan-ruoc'))}}">Đoàn rước</a></li>
+					                </ul>
+					              </div>
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('nghi-thuc'))}}">Nghi thức</a></li>
+					                  <li><a href="{{URL::route('songs', array('ket-thuc'))}}">Kết thúc</a></li>
+					                </ul>
+					              </div>
+					            </div>
+				          	</li>
+				          	<li role="presentation" class="dropdown-header"><span>Đãi tiệc</span>
+					            <div class="row">
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('khai-tiec'))}}">Khai tiệc</a></li>
+					                  <li><a href="{{URL::route('songs', array('phat-bieu'))}}">Phát biểu</a></li>
+					                  <li><a href="{{URL::route('songs', array('cat-banh'))}}">Cắt bánh</a></li>
+					                </ul>
+					              </div>
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('vao-tiec'))}}">Vào tiệc</a></li>
+					                  <li><a href="{{URL::route('songs', array('chuc-mung'))}}">Chúc mừng</a></li>
+					                  <li><a href="{{URL::route('songs', array('cuoi-tiec'))}}">Cuối tiệc</a></li>
+					                </ul>
+					              </div>
+					            </div>
+				          	</li>
+				        </ul>
+			      	</li> <!--/music-->
+
+			      	<li><a href="{{URL::action('FortuneController@getIndex')}}" title="Xem ngày cưới">
+			      			Xem ngày cưới
+			      		</a>
+			      	</li>
+			    
+			    </ul>
+		  	</div>
+		</div><!--/.nav-->
+	</div><!--/.bg-menu-top-->
+@endsection
+@section('total')
+	@include('total')
 @endsection
 @section('content')
 
@@ -12,20 +99,21 @@ Quản lý ngân sách
 
 	<div class="row" style="margin-left:0">
 		<div class="col-xs-12">
-			<div class="row" style="margin-right:0; padding-top:2%">
-				<div class="col-lg-10 col-sm-10 col-xs-12"><h1 class="title-budget">Quản lý ngân sách</h1></div>
-				<div class="col-lg-2 col-sm-2 col-xs-12">
-					<a class="btn btn-warning" href="{{URL::route('reset-budget')}}" style="padding: 3px 5px;">
-					Số tiền khác</a>
-				</div>
+			<div class="row" style="margin-right:0;">
+				<div class="col-lg-10 col-sm-10 col-xs-12"><h2 class="title-budget" style="color:#E75292;">Quản lý ngân sách</h2></div>
+				
 			</div>
 			<div class="row">
-				<div class="col-xs-4">
-					<a href="{{URL::route('exportfile')}}" style="cursor:pointer;">
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<a href="{{URL::route('exportfile')}}" class="btn btn-warning">
 						<i class="fa fa-print"></i>&nbsp Xuất file
 					</a>
 				</div>
-				<div class="col-xs-8" align="right">
+				<div class="col-xs-6 col-sm-7 col-md-7 col-lg-7" align="right">
+					<a class="btn btn-warning" href="{{URL::route('reset-budget')}}" style="padding: 3px 5px;">
+					Số tiền khác</a>
+				</div>
+				<div class="col-xs-1" align="right">
 					<span style="color: #19b5bc; cursor:pointer; margin-right: 5px;" id="budget_all_item_sign_down"><i class="glyphicon glyphicon-chevron-down"></i></span>
 					<span style="color: #19b5bc; cursor:pointer; " id="budget_all_item_sign_up"><i class="glyphicon glyphicon-chevron-up"></i></span>
 					<!-- display or hide all items -->
@@ -50,17 +138,18 @@ Quản lý ngân sách
 				<div class="col-xs-12">
 					<table class="table table-hover table-budget">
 
-						<tr class="table-budget-thead-fixed hidden-sm hidden-xs">
-							<th><i class="glyphicon glyphicon-th-large"></i></th>
-					 		<th>Danh mục</th>
-					 		<th>Chi phí dự kiến</th>
-					 		<th>Chi phí thực tế</th>
-					 		<th>Số tiền thanh toán</th>
+						<tr class="table-budget-thead-fixed hidden-sm hidden-xs sum-table">
+							<th style="width:5.1%;"><i class="glyphicon glyphicon-th-large"></i></th>
+					 		<th style="width:22.1%;">Danh mục</th>
+							<th style="width:19.2%;">Chi phí dự kiến</th>
+							<th style="width:17.2%">Chi phí thực tế</th>
+							<th style="width:24.55%">Số tiền thanh toán</th>
 					 		<th colspan="2">Số tiền còn nợ</th>
 					 	</tr>
+					 	
 					 	<script type="text/javascript">
 						 	$(window).scroll(function(){
-								if ($(this).scrollTop() > 230) {
+								if ($(this).scrollTop() > 600) {
 							        $('.table-budget-thead-fixed').show();
 							    } else {
 							        $('.table-budget-thead-fixed').hide();
@@ -246,7 +335,8 @@ Quản lý ngân sách
 						 		@endif
 						 		<tr class="budget_item_cat_add{{$category->id}}" id="budget_item_cat_add{{$category->id}}">
 						 			<td></td>
-						 			<td colspan="7"><a href="javascript:void(0);" onclick="item_add({{$category->id}})" class="item-add{{$category->id}}" style="cursor:pointer;">
+						 			<td colspan="7">
+						 				<a href="javascript:void(0);" onclick="item_add({{$category->id}})" class="item-add{{$category->id}} btn btn-primary">
 											<i class="glyphicon glyphicon-plus"></i>&nbsp Thêm chi tiêu
 										</a>
 										<input type="hidden" value="{{$category->id}}" name="{{$category->id}}">
@@ -256,7 +346,7 @@ Quản lý ngân sách
 						@endforeach
 						@endif
 					 	</tbody>
-					 	<tr>
+					 	<tr class="sum-table">
 					 		<th><i class="glyphicon glyphicon-gbp"></i></th>
 					 		<th>Tổng cộng chi phí</th>
 					 		<th class="TienVND" id="rowSumExpected">

@@ -35,11 +35,11 @@
 		}
 	</script>
 	
+	<link rel="favicon icon" href="{{Asset('icon/favicon.ico')}}">
 
-	<!-- css -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.css")}}">
+	<!-- Core Css Files -->
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap/bootstrap.css")}}">
     <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
-
    	<link href="{{Asset("assets/css/dashboard.css")}}" rel="stylesheet">
    	<link href="{{Asset("assets/css/chart/morris.css")}}" rel="stylesheet">
     <link href="{{Asset("assets/css/social-buttons.css")}}" rel="stylesheet">
@@ -59,150 +59,82 @@
 	<script src="{{Asset('assets/js/jquery-validate/jquery.validate.min.js')}}"></script>
 	<script src="{{Asset('assets/js/jquery.number.js')}}"></script>
 	<script src="{{Asset('assets/js/jquery.number.min.js')}}"></script>
-
 </head>
-<body>
+<body style="overflow-x:hidden;">
 
-<!-- menu top mobile -->
-	<nav class="navbar navbar-default navbar-fixed-top hidden-md hidden-lg hidden-sm" role="navigation">
-	   	<div class="navbar-header">
-	      	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
-	         	<span class="sr-only">Toggle navigation</span>
-	         	<span class="icon-bar"></span>
-	         	<span class="icon-bar"></span>
-	         	<span class="icon-bar"></span>
-	      	</button>
-	   	</div>
-	   	<div class="collapse navbar-collapse" id="example-navbar-collapse">
-	      	<ul class="nav navbar-nav">
-	      		<li>
-		      		<a href="{{URL::route('user-checklist')}}" >
-		      			<i class="fa fa-file-text-o"></i>
-		      			Danh sách công việc
-		      		</a>
-		      	</li>
-			    <li>
-		      		<a href="{{URL::route('guest-list')}}" >
-		      			<i class="fa fa-group"></i>
-		      			Danh sách khách mời
-		      		</a>
-		      	</li>
-		      	<li>
-		      		<a href="{{URL::route('budget')}}" >
-		      			<i class="fa fa-dollar"></i>
-		      			Quản lý ngân sách
-		      		</a>
-		      	</li>
-		      	<li>
-		      		<a href="{{URL::route('website')}}" >
-		      			<i class="fa fa-globe"></i>
-		      			Website cưới
-		      		</a>
-		      	</li>
-		      	<li>
-		      		<a href="{{URL::route('logout')}}">
-            			<i class="fa fa-sign-out"></i>	
-	            		Thoát
-		            </a>
-	            </li>
-	      	</ul>
-	   	</div>
-	</nav>
-<!-- end menu top -->
+	<div class="row user-header">
+			<div class="col-xs-12 text-right to-top">
+				<ul class="menu-user">
+					<li class="dropdown">
+			          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+			          		<?php $avatar = UserController::getUserAvatar(); ?>
+			          		<img src="{{Asset("{$avatar}")}}">
+			          		{{UserController::getUserName()}} <span class="caret"></span>
+			          	</a>
+			          	<ul class="dropdown-menu drop-user" role="menu">
+			            	<li>
+			            		<a href="{{Asset('profile')}}">
+			            			<i class="fa fa-user"></i>
+			            			Thông tin cá nhân
+			            		</a>
+							</li>
+			            	<li class="divider"></li>
+			            	<li>
+				            	<a href="{{URL::route('logout')}}">
+				            		<i class="fa fa-sign-out"></i>
+				            		Thoát
+				            	</a>
+			            	</li>
+			          	</ul>
+			        </li>
+				</ul><!--/.navbar-right-->
+			</div>
+		<div class="col-xs-12 top-logo">
+			<div class="col-xs-12 text-center">
+				<a href="{{URL::route('index')}}">
+			    	<img style="width: 150px; height: 50px;" src="{{Asset('icon/logo-2.png')}}">
+			    </a>
+			</div>
+		</div><!--/.row-->	
 
-<div class="row top-dashboard">
-	<div class="col-xs-3 hidden-xs" style="padding: 0;">
-		<a href="{{URL::route('index')}}">
-	    	<img class="img-logo" src="{{Asset('icon/logo-thuna.png')}}">
-	    </a>
-	</div>
-	<div class="col-xs-9 text-right hidden-xs" style="padding: 0;">
-		<ul class="nav navbar-nav navbar-right">
-
-	  		@if( (Session::has('email')) && (UserController::isset_user())!=0 )
-	  		<li class="dropdown">
-	        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-	        		<i class="fa fa-user"></i>
-					{{User::where('email',Session::get('email'))->get()->first()->lastname}} 
-					<span class="caret"></span>
-				</a>
-	          	<ul class="dropdown-menu" role="menu">
-	            	<li><a href="{{Asset('profile')}}">
-	            			<i class="fa fa-user"></i>
-	            			Thông tin cá nhân
-	            		</a>
-	            	</li>
-	            	<li><a href="{{URL::route('logout')}}">
-	            			<i class="fa fa-sign-out"></i>	
-		            		Thoát
-		            	</a>
-	            	</li>
-	          	</ul>
-	        </li>
-	        @endif
-			
-		</ul>
-	</div>
-</div>
+		<div class="col-xs-12 top-menu">
+			@yield('nav-dash')
+		</div><!--/.top-menu-->
 
 
-<div class="row center-dashboard">
-	<div class="col-xs-3 hidden-xs" style="padding-left: 2.5%; padding-right:0;">
-		<div class="navbar hidden-xs">
-		  	<div class="navbar-header">
-			    <button style="background-color: #E75280;" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-		        	<span class="sr-only">Toggle navigation</span>
-		        	<span class="icon-bar"></span>
-		        	<span class="icon-bar"></span>
-		        	<span class="icon-bar"></span>
-		      	</button>
-			    <span class="navbar-brand brand">
-			    	<a href="{{URL::route('index')}}" style="color:#FFFFFF; text-decoration: none;">
-			    		Ứng dụng của bạn
-			    	</a>
-			    </span>
-		  	</div>
-		  	<div class="navbar-collapse collapse navbar-responsive-collapse">
-		    	<ul class="nav navbar-nav">
-			      	<li>
-			      		<a href="{{URL::route('user-checklist')}}" >
-			      			
-							Danh sách công việc
-			      		</a>
-			      	</li>
-				    <li>
-			      		<a href="{{URL::route('guest-list')}}" >
-			      			
-							Danh sách khách mời
-			      		</a>
-			      	</li>
-			      	<li>
-			      		<a href="{{URL::route('budget')}}" >
-			      			
-							Quản lý ngân sách
-			      		</a>
-			      	</li>
-			      	<li>
-			      		<a href="{{URL::route('website')}}" >
-			      			
-							Website cưới
-			      		</a>
-			      	</li>
-		     	</ul>
 
-		    </div>
-		</div>
-		<!-- end navbar -->
+	</div>	
 
-	</div>
-	<div class="col-md-9 col-lg-9 col-sm-9 col-xs-12 center-2">
-		@yield('content')
-	</div>
-	</div>
-</div>
+	<div class="row center-dashboard">
+		
+		@yield('total')
+
+		<div class="col-lg-10 col-lg-offset-1 container-content">
+			@yield('content')
+		</div><!--/.row-->
+
+		<script type="text/javascript">
+			var $cssSuccess = $('.progress-bar-success').text();
+	    	var $cssWarning = $('.progress-bar-warning').text();
+	    	var $cssInfo = $('.progress-bar-info').text();
+	    	var $cssDanger = $('.progress-bar-danger').text();
+
+	    	$('.progress-bar-success').css("width", ""+$cssSuccess+"");
+	    	$('.progress-bar-warning').css("width", ""+$cssWarning+"");
+	    	$('.progress-bar-info').css("width", ""+$cssInfo+"");
+	    	$('.progress-bar-danger').css("width", ""+$cssDanger+"");
+
+	    	if ( ($('.tbl-website tr td:eq(1)').text())==='Chưa có' ) {
+	    		$('.tbl-website tr').addClass('warning');
+	    	} else {
+	    		$('.tbl-website tr').addClass('success');
+	    	};
+		</script>
+
+	</div><!--center-dashboard-->
 
 <!-- footer -->
-<div class="row footer">
+<div class="col-xs-12 footer">
 	<div class="col-sm-8 col-md-8 col-lg-8 menu-footer">
 		<ul class="hidden-xs" >
 			<li>
@@ -256,6 +188,35 @@
 </div>	
 <!-- .row -->
 
+<div class="hidden-sm hidden-xs">
+	<a href="javascript:void(0);" class="btn btn-top" id="go_top">				
+		<i class="fa fa-angle-up fa-3x text-center"></i>
+	</a>
+</div>
+<script type="text/javascript">
+	(function(){
+	    // Cuộn trang lên với scrollTop
+	    $('#go_top').click(function(){
+	        $('body,html').animate({scrollTop:0},400);
+	        return false;
+	    })
+	})(jQuery)
+    $(window).scroll(function(){
+	    if( $(window).scrollTop() > 500 ) {
+	        $('#go_top').stop(false,true).fadeIn(300);
+	    }else{
+	        $('#go_top').hide();
+	    }
+	});
+</script>
+
+<!-- Live Chat -->
+<script lang="javascript">
+(function() {var _h1= document.getElementsByTagName('title')[0] || false;
+var product_name = ''; if(_h1){product_name= _h1.textContent || _h1.innerText;}var ga = document.createElement('script'); ga.type = 'text/javascript';
+ga.src = '//live.vnpgroup.net/js/web_client_box.php?hash=82fcf1fcdbc86bb2ca315feba840b27a&data=eyJzc29faWQiOjEyNDA0MjQsImhhc2giOiJjNzRkNTY2YjQwYmY0YzZhODFmMmM0NTgzNjMyMTNkOCJ9&pname='+product_name;
+var s = document.getElementsByTagName('script');s[0].parentNode.insertBefore(ga, s[0]);})();
+</script>
 
 	
 </body>

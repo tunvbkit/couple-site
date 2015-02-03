@@ -11,7 +11,7 @@
 	setcountdown(getY,getM,getD);
 	//STEP 2: Change the two text below to reflect the occasion, and message to display on that occasion, respectively
 	var occasion="tới"
-	var message_on_occasion="Xíu Nữa Thôi À"
+	var message_on_occasion="Gần đến đám cưới chúng mình rồi."
 	//STEP 3: Configure the below 5 variables to set the width, height, background color, and text style of the countdown area
 	var countdownwidth='500px'
 	var countdownheight='20px'
@@ -65,7 +65,7 @@
 	document.countdownnsmain.document.countdownnssub.document.close()
 	}
 	else if (document.all||document.getElementById)
-	crosscount.innerHTML=opentags+"Chúng mình đã cưới nhau rùi...ZuiZuiZui "+closetags
+	crosscount.innerHTML=opentags+"Chúng mình đã cưới nhau rồi."+closetags
 	return
 	}
 	//else, if not yet
@@ -89,6 +89,23 @@
 		$('#echo_dsec').append(dsec);
 		$('#echo_dsec').text("");
 		$('#echo_dsec').append(dsec);
+
+		$('.display-dd-mm-yyyy-1').append(dday);
+		$('.display-dd-mm-yyyy-1').text("");
+		$('.display-dd-mm-yyyy-1').append(dday);
+
+		$('.display-dd-mm-yyyy-2').append(dhour);
+		$('.display-dd-mm-yyyy-2').text("");
+		$('.display-dd-mm-yyyy-2').append(dhour);
+
+		$('.display-dd-mm-yyyy-3').append(dmin);
+		$('.display-dd-mm-yyyy-3').text("");
+		$('.display-dd-mm-yyyy-3').append(dmin);
+
+		$('.display-dd-mm-yyyy-4').append(dsec);
+		$('.display-dd-mm-yyyy-4').text("");
+		$('.display-dd-mm-yyyy-4').append(dsec);
+
 	}
 	else if (document.all||document.getElementById)
 	// crosscount.innerHTML=opentags+dday+ " ngày, "+dhour+" giờ, "+dmin+" phút, và "+dsec+" giây nữa là "+occasion+closetags
@@ -108,6 +125,23 @@
 		$('#echo_dsec').append(dsec);
 		$('#echo_dsec').text("");
 		$('#echo_dsec').append(dsec);
+
+		$('.display-dd-mm-yyyy-1').append(dday);
+		$('.display-dd-mm-yyyy-1').text("");
+		$('.display-dd-mm-yyyy-1').append(dday);
+
+		$('.display-dd-mm-yyyy-2').append(dhour);
+		$('.display-dd-mm-yyyy-2').text("");
+		$('.display-dd-mm-yyyy-2').append(dhour);
+
+		$('.display-dd-mm-yyyy-3').append(dmin);
+		$('.display-dd-mm-yyyy-3').text("");
+		$('.display-dd-mm-yyyy-3').append(dmin);
+
+		$('.display-dd-mm-yyyy-4').append(dsec);
+		$('.display-dd-mm-yyyy-4').text("");
+		$('.display-dd-mm-yyyy-4').append(dsec);
+
 	}
 	setTimeout("countdown()",1000)
 	}

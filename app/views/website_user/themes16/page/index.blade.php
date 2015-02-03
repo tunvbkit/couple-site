@@ -1,20 +1,26 @@
-<!DOCTYPE html>
-<html lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 	<head>
-		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" /><!--Bật Responsive-->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{$firstname}}'s wedding</title>
+    <meta name="description" content="Tạo website cưới miễn phí">
+    <meta name="author" content="Thuna.vn">
+    <meta property="og:title" content="{{$firstname}}'s wedding">
+	<meta property="og:description" content="Chào mừng đến với website cưới của chúng tôi">
+	<meta property="og:url" content="http://thuna.vn/website/{{$url}}">
+	<meta property="og:type" content="article">
+	<meta property="og:image" content="{{Asset("{$web_fb}")}}" />
 
-		<title>{{$firstname}}'s wedding</title>
-
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap/bootstrap.min.css")}}">
+    <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes16.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/template-font.css")}}">
+    
     <script src="{{Asset('assets/js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{Asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{Asset("assets/js/map-themes.js")}}"></script>
-
-    <script src="{{Asset("assets/js/themes16.js")}}"></script>
-
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.min.css")}}">
-    <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes16.css")}}">
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
 
     <script type="text/javascript" src="{{Asset("assets/slide/lib/jquery-1.8.2.min.js")}}"></script>
 
@@ -83,30 +89,31 @@
 		<div id="carousel-example-generic" class="carousel slide container item-slide"  data-ride="carousel">
 					
 			<!-- Wrapper for slides -->
+			<?php $check=PhotoTab::where('user',$website_item->user)->get()->count();?>
 			<div class="carousel-inner">
 			    <?php $albums=PhotoTab::where('user',$website_item->user)->get();?>
-	            @if($albums)
+	            @if( $check > 0 )
 	                @foreach($albums as $index => $album)
 	                	@if($index==0)
 	                    	<div class="item active">
-						    	<img class="img-responsive fix-slide" src="{{Asset("{$album->photo}")}}" alt="" />
+						    	<img class="img-responsive fix-slide" style="margin:0 auto;" src="{{Asset("{$album->photo}")}}" alt="" />
 						    </div>
 	                    @else
 	                    	<div class="item">
-						    	<img class="img-responsive fix-slide" src="{{Asset("{$album->photo}")}}" alt="" />
+						    	<img class="img-responsive fix-slide"  style="margin:0 auto;" src="{{Asset("{$album->photo}")}}" alt="" />
 						    </div>
 	                    @endif
 
 	                @endforeach
 	            @else
 	            	<div class="item active item-slide">
-				    	<img src="{{Asset("images/website/themes16/picture2.jpg")}}" alt="First slide">
+				    	<img  class="img-responsive"  style="margin:0 auto;" src="{{Asset("images/website/themes16/picture2.jpg")}}" alt="First slide">
 	                </div>
 				    <div class="item item-slide">
-				    	<img src="{{Asset("images/website/themes16/picture1.jpg")}}" alt="Second slide">
+				    	<img class="img-responsive"  style="margin:0 auto;" src="{{Asset("images/website/themes16/picture1.jpg")}}" alt="Second slide">
 				    </div>
 				    <div class="item item-slide">
-				    	<img  src="{{Asset("images/website/themes16/picture3.jpg")}}" alt="Third slide">
+				    	<img class="img-responsive"  style="margin:0 auto;" src="{{Asset("images/website/themes16/picture3.jpg")}}" alt="Third slide">
 				    </div>
 	            @endif
 			</div>
@@ -122,12 +129,12 @@
 									
 	        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 about" id="title_home">
 	        	<hgroup>
-	        		<h2 class="text-center" style="text-transform: uppercase; color: #{{$website_item->color1}}; font-family: {{$website_item->font}};"> Ours Wedding </h2>
-	        		<h1 style="font-family: 'Great Vibes',cursive; text-transform: uppercase; color: #{{$website_item->color2}};" class="font-name text-center name-g">
+	        		<h2 class="text-center" style="font-family: 'UvfAphroditePro'"> Ours Wedding </h2>
+	        		<h1 style="font-family: 'UvfAphroditePro'" class="font-name text-center name-g">
 	        			{{$website_item->name_groom}} 
 	        		</h1>
 	        		<h6 class="text-center" style="font-size:20px;">&</h6>
-	        		<h1 style="font-family: 'Great Vibes',cursive; text-transform: uppercase; color: #{{$website_item->color2}};" class="font-name text-center name-b">
+	        		<h1 style="font-family: 'UvfAphroditePro'" class="font-name text-center name-b">
 	        			{{$website_item->name_bride}}
 	        		</h1>
 	        		<h6 class="text-center">on</h6>
@@ -152,8 +159,8 @@
 							@endif
 						</a>
 					</figure>
-					<h3 style="font-family: 'Great Vibes',cursive; color: #{{$website_item->color2}};" class="title-bg name-g">{{$website_item->name_groom}}</h3>
-					<p class="about-g">{{$website_item->about_groom}} </p>
+					<h3 style="font-family: 'UvfAphroditePro'" class="title-bg name-g">{{$website_item->name_groom}}</h3>
+					<p class="about-g" style="font-family: 'UvfAphroditePro'">{{$website_item->about_groom}} </p>
 				</div>
 				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 text-center">
 					<figure class="bg-pro">
@@ -165,8 +172,8 @@
 							@endif
 						</a>
 					</figure>
-					<h3 style="font-family: 'Great Vibes',cursive; color: #{{$website_item->color2}};" class="title-tab title-bg name-b">{{$website_item->name_bride}}</h3>
-					<p class="about-b">{{$website_item->about_bride}}</p>
+					<h3 style="font-family: 'UvfAphroditePro'" class="title-tab title-bg name-b">{{$website_item->name_bride}}</h3>
+					<p class="about-b"style="font-family: 'UvfAphroditePro'">{{$website_item->about_bride}}</p>
 				</div>
 			</div>
 	    </div>
@@ -178,7 +185,7 @@
 			@if($tabWeb->type =="welcome" )
 
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pad-l" id="section_{{$tabWeb->type}}">
-				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
+				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="font-family: 'UvfAphroditePro'">
 	        	{{$tabWeb->title}}
 	       		</h3>
 
@@ -191,15 +198,17 @@
 
                 @endif
                 
-                <p class="collapse" id="viewdetails1"><span  style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span> </p>
-                <p class="more-content"><a class="btn btn-more" data-toggle="collapse" data-target="#viewdetails1">Xem thêm &raquo;</a></p>
-            
+                <p class="collapse" id="viewdetails2"><span  style="color: #{{$website_item->color2}}">{{$tabWeb->content}}</span> </p>
+                <p class="more-content"><a class="btn btn-more" data-toggle="collapse" data-target="#viewdetails2">Xem thêm &raquo;</a></p>
+            	<div class="" style="bottom:-2%;">
+	                <div class="fb-share-button" data-layout="button"></div>
+	            </div> 
 			</div>
 
 
 			@endif
 
-			@if($tabWeb->type=="love_story")
+			<!-- @if($tabWeb->type=="love_story")
 
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="section_{{$tabWeb->type}}">
 				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
@@ -217,12 +226,12 @@
                <p class="collapse" id="viewdetails2"><span  style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span> </p>
                 <p class="more-content"><a class="btn btn-more" data-toggle="collapse" data-target="#viewdetails2">Xem thêm &raquo;</a></p>
 			</div>
-			@endif
+			@endif -->
 
 			@if($tabWeb->type=="about")
 
-			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pad-r" id="section_{{$tabWeb->type}}">
-				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pad-l" id="section_{{$tabWeb->type}}">
+				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="font-family: 'UvfAphroditePro'">
 	        		{{$tabWeb->title}}
 	       		 </h3>
 				<?php  $images=PhotoTab::where('tab',$tabWeb->id)->get()->first(); ?>
@@ -233,22 +242,19 @@
                     <img  class="img-responsive " src="{{Asset("images/website/themes16/picture1.jpg")}}" alt="">
 
                 @endif
-
+                 
                <p class="collapse" id="viewdetails3"><span  style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span> </p>
                 <p class="more-content"><a class="btn btn-more" data-toggle="collapse" data-target="#viewdetails3">Xem thêm &raquo;</a></p>
+				<div class="" style="bottom:-2%;">
+	                <div class="fb-share-button" data-layout="button"></div>
+	            </div> 
 			</div>
 			@endif
-		@endforeach	
-		</div>
 
-		<hr class="container">
-
-		<div class="container">
-		@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->orderBy('sort','ASC')->get() as $tabWeb)
 			@if($tabWeb->type=="wedding" )
 
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pad-l" id="section_{{$tabWeb->type}}">
-				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
+				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="font-family: 'UvfAphroditePro'">
 		        	{{$tabWeb->title}}
 		        </h3>
 				<?php  $images=PhotoTab::where('tab',$tabWeb->id)->get()->first(); ?>
@@ -259,13 +265,23 @@
                     <img  class="img-responsive " src="{{Asset("images/website/themes16/picture1.jpg")}}" alt="">
 
                 @endif
-
+                  
                 <p class="collapse" id="viewdetails4"><span  style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span> </p>
                 <p class="more-content"><a class="btn btn-more" data-toggle="collapse" data-target="#viewdetails4">Xem thêm &raquo;</a></p>
+				<div class="" style="bottom:-2%;">
+	                <div class="fb-share-button" data-layout="button"></div>
+	            </div> 
 			</div>
 			@endif
+		@endforeach	
+		</div>
 
-			@if($tabWeb->type=="traval")
+		<hr class="container">
+
+		<div class="container">
+		@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->orderBy('sort','ASC')->get() as $tabWeb)
+
+			<!-- @if($tabWeb->type=="traval")
 
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="section_{{$tabWeb->type}}">
 				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
@@ -283,18 +299,18 @@
                 <p class="collapse" id="viewdetails5"><span  style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span> </p>
                 <p class="more-content"><a class="btn btn-more" data-toggle="collapse" data-target="#viewdetails5">Xem thêm &raquo;</a></p>
 			</div>
-			@endif
+			@endif -->
 
 			 @if($tabWeb->type=="album" )
 
-			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pad-r" id="section_{{$tabWeb->type}}">
-				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-r" id="section_{{$tabWeb->type}}">
+				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="font-family: 'UvfAphroditePro'">
 		        	{{$tabWeb->title}}
 		        </h3>
 				<?php $albums=PhotoTab::where('user',$website_item->user)->get();?>
 		            @if($albums)
 		                @foreach($albums as $album)
-		                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 images-padding">
+		                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 images-padding">
 		                        <a class="fancybox" href="{{Asset("{$album->photo}")}}">
 		                            <img class="img-responsive" style="width:100%;height:150px;" src="{{Asset("{$album->photo}")}}" alt="" />
 		                        </a>
@@ -317,7 +333,7 @@
 			@if($tabWeb->type=="register" )
 
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pad-l" id="section_{{$tabWeb->type}}">
-				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
+				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="font-family: 'UvfAphroditePro'">
 		        	{{$tabWeb->title}}
 		        </h3>
 				<?php  $images=PhotoTab::where('tab',$tabWeb->id)->get()->first(); ?>
@@ -337,7 +353,7 @@
 			 @if($tabWeb->type=="contact")
 
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="section_{{$tabWeb->type}}">
-				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
+				<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="font-family: 'UvfAphroditePro'">
 		        	{{$tabWeb->title}}
 		        </h3>
 				<form  class="contact-website" action="" method="POST" role="form">				             
@@ -378,7 +394,7 @@
 		<div class="row footer-line">
 			<!-- footer -->
 			<footer class="text-center" style="margin-top: 40px;">
-				<p class="col-xs-12">
+				<p class="col-xs-12" style="font-family: 'UvfAphroditePro'">
 					{{$website_item->name_groom}} &amp; {{$website_item->name_bride}} 
 				</p>
 				on 
@@ -399,6 +415,20 @@
 			</footer>
 <!-- / footer -->
 		</div>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=943743042306339&version=v2.0";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+		<script>
+		    $(document).ready(function() {
+		        $('.fb-share-button').attr("data-href", document.URL);
+		    });
+		</script>
 	</body>
 	@endforeach
 @endif

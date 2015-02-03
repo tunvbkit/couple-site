@@ -1,19 +1,19 @@
 @extends('main')
 @section('title')
-Đăng nhập
+Đăng nhập | thuna.vn
 @endsection
 @section('nav-bar')
 @include('nav')
 @endsection
 @section('content')
 
-<form role="form" action="{{Asset('change_weddingdate')}}" method="post" id="user_login" style="margin: 22px auto 70px;" >
+<form role="form" action="{{Asset('change_weddingdate')}}" method="post" id="user_login" style="margin: 70px auto 120px; max-width: 350px;" >
   
-  <div class="form-group">
+  <div class="form-group" style="text-align: center;">
     <label style="color: #4965B5;">ĐĂNG NHẬP BẰNG FACEBOOK</label>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" style="text-align: justify;">
     <label>Để sử dụng tốt nhất những công cụ của thuna.vn, bạn vui lòng cập nhật ngày cưới của mình</label>
   </div>
 
@@ -35,12 +35,26 @@
     </script>
 
   <div class="form-group" style="text-align: center;">
-    <button type="submit" class="btn btn-primary">CẬP NHẬT</button>
+    <button type="submit" class="btn btn-primary" id="btnUpdate">CẬP NHẬT</button>
   </div>
 
 </form>
 
+<script type="text/javascript">
+  
+  $(document).click(function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      return false;
+  });
 
+  // $('#btnUpdate').unbind('click');
+  $('#btnUpdate').click(function(){
+    $('#user_login').submit();
+  })
+
+</script>
 
 
 @endsection

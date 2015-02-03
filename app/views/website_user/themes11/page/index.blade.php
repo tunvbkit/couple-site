@@ -3,22 +3,24 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Dịch vụ cưới hỏi chuyên nghiệp">
-    <meta name="author" content="Thuna.vn">
-
     <title>{{$firstname}}'s wedding</title>
+    <meta name="description" content="Tạo website cưới miễn phí">
+    <meta name="author" content="Thuna.vn">
+    <meta property="og:title" content="{{$firstname}}'s wedding">
+    <meta property="og:description" content="Chào mừng đến với website cưới của chúng tôi">
+    <meta property="og:url" content="http://thuna.vn/website/{{$url}}">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="{{Asset("{$web_fb}")}}" />
 
     <script src="{{Asset('assets/js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{Asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{Asset("assets/js/map-themes.js")}}"></script>
 
-    <script src="{{Asset("assets/js/themes11.js")}}"></script>
-
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.min.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap/bootstrap.min.css")}}">
     <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes11.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes11.css")}}">
     <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
-
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/template-font.css")}}">
     <script type="text/javascript" src="{{Asset("assets/slide/lib/jquery-1.8.2.min.js")}}"></script>
     
 
@@ -45,15 +47,23 @@
             min-height: 30px;
             vertical-align: middle;
         }
-
-        .fb-comments, .fb-comments iframe[style], .fb-like-box, .fb-like-box iframe[style]
-       {width: 100% !important;}
-      .fb-comments span, .fb-comments iframe span[style], .fb-like-box span, .fb-like-box iframe span[style] 
-      {width: 100% !important;}
-
     </style>
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=943743042306339&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+    $(document).ready(function() {
+        $('.fb-share-button').attr("data-href", document.URL);
+    });
+</script>
 @if($website)
     @foreach( $website as $website_item )
     <div class="navbar-wrapper">
@@ -104,11 +114,11 @@
                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                             <hgroup>
                                 <h2 class="text-center" style="text-transform: uppercase; color: #{{$website_item->color1}}; font-family: {{$website_item->font}};"> Ours Wedding </h2>
-                                <h1 style="font-family: 'Great Vibes',cursive; text-transform: uppercase; color: #{{$website_item->color2}};" class="font-name text-center name-g">
+                                <h1 style="font-family: 'Great Vibes',cursive; text-transform: uppercase; color: #{{$website_item->color2}};" class="font-name text-center name-groom">
                                     {{$website_item->name_groom}}
                                 </h1>
                                 <h6 class="text-center" style="font-size:20px;">&</h6>
-                                <h1 style="font-family: 'Great Vibes',cursive; text-transform: uppercase; color: #{{$website_item->color2}};" class="font-name text-center name-b">
+                                <h1 style="font-family: 'Great Vibes',cursive; text-transform: uppercase; color: #{{$website_item->color2}};" class="font-name text-center name-bride">
                                     {{$website_item->name_bride}}
                                 </h1>
                                 <h6 class="text-center" style="font-size:20px;">on</h6>
@@ -156,6 +166,9 @@
                                 <img  class="img-responsive" src="{{Asset("images/website/themes1/images.jpg")}}" alt="">
 
                             @endif
+                            <div class="btn-share">
+                                <div class="fb-share-button" data-layout="button"></div>
+                            </div>
                         </div>
                         <div class="post-box2 col-sx-12 col-lg-6 col-md-6 col-sm-6 "> 
                             <h3 class="title-tab" style="text-align: {{$tabWeb->titlestyle}} font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
@@ -204,6 +217,9 @@
                                 <img  class="img-responsive" src="{{Asset("images/website/themes1/images.jpg")}}" alt="">
 
                             @endif
+                            <div class="btn-share">
+                                <div class="fb-share-button" data-layout="button"></div>
+                            </div>
                         </div>
                         <div class="post-box4 col-sx-12 col-lg-6 col-md-6 col-sm-6"> 
                             <h3 class="title-tab" style="text-align: {{$tabWeb->titlestyle}} font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
@@ -333,7 +349,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bg-footer">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bg-footer" style="margin-top:0%;">
         <footer>
             <div class="container">
                 <div class="aligncenter copyright">

@@ -2,7 +2,6 @@
     <!--  Slide Album -->
 
             <script type="text/javascript" src="{{Asset("assets/slide/lib/jquery-1.8.2.min.js")}}"></script>
-            <script src="{{Asset('assets/js/bootstrap.3.2.0.min.js')}}"></script>
 
             <!-- Add mousewheel plugin (this is optional) -->
             <script type="text/javascript" src="{{Asset("assets/slide/lib/jquery.mousewheel-3.0.6.pack.js")}}"></script>
@@ -30,9 +29,14 @@
 
 </head>
 <div>
-    <div class="partion">
+    <div class="partion r-title{{$tabWeb->id}}">
                  
-        <h6 style="text-align: {{$tabWeb->titlestyle}}" id = "nameTitle{{$tabWeb->id}}" > {{$tabWeb->title}}</h6>
+        <div class="inline-title text-center">
+            <h3 class="text-center title-tab" style="font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}" id = "nameTitle{{$tabWeb->id}}">
+                {{$tabWeb->title}}
+            </h3>
+            <span onclick="sendTitle({{$tabWeb->id}},{{$tabWeb->visiable}})" class="glyphicon glyphicon-edit" data-toggle="modal" data-target='#modal-edit-menu'></span>
+        </div>
         <div class="item-content phara{{$tabWeb->id}}" onclick="showckeditor_text({{$tabWeb->id}})">                            
             <span name="phara" style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span>
         </div> 
@@ -75,19 +79,6 @@
             
             @endif
         </div>
-        <div class="row phara-margin">
-            <div class="col-xs-11"></div>
-            <div class="col-xs-1 click-edit ">
-                <span><a onclick="send_id_album({{$tabWeb->id}})" class="glyphicon glyphicon-edit icon-site"  data-toggle="modal" data-target='#modal-up_images' href="javascript:void(0);"></a></span>
-            </div>               
-        </div>
-        <div class="row phara-margin">
-            <div class="col-xs-10"></div>
-            <div class="col-xs-2 ok-edit ">
-                <span><a class="glyphicon glyphicon-ok icon-site" href="javascript:void(0);"></a></span>
-                <span><a class=" glyphicon glyphicon-remove icon-site" href="javascript:void(0);"></a></span>
-            </div>
-        </div> 
     </div>
 </div>
 

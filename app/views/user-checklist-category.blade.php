@@ -1,42 +1,168 @@
 @extends('main-dashboard')
 @section('title')
-Danh sách công việc
+Danh sách công việc | thuna.vn
 @endsection
-@section('nav-bar')
-@include('nav')
+@section('nav-dash')
+	<!-- Navigation -->
+	<div class="row bg-menu-top">
+		<div class="navbar">
+		  	<div class="navbar-header">
+			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+		        	<span class="sr-only">Toggle navigation</span>
+		        	<span class="icon-bar"></span>
+		        	<span class="icon-bar"></span>
+		        	<span class="icon-bar"></span>
+		      	</button>
+		  	</div>
+		  	<div class="navbar-collapse collapse navbar-responsive-collapse">
+			    <ul class="nav navbar-nav">
+			      	<li>
+			      		<a href="{{URL::route('index')}}" title="Trang chủ">
+			      			Trang chủ
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('website')}}" title="Website cưới">
+			        		Website cưới
+			        	</a>
+			        </li>
+			      	<li class="active"><a href="{{URL::route('user-checklist')}}" title="Danh sách công việc">
+			      			Danh sách công việc
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('guest-list')}}" title="Danh sách khác mời">
+			      			Danh sách khách mời
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('budget')}}" title="Quăn lí ngân sách">
+			      			Quản lí ngân sách
+	 		      		</a>
+			      	</li>
+			      	<li class="dropdown">
+				        <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Âm nhạc">
+							Âm nhạc
+				        </a>
+				        <ul class="dropdown-menu oneUl" role="menu">
+				          	<li role="presentation" class="dropdown-header"><span>Nghi lễ</span>
+					            <div class="row">
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('mo-dau'))}}">Mở đầu</a></li>
+					                  <li><a href="{{URL::route('songs', array('doan-ruoc'))}}">Đoàn rước</a></li>
+					                </ul>
+					              </div>
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('nghi-thuc'))}}">Nghi thức</a></li>
+					                  <li><a href="{{URL::route('songs', array('ket-thuc'))}}">Kết thúc</a></li>
+					                </ul>
+					              </div>
+					            </div>
+				          	</li>
+				          	<li role="presentation" class="dropdown-header"><span>Đãi tiệc</span>
+					            <div class="row">
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('khai-tiec'))}}">Khai tiệc</a></li>
+					                  <li><a href="{{URL::route('songs', array('phat-bieu'))}}">Phát biểu</a></li>
+					                  <li><a href="{{URL::route('songs', array('cat-banh'))}}">Cắt bánh</a></li>
+					                </ul>
+					              </div>
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('vao-tiec'))}}">Vào tiệc</a></li>
+					                  <li><a href="{{URL::route('songs', array('chuc-mung'))}}">Chúc mừng</a></li>
+					                  <li><a href="{{URL::route('songs', array('cuoi-tiec'))}}">Cuối tiệc</a></li>
+					                </ul>
+					              </div>
+					            </div>
+				          	</li>
+				        </ul>
+			      	</li> <!--/music-->
+
+			      	<li><a href="{{URL::action('FortuneController@getIndex')}}" title="Xem ngày cưới">
+			      			Xem ngày cưới
+			      		</a>
+			      	</li>
+			    
+			    </ul>
+		  	</div>
+		</div><!--/.nav-->
+	</div><!--/.bg-menu-top-->
+@endsection
+@section('total')
+	@include('total')
 @endsection
 @section('content')
 
-
-<div class="col-xs-12" style="padding-right: 0;">
-	<div class="row sort-by">
-		<div class="col-lg-6 col-sm-12 col-xs-12">
-			<h2>Danh sách công việc</h2>
-		</div>
-		<div class="col-lg-4 col-sm-12 col-xs-12 pull-right" style="padding-top: 1.5%">
-			<ul class="nav nav-pills text-right" role="tablist">
-				<li>
-					<a href="{{URL::route('user-checklist')}}" ><span class="fa fa-calendar"></span> Theo tháng</a>
-				</li>
-				<li class="active">
-					<a href="{{URL::route('user-checklist-category')}}" ><span class="glyphicon glyphicon-list"></span> Theo danh mục</a>
-				</li>
-			</ul>
+	<div class="row">
+		<div class="col-xs-12">
+			<h2 style="color:#E75292; padding-left:15px;">Danh sách công việc</h2>
 		</div>
 	</div>
 
-	<div class="row" style="margin-top:1%;">
-		<div class="col-lg-3 col-sm-4 col-xs-6">
-			<a href="" id="add-checklist" style="cursor:pointer;" data-toggle="modal" data-target="#myModalAddChecklist" data-backdrop="static">
-				<i class="glyphicon glyphicon-plus"></i>
-				&nbsp Thêm công việc
-			</a>
-		</div>
+	<div class="col-xs-12 thong-ke-chi-tiet-cong-viec">
+		<div class="table-responsive">
+	 		<table class="table table-hover">
+	 			<tbody>
+	 				<tr>
+	 					<td style="border-top:none; padding: 15px 8px 0 8px;">Việc cần làm</td>
+	 					<td style="border-top:none; padding: 15px 8px 0 8px;">Việc chưa hoàn thành</td>
+	 					<td style="border-top:none; padding: 15px 8px 0 8px;">Việc hoàn thành</td>
+	 				</tr>
+	 				<tr>	 					
+	 					<td>
+	 						<div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" >
+                                    {{ChecklistController::countTasksToDo()}}
+                                </div>
+                            </div>
+						</td>
+	 					<td>
+	 						<div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" >
+                                    {{ChecklistController::overdue()}}
+                                </div>
+                            </div>
+						</td>
+						<td>
+	 						<div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" >
+                                    {{ChecklistController::countTasksComplete()}}
+                                </div>
+                            </div>
+						</td>
+	 				</tr>
+	 			</tbody>
+	 		</table>
+	 	</div>
+	</div><!--/.thong-ke-chi-tiet-cong-viec-->
 
-		<div class="col-lg-2 col-sm-3 col-sm-offset-5 col-xs-4 col-xs-offset-2">
-			<a href="{{Asset('exportfile')}}" ><i class="fa fa-print"></i>&nbspXuất file</a>
+	<div class="col-xs-12" style="padding-right: 0;">
+
+		<div class="row" style="margin:1% 0;">
+			<div class="col-lg-2 col-sm-4 col-xs-4" style="padding-left: 0">
+				<a href="" id="add-checklist" class="btn btn-primary" data-toggle="modal" data-target="#myModalAddChecklist" data-backdrop="static">
+					<i class="glyphicon glyphicon-plus"></i>
+					&nbsp Thêm công việc
+				</a>
+			</div>
+
+			<div class="col-lg-2 col-sm-3 col-xs-4">
+				<a href="{{Asset('exportfile')}}" class="btn btn-warning" ><i class="fa fa-print"></i>&nbspXuất file</a>
+			</div>
+
+			<div class="col-lg-4 col-sm-5 col-xs-4 pull-right">
+				<ul class="nav nav-pills text-right" role="tablist">
+					<li class="active">
+						<a href="{{URL::route('user-checklist')}}" ><span class="fa fa-calendar"></span> Theo tháng</a>
+					</li>
+					<li>
+						<a href="{{URL::route('user-checklist-category')}}" ><span class="glyphicon glyphicon-list"></span> Theo danh mục</a>
+					</li>
+				</ul>
+			</div>
+
 		</div>
-	</div>
 
 	<div class="checklist-statis-formonth">
 		<div class="row">
@@ -58,7 +184,7 @@ Danh sách công việc
 	<script type="text/javascript">
 
 		$(window).scroll(function(){
-			if ($(this).scrollTop() > 230) {
+			if ($(this).scrollTop() > 800) {
 		        $('.checklist-statis-formonth-hide').show();
 		    } else {
 		        $('.checklist-statis-formonth-hide').hide();

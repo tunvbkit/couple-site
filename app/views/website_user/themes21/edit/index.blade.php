@@ -1,84 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
-
 <head>
-	<title>{{$firstname}}'s Wedding Website | thuna.vn</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=false" />
-
-	<meta name="description" content="Dịch vụ cưới hỏi chuyên nghiệp">
-	<meta property="og:image" itemprop="thumbnailUrl" content="{{Asset("assets/img/logo.png")}}">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta property="og:title" content="Dịch vụ cưới hỏi Thuna.vn">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="{{Asset("assets/img/logo.png")}}" />
-	<meta property="fb:app_id" content="692038267552175" />
-	
-	
-    <!-- css -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.css")}}">
-    <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
-    <!-- style css -->
-	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes21.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes21.css")}}">
 	<!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes.css")}}">
     <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
-
-
-	<script type="text/javascript" src="{{Asset("assets/js/jquery.min.js")}}"></script>
-	<script type="text/javascript" src="{{Asset("assets/js/bootstrap.3.2.0.min.js")}}"></script>
-	<script type="text/javascript" src="{{Asset("assets/js/main.js")}}"></script>
-
-	
-
-	<script type="text/javascript">
-		function showckeditor(id){
-		        var text=$('.phara'+id).html();
-		        $('.phara'+id).hide();
-		        CKEDITOR.instances['editor'+id].setData(text);
-
-		        $('.editphara'+id).addClass("col-xs-6");
-		        $('.editphara'+id).show();
-		        $('.click-edit-hide'+id).hide();
-		        $('.ok-edit-show'+id).show();
-		    }
-		function showckeditor_text(id){
-		        var text=$('.phara'+id).html();
-		        $('.phara'+id).hide();
-		        CKEDITOR.instances['editor'+id].setData(text);
-
-		        $('.editphara'+id).addClass("col-xs-12");
-		        $('.editphara'+id).show();
-		        $('.click-edit-hide'+id).hide();
-		        $('.ok-edit-show'+id).show();
-		    }
-		function updateckeditor(id){
-			//var t= CKEDITOR.instances['editor4'].getData();alert(t);
-			$.ajax({
-				type:"post",
-				dataType: "html",
-				url:"{{URL::route('update_content_tab')}}",
-				data: {	content:CKEDITOR.instances['editor'+id].getData(),
-						id_tab:$('.get_id'+id).val()
-					},
-				success:function(data){
-					var obj = JSON.parse(data);
-					$('.phara'+id).html(obj.content);	
-				}
-			});
-				$('.editphara'+id).hide();
-				$('.phara'+id).show();
-				$('.click-edit-hide'+id).show();
-		        $('.ok-edit-show'+id).hide();
-		}  
-		function exitckeditor(id){
-				$('.editphara'+id).hide();
-				$('.phara'+id).show();
-				$('.click-edit-hide'+id).show();
-		        $('.ok-edit-show'+id).hide();
-		} 
-
-		
-	</script>
 
 </head>
 
@@ -296,9 +221,27 @@
 			      	<ul class="nav navbar-nav" style="background: none;">
 			      		<li><a style="font-size: 12px;" href="javascript:void(0);" id="home_page">Trang Chủ</a></li>
 			      	 	@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->get() as $tab)
-			      	 		<li><a style="font-size: 12px;" class="{{$tab->id}} TT{{$tab->id}} {{$tab->type}}" href="javascript:void(0);" >{{$tab->title}}</a></li>
+			      	 		<li class="menu-id{{$tab->id}}"><a style="font-size: 12px;" class="{{$tab->id}} TT{{$tab->id}} {{$tab->type}}" href="javascript:void(0);" >{{$tab->title}}</a></li>
 			      	 	@endforeach
-			      	 	<script type="text/javascript" src="{{Asset("assets/js/themes21.js")}}"></script>
+			      	 	 <li  class="dropdown" role="presentation">
+				          <a  class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+				            <span class="fa fa-wrench"></span><span class="caret"></span>
+				          </a>
+				          <ul class="dropdown-menu setting-edit" role="menu" style="margin-top:-564%;">
+				              <li><a  href="{{URL::route('index')}}">Dashboard</a></li>
+				              <li role="presentation" class="divider"></li>
+				              <li><a target="_blank" href="{{URL::route('view-previous',array($id_tmp))}}">Xem trước</a></li>
+				              <li role="presentation" class="divider"></li>
+				              <li><a href="{{URL::route('change_temp')}}">Thay đổi giao diện</a></li>
+				              <li role="presentation" class="divider"></li>
+				              <li><a href="javascript:void(0);" data-toggle="modal" data-target="#change-bg-edit" data-backdrop="static">Thay đổi hình nền</a></li>
+				              <li role="presentation" class="divider"></li>
+				              <li><a href="javascript:void(0);" data-toggle="modal" data-target="#album-photo-user" data-backdrop="static">Album ảnh</a></li>
+				              <li role="presentation" class="divider"></li>
+				              <li><a onclick="loadURL()" href="javascript:void(0);" data-toggle="modal" data-target="#change-url-user">Cài đặt URL</a></li>
+				          </ul>
+				        </li>
+			      	 	<script type="text/javascript" src="{{Asset("assets/js/website/themes21.js")}}"></script>
 			     	 </ul>
 			   </div>
 			</nav>

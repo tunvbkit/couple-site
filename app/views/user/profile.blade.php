@@ -1,19 +1,101 @@
-@extends('main')
+@extends('main-dashboard')
 @section('title')
-Thông tin cá nhân
+Thông tin cá nhân | thuna.vn
 @endsection
-@section('nav-bar')
-@include('nav')
+@section('nav-dash')
+	<!-- Navigation -->
+	<div class="row bg-menu-top">
+		<div class="navbar">
+		  	<div class="navbar-header">
+			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+		        	<span class="sr-only">Toggle navigation</span>
+		        	<span class="icon-bar"></span>
+		        	<span class="icon-bar"></span>
+		        	<span class="icon-bar"></span>
+		      	</button>
+		  	</div>
+		  	<div class="navbar-collapse collapse navbar-responsive-collapse">
+			    <ul class="nav navbar-nav">
+			      	<li class="active">
+			      		<a href="{{URL::route('index')}}" title="Trang chủ">
+			      			Trang chủ
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('website')}}" title="Website cưới">
+			        		Website cưới
+			        	</a>
+			        </li>
+			      	<li><a href="{{URL::route('user-checklist')}}" title="Danh sách công việc">
+			      			Danh sách công việc
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('guest-list')}}" title="Danh sách khác mời">
+			      			Danh sách khách mời
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('budget')}}" title="Quăn lí ngân sách">
+			      			Quản lí ngân sách
+	 		      		</a>
+			      	</li>
+			      	<li class="dropdown">
+				        <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Âm nhạc">
+							Âm nhạc
+				        </a>
+				        <ul class="dropdown-menu oneUl" role="menu">
+				          	<li role="presentation" class="dropdown-header"><span>Nghi lễ</span>
+					            <div class="row">
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('mo-dau'))}}">Mở đầu</a></li>
+					                  <li><a href="{{URL::route('songs', array('doan-ruoc'))}}">Đoàn rước</a></li>
+					                </ul>
+					              </div>
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('nghi-thuc'))}}">Nghi thức</a></li>
+					                  <li><a href="{{URL::route('songs', array('ket-thuc'))}}">Kết thúc</a></li>
+					                </ul>
+					              </div>
+					            </div>
+				          	</li>
+				          	<li role="presentation" class="dropdown-header"><span>Đãi tiệc</span>
+					            <div class="row">
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('khai-tiec'))}}">Khai tiệc</a></li>
+					                  <li><a href="{{URL::route('songs', array('phat-bieu'))}}">Phát biểu</a></li>
+					                  <li><a href="{{URL::route('songs', array('cat-banh'))}}">Cắt bánh</a></li>
+					                </ul>
+					              </div>
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('vao-tiec'))}}">Vào tiệc</a></li>
+					                  <li><a href="{{URL::route('songs', array('chuc-mung'))}}">Chúc mừng</a></li>
+					                  <li><a href="{{URL::route('songs', array('cuoi-tiec'))}}">Cuối tiệc</a></li>
+					                </ul>
+					              </div>
+					            </div>
+				          	</li>
+				        </ul>
+			      	</li> <!--/music-->
+
+			      	<li><a href="{{URL::action('FortuneController@getIndex')}}" title="Xem ngày cưới">
+			      			Xem ngày cưới
+			      		</a>
+			      	</li>
+			    
+			    </ul>
+		  	</div>
+		</div><!--/.nav-->
+	</div><!--/.bg-menu-top-->
 @endsection
 @section('content')
-<div class="container">
-<div >
-	
+
 	@foreach($user as $key=>$user_item)
 	
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<div class="col-lg-12" style="padding:0; margin-top: 50px;">
 		
-		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 info_user_dashboard">
+		<div class="col-xs-12 col-sm-5 col-lg-3 info_user_dashboard">
 			<div class="info_user_avatar">
 				<span id="prev_output">
 					<img src="{{Asset("{$user_item->avatar}")}}">
@@ -86,7 +168,7 @@ Thông tin cá nhân
 					</script>
 				</p>
 			</div>
-			<div class="info_user_avatar">
+			<!-- <div class="info_user_avatar">
 
 					<span>Ứng dụng của bạn</span>
 					<ul class="list-unstyled info_user_ul">
@@ -111,10 +193,10 @@ Thông tin cá nhân
 		            </ul>
 					
 
-			</div>
+			</div> -->
 		</div>
 
-		<div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 update_password" style="display:none;">
+		<div class="col-xs-12 col-sm-6 col-lg-8 update_password" style="display:none;">
 			<form action="{{Asset('profile_password')}}" id="frmEditProfilePassword" method="post">
 				<div class="row form-group">
 					<label class="col-xs-12 control-label info_user">MẬT KHẨU</label>
@@ -167,7 +249,7 @@ Thông tin cá nhân
 		<!-- .form edit -->
 
 
-		<div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 user_info">
+		<div class="col-xs-12 col-sm-6 col-lg-8 user_info">
 			<form action="{{Asset('profile')}}" id="frmEditProfile" method="post">
 				<div class="row form-group">
 					<label class="col-xs-12 control-label info_user">THÔNG TIN CÁ NHÂN</label>
@@ -238,7 +320,6 @@ Thông tin cá nhân
 	</div>
 	@endforeach
 	
-</div>
 
 <script type="text/javascript">
 	$('#frmEditProfile').validate({
@@ -313,5 +394,5 @@ Thông tin cá nhân
 		}
 	});
 </script>
-</div><!--container-->
+
 @endsection

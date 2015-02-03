@@ -2,144 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 
 <head>
-	<title>{{$firstname}}'s Wedding Website | thuna.vn</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=false" />
-
-	<meta name="description" content="Dịch vụ cưới hỏi chuyên nghiệp">
-	<meta property="og:image" itemprop="thumbnailUrl" content="{{Asset("assets/img/logo.png")}}">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta property="og:title" content="Dịch vụ cưới hỏi Thuna.vn">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="{{Asset("assets/img/logo.png")}}" />
-	<meta property="fb:app_id" content="692038267552175" />
 	
-	
-
-	<!-- css -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.css")}}">
-    <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
-	<!-- style css -->
-	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes15.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes15.css")}}">
 	<!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes.css")}}">
     <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
-
-	<script src="{{Asset("assets/js/jquery.min.js")}}"></script>
-	<script type="text/javascript" src="{{Asset("assets/js/bootstrap.3.2.0.min.js")}}"></script>
-	<script type="text/javascript" src="{{Asset("assets/js/main.js")}}"></script>
-
-	
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-
 	<script src="{{Asset("assets/js/map-themes.js")}}"></script>
 
-	<script type="text/javascript">
-		function showckeditor(id){
-		        var text=$('.phara'+id).html();
-		        $('.phara'+id).hide();
-		        CKEDITOR.instances['editor'+id].setData(text);
-
-		        $('.editphara'+id).addClass("col-xs-6");
-		        $('.editphara'+id).show();
-		        $('.click-edit-hide'+id).hide();
-		        $('.ok-edit-show'+id).show();
-		    }
-		function showckeditor_text(id){
-		        var text=$('.phara'+id).html();
-		        $('.phara'+id).hide();
-		        CKEDITOR.instances['editor'+id].setData(text);
-
-		        $('.editphara'+id).addClass("col-xs-12");
-		        $('.editphara'+id).show();
-		        $('.click-edit-hide'+id).hide();
-		        $('.ok-edit-show'+id).show();
-		    }
-		function updateckeditor(id){
-			//var t= CKEDITOR.instances['editor4'].getData();alert(t);
-			$.ajax({
-				type:"post",
-				dataType: "html",
-				url:"{{URL::route('update_content_tab')}}",
-				data: {	content:CKEDITOR.instances['editor'+id].getData(),
-						id_tab:$('.get_id'+id).val()
-					},
-				success:function(data){
-					var obj = JSON.parse(data);
-					$('.phara'+id).html(obj.content);	
-				}
-			});
-				$('.editphara'+id).hide();
-				$('.phara'+id).show();
-				$('.click-edit-hide'+id).show();
-		        $('.ok-edit-show'+id).hide();
-		}  
-		function exitckeditor(id){
-				$('.editphara'+id).hide();
-				$('.phara'+id).show();
-				$('.click-edit-hide'+id).show();
-		        $('.ok-edit-show'+id).hide();
-		} 
-
-		
-		function edit_about_bride()
-		{
-			$('.edit_ctn_about_bride').show();
-			$('.about_bride').hide();
-		}
-		function update_about_bride()
-		{
-			$.ajax({
-				type:"post",
-				dataType: "html",
-				url:"{{URL::route('update_about_bride')}}",
-				data: {	content:CKEDITOR.instances['edit_about_bride'].getData()
-					},
-				success:function(data){
-					var obj = JSON.parse(data);
-					$('.about_bride').html(obj.content);
-				}
-			});
-
-			$('.edit_ctn_about_bride').hide();
-			$('.about_bride').show();
-		}
-		function exit_edit_about_bride()
-		{
-			$('.edit_ctn_about_bride').hide();
-			$('.about_bride').show();
-		}
-
-
-		function edit_about_groom()
-		{
-			$('.edit_ctn_about').show();
-			$('.about_groom').hide();
-		}
-		function update_about_groom()
-		{
-			$.ajax({
-				type:"post",
-				dataType: "html",
-				url:"{{URL::route('update_about_groom')}}",
-				data: {	content:CKEDITOR.instances['edit_about_groom'].getData()
-					},
-				success:function(data){
-					var obj = JSON.parse(data);
-					$('.about_groom').html(obj.content);
-				}
-			});
-
-			$('.edit_ctn_about').hide();
-			$('.about_groom').show();
-		}
-		function exit_edit_about_groom()
-		{
-			$('.edit_ctn_about').hide();
-			$('.about_groom').show();
-		}
-
-	</script>
-	
 </head>
 
 <body style="background: url({{Asset("{$backgrounds}")}});">
@@ -147,19 +16,57 @@
 
 @if($website)
 @foreach( $website as $website_item )
-
-	<div class="span2-edit">
-		<img src="{{Asset('images/website/themes15/menu.png')}}">
+	<!-- menu -->
+	<div class="span2">
+        <div class="menuTitle">
+        	<a href="javascript:;" class="animate" onclick="toggle_menu();">Menu<br><span></span></a>
+        </div>
+        <div class="menuMov">
+			<div class="menu">
+				<ul class="sf-menu">
+					<li class="first">
+						<a href="#home" data-toggle="tab">
+							<div class="mText" style="top: 0px;">Trang Chủ</div>
+							<div class="_area"></div>
+							<div class="_overPl" style="bottom: 100px;"></div>
+							<div class="_overLine" style="opacity: 0;"></div>
+							<div class="mTextOver" style="top: -100px;">Trang Chủ</div>
+						</a>
+					</li>
+					@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->get() as $index => $tab)
+					<li class="menu-id{{$tab->id}}">
+						<a class="{{$tab->id}} TT{{$tab->id}}" href="#{{$tab->type}}" data-toggle="tab">
+							<div class="mText" style="top: 0px;">{{$tab->title}}</div>
+							<div class="_area"></div>
+							<div class="_overPl" style="bottom: 100px;"></div>
+							<div class="_overLine" style="opacity: 0;"></div>
+							<div class="mTextOver" style="top: -100px;">{{$tab->title}}</div>
+						</a>
+					</li>
+			      	@endforeach
+			      	<li  class="dropdown" role="presentation">
+			          <a  class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+			            <span class="fa fa-wrench"></span><span class="caret"></span>
+			          </a>
+			          <ul class="dropdown-menu setting-edit" role="menu" style="margin-top:-85%;">
+			              <li><a  href="{{URL::route('index')}}">Dashboard</a></li>
+			              <li role="presentation" class="divider"></li>
+			              <li><a target="_blank" href="{{URL::route('view-previous',array($id_tmp))}}">Xem trước</a></li>
+			              <li role="presentation" class="divider"></li>
+			              <li><a href="{{URL::route('change_temp')}}">Thay đổi giao diện</a></li>
+			              <li role="presentation" class="divider"></li>
+			              <li><a href="javascript:void(0);" data-toggle="modal" data-target="#change-bg-edit" data-backdrop="static">Thay đổi hình nền</a></li>
+			              <li role="presentation" class="divider"></li>
+			              <li><a href="javascript:void(0);" data-toggle="modal" data-target="#album-photo-user" data-backdrop="static">Album ảnh</a></li>
+			              <li role="presentation" class="divider"></li>
+			              <li><a onclick="loadURL()" href="javascript:void(0);" data-toggle="modal" data-target="#change-url-user">Cài đặt URL</a></li>
+			          </ul>
+			        </li>
+				</ul>
+			</div>
+		</div>
 	</div>
-
-	<div class="menu" style="display: none;">
-		<ul class="sf-menu nav-tabs droptabs">
-			<li><a href="#home" data-toggle="tab">Trang Chủ</a></li>
-	      	@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->get() as $index => $tab)
-	      		<li><a class="{{$tab->id}} TT{{$tab->id}}" href="#{{$tab->type}}" data-toggle="tab">{{$tab->title}}</a></li>
-	      	@endforeach
-		</ul>
-	</div>
+	<!-- end menu -->
 	<div class="logo">
 		<div class="wedding-date">
 			{{WebsiteController::getDates()}}
@@ -167,10 +74,10 @@
 		<!-- end wedding-date -->
 
 		<div class="name">
-			<span class="name-groom-edit name-g">
+			<span class="name-groom-edit name-groom">
 				{{WebsiteController::cutName($website_item->name_groom)}}
 			</span>
-			<span class="name-bride-edit name-b">
+			<span class="name-bride-edit name-bride">
 				{{WebsiteController::cutName($website_item->name_bride)}}
 			</span>
 		</div>
@@ -201,12 +108,13 @@
 							<img src="{{Asset('images/website/themes15/page2_pic1.jpg')}}">
 						@endif
 					</a>
-					<button onclick="send_id(null,222,0)" data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' style="background: #19b5bc; border:none;">Đổi Ảnh</button>
+					<button onclick="send_id(0,222)" data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' type="button" class="btn btn-primary btn-responsive">Đổi ảnh</button>		
 				</div>
 			</div>
-			<div class="item-content about-g">
+			<div class="item-content about-groom" style="text-align:center;width:280px;">
 				{{$website_item->about_groom}}
 			</div>
+			<div class="text-center icon-infor"><a onclick="editInforGroom()"data-toggle="modal" data-target="#edit-infor-groom" data-backdrop="static" class="glyphicon glyphicon-edit" href="javascript:void(0);"></a></div>
 		</div>
 
 		<div style="display: inline-block; width:280px;">
@@ -219,12 +127,13 @@
 							<img src="{{Asset('images/website/themes15/page2_pic1.jpg')}}">
 						@endif
 					</a>
-					<button  onclick="send_id(null,111,0)"  data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' style="background: #19b5bc; border:none;">Đổi Ảnh</button>
+					<button onclick="send_id(0,111)" data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' type="button" class="btn btn-primary btn-responsive">Đổi ảnh</button>		
 				</div>
 			</div>
-			<div class="item-content about-b">
+			<div class="item-content about-bride" style="text-align:center; width:280px;">
 				{{$website_item->about_bride}}
 			</div>
+			<div class="text-center icon-infor"><a onclick="editInforBride()" data-toggle="modal" data-target="#edit-infor-bride" data-backdrop="static" class="glyphicon glyphicon-edit" href="javascript:void(0);"></a></div>
 		</div>
 
 	</div>

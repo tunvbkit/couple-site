@@ -1,58 +1,50 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 
 <head>
-	<title> Wedding Website | thuna.vn</title>
-	<meta name="description" content="Dịch vụ cưới hỏi chuyên nghiệp">
-	<meta property="og:image" itemprop="thumbnailUrl" content="{{Asset("assets/img/logo.png")}}">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta property="og:title" content="Dịch vụ cưới hỏi Thuna.vn">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="{{Asset("assets/img/logo.png")}}" />
-	<meta property="fb:app_id" content="692038267552175" />
-	
 	<!-- css -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.css")}}">
-    <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
-    
-	<style type="text/css">
-      .fb-comments, .fb-comments iframe[style], .fb-like-box, .fb-like-box iframe[style]
-       {width: 100% !important;}
-      .fb-comments span, .fb-comments iframe span[style], .fb-like-box span, .fb-like-box iframe span[style] 
-      {width: 100% !important;}
-    </style>
-
-	<!-- Core JavaScript Files -->
-	<script src="{{Asset("assets/js/jquery.min.js")}}"></script>
-	<script type="text/javascript" src="{{Asset("assets/js/bootstrap.min.js")}}"></script>	
-	<!-- style css -->
-	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes6-edit.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes6-edit.css")}}">
 	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
 
 	
 </head>
 @if($website)
 @foreach( $website as $website_item )
-<div class="background-themes "style="background-image: url({{Asset("{$backgrounds}")}});">
-			
-		<br>		
-			<div class="navbar-collapse collapse menu_tab" style="position:fixed; background-color:white;  width: 100%; z-index:1;margin-top: -20px;">
-		    	<ul id="myTab" class="nav navbar-nav">
-	    			<span class="active"><a style="padding: 10px; color: #777; line-height: 50px; text-decoration: none;" href="#home" role="tab" data-toggle="tab">Trang chủ</a></span>
-	    			@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->orderBy('sort','ASC')->get() as $tab)
-	    			<span><a style="padding: 10px;  color: #777;line-height: 50px; text-decoration: none;" class="{{$tab->id}} TT{{$tab->id}}" href="#{{$tab->type}}" role="tab" data-toggle="tab">{{$tab->title}}</a></span>
-				  	@endforeach
-	      			
-	    		</ul>
-			</div>
-		<div class="after-image-themes">
+<div style="background-color:white;" class="container-fluid menu_tab">
+	<ul class="nav nav-tabs droptabs " style="border: none; " >
+		<li class="active always-visible" ><a href="#home" role="tab" data-toggle="tab">Trang chủ</a></li>
+	  	@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->get() as $tab)
+			<li  class="menu-id{{$tab->id}}" ><a href="#{{$tab->type}}" role="tab" data-toggle="tab">{{$tab->title}}</a></li>
+	  	@endforeach
+	  	<li  class="dropdown" role="presentation">
+	          <a  class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+	            <span class="fa fa-wrench"></span><span class="caret"></span>
+	          </a>
+	          <ul class="dropdown-menu setting-edit" role="menu">
+	               <li><a  href="{{URL::route('index')}}">Dashboard</a></li>
+	              <li role="presentation" class="divider"></li>
+	              <li><a target="_blank" href="{{URL::route('view-previous',array($id_tmp))}}">Xem trước</a></li>
+	              <li role="presentation" class="divider"></li>
+	              <li><a href="{{URL::route('change_temp')}}">Thay đổi giao diện</a></li>
+	              <li role="presentation" class="divider"></li>
+	              <li><a href="javascript:void(0);" data-toggle="modal" data-target="#change-bg-edit" data-backdrop="static">Thay đổi hình nền</a></li>
+	              <li role="presentation" class="divider"></li>
+	              <li><a href="javascript:void(0);" data-toggle="modal" data-target="#album-photo-user" data-backdrop="static">Album ảnh</a></li>
+	              <li role="presentation" class="divider"></li>
+	              <li><a onclick="loadURL()" href="javascript:void(0);" data-toggle="modal" data-target="#change-url-user">Cài đặt URL</a></li>
+	          </ul>
+        </li>
+	</ul>
+		
+</div>
+
+<div  style="min-height:600px;background-image: url({{Asset("{$backgrounds}")}});">
+		<div >
 			<div class="container">
 			  	<div class="tab-content">
 			  		<div class="row tab-pane active" id="home">
 			  			
 			  				@include('website_user.themes6.edit.main')
 					</div>
-				@foreach(TabWebsite::where('website',$id_web)->orderBy('sort','ASC')->get() as $tab)	
+					@foreach(TabWebsite::where('website',$id_web)->orderBy('sort','ASC')->get() as $tab)	
 
 			  			@if($tab->type =="welcome" && $tab->visiable==0 )
 			  				<div class="tab-pane " id="{{$tab->type}}">
@@ -97,7 +89,7 @@
 			  				
 		  				@endif			
 					
-				@endforeach
+					@endforeach
 				</div>
 			</div>
 
@@ -109,5 +101,9 @@
 
 @endforeach
 @endif
-</html>
+
+<script type="text/javascript">
+	$('.modal').appendTo("body");
+</script>
+
 

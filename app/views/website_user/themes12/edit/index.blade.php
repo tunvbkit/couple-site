@@ -2,181 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 
 <head>
-	<title>{{$firstname}}'s Wedding Website | thuna.vn</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=false" />
-
-	<meta name="description" content="Dịch vụ cưới hỏi chuyên nghiệp">
-	<meta property="og:image" itemprop="thumbnailUrl" content="{{Asset("assets/img/logo.png")}}">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta property="og:title" content="Dịch vụ cưới hỏi Thuna.vn">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="{{Asset("assets/img/logo.png")}}" />
-	<meta property="fb:app_id" content="692038267552175" />
-	
-	
-
-	<!-- css -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.css")}}">
-    <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
 	<!-- style css -->
-	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes12.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes12.css")}}">
 	<!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes.css")}}">
     <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
 
-    <style type="text/css">
-      .fb-comments, .fb-comments iframe[style], .fb-like-box, .fb-like-box iframe[style]
-       {width: 100% !important;}
-      .fb-comments span, .fb-comments iframe span[style], .fb-like-box span, .fb-like-box iframe span[style] 
-      {width: 100% !important;}
-    </style>
-
-	<script src="{{Asset("assets/js/jquery.min.js")}}"></script>
-	<script type="text/javascript" src="{{Asset("assets/js/bootstrap.3.2.0.min.js")}}"></script>
-	<script type="text/javascript" src="{{Asset("assets/js/main.js")}}"></script>
-
-	
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 	<script src="{{Asset("assets/js/map-themes.js")}}"></script>
-	<script src="{{Asset("assets/js/jquery.scrollTo.js")}}"></script>	 
-	
-	<script type="text/javascript">
-		// function showckeditor(id){
-		//         var text=$('.phara'+id).html();
-		//         $('.phara'+id).hide();
-		//         CKEDITOR.instances['editor'+id].setData(text);
-
-		//         $('.editphara'+id).addClass("col-xs-6");
-		//         $('.editphara'+id).show();
-		//         $('.click-edit-hide'+id).hide();
-		//         $('.ok-edit-show'+id).show();
-		//     }
-		// function showckeditor_text(id){
-		//         var text=$('.phara'+id).html();
-		//         $('.phara'+id).hide();
-		//         CKEDITOR.instances['editor'+id].setData(text);
-
-		//         $('.editphara'+id).addClass("col-xs-12");
-		//         $('.editphara'+id).show();
-		//         $('.click-edit-hide'+id).hide();
-		//         $('.ok-edit-show'+id).show();
-		//     }
-		// function updateckeditor(id){
-		// 	//var t= CKEDITOR.instances['editor4'].getData();alert(t);
-		// 	$.ajax({
-		// 		type:"post",
-		// 		dataType: "html",
-		// 		url:"{{URL::route('update_content_tab')}}",
-		// 		data: {	content:CKEDITOR.instances['editor'+id].getData(),
-		// 				id_tab:$('.get_id'+id).val()
-		// 			},
-		// 		success:function(data){
-		// 			var obj = JSON.parse(data);
-		// 			$('.phara'+id).html(obj.content);	
-		// 		}
-		// 	});
-		// 		$('.editphara'+id).hide();
-		// 		$('.phara'+id).show();
-		// 		$('.click-edit-hide'+id).show();
-		//         $('.ok-edit-show'+id).hide();
-		// }  
-		// function exitckeditor(id){
-		// 		$('.editphara'+id).hide();
-		// 		$('.phara'+id).show();
-		// 		$('.click-edit-hide'+id).show();
-		//         $('.ok-edit-show'+id).hide();
-		// } 
-
-		
-		function edit_about_bride()
-		{
-			$('.edit_ctn_about_bride').show();
-			$('.about_bride').hide();
-		}
-		function update_about_bride()
-		{
-			$.ajax({
-				type:"post",
-				dataType: "html",
-				url:"{{URL::route('update_about_bride')}}",
-				data: {	content:CKEDITOR.instances['edit_about_bride'].getData()
-					},
-				success:function(data){
-					var obj = JSON.parse(data);
-					$('.about_bride').html(obj.content);
-				}
-			});
-
-			$('.edit_ctn_about_bride').hide();
-			$('.about_bride').show();
-		}
-		function exit_edit_about_bride()
-		{
-			$('.edit_ctn_about_bride').hide();
-			$('.about_bride').show();
-		}
-
-
-		function edit_about_groom()
-		{
-			$('.edit_ctn_about').show();
-			$('.about_groom').hide();
-		}
-		function update_about_groom()
-		{
-			$.ajax({
-				type:"post",
-				dataType: "html",
-				url:"{{URL::route('update_about_groom')}}",
-				data: {	content:CKEDITOR.instances['edit_about_groom'].getData()
-					},
-				success:function(data){
-					var obj = JSON.parse(data);
-					$('.about_groom').html(obj.content);
-				}
-			});
-
-			$('.edit_ctn_about').hide();
-			$('.about_groom').show();
-		}
-		function exit_edit_about_groom()
-		{
-			$('.edit_ctn_about').hide();
-			$('.about_groom').show();
-		}
-
-		
-		function updateName()
-		{
-			var nameBride = $('input[name=name_bride]').val();
-			var nameGroom = $('input[name=name_groom]').val();
-			$.ajax({
-				type:"post",
-				dataType: "html",
-				url:"{{URL::route('updateName')}}",
-				data: {nameBride: nameBride,
-						nameGroom: nameGroom},
-				success:function(data){
-					var obj = JSON.parse(data);
-					$('.name-groom-edit').html(obj['name_bride']);
-					$('.name-bride').html(obj['name_groom']);
-				}
-			});
-
-		}
-		
-
-		jQuery(document).ready(function($) {
-	    // Call & Apply function scrollTo
-	    $('a.scrollTo').click(function () {
-	        $('.design_website_content_right').scrollTo($(this).attr('href'),{duration:'slow', offsetTop : '-10'});
-	        return false;
-	    });
-	});
-
-	</script>
-	
 </head>
 
 <body>
@@ -205,9 +39,10 @@
 
 								@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->get() as $index => $tab)
 						      		@if($index<1)
-						      		<li class="li-menu-edit"><a class="{{$tab->id}} scrollTo" href="#section_{{$tab->type}}" data-toggle="tab">{{$tab->title}}</a></li>
+						      		<li class="li-menu-edit menu-id{{$tab->id}}"><a class="{{$tab->id}} scrollTo" href="#section_{{$tab->type}}" data-toggle="tab">{{$tab->title}}</a></li>
 						      		@endif
 						      	@endforeach
+						      		
 					      	</ul>
 					      	
 					   	</div>
@@ -230,9 +65,27 @@
 					      	<ul class="nav navbar-nav">
 						      	@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->get() as $index => $tab)
 						      		@if( ($index>=1)&&($index<3) )
-						      		<li class="li-menu-edit"><a class="{{$tab->id}} scrollTo" href="#section_{{$tab->type}}" data-toggle="tab">{{$tab->title}}</a></li>
+						      		<li class="li-menu-edit menu-id{{$tab->id}}"><a class="{{$tab->id}} scrollTo" href="#section_{{$tab->type}}" data-toggle="tab">{{$tab->title}}</a></li>
 						      		@endif
 						      	@endforeach
+						      	 	<li  class="dropdown" role="presentation">
+							          <a  class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+							            <span class="fa fa-wrench"></span><span class="caret"></span>
+							          </a>
+							          <ul class="dropdown-menu setting-edit" role="menu">
+							              <li><a  href="{{URL::route('index')}}">Dashboard</a></li>
+							              <li role="presentation" class="divider"></li>
+							              <li><a target="_blank" href="{{URL::route('view-previous',array($id_tmp))}}">Xem trước</a></li>
+							              <li role="presentation" class="divider"></li>
+							              <li><a href="{{URL::route('change_temp')}}">Thay đổi giao diện</a></li>
+							              <li role="presentation" class="divider"></li>
+							              <li><a href="javascript:void(0);" data-toggle="modal" data-target="#change-bg-edit" data-backdrop="static">Thay đổi hình nền</a></li>
+							              <li role="presentation" class="divider"></li>
+							              <li><a href="javascript:void(0);" data-toggle="modal" data-target="#album-photo-user" data-backdrop="static">Album ảnh</a></li>
+							              <li role="presentation" class="divider"></li>
+							              <li><a onclick="loadURL()" href="javascript:void(0);" data-toggle="modal" data-target="#change-url-user">Cài đặt URL</a></li>
+							          </ul>
+							        </li>
 					      	</ul>
 					      	
 					   	</div>
@@ -258,21 +111,22 @@
 
 			<div class="menu-heart" id="home">
 				<div class="groom">
-					<span id="prev_output222">
+					<span id="prev_output_theme12_g">
   						<a href="#">
-							@if(!empty($website_item->avatar_bride))
+							@if(!empty($website_item->avatar_groom))
 			  					<img class="img-circle" src="{{Asset("$website_item->avatar_groom")}}">
 							@else
 								<img class="img-circle" src="{{Asset('images/website/themes12/groom.png')}}">
 							@endif
 						</a>
-						<button onclick="send_id(null,222,1)"  data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' style="background: #19b5bc; border:none; z-index:99">Đổi Ảnh</button>
+						
 					</span>
+					<button  style="margin-left: 25%" onclick="send_id(0,222)" data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' type="button" class="btn btn-primary btn-responsive">Đổi ảnh</button>		
 				</div>
 				<!-- end groom -->
 				
 				<div class="bride">
-					<span id="prev_output111">
+					<span id="prev_output_theme12_b">
   						<a href="#">
 							@if(!empty($website_item->avatar_bride))
 			  					<img class="img-circle" src="{{Asset("$website_item->avatar_bride")}}">
@@ -280,8 +134,9 @@
 								<img class="img-circle" src="{{Asset('images/website/themes12/bride.png')}}">
 							@endif
 						</a>
-						<button onclick="send_id(null,111,1)"  data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' style="background: #19b5bc; border:none; z-index:99">Đổi Ảnh</button>
+						
 					</span>
+					<button style="margin-left: 48%" onclick="send_id(0,111)" data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' type="button" class="btn btn-primary btn-responsive">Đổi ảnh</button>		
 				</div>
 				<!-- end bride -->
 
@@ -335,14 +190,14 @@
 					@foreach(TabWebsite::where('website',$id_web)->orderBy('sort','ASC')->get() as $tabWeb)
 						<!-- Welcome -->
 						@if($tabWeb->type =="welcome" && $tabWeb->visiable==0 )
-							<div id="section_{{$tabWeb->type}}" class="item">
+							<div id="section_{{$tabWeb->type}}" class="item r-title{{$tabWeb->id}}">
 								@include('website_user.themes12.edit.left')
 							</div>
 							<!-- end item -->
 						@endif
 						<!-- About Us -->
 						@if($tabWeb->type=="about" && $tabWeb->visiable==0)
-							<div id="section_{{$tabWeb->type}}" class="item">
+							<div id="section_{{$tabWeb->type}}" class="item r-title{{$tabWeb->id}}">
 								@include('website_user.themes12.edit.left')
 							</div>
 							<!-- end item -->
@@ -350,14 +205,14 @@
 
 						<!-- cau chuyen tinh yeu -->
 						@if($tabWeb->type=="love_story")
-							<div id="section_{{$tabWeb->type}}" class="item">
+							<div id="section_{{$tabWeb->type}}" class="item r-title{{$tabWeb->id}}">
 								@include('website_user.themes12.edit.text')
 							</div>
 						@endif
 
 						<!-- Wedding Event -->
 						@if($tabWeb->type=="wedding" && $tabWeb->visiable==0)
-							<div id="section_{{$tabWeb->type}}" class="item">
+							<div id="section_{{$tabWeb->type}}" class="item r-title{{$tabWeb->id}}">
 								@include('website_user.themes12.edit.left')
 							</div>
 							<!-- end item -->
@@ -378,27 +233,27 @@
 
 						<!-- Travaling -->
 						@if($tabWeb->type=="traval" && $tabWeb->visiable==0)
-							<div id="section_{{$tabWeb->type}}" class="item">
+							<div id="section_{{$tabWeb->type}}" class="item r-title{{$tabWeb->id}}">
 								@include('website_user.themes12.edit.left')
 							</div>
 							<!-- end item -->
 				        @endif
 				        <!-- Photo Album -->
 				        @if($tabWeb->type=="album" && $tabWeb->visiable==0)
-					        <div id="section_{{$tabWeb->type}}" class="item">
+					        <div id="section_{{$tabWeb->type}}" class="item r-title{{$tabWeb->id}}">
 					        	@include('website_user.themes12.edit.photo')
 					        </div>
 				        @endif
 
 				       	@if($tabWeb->type=="contact" && $tabWeb->visiable==0)
-					        <div id="section_{{$tabWeb->type}}" class="item">
+					        <div id="section_{{$tabWeb->type}}" class="item r-title{{$tabWeb->id}}">
 					        	@include('website_user.themes12.edit.contact')
 					        </div>
 				        @endif
 
 				         <!--  Guest book -->
 				       @if($tabWeb->type=="guestbook" && $tabWeb->visiable==0)
-				        <div id="section_{{$tabWeb->type}}"  class="item">
+				        <div id="section_{{$tabWeb->type}}"  class="item r-title{{$tabWeb->id}}">
 				        	@include('website_user.themes12.edit.guestbook')
 				    	</div>
 				        @endif 

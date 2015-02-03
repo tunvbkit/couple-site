@@ -6,9 +6,9 @@
               <img src="{{Asset('images/website/themes20/birds_icon.jpg')}}"class="img-responsive icon_bird" alt="Image">
           </div>
             <h2 class="col-xs-12 col-sm-12 col-md-12 col-lg-12 section-title" id="showName" >
-              <span class="name-g" id="topNameGroom">{{$website_item->name_groom}}</span>
+              <span class="name-groom" id="topNameGroom">{{$website_item->name_groom}}</span>
                 <em>&</em>
-              <span class="name-b" id="topNameBride">{{$website_item->name_bride}}</span>
+              <span class="name-bride" id="topNameBride">{{$website_item->name_bride}}</span>
               <p class="date-time-title">             
                       {{WebsiteController::getDates()}}                 
              </p>
@@ -18,20 +18,12 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 count-time-wedding" style="background-color: #B5AF47">
           <!-- count datime to weddingdate -->
-            @if(empty($website_item->count_down))
+           
               @foreach( $date = explode('-', WebsiteController::getDates()) as $index=>$dd )
                 <div id="getD{{$index}}" style="display:none;">
                   {{$dd}}
                 </div>
               @endforeach
-            @else
-            @foreach( $date = explode('-', WebsiteController::getCountDown()) as $index=>$dd )
-                <div id="getD{{$index}}" style="display:none;">
-                  {{$dd}}
-                </div>
-              @endforeach
-            @endif
-            
           <div id="count_dateTime" >
           
             <table align="center" class="count_table_dateTime">

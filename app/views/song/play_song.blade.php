@@ -1,15 +1,114 @@
-@extends('main')
+
+@extends((Session::has('email')) ? 'main-dashboard' : 'main')
+
 @section('title')
-Âm nhạc
+Âm nhạc | thuna.vn
 @endsection
-@section('nav-bar')
-@include('nav')
-@endsection
+@if(!Session::has('email'))
+	@section('nav-bar')
+	@include('song.nav')
+	@endsection
+@else
+	@section('nav-dash')
+	<!-- Navigation -->
+	<div class="row bg-menu-top">
+		<div class="navbar">
+		  	<div class="navbar-header">
+			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+		        	<span class="sr-only">Toggle navigation</span>
+		        	<span class="icon-bar"></span>
+		        	<span class="icon-bar"></span>
+		        	<span class="icon-bar"></span>
+		      	</button>
+		  	</div>
+		  	<div class="navbar-collapse collapse navbar-responsive-collapse">
+			    <ul class="nav navbar-nav">
+			      	<li >
+			      		<a href="{{URL::route('index')}}" title="Trang chủ">
+			      			Trang chủ
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('website')}}" title="Website cưới">
+			        		Website cưới
+			        	</a>
+			        </li>
+			      	<li><a href="{{URL::route('user-checklist')}}" title="Danh sách công việc">
+			      			Danh sách công việc
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('guest-list')}}" title="Danh sách khác mời">
+			      			Danh sách khách mời
+	 		      		</a>
+			      	</li>
+			      	<li><a href="{{URL::route('budget')}}" title="Quăn lí ngân sách">
+			      			Quản lí ngân sách
+	 		      		</a>
+			      	</li>
+			      	<li class="dropdown active">
+				        <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Âm nhạc">
+							Âm nhạc
+				        </a>
+				        <ul class="dropdown-menu oneUl" role="menu">
+				          	<li role="presentation" class="dropdown-header"><span>Nghi lễ</span>
+					            <div class="row">
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('mo-dau'))}}">Mở đầu</a></li>
+					                  <li><a href="{{URL::route('songs', array('doan-ruoc'))}}">Đoàn rước</a></li>
+					                </ul>
+					              </div>
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('nghi-thuc'))}}">Nghi thức</a></li>
+					                  <li><a href="{{URL::route('songs', array('ket-thuc'))}}">Kết thúc</a></li>
+					                </ul>
+					              </div>
+					            </div>
+				          	</li>
+				          	<li role="presentation" class="dropdown-header"><span>Đãi tiệc</span>
+					            <div class="row">
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('khai-tiec'))}}">Khai tiệc</a></li>
+					                  <li><a href="{{URL::route('songs', array('phat-bieu'))}}">Phát biểu</a></li>
+					                  <li><a href="{{URL::route('songs', array('cat-banh'))}}">Cắt bánh</a></li>
+					                </ul>
+					              </div>
+					              <div class="col-xs-6">
+					                <ul class="list-unstyled">
+					                  <li><a href="{{URL::route('songs', array('vao-tiec'))}}">Vào tiệc</a></li>
+					                  <li><a href="{{URL::route('songs', array('chuc-mung'))}}">Chúc mừng</a></li>
+					                  <li><a href="{{URL::route('songs', array('cuoi-tiec'))}}">Cuối tiệc</a></li>
+					                </ul>
+					              </div>
+					            </div>
+				          	</li>
+				        </ul>
+			      	</li> <!--/music-->
+
+			      	<li><a href="{{URL::action('FortuneController@getIndex')}}" title="Xem ngày cưới">
+			      			Xem ngày cưới
+			      		</a>
+			      	</li>
+			    
+			    </ul>
+		  	</div>
+		</div><!--/.nav-->
+	</div><!--/.bg-menu-top-->
+	@endsection
+@endif
+
 @section('content')
-<div class="container user-checklist">
+
 	@foreach( $songs as $key=>$song )
-	<div class="row" style="margin-bottom: 50px;">
-			<div class="col-xs-9">
+	
+			@if (Session::has('email'))
+			<div class="row" style="padding-right:15px; margin-top: 50px;">
+				<div class="col-lg-9 col-xs-12">
+			@else
+			<div class="row" style="padding-right:15px;">
+				<div class="col-xs-7 col-xs-offset-1">
+			@endif
 				<h6><i class="fa fa-th"></i> {{SongCategory::where('id',$song['category'])->get()->first()->name}}</h6>
 				<h2>{{$song['name']}}</h2>
 				<hr>
@@ -109,80 +208,71 @@
 						</script>
 					<br><br>
 					@if(Session::has('email'))
-			<!-- -facebookcommnet -->	
-				<div id="fb-root"></div>
-				<script>(function(d, s, id) {
-					  var js, fjs = d.getElementsByTagName(s)[0];
-					  if (d.getElementById(id)) return;
-					  js = d.createElement(s); js.id = id;
-					  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=1450451991884119&version=v2.0";
-					  fjs.parentNode.insertBefore(js, fjs);
-					}(document, 'script', 'facebook-jssdk'));
-				</script>
-				<div class="fb-comments" data-href=""  data-numposts="5" data-width="100%"data-order-by="social" data-mobile="auto-detect" data-colorscheme="light"></div>												
 
-				<script>
-				    $(document).ready(function() {
-				        $('.fb-comments').attr("data-href", document.URL);
-				    });
-				</script>
-				@endif
-			<!-- -End facebookcommnet -->	
-			</div>
+						<div id="fb-root"></div>
+						<script>(function(d, s, id) {
+							  var js, fjs = d.getElementsByTagName(s)[0];
+							  if (d.getElementById(id)) return;
+							  js = d.createElement(s); js.id = id;
+							  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=1450451991884119&version=v2.0";
+							  fjs.parentNode.insertBefore(js, fjs);
+							}(document, 'script', 'facebook-jssdk'));
+						</script>
+						<div class="fb-comments" data-href=""  data-numposts="5" data-width="100%"data-order-by="social" data-mobile="auto-detect" data-colorscheme="light"></div>												
 
-			<div class="col-xs-3" style="background: #f3f3f3;">
-				<div class="row">
-					<div class="col-xs-12" style="font-size: 20px; font-weight:bold; margin-top: 5px;">Âm nhạc</div>
+						<script>
+						    $(document).ready(function() {
+						        $('.fb-comments').attr("data-href", document.URL);
+						    });
+						</script>
+					@endif
+
+			</div><!--/.col-xs-9-->
+
+			<div class="col-lg-3 col-xs-12 song-menu-right">
+
+				<div class="row song-record-title">
+					<div class="col-xs-12">Nghi lễ</div>
+				</div>
+				
+				<div class="col-xs-12 song-record-item">
+					<a href="{{URL::route('songs', array('mo-dau'))}}"><i class="fa fa-music"></i> Mở đầu</a>
+				</div>
+				<div class="col-xs-12 song-record-item">
+					<a href="{{URL::route('songs', array('doan-ruoc'))}}"><i class="fa fa-music"></i> Đoàn rước</a>
+				</div>
+				<div class="col-xs-12 song-record-item">
+					<a href="{{URL::route('songs', array('nghi-thuc'))}}"><i class="fa fa-music"></i> Nghi thức</a>
+				</div>
+				<div class="col-xs-12 song-record-item">
+					<a href="{{URL::route('songs', array('ket-thuc'))}}"><i class="fa fa-music"></i> Kết thúc</a>
+				</div>
+			</div><!--/.song-menu-right-->
+			<div class="col-lg-3 col-xs-12 song-menu-right">
+
+				<div class="row song-record-title">
+					<div class="col-xs-12">Đãi tiệc</div>
 				</div>
 
-				<div class="row">
-					<div class="col-xs-12" style="font-size: 13px;">Nghi lễ</div>
+				<div class="col-xs-12 song-record-item">
+					<a href="{{URL::route('songs', array('khai-tiec'))}}"><i class="fa fa-music"></i> Khai tiệc</a>
 				</div>
-				<div class="row">
-					<div class="col-xs-6">
-						<a href="{{URL::route('songs', array('mo-dau'))}}">Mở đầu</a>
-					</div>
-					<div class="col-xs-6">
-						<a href="{{URL::route('songs', array('doan-ruoc'))}}">Đoàn rước</a>
-					</div>
+				<div class="col-xs-12 song-record-item">
+					<a href="{{URL::route('songs', array('phat-bieu'))}}"><i class="fa fa-music"></i> Phát biểu</a>
 				</div>
-				<div class="row">
-					<div class="col-xs-6">
-						<a href="{{URL::route('songs', array('nghi-thuc'))}}">Nghi thức</a>
-					</div>
-					<div class="col-xs-6">
-						<a href="{{URL::route('songs', array('ket-thuc'))}}">Kết thúc</a>
-					</div>
+				<div class="col-xs-12 song-record-item">
+					<a href="{{URL::route('songs', array('cat-banh'))}}"><i class="fa fa-music"></i> Cắt bánh</a>
 				</div>
-
-				<div class="row">
-					<div class="col-xs-12" style="font-size: 13px;">Đãi tiệc</div>
+				<div class="col-xs-12 song-record-item">
+					<a href="{{URL::route('songs', array('vao-tiec'))}}"><i class="fa fa-music"></i> Vào tiệc</a>
 				</div>
-				<div class="row">
-					<div class="col-xs-6">
-						<a href="{{URL::route('songs', array('khai-tiec'))}}">Khai tiệc</a>
-					</div>
-					<div class="col-xs-6">
-						<a href="{{URL::route('songs', array('phat-bieu'))}}">Phát biểu</a>
-					</div>
+				<div class="col-xs-12 song-record-item">
+					<a href="{{URL::route('songs', array('chuc-mung'))}}"><i class="fa fa-music"></i> Chúc mừng</a>
 				</div>
-				<div class="row">
-					<div class="col-xs-6">
-						<a href="{{URL::route('songs', array('cat-banh'))}}">Cắt bánh</a>
-					</div>
-					<div class="col-xs-6">
-						<a href="{{URL::route('songs', array('vao-tiec'))}}">Vào tiệc</a>
-					</div>
+				<div class="col-xs-12 song-record-item">
+					<a href="{{URL::route('songs', array('cuoi-tiec'))}}"><i class="fa fa-music"></i> Cuối tiệc</a>
 				</div>
-				<div class="row">
-					<div class="col-xs-6">
-						<a href="{{URL::route('songs', array('chuc-mung'))}}">Chúc mừng</a>
-					</div>
-					<div class="col-xs-6">
-						<a href="{{URL::route('songs', array('cuoi-tiec'))}}">Cuối tiệc</a>
-					</div>
-				</div>
-			</div>
+			</div><!--/.song-menu-right-->
 
 	</div> <!-- end row -->
 	@endforeach
@@ -196,5 +286,5 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-</div><!--container-->
+
 @endsection

@@ -1,116 +1,70 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
-
-
 <head>
-	<title>{{$firstname}}'s Wedding Website | thuna.vn</title>
-	<meta name="description" content="Dịch vụ cưới hỏi chuyên nghiệp">
-	<meta property="og:image" itemprop="thumbnailUrl" content="{{Asset("assets/img/logo.png")}}">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta property="og:title" content="Dịch vụ cưới hỏi Thuna.vn">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="{{Asset("assets/img/logo.png")}}" />
-	<meta property="fb:app_id" content="692038267552175" />
-	
-	<!-- css -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.css")}}">
-    <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
-    
-	
-	<!-- Core JavaScript Files -->
-	<script src="{{Asset("assets/js/jquery.min.js")}}"></script>
-	<script type="text/javascript" src="{{Asset("assets/js/bootstrap.min.js")}}"></script>
-	
 	<!-- style css -->
-	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes2.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes2.css")}}">
 	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
 
 	<!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes.css")}}">
+    <script type="text/javascript" src="{{Asset("assets/slide/lib/jquery-1.8.2.min.js")}}"></script>
+
+    <!-- Add mousewheel plugin (this is optional) -->
+    <script type="text/javascript" src="{{Asset("assets/slide/lib/jquery.mousewheel-3.0.6.pack.js")}}"></script>
+
+    <!-- Add fancyBox main JS and CSS files -->
+    <script type="text/javascript" src="{{Asset("assets/slide/source/jquery.fancybox.js?v=2.1.3")}}"></script>
+    <link rel="stylesheet" type="text/css"  href="{{Asset("assets/slide/source/jquery.fancybox.css?v=2.1.2")}}" media="screen" />
+
+    <!-- Add Button helper (this is optional) -->
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/slide/source/helpers/jquery.fancybox-buttons.css?v=1.0.5")}}" />
+    <script type="text/javascript" src="{{Asset("assets/slide/source/helpers/jquery.fancybox-buttons.js?v=1.0.5")}}"></script>
+
+    <!-- Add Media helper (this is optional) -->
+    <script type="text/javascript" src="{{Asset("assets/slide/source/helpers/jquery.fancybox-media.js?v=1.0.5")}}"></script>
+    <script type="text/javascript" src="{{Asset("assets/slide/f-slide.js")}}"></script>
+    <script src="{{Asset('assets/js/jquery.droptabs.js')}}"></script>
     <style type="text/css">
-    	.fb-comments, .fb-comments iframe[style], .fb-like-box, .fb-like-box iframe[style]
-		 {width: 100% !important;}
-		.fb-comments span, .fb-comments iframe span[style], .fb-like-box span, .fb-like-box iframe span[style] 
-		{width: 100% !important;}
+        .fancybox-custom .fancybox-skin {
+            box-shadow: 0 0 50px #222;
+        }
+        .fancybox-title iframe {
+            min-height: 30px;
+            vertical-align: middle;
+        }
     </style>
-
-    <script type="text/javascript">
-		
-		function edit_about_bride()
-		{
-			$('.edit_ctn_about_bride').show();
-			$('.about_bride').hide();
-		}
-		function update_about_bride()
-		{
-			$.ajax({
-				type:"post",
-				dataType: "html",
-				url:"{{URL::route('update_about_bride')}}",
-				data: {	content:CKEDITOR.instances['edit_about_bride'].getData()
-					},
-				success:function(data){
-					var obj = JSON.parse(data);
-					$('.about_bride').html(obj.content);
-				}
-			});
-
-			$('.edit_ctn_about_bride').hide();
-			$('.about_bride').show();
-		}
-		function exit_edit_about_bride()
-		{
-			$('.edit_ctn_about_bride').hide();
-			$('.about_bride').show();
-		}
-
-
-		function edit_about_groom()
-		{
-			$('.edit_ctn_about').show();
-			$('.about_groom').hide();
-		}
-		function update_about_groom()
-		{
-			$.ajax({
-				type:"post",
-				dataType: "html",
-				url:"{{URL::route('update_about_groom')}}",
-				data: {	content:CKEDITOR.instances['edit_about_groom'].getData()
-					},
-				success:function(data){
-					var obj = JSON.parse(data);
-					$('.about_groom').html(obj.content);
-				}
-			});
-
-			$('.edit_ctn_about').hide();
-			$('.about_groom').show();
-		}
-		function exit_edit_about_groom()
-		{
-			$('.edit_ctn_about').hide();
-			$('.about_groom').show();
-		}
-
-	</script>
-
 </head>
 
 @if($website)
 @foreach( $website as $website_item )
 
 
-	<div class="navbar-collapse collapse menu_tab_edit" >
-
-		<ul class="nav navbar-nav" style="background-color: #FFE6E6;">
-			<span class="active" ><a href="#home" data-toggle="tab">Trang chủ</a></span>
-		  	@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->orderBy('sort','ASC')->get() as $tab)
-				<span><a class="{{$tab->id}} TT{{$tab->id}}" href="#{{$tab->type}}" data-toggle="tab">{{$tab->title}}</a></span>
+	<div class="container-fluid menu_tab">
+		<ul class="nav nav-tabs droptabs " style="border: none; " >
+			<li class="active always-visible" ><a href="#home" role="tab" data-toggle="tab">Trang chủ</a></li>
+		  	@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->get() as $tab)
+				<li  class="menu-id{{$tab->id}}" ><a href="#{{$tab->type}}" role="tab" data-toggle="tab">{{$tab->title}}</a></li>
 		  	@endforeach
+		  	<li  class="dropdown" role="presentation">
+	          <a  class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+	            <span class="fa fa-wrench"></span><span class="caret"></span>
+	          </a>
+	          <ul class="dropdown-menu setting-edit" role="menu">
+	               <li><a  href="{{URL::route('index')}}">Dashboard</a></li>
+	              <li role="presentation" class="divider"></li>
+	              <li><a target="_blank" href="{{URL::route('view-previous',array($id_tmp))}}">Xem trước</a></li>
+	              <li role="presentation" class="divider"></li>
+	              <li><a href="{{URL::route('change_temp')}}">Thay đổi giao diện</a></li>
+	              <li role="presentation" class="divider"></li>
+	              <li><a href="javascript:void(0);" data-toggle="modal" data-target="#change-bg-edit" data-backdrop="static">Thay đổi hình nền</a></li>
+	              <li role="presentation" class="divider"></li>
+	              <li><a href="javascript:void(0);" data-toggle="modal" data-target="#album-photo-user" data-backdrop="static">Album ảnh</a></li>
+	              <li role="presentation" class="divider"></li>
+	              <li><a onclick="loadURL()" href="javascript:void(0);" data-toggle="modal" data-target="#change-url-user">Cài đặt URL</a></li>
+	          </ul>
+	        </li>
 		</ul>
-
-	</div><!--/.nav-collapse -->
+			
+	</div>
 
 <!-- Tab panes -->
 <div class="tab-content content_themes2" style="margin: 0px;">
@@ -119,7 +73,7 @@
   			<div class="col-xs-1"></div>
   			<div class="col-xs-10">
   				<div class="row">
-  					<div class="col-sm-4 col-lg-4 col-md-4">
+  					<div class="col-sm-4 col-lg-4 col-md-4 text-center">
 	  					<span id="prev_output111">
 	  						<a href="#">
 		  						@if(!empty($website_item->avatar_bride))
@@ -127,27 +81,15 @@
 								@else
 									<img width="100%;" src="{{Asset('images/website/themes2/avatar/wedding17.jpg')}}">
 								@endif
-							</a>
-	  						<button onclick="send_id(null,111,0)" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' style="background: #19b5bc; border:none;">Đổi Ảnh</button>
+							</a> 						
 			            </span>
+			            <button onclick="send_id(0,111)" data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' type="button" class="btn btn-primary btn-responsive">Đổi ảnh</button>		
 
-		  				<div class="about_bride">
+		  				<div class="about-bride text-center">
 							{{$website_item->about_bride}}
-							<span class="icon_edit_about"><a onclick="edit_about_bride();" class="glyphicon glyphicon-edit icon-site" href="javascript:void(0);"></a></span>
+							
 						</div>
-
-						<div class="edit_ctn_about_bride">
-							<textarea name="edit_about_bride" class="ckeditor form-control" cols="40" rows="10" tabindex="1">
-							   {{$website_item->about_bride}}
-							</textarea>
-
-							<span>
-								<a onclick="update_about_bride();" class="glyphicon glyphicon-ok icon-site" href="javascript:void(0);"></a>
-							</span>
-							<span><a style="color:#e74c3c;" onclick="exit_edit_about_bride();" class=" glyphicon glyphicon-remove icon-site" href="javascript:void(0);"></a></span>
-
-						</div>
-
+						<div class="text-center icon-infor"><a onclick="editInforBride()" data-toggle="modal" data-target="#edit-infor-bride" data-backdrop="static" class="glyphicon glyphicon-edit" href="javascript:void(0);"></a></div>
 		  			</div>
 		  			<div class="col-sm-4 col-lg-4 col-md-4">
 		  				<div style="text-align:center; margin-bottom:30px;">
@@ -161,19 +103,11 @@
 		  				
 		  					<table align="center">
 		  					<!-- count datime to weddingdate -->
-		  					@if(empty($website_item->count_down))
 			  					@foreach( $date = explode('-', WebsiteController::getDates()) as $index=>$dd )
 			  						<div id="getD{{$index}}" style="display:none;">
 			  							{{$dd}}
 			  						</div>
 			  					@endforeach
-			  				@else
-								@foreach( $date = explode('-', WebsiteController::getCountDown()) as $index=>$dd )
-			  						<div id="getD{{$index}}" style="display:none;">
-			  							{{$dd}}
-			  						</div>
-			  					@endforeach
-			  				@endif
 		  					
 			  				<script type="text/javascript" src="{{Asset("assets/js/count-down-time.js")}}"></script>
 			  				<!-- .end -->
@@ -202,7 +136,7 @@
 		  					<img src="{{Asset('images/website/themes2/floral-center.png')}}">
 		  				</div>
 		  			</div>
-		  			<div class="col-sm-4 col-lg-4 col-md-4">
+		  			<div class="col-sm-4 col-lg-4 col-md-4 text-center">
 		  				<span id="prev_output222">
 		  					<a href="#">
 				  				@if(!empty($website_item->avatar_groom))
@@ -210,29 +144,14 @@
 								@else
 									<img width="100%;" src="{{Asset('images/website/themes2/avatar/wedding17.jpg')}}">
 								@endif
-							</a>
-							<button onclick="send_id(null,222,0)" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' style="background: #19b5bc; border:none;">Đổi Ảnh</button>
+							</a>	
 		  				</span>
-		  				
-			           	
-			            
-		  				<div class="about_groom">
+		  				<button onclick="send_id(0,222)" data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' type="button" class="btn btn-primary btn-responsive">Đổi ảnh</button>		
+			           				            
+		  				<div class="about-groom text-center">
 							{{$website_item->about_groom}}
-							<span class="icon_edit_about"><a onclick="edit_about_groom();" class="glyphicon glyphicon-edit icon-site" href="javascript:void(0);"></a></span>
 						</div>
-
-						<div class="edit_ctn_about">
-							<textarea name="edit_about_groom" class="ckeditor form-control" cols="40" rows="10" tabindex="1">
-							   {{$website_item->about_groom}}
-							</textarea>
-
-							<span>
-								<a onclick="update_about_groom();" class="glyphicon glyphicon-ok icon-site" href="javascript:void(0);"></a>
-							</span>
-							<span><a style="color:#e74c3c;" onclick="exit_edit_about_groom();" class=" glyphicon glyphicon-remove icon-site" href="javascript:void(0);"></a></span>
-
-						</div>
-
+						<div class="text-center icon-infor"><a onclick="editInforGroom()"data-toggle="modal" data-target="#edit-infor-groom" data-backdrop="static" class="glyphicon glyphicon-edit" href="javascript:void(0);"></a></div>
 		  			</div>
   				</div>
   			</div>

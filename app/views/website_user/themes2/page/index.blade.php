@@ -1,36 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
-
-
 <head>
-	<title>{{$firstname}}'s Wedding Website | thuna.vn</title>
-	<meta name="description" content="Dịch vụ cưới hỏi chuyên nghiệp">
-	<meta property="og:image" itemprop="thumbnailUrl" content="{{Asset("assets/img/logo.png")}}">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta property="og:title" content="Dịch vụ cưới hỏi Thuna.vn">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="{{Asset("assets/img/logo.png")}}" />
-	<meta property="fb:app_id" content="692038267552175" />
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{$firstname}}'s wedding</title>
+    <meta name="description" content="Tạo website cưới miễn phí">
+    <meta name="author" content="Thuna.vn">
+    <meta property="og:title" content="{{$firstname}}'s wedding">
+	<meta property="og:description" content="Chào mừng đến với website cưới của chúng tôi">
+	<meta property="og:url" content="http://thuna.vn/website/{{$url}}">
+	<meta property="og:type" content="article">
+	<meta property="og:image" content="{{Asset("{$web_fb}")}}" />
 	
-
 	<!-- style css -->
-	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes2.css")}}">
-
+	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes2.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/template-font.css")}}">
 	<!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes.css")}}">
     <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
 
-    <style type="text/css">
-    	.fb-comments, .fb-comments iframe[style], .fb-like-box, .fb-like-box iframe[style]
-		 {width: 100% !important;}
-		.fb-comments span, .fb-comments iframe span[style], .fb-like-box span, .fb-like-box iframe span[style] 
-		{width: 100% !important;}
-    </style>
+   
 
     <!-- menu_tab -->
-    <link rel="stylesheet" href="{{Asset('assets/css/bootstrap-v3.1.1.min.css')}}">
+    <link rel="stylesheet" href="{{Asset('assets/css/bootstrap/bootstrap-v3.1.1.min.css')}}">
 
-	<link rel="stylesheet" href="{{Asset('assets/css/bootstrap-v3.1.1-theme.min.css')}}">
+	<link rel="stylesheet" href="{{Asset('assets/css/bootstrap/bootstrap-v3.1.1-theme.min.css')}}">
 
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
@@ -55,7 +49,6 @@
 				</ul>
 			</li>
 		</ul>
-			
 	</div>
 	<script type="text/javascript">
 		$(".droptabs").droptabs({
@@ -98,7 +91,6 @@
 		  				
 		  					<table align="center">
 		  					<!-- count datime to weddingdate -->
-		  					@if(empty($website_item->count_down))
 		  						@if(Session::has('email'))
 				  					@foreach( $date = explode('-', WebsiteController::getDates()) as $index=>$dd )
 				  						<div id="getD{{$index}}" style="display:none;">
@@ -113,21 +105,6 @@
 				  					@endforeach
 				  						
 			  					@endif
-			  				@else
-			  					@if(Session::has('email'))
-									@foreach( $date = explode('-', WebsiteController::getCountDown()) as $index=>$dd )
-				  						<div id="getD{{$index}}" style="display:none;">
-				  							{{$dd}}
-				  						</div>
-				  					@endforeach
-			  					@else
-			  						@foreach( $date = explode('-',$count_down_url) as $index=>$dd )
-				  						<div id="getD{{$index}}" style="display:none;">
-				  							{{$dd}}
-				  						</div>
-				  					@endforeach
-		  						@endif
-			  				@endif
 		  					
 			  				<script type="text/javascript" src="{{Asset("assets/js/count-down-time.js")}}"></script>
 			  				<!-- .end -->
@@ -279,7 +256,20 @@
 @endif
 <!-- and image-themes -->
 
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=943743042306339&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+    $(document).ready(function() {
+        $('.fb-share-button').attr("data-href", document.URL);
+    });
+</script>
 
 </html>
 

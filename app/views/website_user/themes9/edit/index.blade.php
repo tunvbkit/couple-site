@@ -1,135 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
-
 
 <head>
-	<title>{{$firstname}}'s Wedding Website | thuna.vn</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=false" />
 
-	<meta name="description" content="Dịch vụ cưới hỏi chuyên nghiệp">
-	<meta property="og:image" itemprop="thumbnailUrl" content="{{Asset("assets/img/logo.png")}}">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta property="og:title" content="Dịch vụ cưới hỏi Thuna.vn">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="{{Asset("assets/img/logo.png")}}" />
-	<meta property="fb:app_id" content="692038267552175" />
-	
-	
-
-	<!-- css -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.css")}}">
-    <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
-	<!-- style css -->
-	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes9.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes9.css")}}">
 	<!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes.css")}}">
     <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
-
-    <style type="text/css">
-      .fb-comments, .fb-comments iframe[style], .fb-like-box, .fb-like-box iframe[style]
-       {width: 100% !important;}
-      .fb-comments span, .fb-comments iframe span[style], .fb-like-box span, .fb-like-box iframe span[style] 
-      {width: 100% !important;}
-    </style>
-
-	<script src="{{Asset("assets/js/jquery.min.js")}}"></script>
-	<script type="text/javascript" src="{{Asset("assets/js/bootstrap.3.2.0.min.js")}}"></script>
-	
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 	<script src="{{Asset("assets/js/map-themes.js")}}"></script>
-	<script src="{{Asset("assets/js/jquery.scrollTo.js")}}"></script>	 
-	
-
-	<script type="text/javascript">
-		
-		function edit_about_bride()
-		{
-			$('.edit_ctn_about_bride').show();
-			$('.about_bride').hide();
-		}
-		function update_about_bride()
-		{
-			$.ajax({
-				type:"post",
-				dataType: "html",
-				url:"{{URL::route('update_about_bride')}}",
-				data: {	content:CKEDITOR.instances['edit_about_bride'].getData()
-					},
-				success:function(data){
-					var obj = JSON.parse(data);
-					$('.about_bride').html(obj.content);
-				}
-			});
-
-			$('.edit_ctn_about_bride').hide();
-			$('.about_bride').show();
-		}
-		function exit_edit_about_bride()
-		{
-			$('.edit_ctn_about_bride').hide();
-			$('.about_bride').show();
-		}
-
-
-		function edit_about_groom()
-		{
-			$('.edit_ctn_about').show();
-			$('.about_groom').hide();
-		}
-		function update_about_groom()
-		{
-			$.ajax({
-				type:"post",
-				dataType: "html",
-				url:"{{URL::route('update_about_groom')}}",
-				data: {	content:CKEDITOR.instances['edit_about_groom'].getData()
-					},
-				success:function(data){
-					var obj = JSON.parse(data);
-					$('.about_groom').html(obj.content);
-				}
-			});
-
-			$('.edit_ctn_about').hide();
-			$('.about_groom').show();
-		}
-		function exit_edit_about_groom()
-		{
-			$('.edit_ctn_about').hide();
-			$('.about_groom').show();
-		}
-
-		
-		function updateName()
-		{
-			var nameBride = $('input[name=name_bride]').val();
-			var nameGroom = $('input[name=name_groom]').val();
-			$.ajax({
-				type:"post",
-				dataType: "html",
-				url:"{{URL::route('updateName')}}",
-				data: {nameBride: nameBride,
-						nameGroom: nameGroom},
-				success:function(data){
-					var obj = JSON.parse(data);
-					$('.name-groom-edit').html(obj['name_bride']);
-					$('.name-bride').html(obj['name_groom']);
-				}
-			});
-
-		}
-		
-
-		jQuery(document).ready(function($) {
-	    // Call & Apply function scrollTo
-	    $('a.scrollTo').click(function () {
-	        $('.design_website_content_right').scrollTo($(this).attr('href'),{duration:'slow', offsetTop : '-10'});
-	        return false;
-	    });
-	});
-
-	</script>
 	
 </head>
 
@@ -152,8 +30,9 @@
 									<img src="{{Asset('images/website/themes9/bride.png')}}">
 								@endif
 							</a>
-							<button onclick="send_id(null,222,1)"  data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' style="background: #19b5bc; border:none; z-index:99">Đổi Ảnh</button>
+							
 		  				</span>
+		  				<button onclick="send_id(0,222)" data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' type="button" class="btn btn-primary btn-responsive">Đổi ảnh</button>		
 					</div>
 					<!-- end groom-photo -->
 					<div class="bride-photo">
@@ -165,8 +44,9 @@
 									<img src="{{Asset('images/website/themes9/groom.png')}}">
 								@endif
 							</a>
-	  						<button onclick="send_id(null,111,1)"  data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' style="background: #19b5bc; border:none; z-index:99">Đổi Ảnh</button>
+	  						
 			            </span>
+			            <button onclick="send_id(0,111)" data-backdrop="static" class="btn btn-primary" data-toggle="modal" data-target='#modal-changeimage' type="button" class="btn btn-primary btn-responsive">Đổi ảnh</button>		
 					</div>
 					<!-- end bride-photo -->
 					<h1 class="groom-bride-name-edit">
@@ -195,24 +75,43 @@
 					   	</div>
 					   	<div class="collapse navbar-collapse" id="example-navbar-collapse">
 					      	<ul class="nav navbar-nav">
-						      	<span class="li-menu-edit"><a href="#home" data-toggle="tab">Trang Chủ</a></span>
+						      	<li><a href="#home" data-toggle="tab">Trang Chủ</a></li>
 						      	@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->get() as $index => $tab)
-						      		@if($index<4)
-						      		<span class="li-menu-edit"><a class="{{$tab->id}} scrollTo" href="#section_{{$tab->type}}" data-toggle="tab">{{$tab->title}}</a></span>
+						      		@if($index<3)
+						      		<li class="li-menu menu-id{{$tab->id}}"><a class="{{$tab->id}} scrollTo" href="#section_{{$tab->type}}" data-toggle="tab">{{$tab->title}}</a></li>
 						      		@endif
 						      	@endforeach
-								<span class="li-menu-edit dropdown">
+								<li class="li-menu dropdown">
 								    <a data-toggle="dropdown" href="#">
 								      Xem thêm <span class="caret"></span>
 								    </a>
-								    <ul class="dropdown-menu text-left" role="menu" >
+								    <ul class="dropdown-menu text-left" role="menu">
 								   		@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->get() as $index => $tab)
-									    	@if($index>=4)
-									    	<span class="li-menu-edit-2"><a class=" {{$tab->id}} scrollTo" href="#section_{{$tab->type}}" data-toggle="tab">{{$tab->title}}</a></span>
+									    	@if($index>=3)
+									    	<li class="li-menu  menu-id{{$tab->id}}"><a class=" {{$tab->id}} scrollTo" href="#section_{{$tab->type}}" data-toggle="tab">{{$tab->title}}</a></li>
 									    	@endif
 									    @endforeach
+									    
 								    </ul>
-								</span>
+								</li>
+								<li  class="dropdown" role="presentation">
+							          <a  class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+							            <span class="fa fa-wrench"></span><span class="caret"></span>
+							          </a>
+							          <ul class="dropdown-menu setting-edit" role="menu">
+							              <li><a  href="{{URL::route('index')}}">Dashboard</a></li>
+							              <li role="presentation" class="divider"></li>
+							              <li><a target="_blank" href="{{URL::route('view-previous',array($id_tmp))}}">Xem trước</a></li>
+							              <li role="presentation" class="divider"></li>
+							              <li><a href="{{URL::route('change_temp')}}">Thay đổi giao diện</a></li>
+							              <li role="presentation" class="divider"></li>
+							              <li><a href="javascript:void(0);" data-toggle="modal" data-target="#change-bg-edit" data-backdrop="static">Thay đổi hình nền</a></li>
+							              <li role="presentation" class="divider"></li>
+							              <li><a href="javascript:void(0);" data-toggle="modal" data-target="#album-photo-user" data-backdrop="static">Album ảnh</a></li>
+							              <li role="presentation" class="divider"></li>
+							              <li><a onclick="loadURL()" href="javascript:void(0);" data-toggle="modal" data-target="#change-url-user">Cài đặt URL</a></li>
+							          </ul>
+						        </li>
 								
 					      	</ul>
 					      	
@@ -231,9 +130,10 @@
 			    	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 						
 						<!-- Wrapper for slides -->
+						<?php $check=PhotoTab::where('user',$website_item->user)->get()->count();?>
 						<div class="carousel-inner">
 						    <?php $albums=PhotoTab::where('user',$website_item->user)->get();?>
-				            @if($albums)
+				            @if( $check > 0 )
 				                @foreach($albums as $index => $album)
 				                	@if($index==0)
 				                    	<div class="item active">
@@ -273,19 +173,22 @@
 						Cùng chúng tôi chờ đợi
 					</div>
 					<div class="time-count-down">
-						@if(empty($website_item->count_down))
-							@foreach( $date = explode('-', WebsiteController::getDates()) as $index=>$dd )
-								<div id="getD{{$index}}" style="display:none;">
-									{{$dd}}
-								</div>
-							@endforeach
-						@else
-						@foreach( $date = explode('-', WebsiteController::getCountDown()) as $index=>$dd )
-								<div id="getD{{$index}}" style="display:none;">
-									{{$dd}}
-								</div>
-							@endforeach
-						@endif
+						
+							@if(Session::has('email'))
+			  					@foreach( $date = explode('-', WebsiteController::getDates()) as $index=>$dd )
+			  						<div id="getD{{$index}}" style="display:none;">
+			  							{{$dd}}
+			  						</div>
+			  					@endforeach
+			  				@else
+			  					@foreach( $date = explode('-',$date_url) as $index=>$dd )
+			  						<div id="getD{{$index}}" style="display:none;">
+			  							{{$dd}}
+			  						</div>
+			  					@endforeach
+			  						
+		  					@endif
+						
 						<script type="text/javascript" src="{{Asset("assets/js/count-down-time.js")}}"></script>
 
 						<span id="echo_dday"></span> | <span id="echo_dhour"></span> | 
@@ -425,8 +328,8 @@
             $('.icon-go_top').hide();
         }
     });
+    $('.modal').appendTo("body");
 </script>
-
 </body>
 
 </html>

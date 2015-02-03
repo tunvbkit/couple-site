@@ -1,19 +1,24 @@
-<!DOCTYPE html>
-<html lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 	<head>
 
-	<title>{{$firstname}}'s wedding</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=false" />
-    <script src="{{Asset('assets/js/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{Asset('assets/js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="{{Asset("assets/js/themes19.js")}}"></script>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{$firstname}}'s wedding</title>
+    <meta name="description" content="Tạo website cưới miễn phí">
+    <meta name="author" content="Thuna.vn">
+    <meta property="og:title" content="{{$firstname}}'s wedding">
+	<meta property="og:description" content="Chào mừng đến với website cưới của chúng tôi">
+	<meta property="og:url" content="http://thuna.vn/website/{{$url}}">
+	<meta property="og:type" content="article">
+	<meta property="og:image" content="{{Asset("{$web_fb}")}}" />
 
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.min.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap/bootstrap.min.css")}}">
     <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes19.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes19.css")}}">
     <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
-
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/template-font.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/template-font.css")}}">
     <script type="text/javascript" src="{{Asset("assets/slide/lib/jquery-1.8.2.min.js")}}"></script>
 
     <!-- Add mousewheel plugin (this is optional) -->
@@ -186,9 +191,22 @@
 </script>
 	</head>
 	<body>
-		
-		@if($website)
-	    	@foreach( $website as $website_item )
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=943743042306339&version=v2.0";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<script>
+	    $(document).ready(function() {
+	        $('.fb-share-button').attr("data-href", document.URL);
+	    });
+	</script>	
+	@if($website)
+    	@foreach( $website as $website_item )
 	    	<!-- navabr -->
     		<div class="row">
 				<nav class="navbar navbar-default navbar-fixed-top navbar-main nav-themes19-default" role="navigation">
@@ -215,9 +233,9 @@
 			<!-- header infor -->
 			<div class="row" id="title_home">
 				<div class="header-name">
-					<h1 style="font-family: 'Great Vibes',cursive; color: #{{$website_item->color2}};" class="text-center title-bg name-g">{{$website_item->name_groom}}</h1>
+					<h1 style="font-family: 'UvfAphroditePro'" class="text-center title-bg name-g">{{$website_item->name_groom}}</h1>
 					<h1><span class="fa fa-heart myheart"></span></h1>
-					<h1 style="font-family: 'Great Vibes',cursive; color: #{{$website_item->color2}};" class="text-center title-bg name-b">{{$website_item->name_bride}}</h1>
+					<h1 style="font-family: 'UvfAphroditePro'" class="text-center title-bg name-b">{{$website_item->name_bride}}</h1>
 					<h4>ARE GETTING MARRIED!</h4>
 					<h4>on</h4>
 					<h3 class="text-center title-tab" style="color: #{{$website_item->color1}}">
@@ -239,18 +257,19 @@
 					@else
 					<img  class="img-responsive img-circle img-infor" src="{{Asset('images/website/themes1/boy.jpg')}}">
 					@endif
-					<h3 style="font-family: 'Great Vibes',cursive; color: #{{$website_item->color2}};" class="text-center title-bg name-g">{{$website_item->name_groom}}</h3>
-					<p class="about-g text-center">{{$website_item->about_groom}} </p>
+					<h3 style="font-family: 'UvfAphroditePro'" class="text-center title-bg name-g">{{$website_item->name_groom}}</h3>
+					<p class="about-g text-center" style="font-family: 'UvfAphroditePro'">{{$website_item->about_groom}} </p>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 infor-slide">
 					<!-- slide image -->
 
-					<div id="carousel-example-generic" class="carousel slide item-slide"  data-interval="false" data-ride="carousel">
+					<div id="carousel-example-generic" class="carousel slide item-slide"  data-ride="carousel">
 								<!-- data-interval="false" -->
 						<!-- Wrapper for slides -->
+						<?php $check=PhotoTab::where('user',$website_item->user)->get()->count();?>
 						<div class="carousel-inner">
 						    <?php $albums=PhotoTab::where('user',$website_item->user)->get();?>
-				            @if($albums)
+				            @if( $check > 0 )
 				                @foreach($albums as $index => $album)
 				                	@if($index==0)
 				                    	<div class="item active">
@@ -285,8 +304,8 @@
 					@else
 					<img  class="img-responsive img-circle img-infor" src="{{Asset('images/website/themes1/boy.jpg')}}">
 					@endif
-					<h3 style="font-family: 'Great Vibes',cursive; color: #{{$website_item->color2}};" class="text-center title-bg name-b">{{$website_item->name_bride}}</h3>
-					<p class="about-g text-center">{{$website_item->about_bride}} </p>
+					<h3 style="font-family: 'UvfAphroditePro'" class="text-center title-bg name-b">{{$website_item->name_bride}}</h3>
+					<p class="about-g text-center" style="font-family: 'UvfAphroditePro'">{{$website_item->about_bride}} </p>
 				</div>
 			</div>
 			<!-- end header infor -->
@@ -297,36 +316,20 @@
 				<div class="margin-time">
 					<table align="center">
   					<!-- count datime to weddingdate -->
-  					@if(empty($website_item->count_down))
-  						@if(Session::has('email'))
-		  					@foreach( $date = explode('-', WebsiteController::getDates()) as $index=>$dd )
-		  						<div id="getD{{$index}}" style="display:none;">
-		  							{{$dd}}
-		  						</div>
-		  					@endforeach
-		  				@else
-		  					@foreach( $date = explode('-',$date_url) as $index=>$dd )
-		  						<div id="getD{{$index}}" style="display:none;">
-		  							{{$dd}}
-		  						</div>
-		  					@endforeach
-		  						
-	  					@endif
+  					@if(Session::has('email'))
+	  					@foreach( $date = explode('-', WebsiteController::getDates()) as $index=>$dd )
+	  						<div id="getD{{$index}}" style="display:none;">
+	  							{{$dd}}
+	  						</div>
+	  					@endforeach
 	  				@else
-	  					@if(Session::has('email'))
-							@foreach( $date = explode('-', WebsiteController::getCountDown()) as $index=>$dd )
-		  						<div id="getD{{$index}}" style="display:none;">
-		  							{{$dd}}
-		  						</div>
-		  					@endforeach
-	  					@else
-	  						@foreach( $date = explode('-',$count_down_url) as $index=>$dd )
-		  						<div id="getD{{$index}}" style="display:none;">
-		  							{{$dd}}
-		  						</div>
-		  					@endforeach
-  						@endif
-	  				@endif
+	  					@foreach( $date = explode('-',$date_url) as $index=>$dd )
+	  						<div id="getD{{$index}}" style="display:none;">
+	  							{{$dd}}
+	  						</div>
+	  					@endforeach
+	  						
+  					@endif
   					
 	  				<script type="text/javascript" src="{{Asset("assets/js/count-down-time.js")}}"></script>
 	  				<!-- .end -->
@@ -352,7 +355,7 @@
 				</div>
 			</div>
 			<div class="line-infor1"></div>
-			@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->orderBy('sort','ASC')->get() as $tabWeb)
+		@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->orderBy('sort','ASC')->get() as $tabWeb)
 			<!-- welcome -->
 			@if($tabWeb->type =="welcome" )
 			<div class="row bg-w" id="section_{{$tabWeb->type}}">	
@@ -367,10 +370,13 @@
 	                @else 
 	                    <img  class="img-responsive " src="{{Asset("images/website/themes16/picture1.jpg")}}" alt="">
 
-	                @endif            
+	                @endif   
+	                <div class="btn-share">
+		                <div class="fb-share-button" data-layout="button"></div>
+		            </div>         
 				</div>
 				<div class="col-xs-10 col-sm-5 col-md-5 col-lg-5">
-					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
+					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="font-family: 'UvfAphroditePro'">
 		        		{{$tabWeb->title}}
 		       		</h3>
 					<p><span  style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span> </p>
@@ -396,7 +402,7 @@
 	                @endif            
 				</div>
 				<div class="col-xs-10 col-sm-5 col-md-5 col-lg-5">
-					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
+					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="font-family: 'UvfAphroditePro'">
 		        		{{$tabWeb->title}}
 		       		</h3>
 					<p><span  style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span> </p>
@@ -411,7 +417,7 @@
 	       					
    				</div>		
 				<div class="col-xs-10 col-sm-5 col-md-5 col-lg-5">
-					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
+					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="font-family: 'UvfAphroditePro'">
 			        	{{$tabWeb->title}}
 		       		</h3>
 					<p><span  style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span> </p>
@@ -424,7 +430,10 @@
 	                @else 
 	                    <img  class="img-responsive " src="{{Asset("images/website/themes16/picture1.jpg")}}" alt="">
 
-	                @endif            
+	                @endif
+	                <div class="btn-share">
+		                <div class="fb-share-button" data-layout="button"></div>
+		            </div>            
 				</div>
 			</div>
 			<div class="line-infor1"></div>
@@ -448,7 +457,7 @@
 		            <!-- -end map -->          
 				</div>
 				<div class="col-xs-10 col-sm-5 col-md-5 col-lg-5">
-					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
+					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="font-family: 'UvfAphroditePro'">
 		        		{{$tabWeb->title}}
 		       		</h3>
 					<p><span  style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span> </p>  
@@ -464,7 +473,7 @@
 	       					
    				</div>		
 				<div class="col-xs-10 col-sm-5 col-md-5 col-lg-5">
-					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
+					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="font-family: 'UvfAphroditePro'">
 			        	{{$tabWeb->title}}
 		       		</h3>
 					<p><span  style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span> </p>
@@ -490,7 +499,7 @@
 	       					
    				</div>	
    				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-   					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
+   					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="font-family: 'UvfAphroditePro'">
 			        	{{$tabWeb->title}}
 		       		</h3>
 					<p><span  style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span> </p>	
@@ -541,7 +550,7 @@
 		            </form>         
 				</div>
 				<div class="col-xs-10 col-sm-5 col-md-5 col-lg-5">
-					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="text-align: {{$tabWeb->titlestyle}}; font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}">
+					<h3 id = "nameTitle{{$tabWeb->id}}" class="title-tab" style="font-family: 'UvfAphroditePro'">
 		        		{{$tabWeb->title}}
 		       		</h3>
 					<p><span  style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span> </p>  
@@ -558,7 +567,9 @@
 			<div class="line-infor1"></div>
 			@endif
 			<!-- end guest book -->
-			@endforeach
+		@endforeach
+	@endforeach	
+@endif
 			<!-- end content-->
 			<footer>
 				<div class="bird"></div>
@@ -579,13 +590,10 @@
 					</div>
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center margin-footer">
 						<h4>WEBSITE DESIGN BY THUNA</h4>
-						<h4>Contact to email:<a href="thanh@thuna.vn">thanh@thuna.vn</a> or mobille:0966666886</h4>
+						<h4>Contact to email:<a href="thanh@thuna.vn" style="color:#19B5BC;">thanh@thuna.vn</a> or mobille:0966666886</h4>
 						
 					</div>
 				</div>
 			</footer>
-			@endforeach
-		@endif
-		
 	</body>
 </html>

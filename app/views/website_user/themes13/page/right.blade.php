@@ -1,14 +1,7 @@
 <article id="content">
-	<!-- <div class="wrapper">
-		<div class="pad-right" style=''>
-			<h2>About <span>Our Wedding</span></h2>
-			<figure class="img1"><img src="{{Asset('images/website/themes13/page1_img1.jpg')}}" alt=""></figure>
-			
-		</div>
-	</div> -->
 	<div class="wrapper">
 		<div class="row phara-margin">
-           	<h3 class="text-center title-tab" style="text-align: {{$tabWeb->titlestyle}} font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}" >{{$tabWeb->title}}</h3>
+           	<h3 class="text-center title-tab" style="font-family: 'UvfAphroditePro'" >{{$tabWeb->title}}</h3>
             
             <div class="col-xs-12 col-md-5 col-sm-5 col-lg-5 col-md-offset-1 col-sm-offset-1 col-offset-lg-1 show-content phara{{$tabWeb->id}}">
         
@@ -29,6 +22,9 @@
                     @endif
                     </a>
                 </span>
+                <div class="btn-share">
+                    <div class="fb-share-button" data-layout="button"></div>
+                </div>
             </div>
         </div>
 	</div>

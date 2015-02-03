@@ -3,8 +3,6 @@
     <!--  Slide Album -->
 
             <script type="text/javascript" src="{{Asset("assets/slide/lib/jquery-1.8.2.min.js")}}"></script>
-            <script src="{{Asset('assets/js/bootstrap.3.2.0.min.js')}}"></script>
-
             <!-- Add mousewheel plugin (this is optional) -->
             <script type="text/javascript" src="{{Asset("assets/slide/lib/jquery.mousewheel-3.0.6.pack.js")}}"></script>
 
@@ -30,31 +28,25 @@
             </style>
 
 </head>
-<div class="col-xs-8 partion">
+<div class="col-xs-8 partion r-title{{$tab->id}}">
     <div class="row phara-margin ">
-            <h3 class="text-center title-tab" style="text-align: {{$tab->titlestyle}}" id = "nameTitle{{$tab->id}}">{{$tab->title}}</h3> 
-        <div  class="show-content phara{{$tab->id}}">                            
+            <div class="inline-title text-center">
+                <h3 class="text-center title-tab" style="font-familly: {{$website_item->font}}; color: #{{$website_item->color2}}" id = "nameTitle{{$tab->id}}">
+                    {{$tab->title}}
+                </h3>
+            <span onclick="sendTitle({{$tab->id}},{{$tab->visiable}})" class="glyphicon glyphicon-edit" data-toggle="modal" data-target='#modal-edit-menu'></span>
+        </div>
+        <div  class="show-content phara{{$tab->id}}" onclick="showckeditorpartion({{$tab->id}})" data-toggle="modal" data-target='#modal-edit' data-backdrop="static">                            
             <span name="phara" style="color: #{{$website_item->color3}}">{{$tab->content}}</span>
         </div>   
-        <!-- <div class="col-md-12 edit-content editphara{{$tab->id}}">
-            <textarea name="editor4" class="ckeditor form-control ckedit{{$tab->id}}" id="editor{{$tab->id}}" cols="40" rows="10" tabindex="1"></textarea>
-        </div> -->
+        
         <div class="row phara-margin float-right">      
             <div class="click-edit click-edit-hide{{$tab->id}}" >            
-               <!--  <span> <a  onclick="showckeditor({{$tab->id}})" class="glyphicon glyphicon-edit icon-site" href="javascript:void(0);"></a></span>
-                <span><a class="glyphicon glyphicon-cog icon-site" href="javascript:void(0);"></a></span> -->
+              
                 <span> <a style="background: #19b5bc; border:none;" onclick="showckeditorpartion({{$tab->id}})" data-toggle="modal" data-target='#modal-edit' data-backdrop="static" class="btn btn-primary" href="javascript:void(0);">Sửa nội dung</a></span>
             </div>
         </div>
-        <!-- <div class="row phara-margin float-right">    
-            <div class="ok-edit ok-edit-show{{$tab->id}}">
-                <span>
-                    <a onclick="updateckeditor({{$tab->id}})" class="glyphicon glyphicon-ok icon-site" href="javascript:void(0);"></a>
-                    <input type="hidden" class="get_id{{$tab->id}}" value="{{$tab->id}}">
-                </span>
-                <span><a style="color:#e74c3c;" onclick="exitckeditor({{$tab->id}})" class=" glyphicon glyphicon-remove icon-site" href="javascript:void(0);"></a></span>
-            </div>
-        </div>  -->
+        
     </div>                   
      <br>
      <br>
@@ -97,27 +89,6 @@
                         </div>
                    
                 @endif
-           
-
-             <div class="row phara-margin float-right">
-            
-                <div class="click-edit click-edit-hide " >
-                     <!-- <span><a  onclick="send_id_album({{$tab->id}})" class="glyphicon glyphicon-edit icon-site"  data-toggle="modal" data-target='#modal-up_images' href="javascript:void(0);"></a></span>
-                        <span><a  class="glyphicon glyphicon-cog icon-site" href="javascript:void(0);"></a></span> -->
-                    <span><a style="background: #19b5bc; border:none;" onclick="send_id_album({{$tab->id}})" class="btn btn-primary"  data-toggle="modal" data-target='#modal-up_images' href="javascript:void(0);">Tải ảnh lên</a></span>
-                </div>
-            </div>
-            <!-- <div class="row phara-margin float-right">      
-                <div class=" ok-edit ok-edit-show ">
-                    <span>
-                       <span><a  class="glyphicon glyphicon-ok icon-site" href="javascript:void(0);"></a></span>
-                        <span><a class=" glyphicon glyphicon-remove icon-site" href="javascript:void(0);"></a></span>
-                    </span>
-                    
-                </div>
-            </div> -->
-        
-       
    
      </div>     
 <br>

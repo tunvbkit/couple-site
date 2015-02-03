@@ -1,17 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-<title>{{$firstname}}'s wedding</title>
-
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{$firstname}}'s wedding</title>
+    <meta name="description" content="Tạo website cưới miễn phí">
+    <meta name="author" content="Thuna.vn">
+    <meta property="og:title" content="{{$firstname}}'s wedding">
+	<meta property="og:description" content="Chào mừng đến với website cưới của chúng tôi">
+	<meta property="og:url" content="http://thuna.vn/website/{{$url}}">
+	<meta property="og:type" content="article">
+	<meta property="og:image" content="{{Asset("{$web_fb}")}}" />
+	
     <script src="{{Asset('assets/js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{Asset('assets/js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="{{Asset("assets/js/themes13.js")}}"></script>
 
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap.min.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap/bootstrap.min.css")}}">
     <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/themes13.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/themes13.css")}}">
     <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/style-checkbox-guestbook.css")}}">
+     <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/website/template-font.css")}}">
 
     <script type="text/javascript" src="{{Asset("assets/slide/lib/jquery-1.8.2.min.js")}}"></script>
 
@@ -50,6 +59,20 @@
 			});
 	</script>
 </head>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=943743042306339&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+    $(document).ready(function() {
+        $('.fb-share-button').attr("data-href", document.URL);
+    });
+</script>
 @if($website)
     @foreach( $website as $website_item )
 <body id="page1">
@@ -75,7 +98,7 @@
 			                        <a class="scrollTo" href="#title-home" >Trang chủ</a>
 			                    </li>
 	                  	@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->get() as $index => $tab)
-	                  		@if($index<4)
+	                  		@if($index<3)
 			      				<li class=""><a class="{{$tab->id}} scrollTo" href="#section_{{$tab->type}}" >{{$tab->title}}</a></li>
 		      				@endif
 	                  	@endforeach
@@ -85,7 +108,7 @@
 							    </a>
 							    <ul class="dropdown-menu" role="menu" style="background: url('../images/website/themes13/bg-ul.jpg');left:0px;">
 							   		@foreach(TabWebsite::where('website',$id_web)->where('visiable',0)->get() as $index => $tab)
-								    	@if($index>=4)
+								    	@if($index>=3)
 								    	<li class=""><a class="{{$tab->id}} scrollTo" href="#section_{{$tab->type}}" >{{$tab->title}}</a></li>
 								    	@endif
 								    @endforeach
@@ -100,9 +123,10 @@
 					<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 						
 						<!-- Wrapper for slides -->
+						<?php $check=PhotoTab::where('user',$website_item->user)->get()->count();?>
 						<div class="carousel-inner">
 						    <?php $albums=PhotoTab::where('user',$website_item->user)->get();?>
-				            @if($albums)
+				            @if( $check > 0 )
 				                @foreach($albums as $index => $album)
 				                	@if($index==0)
 				                    	<div class="item active">
@@ -133,12 +157,12 @@
 				<!-- end featured-img  -->
 				<div id="title-home" class="col-xs-12 col-sm-5 col-md-5 col-lg-5 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 bg-infor">
 					<hgroup>
-                        <h2 class="text-center" style="text-transform: uppercase; color: #{{$website_item->color1}}; font-family: {{$website_item->font}};"> Ours Wedding </h2>
-                        <h1 style="font-family: 'Great Vibes',cursive; text-transform: uppercase; color: #{{$website_item->color2}};" class="font-name text-center name-g">
+                        <h2 class="text-center" style="font-family: 'UvfAphroditePro',cursive;"> Ours Wedding </h2>
+                        <h1 style="font-family: 'UvfAphroditePro',cursive;" class="font-name text-center name-g">
                             {{$website_item->name_groom}}
                         </h1>
                         <h6 class="text-center" style="font-size:20px;">&</h6>
-                        <h1 style="font-family: 'Great Vibes',cursive; text-transform: uppercase; color: #{{$website_item->color2}};" class="font-name text-center name-b">
+                        <h1 style="font-family: 'UvfAphroditePro',cursive;" class="font-name text-center name-b">
                             {{$website_item->name_bride}}
                         </h1>
                         <h6 class="text-center" style="font-size:20px;">on</h6>

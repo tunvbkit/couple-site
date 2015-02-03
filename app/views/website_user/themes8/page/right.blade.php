@@ -4,7 +4,7 @@
             {{$tabWeb->title}}
         </div>
 
-        <div class="show-content phara{{$tabWeb->id}}" >
+        <div class="col-xs-6 show-content phara{{$tabWeb->id}}" >
             <span name="phara" style="color: #{{$website_item->color3}}">{{$tabWeb->content}}</span>        
         </div>
 
@@ -22,6 +22,9 @@
                 @endif
                 </a>
             </span>
+            <div class="btn-share">
+                <div class="fb-share-button" data-layout="button"></div>
+            </div>
         </div>
 
     </div>
