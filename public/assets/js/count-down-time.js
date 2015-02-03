@@ -65,7 +65,7 @@
 	document.countdownnsmain.document.countdownnssub.document.close()
 	}
 	else if (document.all||document.getElementById)
-	crosscount.innerHTML=opentags+"Chúng mình đã cưới nhau rồi."+closetags
+	// crosscount.innerHTML=opentags+"Chúng mình đã cưới nhau rồi."+closetags
 	return
 	}
 	//else, if not yet
