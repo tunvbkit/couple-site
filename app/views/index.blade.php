@@ -356,7 +356,7 @@
 
 		<div class="col-lg-4 col-sm-6 col-md-4 col-xs-12 cam-nhan-item">
 			<img class="img-cam-nhan" src="{{Asset('images/slide-main/khanhnhi-nguyenloc.jpg')}}">
-			<div class="name-khach-hang">Khánh Nhi & Nguyên Lộc</div>
+			<div class="name-khach-hang">Bảo Ngân & Xuân Đông</div>
 			<div class="nhan-xet-khach-hang">
 				<i class="fa fa-heart" style="color: #F382B7"></i>&nbsp;
 				Đẹp, phong cách làm việc nhiệt tình! Đó là cảm nhận của tôi về Thuna.<br />
