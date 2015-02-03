@@ -1,0 +1,903 @@
+.circle-text {
+    width:30%;    
+}
+.circle-text:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height:0;
+    margin-left: 10%;
+    margin-top: 5%;
+    padding-bottom: 100%;
+    background:rgba(255,255,255,0.5);
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.circle-text div {
+        float:left;
+        width:100%;           
+        line-height:1em;
+        margin-top:-0.5em;
+        text-align:center;
+        color:#391902;     
+    }
+.circle-text:after
+   {
+        margin-top: -20%;
+        margin-left: 45%;
+   }
+.circle-text div  h1 
+    {
+        font-size: 60%;  
+    }
+    .circle-text div {
+     
+      margin-left: 45%;
+   }
+    .circle-text div  h2
+    {
+        font-size: 60%;  
+    }
+
+@media only screen and (max-device-width: 250px) {
+   body
+   {
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -30%;
+        margin-left: 25%;
+   }
+   .circle-text 
+   {
+    width:43%;
+    }
+   .circle-text div {
+      padding-top: -2%;
+      margin-left: 25%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 17%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 17%;  
+    }
+      .map-hove #geomap
+    {
+      width:100px; height:80px;
+    }    
+}
+ @media only screen and (min-device-width: 251px) and (max-device-width: 300px) {
+   body
+   {
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -30%;
+        margin-left: 35%;
+   }
+   .circle-text div {
+        margin-left: 32%;
+   }
+   .circle-text {
+    width:37%;
+    }
+    .circle-text div  h1 
+    {
+        font-size: 28%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 28%;  
+    }
+    .map-hove #geomap
+    {
+      width:130px; height:100px;
+    }   
+}
+@media only screen and (min-device-width: 301px) and (max-device-width: 350px) {
+   body
+   {
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -30%;
+        margin-left: 45%;
+   }
+   .circle-text {
+    width:34%;
+    }
+   .circle-text div {
+        padding-top: -2%;
+        margin-left: 45%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 40%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 40%;  
+    }
+     .map-hove #geomap
+    {
+      width:160px; height:120px;
+    }    
+      
+}
+
+@media only screen and (min-device-width: 351px) and (max-device-width: 400px) {
+   body
+   {
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -24%;
+        margin-left: 53%;
+   }
+   .circle-text div {
+        margin-top: -10%;
+        margin-left: 53%;
+
+   }
+    .circle-text div  h1 
+    {
+        font-size: 45%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 45%;  
+    }
+    .map-hove #geomap
+    {
+      width:190px; height:150px;
+    }    
+}
+@media only screen and (min-device-width: 401px) and (max-device-width: 450px) {
+   body
+   {
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -28%;
+        margin-left: 45%;
+   }
+   .circle-text {
+    width:32%;
+    }
+   .circle-text div {
+        padding-top:12%; 
+        margin-left: 45%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 50%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 50%;  
+    }
+      .map-hove #geomap
+    {
+      width:230px; height:200px;
+    }    
+      
+}
+@media only screen and (min-device-width: 451px) and (max-device-width: 500px) {
+   body
+   {
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -27%;
+        margin-left: 47%;
+   }
+   .circle-text {
+    width:32%;
+    }
+   .circle-text div {
+        padding-top: 11%;
+        margin-left: 47%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 60%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 60%;  
+    }
+     .map-hove #geomap
+    {
+      width:260px; height:200px;
+    }     
+}
+@media only screen and (min-device-width: 501px) and (max-device-width: 550px) {
+   body
+   {
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -24%;
+        margin-left: 55%;
+   }
+   .circle-text div {
+        padding-top: 12%;
+        margin-left: 55%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 80%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 75%;  
+    }
+    .map-hove #geomap
+    {
+      width:290px; height:220px;
+    }   
+}
+@media only screen and (min-device-width: 551px) and (max-device-width: 600px) {
+   body
+   {
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -24%;
+        margin-left: 55%;
+   }
+   .circle-text div {
+        padding-top: 12%;
+        margin-left: 55%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 100%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 100%;  
+    }
+    .map-hove #geomap
+    {
+      width:320px; height:250px;
+    }      
+}
+@media only screen and (min-device-width: 601px) and (max-device-width: 650px) {
+   body
+   {
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -24%;
+        margin-left: 55%;
+   }
+   .circle-text div {
+        padding-top: 12%;
+        margin-left: 55%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 100%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 100%;  
+    }
+    .map-hove #geomap
+    {
+      width:350px; height:250px;
+    }
+}
+@media only screen and (min-device-width: 651px) and (max-device-width: 700px) {
+   body
+   {
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -22%;
+        margin-left: 55%;
+   }
+   .circle-text div {
+        padding-top: 15%;
+        margin-left: 55%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 100%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 100%;  
+    }
+       .map-hove #geomap
+    {
+      width:390px; height:250px;
+    }
+      
+}
+@media only screen and (min-device-width: 701px) and (max-device-width: 750px) {
+   body
+   {
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -22%;
+        margin-left: 50%;
+   }
+   .circle-text div {
+        padding-top: 15%;
+        margin-left: 50%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 110%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 110%;  
+    }
+      .map-hove #geomap
+    {
+      width:420px; height:300px;
+    }
+      
+}
+@media only screen and (min-device-width: 751px) and (max-device-width: 800px) {
+   body
+   {
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -20%;
+        margin-left: 55%;
+   }
+   .circle-text div {
+        padding-top: 17%;
+        margin-left: 55%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 110%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 110%;  
+    }
+     .map-hove #geomap
+    {
+      width:450px; height:300px;
+    }
+      
+}
+@media only screen and (min-device-width: 801px) and (max-device-width: 850px) {
+   body
+   {
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -14%;
+        margin-left: 45%;
+   }
+   .circle-text div {
+        padding-top: 17%;
+        margin-left: 45%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 110%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 110%;  
+    }
+    .map-hove #geomap
+    {
+      width:450px; height:300px;
+    }
+      
+}
+@media only screen and (min-device-width: 851px) and (max-device-width: 900px) {
+   
+   body{
+    padding-top: 4%;
+   }
+   .circle-text:after
+   {
+        margin-top: -8%;
+        margin-left: 40%;
+   }
+   .circle-text div {
+        padding-top: 17%;
+        margin-left: 40%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 110%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 110%;  
+    }
+    .map-hove #geomap
+    {
+      width:450px; height:300px;
+    }
+
+      
+}
+@media only screen and (min-device-width: 901px) and (max-device-width: 950px) {
+   body{
+    padding-top: 3%;
+   }
+   .after-image-themes
+   {
+      padding-top: 10%;
+   }
+   .circle-text {
+    width:35%;
+    }
+   .circle-text:after
+   {
+        margin-top: -11%;
+        margin-left: 30%;
+   }
+   .circle-text div {
+        padding-top: 10%;
+        margin-left: 30%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 150%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 150%;  
+    }
+     .map-hove #geomap
+    {
+      width:450px; height:300px;
+    }
+      
+}
+@media only screen and (min-device-width: 951px) and (max-device-width: 991px) {
+    body
+    {
+      padding-top: 4%;
+    }
+    .circle-text {
+    width:34%;
+    }
+   .circle-text:after
+   {
+        margin-top: -8%;
+        margin-left: 30%;
+   }
+   .circle-text div {
+        padding-top: 15%;
+        margin-left: 30%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 150%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 150%;  
+    }
+    .map-hove #geomap
+    {
+      width:450px; height:300px;
+    }
+      
+      
+}
+@media only screen and (min-device-width: 992px) and (max-device-width: 1200px) {
+   body{
+    padding-top: 2%;
+   }
+   .circle-text:after
+   {
+        margin-top: -3%;
+        margin-left: 47%;
+   }
+   .circle-text div {
+        padding-top: 20%;
+        margin-left: 47%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 160%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 160%;  
+    }
+    .map-hove #geomap
+    {
+      width:600px; height:300px;
+    }
+      
+}
+@media only screen and (min-device-width: 1201px) and (max-device-width: 1300px) {
+   body
+   {
+    padding-top: 30px;
+   }
+   .circle-text:after
+   {
+        margin-top: -12%;
+        margin-left: 52%;
+   }
+   .circle-text div {
+        padding-top: 20%;
+        margin-left: 52%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 160%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 160%;  
+    }
+    .map-hove #geomap
+    {
+      width:700px; height:400px;
+    }
+      
+}
+@media only screen and (min-device-width: 1301px) and (max-device-width: 1400px) {
+   body
+   {
+    padding-top: 30px;
+   }
+   .circle-text:after
+   {
+        margin-top: -2%;
+        margin-left: 45%;
+   }
+   .circle-text div {
+        padding-top: 20%;
+        margin-left: 45%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 160%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 160%;  
+    }
+    .map-hove #geomap
+    {
+      width:700px; height:400px;
+    }
+}
+@media only screen and (min-device-width: 1401px) and (max-device-width: 1500px) {
+   body
+   {
+    padding-top: 30px;
+   }
+   .circle-text:after
+   {
+        margin-top: 6%;
+        margin-left: 45%;
+   }
+   .circle-text div {
+        padding-top: 20%;
+        margin-left: 45%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 160%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 160%;  
+    }
+       .map-hove #geomap
+    {
+      width:700px; height:400px;
+    }
+}
+@media only screen and (min-device-width: 1501px){
+     body
+   {
+    padding-top: 40px;
+   }
+   .circle-text:after
+   {
+        margin-top: 10%;
+        margin-left: 20%;
+   }
+   .circle-text div {
+        padding-top: 20%;
+        margin-left: 20%;
+   }
+    .circle-text div  h1 
+    {
+        font-size: 200%;  
+    }
+    .circle-text div  h2
+    {
+        font-size: 200%;  
+    }
+      .map-hove #geomap
+    {
+      width:700px; height:400px;
+    }
+      
+}
+@media only screen and (max-device-height: 250px) {
+   .after-image-themes
+    {
+       height: 200px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+
+    } 
+}
+@media only screen and (min-device-height: 251px) and (max-device-height: 300px) {
+    .after-image-themes
+    {
+       height: 270px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 301px) and (max-device-height: 350px) {
+    .after-image-themes
+    {
+       height: 320px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 351px) and (max-device-height: 400px) {
+    .after-image-themes
+    {
+       height: 380px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 401px) and (max-device-height: 450px) {
+    .after-image-themes
+    {
+       height: 430px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 451px) and (max-device-height: 500px) {
+    .after-image-themes
+    {
+       height: 480px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 501px) and (max-device-height: 550px) {
+    .after-image-themes
+    {
+       height: 530px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 551px) and (max-device-height: 600px) {
+    .after-image-themes
+    {
+       height: 580px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+
+@media only screen and (min-device-height: 601px) and (max-device-height: 700px) {
+    .after-image-themes
+    {
+       height: 600px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 701px) and (max-device-height: 800px) {
+    .after-image-themes
+    {
+       height: 620px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 801px) and (max-device-height: 900px) {
+    .after-image-themes
+    {
+       height: 720px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 901px) and (max-device-height: 1000px) {
+    .after-image-themes
+    {
+       height: 820px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 1000px) and (max-device-height: 1100px) {
+    .after-image-themes
+    {
+       height: 920px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 1101px) and (max-device-height: 1200px) {
+    .after-image-themes
+    {
+       height: 1020px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 1201px) and (max-device-height: 1300px) {
+    .after-image-themes
+    {
+       height: 1120px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 1301px) and (max-device-height: 1400px) {
+    .after-image-themes
+    {
+       height: 1220px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 1401px) and (max-device-height: 1500px) {
+    .after-image-themes
+    {
+       height: 1320px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+@media only screen and (min-device-height: 1501px) {
+    .after-image-themes
+    {
+       height: 1420px; 
+       overflow-y:auto;
+       overflow-x:hidden;
+    }
+}
+.partion
+{
+    background-color:white; opacity: 0.8;
+
+}
+
+.float-left{
+    float: left !important;
+}
+.float-right{
+    float: right !important;
+}
+.float-left button{
+    position: absolute;
+    right: 20px;
+    bottom: 5px;
+    display: none;
+}
+.float-right button{
+    position: absolute;
+    right: 20px;
+    bottom: 5px;
+    display: none;
+}
+.click-edit{
+    display: none;
+}
+.ok-edit{
+    display: none;
+}
+.edit-content{
+    display: none;
+}
+.partion:hover button{
+    display: inline-block;
+}
+.partion:hover .click-edit{
+    display: inline-block;
+}
+
+
+.background-themes 
+{ 
+    position: relative;
+   z-index: -1;
+    height: 700px;    
+    background-repeat:no-repeat center center fixed; 
+    -webkit-background-size:100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  
+}
+body{
+  overflow: hidden;
+}
+.after-image-themes
+{
+  padding-top: 2%;
+  
+}
+.container
+{
+  padding-top: 2%;
+}
+
+
+.show-content{
+    padding: 0px;
+    margin: 0px;
+    padding: 0 5px;
+    opacity: 1;
+}
+.icon-site{
+    color: #19b5bc;
+    line-height: 2.75em;
+    font-size: 1.5em;
+
+}
+.icon-site:hover{
+    text-decoration: none;
+
+}
+.icon-site:active{
+    text-decoration: none;
+}
+.phara-margin{
+    margin:0px !important;
+}
+.images-padding{
+    padding: 1px;
+}
+.contact-content
+{
+    padding-top:30px;
+     padding-left:40px;
+}
+.nav-tabs > li > a {
+    color: #777;
+}
+.menu_tab
+{
+  position:fixed; 
+  background-color:white; 
+  opacity: 0.8;
+}
+/*-map*/
+
+.ui-menu-item {padding:3px 0;}

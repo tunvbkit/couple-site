@@ -1,0 +1,128 @@
+
+
+.navbar-nav > span > a {
+  	padding: 10px;
+  	line-height: 50px;
+  	text-decoration: none;
+}
+.navbar-nav > span > a:hover, .navbar-nav > span > a:focus{
+  	background-color: #ffffff;
+}
+
+.row{
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+
+
+.menu_tab_edit{
+	background-color: #FFE6E6;
+	padding: 10px ;
+	margin: 0px; 
+	border-color: #FFE6E6;
+	width: 100%;
+	position: fixed;
+	z-index: 99999;
+	position:fixed; width: 74%; z-index:1; clear:both; top:100; 
+}
+
+.menu_tab{
+	background-color: #FFE6E6;
+	padding: 10px;
+	margin: 0px; 
+	border-color: #FFE6E6;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	z-index: 1000;
+}
+.navbar-nav li{
+	font-size: 15px;
+}
+
+
+.menu_tab_boder{
+	background-image: url("../../images/website/themes2/gifts-border-bottom.png");
+	padding: 5px 0 4px;
+	margin: 0px 0px 20px 0px; 
+	width: 100%;
+	position: fixed; 
+	z-index: 1;
+	top: 60px;
+}
+
+.content_themes2{
+	margin: 50px 0px;
+}
+
+.tab-pane{
+	min-height: 350px;
+	margin: 20px 20px;
+}
+
+
+.about_groom:hover .icon_edit_about{
+	display: inline-block;
+}
+.about_bride:hover .icon_edit_about{
+	display: inline-block;
+}
+.icon_edit_about{
+	display: none;
+}
+.edit_ctn_about, .edit_ctn_about_bride{
+	display: none;
+	width: 555px;
+}
+.edit_ctn_about{
+	float: right;
+}
+.edit_ctn_about_bride{
+	float: left;
+}
+
+.time_wedding{
+	background-color: #FBABAB;
+	border-radius: 10px;
+	color: #ffffff;
+	text-align: center;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 17px;
+	width: 50px;
+}
+.time_wedding_{
+	border-radius: 10px;
+	color: #FBABAB;
+	text-align: center;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 17px;
+}
+.time_txt{
+	text-align: center;
+}
+
+.floral_left{
+	width: 30%;
+}
+.floral_right{
+	width: 30%;
+}
+
+.footer_boder{
+	background-image: url("../../images/website/themes2/gifts-border.png");
+	padding: 4px;
+	margin: 0px
+}
+.footer{
+	margin: 0px;
+	background-color: #FFE6E6;
+	padding: 5px;
+}
+.float-left{
+    float: left !important;
+}
+.float-right{
+    float: right !important;
+}

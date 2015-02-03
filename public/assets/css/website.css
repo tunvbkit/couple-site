@@ -1,0 +1,133 @@
+/*.contact-website input{
+	width: 600px;
+}*/
+/*.background-website{
+	background-image: url('../../images/website/hinhnen.jpg');
+}*/
+/*.background-website{
+ height: 120px;
+  width: 400px; 
+  display: auto;
+  border: 1px solid #CCCCCC;
+  margin: 1em 0;
+}*/
+body {
+    
+    font-family: Arial;
+	font-weight: 300;
+    color: #666;
+    background-color: #fff;
+	font-size: 16px;
+    line-height: 1.6em;
+	font-weight: 400;
+	margin: 0 15px 0 15px;
+}
+
+html {
+    width: 100%;
+    margin: 0 auto;
+}
+.title-tab{
+	font-family: "Bombshell Pro"
+}
+.section button{
+position: absolute;
+right: 20px;
+bottom: 5px;
+display: none;
+}
+/*.send-contact{
+position: absolute;
+left: 10px;
+bottom:0px;
+
+}*/
+.edit-content{
+	display: none;
+}
+.section:hover button{
+display:inline-block;
+}
+.section:hover .edit-content{
+display:inline-block;
+
+}
+.add-section {
+	height: 40px;
+}
+.ok-content{
+display: none;
+}
+.nav-website-fixed{
+	top: 0px;
+	z-index: 1000;
+	padding: 0px;
+}
+.nav-website{
+ text-align: center;
+}
+.title-website{
+	padding-top: 30px;
+}
+.navar-page{
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	padding-right: 15px;
+}
+/***modal up anh**/
+#modal-changebackground-images
+{
+	z-index: 1041;
+}
+.upload-image-tab
+{
+	border: dashed 2px #ddd;
+	padding: 10px;
+}
+.tab-image
+{
+	border: solid 2px #ddd;
+	background-color: #F7F5F3;
+}
+
+#input_image_modal_photo
+{
+	display: none;
+}
+#chose_image_photo
+{
+	font-weight: bold ;
+	font-style: italic;
+	
+	
+}
+#image-preview-photo
+{
+	width: 200px;
+}
+.modal-backdrop{
+	z-index: 100;
+
+}
+
+.background-website 
+{ 
+	height: 600px;
+	overflow-y:auto;
+	padding: 0px;
+	margin-left: -15px;
+	margin-right: -15px;
+	background-repeat:no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: -10;
+}
+.after-image{
+	padding-left: 15px;
+	padding-right: 15px;
+	/*background-color: white;
+	opacity: 0.5;*/
+}
