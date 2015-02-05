@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('UserTableSeeder');
 		$this->call('LocationTableSeeder');		
 		$this->call('CategoriesTableSeeder');
-        $this->call('VendorTableSeeder');
+        // $this->call('VendorTableSeeder');
         $this->call('TaskTableSeeder');
         $this->call('BudgetTableSeeder');
         $this->call('BudgetRangeTableSeeder');
@@ -1655,86 +1655,86 @@ class UserTableSeeder extends Seeder {
 }
 // User
 
-class VendorTableSeeder extends Seeder {
+// class VendorTableSeeder extends Seeder {
 
-    public function run()
-    {
-        DB::table('vendors')->delete();
+//     public function run()
+//     {
+//         DB::table('vendors')->delete();
 
-        for ($i = 0; $i < 1; $i++)
-        {
-          $vendor = Vendor::create(array(
-            'name' => 'Monte Cristo Ballroom',
-            'address' => '1507 Wall Street' ,
-            'phone' => '099966654',
-            'website' => 'thuna.vn',
-            'email' => 'info@montecristoballroom.com',
-            'avatar' => '',
-            'about' => "The Monte Cristo Ballroom is an all-inclusive chef-owned wedding and event venue in downtown Everett, WA. This historic building, originally a hotel build in the late 1800's, provides a stunning, elegant ambiance for any special occasion. At the Monte Cristo Ballroom, we strive to create a relaxed experience for you on your special day.",
-            'album' => 1,
-            'video' => '//www.youtube.com/embed/dHOEGpEesFQ',
-            'map' => 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15336.413512326777!2d108.18041501773152!3d16.060124383696355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219aa3f8eab53%3A0xc9345ed6d99ccdc!2zMTkyIEjDoCBIdXkgVOG6rXAsIEjDsmEgS2jDqiwgVGhhbmggS2jDqiwgxJDDoCBO4bq1bmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1413430487957',
-            'category' => 1,
-            'Location' => 1
+//         for ($i = 0; $i < 1; $i++)
+//         {
+//           $vendor = Vendor::create(array(
+//             'name' => 'Monte Cristo Ballroom',
+//             'address' => '1507 Wall Street' ,
+//             'phone' => '099966654',
+//             'website' => 'thuna.vn',
+//             'email' => 'info@montecristoballroom.com',
+//             'avatar' => '',
+//             'about' => "The Monte Cristo Ballroom is an all-inclusive chef-owned wedding and event venue in downtown Everett, WA. This historic building, originally a hotel build in the late 1800's, provides a stunning, elegant ambiance for any special occasion. At the Monte Cristo Ballroom, we strive to create a relaxed experience for you on your special day.",
+//             'album' => 1,
+//             'video' => '//www.youtube.com/embed/dHOEGpEesFQ',
+//             'map' => 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15336.413512326777!2d108.18041501773152!3d16.060124383696355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219aa3f8eab53%3A0xc9345ed6d99ccdc!2zMTkyIEjDoCBIdXkgVOG6rXAsIEjDsmEgS2jDqiwgVGhhbmggS2jDqiwgxJDDoCBO4bq1bmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1413430487957',
+//             'category' => 1,
+//             'Location' => 1
 
-          ));
-        }
-        for ($i = 0; $i < 1; $i++)
-        {
-          $vendor = Vendor::create(array(
-            'name' => 'Lord Hill Farms',
-            'address' => '1507 Wall Street' ,
-            'phone' => '099966654',
-            'website' => 'thuna.vn',
-            'email' => 'info@montecristoballroom.com',
-            'avatar' => '',
-            'about' => "The Monte Cristo Ballroom is an all-inclusive chef-owned wedding and event venue in downtown Everett, WA. This historic building, originally a hotel build in the late 1800's, provides a stunning, elegant ambiance for any special occasion. At the Monte Cristo Ballroom, we strive to create a relaxed experience for you on your special day.",
-            'album' => 2,
-            'video' => '//www.youtube.com/embed/dHOEGpEesFQ',
-            'map' => 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15336.413512326777!2d108.18041501773152!3d16.060124383696355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219aa3f8eab53%3A0xc9345ed6d99ccdc!2zMTkyIEjDoCBIdXkgVOG6rXAsIEjDsmEgS2jDqiwgVGhhbmggS2jDqiwgxJDDoCBO4bq1bmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1413430487957',
-            'category' => 2,
-            'Location' => 1
+//           ));
+//         }
+//         for ($i = 0; $i < 1; $i++)
+//         {
+//           $vendor = Vendor::create(array(
+//             'name' => 'Lord Hill Farms',
+//             'address' => '1507 Wall Street' ,
+//             'phone' => '099966654',
+//             'website' => 'thuna.vn',
+//             'email' => 'info@montecristoballroom.com',
+//             'avatar' => '',
+//             'about' => "The Monte Cristo Ballroom is an all-inclusive chef-owned wedding and event venue in downtown Everett, WA. This historic building, originally a hotel build in the late 1800's, provides a stunning, elegant ambiance for any special occasion. At the Monte Cristo Ballroom, we strive to create a relaxed experience for you on your special day.",
+//             'album' => 2,
+//             'video' => '//www.youtube.com/embed/dHOEGpEesFQ',
+//             'map' => 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15336.413512326777!2d108.18041501773152!3d16.060124383696355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219aa3f8eab53%3A0xc9345ed6d99ccdc!2zMTkyIEjDoCBIdXkgVOG6rXAsIEjDsmEgS2jDqiwgVGhhbmggS2jDqiwgxJDDoCBO4bq1bmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1413430487957',
+//             'category' => 2,
+//             'Location' => 1
 
-          ));
-        }
-        for ($i = 0; $i < 1; $i++)
-        {
-          $vendor = Vendor::create(array(
-            'name' => 'Belle Chapel',
-            'address' => '1507 Wall Street' ,
-            'phone' => '099966654',
-            'website' => 'thuna.vn',
-            'email' => 'info@montecristoballroom.com',
-            'avatar' => '',
-            'about' => "The Monte Cristo Ballroom is an all-inclusive chef-owned wedding and event venue in downtown Everett, WA. This historic building, originally a hotel build in the late 1800's, provides a stunning, elegant ambiance for any special occasion. At the Monte Cristo Ballroom, we strive to create a relaxed experience for you on your special day.",
-            'album' => 3,
-            'video' => '//www.youtube.com/embed/dHOEGpEesFQ',
-            'map' => 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15336.413512326777!2d108.18041501773152!3d16.060124383696355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219aa3f8eab53%3A0xc9345ed6d99ccdc!2zMTkyIEjDoCBIdXkgVOG6rXAsIEjDsmEgS2jDqiwgVGhhbmggS2jDqiwgxJDDoCBO4bq1bmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1413430487957',
-            'category' => 3,
-            'Location' => 1
+//           ));
+//         }
+//         for ($i = 0; $i < 1; $i++)
+//         {
+//           $vendor = Vendor::create(array(
+//             'name' => 'Belle Chapel',
+//             'address' => '1507 Wall Street' ,
+//             'phone' => '099966654',
+//             'website' => 'thuna.vn',
+//             'email' => 'info@montecristoballroom.com',
+//             'avatar' => '',
+//             'about' => "The Monte Cristo Ballroom is an all-inclusive chef-owned wedding and event venue in downtown Everett, WA. This historic building, originally a hotel build in the late 1800's, provides a stunning, elegant ambiance for any special occasion. At the Monte Cristo Ballroom, we strive to create a relaxed experience for you on your special day.",
+//             'album' => 3,
+//             'video' => '//www.youtube.com/embed/dHOEGpEesFQ',
+//             'map' => 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15336.413512326777!2d108.18041501773152!3d16.060124383696355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219aa3f8eab53%3A0xc9345ed6d99ccdc!2zMTkyIEjDoCBIdXkgVOG6rXAsIEjDsmEgS2jDqiwgVGhhbmggS2jDqiwgxJDDoCBO4bq1bmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1413430487957',
+//             'category' => 3,
+//             'Location' => 1
 
-          ));
-        }
-        for ($i = 0; $i < 1; $i++)
-        {
-          $vendor = Vendor::create(array(
-            'name' => 'Pickering Barn',
-            'address' => '1507 Wall Street' ,
-            'phone' => '099966654',
-            'website' => 'thuna.vn',
-            'email' => 'info@montecristoballroom.com',
-            'avatar' => '',
-            'about' => "The Monte Cristo Ballroom is an all-inclusive chef-owned wedding and event venue in downtown Everett, WA. This historic building, originally a hotel build in the late 1800's, provides a stunning, elegant ambiance for any special occasion. At the Monte Cristo Ballroom, we strive to create a relaxed experience for you on your special day.",
-            'album' => 4,
-            'video' => '//www.youtube.com/embed/dHOEGpEesFQ',
-            'map' => 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15336.413512326777!2d108.18041501773152!3d16.060124383696355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219aa3f8eab53%3A0xc9345ed6d99ccdc!2zMTkyIEjDoCBIdXkgVOG6rXAsIEjDsmEgS2jDqiwgVGhhbmggS2jDqiwgxJDDoCBO4bq1bmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1413430487957',
-            'category' => 4,
-            'Location' => 2
+//           ));
+//         }
+//         for ($i = 0; $i < 1; $i++)
+//         {
+//           $vendor = Vendor::create(array(
+//             'name' => 'Pickering Barn',
+//             'address' => '1507 Wall Street' ,
+//             'phone' => '099966654',
+//             'website' => 'thuna.vn',
+//             'email' => 'info@montecristoballroom.com',
+//             'avatar' => '',
+//             'about' => "The Monte Cristo Ballroom is an all-inclusive chef-owned wedding and event venue in downtown Everett, WA. This historic building, originally a hotel build in the late 1800's, provides a stunning, elegant ambiance for any special occasion. At the Monte Cristo Ballroom, we strive to create a relaxed experience for you on your special day.",
+//             'album' => 4,
+//             'video' => '//www.youtube.com/embed/dHOEGpEesFQ',
+//             'map' => 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15336.413512326777!2d108.18041501773152!3d16.060124383696355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219aa3f8eab53%3A0xc9345ed6d99ccdc!2zMTkyIEjDoCBIdXkgVOG6rXAsIEjDsmEgS2jDqiwgVGhhbmggS2jDqiwgxJDDoCBO4bq1bmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1413430487957',
+//             'category' => 4,
+//             'Location' => 2
 
-          ));
-        }
-    }
-}
+//           ));
+//         }
+//     }
+// }
 // Vendor
 
 

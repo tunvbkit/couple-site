@@ -16,10 +16,10 @@ class CreateVendors extends Migration {
 		Schema::create('vendors',function($table){
 			$table->increments('id');
 			$table->string('name');
+			$table->integer('user');
 			$table->string('address');
 			$table->string('phone');
 			$table->string('website');
-			$table->string('email');
 			$table->binary('avatar');
 			$table->longText('about');
 			$table->integer('album');
@@ -27,7 +27,7 @@ class CreateVendors extends Migration {
 			$table->longText('map');
 			$table->integer('category');
 			$table->integer('location');
-			$table->string('slug')->nullable();;
+			$table->string('slug')->nullable();
 			$table->timestamps();
 		});
 	}

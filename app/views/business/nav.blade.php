@@ -1,9 +1,4 @@
-@extends('business.main')
-@section('title')
-	Quản lí | thuna.vn
-@endsection()
-@section('nav-bar')
-	<!-- Navigation -->
+<!-- Navigation -->
 <div class="row bg-menu-top">
   <div class="navbar">
       <div class="navbar-header">
@@ -107,11 +102,11 @@
                Kiến thức
               </a>
             </li>
-            <li><a href="{{URL::route('b_login')}}" >
+            <li><a href="" >
                Đăng nhập
               </a>
             </li>
-            <li><a href="{{URL::route('b_register')}}">
+            <li><a href="" >
                Đăng kí
               </a>
             </li>
@@ -121,9 +116,3 @@
   </div><!--/.nav-->
 </div><!--/.bg-menu-top-->
 <!-- <div class="row lr-bottom-menu"></div> -->
-@endsection()
-@section('content')
-	<div class="row content">
-	</div>
-@endsection()
-@stop()

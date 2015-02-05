@@ -1,0 +1,259 @@
+
+@font-face {
+	font-family: 'OpenSan-Regular';
+	src: url('../../../fonts/OpenSans-Regular.ttf') format('truetype');
+	font-weight: normal;
+    font-style: normal;
+}
+@media(max-width: 768px){
+	.header-logo{
+		min-height: 80px;
+	}
+}
+@media(min-width: 768px){
+	.header-logo{
+	min-height: 115px;
+	}
+}
+body {
+    background-color: #fff;
+    color: #666;
+    font-family: "OpenSan-Regular";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6em;
+    margin: 0 15px;
+    overflow-x:hidden; 
+}
+.header-logo img{
+	margin:2% auto;
+}
+.top-menu {
+    border: 1px solid #b4b4b4;
+    min-height: 50px;
+}
+/*footer*/
+.footer {
+    background-color: #f2f0ee;
+    padding: 2% 0;
+    text-align: center;
+}
+/*css footer*/
+.menu-footer ul{
+	list-style-type: none;
+	display: block;
+	padding: 0 20px;
+	margin: 0 15px;
+	text-align: left;
+}
+.menu-footer ul li a{
+	font-size: 13px;
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+}
+.menu-footer ul li a:hover{
+	color: #e75280;
+}
+.infor-company{
+	font-size: 11px;
+	text-align: left;
+	padding: 0 20px;
+	margin: 15px 0px 0px 15px;
+}
+.contact-admin{
+	font-size: 11px;
+	color: black;
+	font-weight: bold;
+}
+a.contact-admin:hover{
+	color: #e75280;
+	text-decoration: none;
+}
+.thuna-title{
+	font-size: 11px;
+	color: black;
+	font-weight: bold;
+}
+.thuna-title:hover{
+	color: #e75280;
+	text-decoration: none;
+}
+.site-author{
+	margin-top: 15px;
+	font-weight: bold;
+	font-size: 12px;
+}
+.connect-thuna{
+	margin-top: -10px;
+}
+/*noi dung footer*/
+.main-content-footer{
+	margin-top: 0px;
+	background: white;
+
+}
+.box-menu{
+	border: 1px solid #dcdbd9;
+	margin-left: 30px;
+}
+.menu-content-footer{
+	background: none repeat scroll 0 0 transparent;
+	
+}
+.menu-content-footer ul{
+	list-style-type: none;
+	padding: 0px;
+	padding-left: 70px;
+}
+.menu-content-footer ul li{
+	text-align: left;
+	line-height: 30px;
+}
+.menu-content-footer ul li a{
+	content: "●";
+	color: #363636;
+}
+.menu-content-footer ul li a:before{
+	content: "●";
+	color: #23CDCF;
+}
+.menu-content-footer ul li a:hover{
+	color: #23CDCF;
+}
+
+.you-know{
+	border-bottom: 1px solid #dcdbd9;
+	line-height: 30px;
+	color: #E75280;
+	font-size: 16px;
+	height: 50px;
+	padding-top: 20px;
+}
+.content-footer{
+	border-top: 1px solid #dcdbd9;
+	margin-left: 15px;
+	padding: 0px;
+
+}
+.title-content-footer{
+	background: url('../img/title-content-footer.png');
+	height: 45px;
+	padding-top: 15px;
+	font-size: 18px;
+
+}
+.active-a{
+	color: #E75280 !important;
+	font-weight: bold;
+}
+.active-a:before{
+	color: #E75280 !important;
+}
+.para-content{
+	padding-top: 30px;
+	text-align: center;
+}
+.margin-footer{
+	min-height: 370px;
+}
+/*end footer*/
+/*menu*/
+.navbar-nav {
+    padding-left: 20%;
+    letter-spacing: 1px;
+}
+.navbar {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-bottom: 0 none;
+    letter-spacing: 1px;
+    padding: 20px 0;
+    transition: background 0.5s ease-in-out 0s, padding 0.5s ease-in-out 0s;
+    border: medium none !important;
+    border-radius: 0 !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 100%;
+}
+.navbar-header button.navbar-toggle {
+    background-color: #ef4c9b;
+    font-size: 14px;
+    margin-right: 5%;
+    padding: 10px 15px;
+}
+.navbar-header button.navbar-toggle .icon-bar {
+    border: 1px solid #fff;
+    display: block;
+}
+.navbar-nav > li.active > a { color: #ef4c9b !important; }
+.navbar-nav > li > a:hover { background: none !important; color: #ef4c9b !important; }
+.navbar-nav > li > a {
+    color: #333333 !important;
+    font-size: 18px !important;
+    outline: medium none;
+    white-space: nowrap;
+}
+.oneUl{
+	width: 350px;
+}
+.list-unstyled >li >a {
+	font-size: 17px;
+	text-decoration: none;
+}
+.list-unstyled >li >a:hover{
+	color: #ef4c9b;
+}
+
+/*end menu*/
+/*content index*/
+.content{
+	min-height: 700px;
+	background-image: url("../../../images/business/index_bg.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+/*end content index*/
+/*register*/
+.f-register{
+	margin-top: 4%;
+	font-size: 14px;
+}
+#form_register label.error{
+	color:#FF0000; 
+	font-weight: normal;
+	font-size: 14px;
+}
+/*#form_register input{
+	padding: 0px;
+	height: 25px;
+}
+#form_register select{
+	padding: 0px;
+	height: 25px;
+}*/
+.policy{
+	font-size: 12px;
+}
+.policy a {
+	text-decoration: none;
+}
+.policy a:hover{
+	color: #ef4c9b;
+}
+/*end register*/
+/*login*/
+#f_login {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px;
+    margin: 50px auto 85px;
+    max-width: 300px;
+    padding: 20px 29px 29px;
+}
+/*end login*/
+/*index*/
+
+/*end index*/

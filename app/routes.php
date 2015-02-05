@@ -10,6 +10,22 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+// Business
+Route::group(array('prefix'=>'business'),function(){
+	Route::get('home',array('as'=>'home_business',function(){
+		return View::make('business.index');
+		}));
+	Route::get('register',array('as'=>'b_register','uses'=>'BusinessController@register'));
+	Route::get('login',array('as'=>'b_login','uses'=>'BusinessController@login'));
+	Route::post('check-email',array('as'=>'b_check_email_company','uses'=>'BusinessController@checkEmailCompany'));
+	Route::post('post-vendor',array('as'=>'post_vendor','uses'=>'BusinessController@postVendor'));
+	Route::get('dashboard',array('as'=>'b_dashboard','uses'=>'BusinessController@dashboard'));
+	Route::post('post-login',array('as'=>'b_post_login','uses'=>'BusinessController@postLogin'));
+});
+
+Route::resource('business','BusinessController');
+// end Business
+
 
 Route::get('/',array("as"=>"index", function()
 {	

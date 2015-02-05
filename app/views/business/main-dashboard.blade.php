@@ -14,7 +14,6 @@
 		<script src="{{Asset("assets/js/jquery.min.js")}}"></script>
 		<script type="text/javascript" src="{{Asset("assets/js/bootstrap.min.js")}}"></script>
 		<script src="{{Asset('assets/ckeditor/ckeditor.js')}}"></script>
-		<script src="{{Asset('assets/js/jquery-validate/jquery.validate.js')}}"></script>
 		<!-- custom js -->
 		<script src="{{Asset('assets/js/business.js')}}"></script>
 		<script type="text/javascript" src="{{Asset("assets/js/main.js")}}"></script>	
@@ -41,11 +40,6 @@
 	</head>
 
 	<body>
-		<div class="row header-logo text-center">			
-			<a href="{{URL::route('index')}}">
-		    	<img class="img-responsive" src="{{Asset('icon/logo-2.png')}}">
-		    </a>		
-		</div>
 		<!-- navbar -->
 		<div class="row top-menu">
 			@yield('nav-bar')
@@ -53,9 +47,9 @@
 		<!-- end navbar	 -->
 
 		<!-- content -->
-		
+		<div class="row content">
 			@yield('content')
-		
+		</div>		
 		<!-- end content -->
 
 		<!-- footer -->

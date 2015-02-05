@@ -1,6 +1,6 @@
 @extends('business.main')
 @section('title')
-	Quản lí | thuna.vn
+	Đăng nhập | thuna.vn
 @endsection()
 @section('nav-bar')
 	<!-- Navigation -->
@@ -16,7 +16,7 @@
       </div>
       <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#" >               
+            <li><a href="#" >               
                 Trang chủ
               </a>
             </li>
@@ -107,11 +107,11 @@
                Kiến thức
               </a>
             </li>
-            <li><a href="{{URL::route('b_login')}}" >
+            <li class="active"><a href="{{URL::route('b_login')}}">
                Đăng nhập
               </a>
             </li>
-            <li><a href="{{URL::route('b_register')}}">
+            <li><a href="{{URL::route('b_register')}}" >
                Đăng kí
               </a>
             </li>
@@ -123,7 +123,32 @@
 <!-- <div class="row lr-bottom-menu"></div> -->
 @endsection()
 @section('content')
-	<div class="row content">
-	</div>
+    <div class="row" >
+      <div class="col-xs-8 col-md-offset-2">
+        @if(isset($messages)) <p class="text-center alert alert-danger">{{$messages}}</p>
+        @endif  
+
+          @if(isset($msg)) <p class="alert text-center alert-success">{{$msg}}</p>
+        @endif  
+      </div>
+    </div>
+    
+    <div class="">
+        <form action="{{URL::route('b_post_login')}}" method="POST" role="form" id="f_login">
+          <legend>Đăng nhập hệ thống</legend>
+
+          <div class="form-group">
+            <label for="">Email đăng nhập</label>
+            <input type="text" class="form-control" name="name-login" id="name-login">
+          </div>
+
+          <div class="form-group">
+            <label for="">Mật khẩu</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="*******">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Đăng nhập</button>
+        </form>
+    </div>
 @endsection()
 @stop()
