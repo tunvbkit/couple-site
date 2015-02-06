@@ -167,6 +167,11 @@ class BusinessController extends \BaseController {
 			echo $e->getMessage();
 		}
 	}
+	public function logout(){
+		Session::forget('email');	
+		$view = View::make('business.index');
+		return Response::make($view);
+	}
 
 
 }

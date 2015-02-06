@@ -7,6 +7,7 @@
 		<title>@yield('title')</title>
 		<!-- library  css-->
 		<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap/bootstrap.css")}}">
+		<link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
 		<!-- custom css -->
 		<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/business/business.css")}}">
 		 <!-- <link href="{{Asset("assets/css/style.css")}}" rel="stylesheet"> -->

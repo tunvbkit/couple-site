@@ -7,6 +7,7 @@
 		<title>@yield('title')</title>
 		<!-- library  css-->
 		<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap/bootstrap.css")}}">
+		<link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
 		<!-- custom css -->
 		<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/business/business.css")}}">
 		 <!-- <link href="{{Asset("assets/css/style.css")}}" rel="stylesheet"> -->
@@ -17,8 +18,6 @@
 		<!-- custom js -->
 		<script src="{{Asset('assets/js/business.js')}}"></script>
 		<script type="text/javascript" src="{{Asset("assets/js/main.js")}}"></script>	
-		<!-- Click Menu Active -->
-		<script type="text/javascript" src="{{Asset('assets/js/active-menu.js')}}"></script>
 
 		<!-- Button Go Top -->
 		<script type="text/javascript">
@@ -41,15 +40,11 @@
 
 	<body>
 		<!-- navbar -->
-		<div class="row top-menu">
 			@yield('nav-bar')
-		</div>
 		<!-- end navbar	 -->
 
 		<!-- content -->
-		<div class="row content">
-			@yield('content')
-		</div>		
+			@yield('content')	
 		<!-- end content -->
 
 		<!-- footer -->

@@ -11,6 +11,12 @@
 |
 */
 // Business
+Route::filter('b_check_login',function(){
+	$view = View::make('business.login');
+		if(!Session::has('email')){
+			return Response::make($view);
+		}
+});
 Route::group(array('prefix'=>'business'),function(){
 	Route::get('home',array('as'=>'home_business',function(){
 		return View::make('business.index');
@@ -19,8 +25,9 @@ Route::group(array('prefix'=>'business'),function(){
 	Route::get('login',array('as'=>'b_login','uses'=>'BusinessController@login'));
 	Route::post('check-email',array('as'=>'b_check_email_company','uses'=>'BusinessController@checkEmailCompany'));
 	Route::post('post-vendor',array('as'=>'post_vendor','uses'=>'BusinessController@postVendor'));
-	Route::get('dashboard',array('as'=>'b_dashboard','uses'=>'BusinessController@dashboard'));
+	Route::get('dashboard',array('before'=>'b_check_login','as'=>'b_dashboard','uses'=>'BusinessController@dashboard'));
 	Route::post('post-login',array('as'=>'b_post_login','uses'=>'BusinessController@postLogin'));
+	Route::get('logout',array('as'=>'b_logout','uses'=>'BusinessController@logout'));
 });
 
 Route::resource('business','BusinessController');

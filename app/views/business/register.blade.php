@@ -4,123 +4,100 @@
 @endsection()
 @section('nav-bar')
 	<!-- Navigation -->
-<div class="row bg-menu-top">
-  <div class="navbar">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-      </div>
-      <div class="navbar-collapse collapse navbar-responsive-collapse">
-        <ul class="nav navbar-nav">
-            <li><a href="#" >               
-                Trang chủ
-              </a>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav nav-index">
+        <li><a href="#">
+          <span class="fa fa-home"></span>Trang chủ</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <span class="fa fa-male"></span>
+              Khách hàng</a>
+          <ul class="dropdown-menu menu-dashboard" role="menu">
+            <li><a href="#">
+              <span class="fa fa-user"></span>
+                Lượt truy cập</a></li>
+            <li><a href="#">
+              <span class="fa fa-comment-o"></span>
+                Bình luận</a></li>
+            <li><a href="#">
+               <span class="fa fa-star"></span>
+                Đánh giá</a>
             </li>
-            <li><a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown">               
-                Site
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu oneUl" role="menu">
-                  <li role="presentation" class="dropdown-header">
-                    <div class="row">
-                      <div class="col-xs-6">
-                        <ul class="list-unstyled">
-                          <li><a href="">Thông tin</a></li>
-                          <li><a href="">Đánh giá</a></li>
-                        </ul>
-                      </div>
-                      <div class="col-xs-6">
-                        <ul class="list-unstyled">
-                          <li><a href="">Truy cập</a></li>
-                          <li><a href="">Phản hồi</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-              </ul>
-            </li>
-            <li><a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" >               
-                Quảng cáo
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu oneUl" role="menu">
-                  <li role="presentation" class="dropdown-header"><span>Mạng thuna.vn</span>
-                    <div class="row">
-                      <div class="col-xs-6">
-                        <ul class="list-unstyled">
-                          <li><a href="">website cưới</a></li>
-                          <li><a href="">Quản lí file</a></li>
-                        </ul>
-                      </div>
-                      <div class="col-xs-6">
-                        <ul class="list-unstyled">
-                          <li><a href="">Theo dõi</a></li>
-                          <li><a href="">Hồ sơ</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-                  <li role="presentation" class="dropdown-header"><span>Marketing</span>
-                    <div class="row">
-                      <div class="col-xs-6">
-                        <ul class="list-unstyled">
-                          <li><a href="">Truyền thông</a></li>
-                          <li><a href="">Công cụ</a></li>
-                        </ul>
-                      </div>
-                      <div class="col-xs-6">
-                        <ul class="list-unstyled">
-                          <li><a href="">Facebook</a></li>                         
-                          <li><a href="">Video</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-              </ul>
-            </li>
-            <li><a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown">               
-                Khách hàng
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu oneUl" role="menu">
-                  <li role="presentation" class="dropdown-header">
-                    <div class="row">
-                      <div class="col-xs-6">
-                        <ul class="list-unstyled">
-                          <li><a href="">Liên lạc</a></li>
-                        </ul>
-                      </div>
-                      <div class="col-xs-6">
-                        <ul class="list-unstyled">
-                          <li><a href="">Giao dịch</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-              </ul>
-            </li>
-            <li><a href="" >
-               Kiến thức
-              </a>
-            </li>
-            <li><a href="{{URL::route('b_login')}}" >
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+             <span class="fa fa-user"></span>
+              Đối tác
+           </a>
+          <ul class="dropdown-menu menu-dashboard" role="menu">
+            <li><a href="#">
+                <span class="fa fa-envelope-o"></span>
+                Hộp thư</a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <span class="fa fa-bullhorn"></span>
+              Quảng cáo
+          <ul class="dropdown-menu menu-dashboard" role="menu">
+            <li><a href="#">Hộp thư</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <span class="fa fa-group"></span>
+              Mạng xã hội
+          <ul class="dropdown-menu menu-dashboard" role="menu">
+            <li><a href="#">Hộp thư</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <span class="fa fa-book"></span>
+              Kiến thức</a>
+          <ul class="dropdown-menu menu-dashboard" role="menu">
+            <li><a href="#">Hộp thư</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{{URL::route('b_login')}}" >
                Đăng nhập
               </a>
-            </li>
-            <li class="active"><a href="{{URL::route('b_register')}}" >
-               Đăng kí
-              </a>
-            </li>
-        
-        </ul>
-      </div>
-  </div><!--/.nav-->
-</div><!--/.bg-menu-top-->
-<!-- <div class="row lr-bottom-menu"></div> -->
+        </li>
+        <li class="active">
+          <a href="{{URL::route('b_register')}}">
+           Đăng kí
+          </a>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 @endsection()
 @section('content')
   <div class="f-register">

@@ -22,7 +22,6 @@ body {
     font-size: 16px;
     font-weight: 400;
     line-height: 1.6em;
-    margin: 0 15px;
     overflow-x:hidden; 
 }
 .header-logo img{
@@ -159,8 +158,8 @@ a.contact-admin:hover{
 }
 /*end footer*/
 /*menu*/
-.navbar-nav {
-    padding-left: 20%;
+.nav-dashboard {
+    padding-left: 14%;
     letter-spacing: 1px;
 }
 .navbar {
@@ -206,13 +205,81 @@ a.contact-admin:hover{
 
 /*end menu*/
 /*content index*/
-.content{
+.content-index{
 	min-height: 700px;
 	background-image: url("../../../images/business/index_bg.jpg");
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
+}
+.introduce-index{
+	color: black;
+	margin-top: 20%;
+}
+.introduce-index p{
+	text-align: justify;
+}
+@media(max-width: 768px){
+	.contact-index, .demo, .acount{
+	width: 100%;
+	min-height: 200px;	
+	}
+}
+@media(min-width: 768px){
+	.contact-index, .demo, .acount{
+	width: 25.333%;	
+	min-height: 270px;
+	}
+	.contact-index{
+	margin-left: 6%;
+	margin-right: 3%;
+	}
+	.demo{
+		margin-left: 3%;
+		margin-right: 3%;
+	}
+	.acount{
+		margin-left: 3%;
+		margin-right: 6%;
+	}
+}
+.contact-index, .demo, .acount{
+	background-color: white;
+	opacity: 0.9;
+}
+
+
+
+.infor h3 {
+	color: white;
+	font-size: 2.5em;
+}
+.infor p{
+	color: white;
+	margin: 3% auto;
+	font-size: 1.5em;
+	letter-spacing: 1px;
+}
+.infor{
+	margin-top: 3%;
+}
+.btn-go{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color:#e92d91;
+}
+.btn-go:hover{
+	background-color:#D32A85;
+}
+.btn-go a{
+	color: white;
+	font-size: 18px;
+}
+.btn-go a:hover{
+	color: white;
 }
 /*end content index*/
 /*register*/
@@ -254,6 +321,20 @@ a.contact-admin:hover{
     padding: 20px 29px 29px;
 }
 /*end login*/
-/*index*/
-
+/*index dashboard*/
+.content-dashboard{
+	min-height: 500px;
+}
+.nav-index{
+	padding-left: 8%;
+}
 /*end index*/
+/*nav*/
+.edit-nav{
+	border-bottom: solid 1px; 
+}
+.menu-dashboard li a{
+	font-size: 16px!important;
+}
+/*end nav*/
+
