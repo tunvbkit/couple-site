@@ -21,6 +21,45 @@
                 Trang chủ
               </a>
             </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Nhà cung cấp dich vụ">
+            Nhà cung cấp dịch vụ
+              </a>
+              <ul class="dropdown-menu oneUl-vendor" role="menu">
+                  <li role="presentation" class="dropdown-header">
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <ul class="list-unstyled">
+                          @foreach(Category::get() as $key=>$category)
+                          @if($key <7)
+                            <li class="images_li" style="background-image:url('{{Asset("icon/cat/{$category->images}")}}')">
+                              <a href="{{URL::route('category', array($category->slug))}}">
+                                {{$category->name}}
+                              </a>
+                            </li>
+                            @endif() 
+                      @endforeach() 
+                        </ul>
+                      </div>
+                      <div class="col-xs-6">
+                        <ul class="list-unstyled">
+                          @foreach(Category::get() as $key=>$category)
+                          @if($key >=7)
+                            <li class="images_li" style="background-image:url('{{Asset("icon/cat/{$category->images}")}}')">
+                              <a href="{{URL::route('category', array($category->slug))}}">
+                                {{$category->name}}
+                              </a>
+                            </li>
+                            @endif() 
+                      @endforeach()                         
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+              </ul>
+            </li> <!--/music-->
+
             <li class="active"><a href="{{URL::to('website-introduce')}}" title="Website cưới">
                 <!-- <img class="icon-hover-website" src="{{Asset('icon/Quanlyngansach.png')}}"> -->
                 <!-- <span class="icon-show">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

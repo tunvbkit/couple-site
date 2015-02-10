@@ -107,7 +107,7 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 infor-vendor">
         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 avatar-vendor">
            <a href="">
-              {{VendorController::getImagesVendor($vendor->avatar)}}
+              <img  class="img-responsive" src="{{Asset("../{$vendor->avatar}")}}">             
            </a>
         </div>
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 p-infor-vendor">

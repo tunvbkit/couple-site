@@ -393,7 +393,7 @@ a.contact-admin:hover{
 .b-nav-edit{
 	margin-top: 3%;
 }
-#tab1, #tab2,#tab3{
+#tab1,#tab3{
 	margin-top: 3%;
 }
 .b-nav-edit > li.active > a{
@@ -408,5 +408,22 @@ a.contact-admin:hover{
 	font-weight: normal;
 	font-size: 14px;
 }
+#tab2 h4 {
+	border-bottom: solid 1px #e7e7e7;
+	font-weight: bold;
+	margin-left: 1.2%; 
+}
+.photo-vendor button{
+	position: absolute;bottom: 2%;left: 38%; 
+}
 /*end edit business*/
+/*modal anh dai dien*/
+.b-modal-avatar{
+	margin-top: 4%;
+}
+.btn-upload-slide button{
+	margin: 2%;
+	width: 15%;
+}
+/*end*/
 

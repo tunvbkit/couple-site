@@ -134,6 +134,8 @@ class BusinessController extends \BaseController {
 			$vendor->address = Input::get('address');
 			$vendor->phone = Input::get('phone');		
 			$vendor->website = Input::get('website');
+			$vendor->slug = Str::slug(Input::get('company'));
+			$vendor->avatar = 'images/default.jpg';
 			$vendor->user = User::where('email',Input::get('email'))->get()->first()->id;
 			$vendor->save();
 			Session::put('email',Input::get('email'));
@@ -219,6 +221,60 @@ class BusinessController extends \BaseController {
 	}
 	public static function getRating($id_vendor){
 		return	Rating::where('vendor',$id_vendor)->get()->first();
+	}
+	public static function getSlide($id_vendor){
+		return PhotoSlide::where('vendor',$id_vendor)->get();
+	}
+	public static function checkHasAvatar(){
+		return Vendor::where('user',BusinessController::getUser())->get()->first()->avatar;
+	}
+	public function bUploadAvatar(){
+		$file = Input::file('file');
+		$id_user = $this->getUser();
+		if (Input::hasFile('file')) {
+			if (!empty($this->checkHasAvatar()))
+			 {
+				$path_delete=base_path( $this->checkHasAvatar() );
+				File::delete($path_delete);
+			} 
+				File::makeDirectory(base_path('images/avatar'),$mode = 0775,true,true);
+				$filename = $id_user.'vendor' .str_random(10).'.' .$file->getClientOriginalExtension();
+				$pathsave = 'images/avatar/'.$filename;
+				$path = base_path('images/avatar/'.$filename);
+				Image::make($file->getRealPath())->resize(300, 300)->save($path);
+				Vendor::where('user',$id_user)->update(
+						array('avatar'=>$pathsave)					
+						);
+		}
+	}
+	public function bUploadSlide(){
+		$file = Input::file('file');
+		$id_user = $this->getUser();
+		$vendor = $this->getVendor()->id;
+	 	 if(Input::hasFile('file')){
+			$slide = new PhotoSlide();
+			$years = date("Y");
+			$months = date('m');	
+			File::makeDirectory(base_path('images/slide/'.$years.'/'.$months),$mode = 0775,true,true);
+		  	$filename = $vendor.str_random(10) . '.' .$file->getClientOriginalExtension();
+			$path = base_path('images/slide/'.$years.'/'.$months.'/'.$filename);
+			$pathsave = 'images/slide/'.$years.'/'.$months.'/'.$filename;
+			Image::make($file->getRealPath())->resize(600, 600)->save($path);
+			$slide->vendor = $vendor;
+			$slide->bigpic = $pathsave;
+			$slide->save();   	
+   		 }
+	}
+	public function bLoadAvatar(){
+		$id_user = $this->getUser();
+		$vendor = Vendor::where('user',$id_user)->get()->first();			
+ 		$image = asset('../'.$vendor->avatar);
+ 		return Response::json(array('image'=>$image));
+	}
+	public function bLoadSlide(){
+		$vendor	= 	$this->getVendor()->id;
+		$slide 	=	PhotoSlide::where('vendor',$vendor)->get();		
+		return View::make('business.my-slide')->with('slide', $slide);
 	}
 
 }

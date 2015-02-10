@@ -3,7 +3,125 @@
 Danh sách Dịch vụ | thuna.vn
 @endsection
 @section('nav-bar')
-@include('nav')
+
+<!-- Navigation -->
+<div class="row bg-menu-top">
+	<div class="navbar">
+	  	<div class="navbar-header">
+		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+	        	<span class="sr-only">Toggle navigation</span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	      	</button>
+	  	</div>
+	  	<div class="navbar-collapse collapse navbar-responsive-collapse">
+		    <ul class="nav navbar-nav">
+		      	<li>
+		      		<a href="{{URL::route('index')}}" title="Trang chủ">
+		      			Trang chủ
+ 		      		</a>
+		      	</li>
+
+		      	<li class="dropdown active">
+			        <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Nhà cung cấp dich vụ">
+						Nhà cung cấp dịch vụ
+			        </a>
+			        <ul class="dropdown-menu oneUl-vendor" role="menu">
+			          	<li role="presentation" class="dropdown-header">
+				            <div class="row">
+				              <div class="col-xs-6">
+				                <ul class="list-unstyled">
+				                	@foreach(Category::get() as $key=>$category)
+			                		@if($key <7)
+					                  <li class="images_li" style="background-image:url('{{Asset("icon/cat/{$category->images}")}}')">
+					                  	<a href="{{URL::route('category', array($category->slug))}}">
+					                  		{{$category->name}}
+					                  	</a>
+					                  </li>
+				                  	@endif() 
+					         		@endforeach()	
+				                </ul>
+				              </div>
+				              <div class="col-xs-6">
+				                <ul class="list-unstyled">
+					                @foreach(Category::get() as $key=>$category)
+			                		@if($key >=7)
+					                  <li class="images_li" style="background-image:url('{{Asset("icon/cat/{$category->images}")}}')">
+					                  	<a href="{{URL::route('category', array($category->slug))}}">
+					                  		{{$category->name}}
+					                  	</a>
+					                  </li>
+				                  	@endif() 
+					         		@endforeach()				                  
+				                </ul>
+				              </div>
+				            </div>
+			          	</li>
+			        </ul>
+		      	</li> <!--/music-->
+
+		      	<li><a href="{{URL::to('website-introduce')}}" title="Website cưới">
+		        		Website cưới
+		        	</a>
+		        </li>
+		      	<li><a href="{{URL::to('planning-tool')}}" title="Công cụ lập kế hoạnh">
+		      			Công cụ lập kế hoạch
+ 		      		</a>
+		      	</li>
+		      	<li class="dropdown">
+			        <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Âm nhạc">
+						Âm nhạc
+			        </a>
+			        <ul class="dropdown-menu oneUl" role="menu">
+			          	<li role="presentation" class="dropdown-header"><span>Nghi lễ</span>
+				            <div class="row">
+				              <div class="col-xs-6">
+				                <ul class="list-unstyled">
+				                  <li><a href="{{URL::route('songs', array('mo-dau'))}}">Mở đầu</a></li>
+				                  <li><a href="{{URL::route('songs', array('doan-ruoc'))}}">Đoàn rước</a></li>
+				                </ul>
+				              </div>
+				              <div class="col-xs-6">
+				                <ul class="list-unstyled">
+				                  <li><a href="{{URL::route('songs', array('nghi-thuc'))}}">Nghi thức</a></li>
+				                  <li><a href="{{URL::route('songs', array('ket-thuc'))}}">Kết thúc</a></li>
+				                </ul>
+				              </div>
+				            </div>
+			          	</li>
+			          	<li role="presentation" class="dropdown-header"><span>Đãi tiệc</span>
+				            <div class="row">
+				              <div class="col-xs-6">
+				                <ul class="list-unstyled">
+				                  <li><a href="{{URL::route('songs', array('khai-tiec'))}}">Khai tiệc</a></li>
+				                  <li><a href="{{URL::route('songs', array('phat-bieu'))}}">Phát biểu</a></li>
+				                  <li><a href="{{URL::route('songs', array('cat-banh'))}}">Cắt bánh</a></li>
+				                </ul>
+				              </div>
+				              <div class="col-xs-6">
+				                <ul class="list-unstyled">
+				                  <li><a href="{{URL::route('songs', array('vao-tiec'))}}">Vào tiệc</a></li>
+				                  <li><a href="{{URL::route('songs', array('chuc-mung'))}}">Chúc mừng</a></li>
+				                  <li><a href="{{URL::route('songs', array('cuoi-tiec'))}}">Cuối tiệc</a></li>
+				                </ul>
+				              </div>
+				            </div>
+			          	</li>
+			        </ul>
+		      	</li> <!--/music-->
+
+		      	<li><a href="{{URL::action('FortuneController@getIndex')}}" title="Xem ngày cưới">
+		      			Xem ngày cưới
+		      		</a>
+		      	</li>
+		    
+		    </ul>
+	  	</div>
+	</div><!--/.nav-->
+</div><!--/.bg-menu-top-->
+<!-- <div class="row lr-bottom-menu"></div> -->
+
 @endsection
 @section('content')
 
@@ -169,7 +287,12 @@ Danh sách Dịch vụ | thuna.vn
 			                        <!-- Vendor Images -->
 			                        <a href="{{URL::route('vendor',array(VendorController::getCategorySlug( VendorController::getVendorCategory($vendor->id) ),$vendor->slug))}}">
 			                        	<!-- {{VendorController::getImagesVendor($vendor->photo)}} -->
-			                        	{{'<img class="img-responsive" src="data:image/jpeg;base64,' . base64_encode($vendor->avatar) . '" />'}}
+			                        	@if(empty($vendor->avatar))
+			                        	<img class="img-responsive img-thumbnail" src="{{Asset('../images/avatar/default.jpg')}}">
+			                        	@else
+			                        	<img class="img-responsive img-thumbnail" src="{{Asset("../{$vendor->avatar}")}}">
+			                        	@endif()
+			                        	
 			                        </a>
 			                        
 			                        <!-- Location Name -->
@@ -317,7 +440,12 @@ Danh sách Dịch vụ | thuna.vn
 							<!-- Vendor Images -->
 							<div class="list-avatar">
 								<a href="{{URL::route('vendor',array(VendorController::getCategorySlug( VendorController::getVendorCategory($vendor->id) ),$vendor->slug))}}">
-									{{VendorController::getImagesVendor($vendor->photo)}}
+									<!-- {{VendorController::getImagesVendor($vendor->photo)}} -->
+									@if(empty($vendor->avatar))
+		                        	<img class="img-responsive img-thumbnail" src="{{Asset('../images/avatar/default.jpg')}}">
+		                        	@else
+		                        	<img class="img-responsive img-thumbnail" src="{{Asset("../{$vendor->avatar}")}}">
+		                        	@endif()
 								</a>
 							</div>
 							

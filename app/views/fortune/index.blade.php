@@ -6,7 +6,7 @@ Xem ngày cưới | thuna.vn
 @endsection
 @if(!Session::has('email'))
 	@section('nav-bar')
-	@include('song.nav')
+	@include('fortune.nav')
 	@endsection
 @else
 	@section('nav-dash')

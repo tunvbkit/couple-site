@@ -148,7 +148,7 @@ a:focus {  text-decoration: none !important; }
 	width: 100%;
 }
 .navbar-nav {
-	padding-left: 20%;
+	padding-left: 12%;
 }
 .navbar-nav > li {
 	text-align: center;
@@ -1058,7 +1058,7 @@ a.btn:focus{
     color: #2A6496;
 }
 .caption>.name{
-	text-align: justify;
+	text-align: center;
 	color: #19B5BC;
 	font-size: 20px;
 }
@@ -1130,7 +1130,7 @@ a.btn:focus{
     border-radius: 6px;
     padding: 1% 0 0 1%;
     margin-left: 80%;
-    width: 20%;
+    width: 21%;
 }
 
 label.error{
@@ -1402,7 +1402,6 @@ div.vendor_content button{
 	width: 270%;
 	text-align: left;
 }
-.oneUl a { color: #c1bfbf !important; }
 .oneUl a:hover { color: #EA4398 !important; }
 
 
@@ -2840,6 +2839,18 @@ a.contact-admin:hover{
 .hover-theme:hover .btn-select{
 	display: block;
 }
+/*menu vendor*/
+.oneUl-vendor {
+    text-align: left;
+    width: 220%;
+}
+.oneUl-vendor a:hover { color: #EA4398 !important; }
+/*end menu vendor*/
+/*vendor*/
+#right-infor{
+	margin-top: 6%;
+}
+/*end vendor*/
 
 
 

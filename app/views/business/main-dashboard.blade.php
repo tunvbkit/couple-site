@@ -8,6 +8,7 @@
 		<!-- library  css-->
 		<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap/bootstrap.css")}}">
 		<link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
+		<link href="{{Asset("assets/css/dropzone.css")}}" rel="stylesheet">
 		<!-- custom css -->
 		<link rel="stylesheet" type="text/css" href="{{Asset("assets/css/business/business.css")}}">
 		 <!-- <link href="{{Asset("assets/css/style.css")}}" rel="stylesheet"> -->
@@ -19,6 +20,7 @@
 		<!-- custom js -->
 		<script src="{{Asset('assets/js/business.js')}}"></script>
 		<script type="text/javascript" src="{{Asset("assets/js/main.js")}}"></script>	
+		<script src="{{Asset("assets/js/dropzone.js")}}"></script>
 
 		<!-- Button Go Top -->
 		<script type="text/javascript">

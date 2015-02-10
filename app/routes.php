@@ -32,6 +32,10 @@ Route::group(array('prefix'=>'business'),function(){
 });
 Route::group(array('before'=>'b_check_login'),function(){		
 	// Route::get('profile',array('as'=>'b_profile','uses'=>'BusinessController@profile'));
+	Route::post('b-upload-avatar',array('as'=>'b_upload_avatar','uses'=>'BusinessController@bUploadAvatar'));
+	Route::post('b-upload-slide',array('as'=>'b_upload_slide','uses'=>'BusinessController@bUploadSlide'));
+	Route::post('b-load-avatar',array('as'=>'b_load_avatar','uses'=>'BusinessController@bLoadAvatar'));
+	Route::post('b-load-slide',array('as'=>'b_load_slide','uses'=>'BusinessController@bLoadSlide'));
 	Route::resource('business','BusinessController');
 });
 

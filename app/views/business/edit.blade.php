@@ -241,7 +241,43 @@
     </div>
 
     <div role="tabpanel" class="tab-pane" id="tab2">
-      <p>fdjkfdjfkdjf</p>
+      <div id="tab2">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>Ảnh đại diện</h4>
+          <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 photo-vendor">
+            <a>
+              @if(empty($vendor->avatar))
+              <img  class="img-responsive img-thumbnail" src="{{Asset('../images/avatar/default.jpg')}}">
+              @else
+              <img  class="img-responsive img-thumbnail" src="{{Asset("../{$vendor->avatar}")}}">
+              @endif  
+           </a>
+           <button class="btn btn-responsive btn-primary" data-backdrop="static" data-toggle="modal" data-target='#b-modal-avatar'>Đổi ảnh</button>
+          </div>
+          <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>Album ảnh</h4>
+          <div class="grid-slide">
+          @if(!empty( BusinessController::getSlide($vendor->id) ))
+            @foreach(BusinessController::getSlide($vendor->id) as $photo)
+              <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 one-slide">
+                  <img  class="img-responsive img-thumbnail" src="{{Asset("../{$photo->bigpic}")}}">
+              </div>
+             @endforeach
+           @else
+             <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+                <img  class="img-responsive img-thumbnail" src="{{Asset("../images/avatar/default.jpg")}}">
+              </div>
+           @endif
+           </div>
+           <div class="text-center btn-upload-slide">
+              <button class="btn btn-responsive btn-primary" data-backdrop="static" data-toggle="modal" data-target='#b-modal-slide'>Tải ảnh lên</button>
+           </div>
+        </div>
+      </div>
     </div>
     
   </div>
@@ -279,7 +315,73 @@
             }
         }
       })
+
+      function bLoadAvatar(){
+        $.ajax({
+        type:"post",
+        url:"{{URL::route('b_load_avatar')}}",
+        success:function(data){
+          $('.dz-preview').remove();
+          $('.dz-message').css('opacity',1);
+          $('.photo-vendor a').html('<img class="img-responsive img-thumbnail" src="'+data.image+'">');
+          }
+        }); 
+      }
+      function bLoadSlide(){
+        $.ajax({
+        type:"post",
+        url:"{{URL::route('b_load_slide')}}",
+        success:function(data){
+          $('.dz-preview').remove();
+          $('.dz-message').css('opacity',1);
+          $('.one-slide').remove();
+          $('.grid-slide').append(data);
+          }
+        }); 
+      }
   </script>
+
+<!-- upload ajax avatar -->
+<div class="modal fade " id="b-modal-avatar">
+  <div class="modal-dialog modal-md b-modal-avatar">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <button type="button" onclick="bLoadAvatar()" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title text-center">Thay đổi ảnh đại diện</h4>
+      </div>
+      <div class="modal-body">
+        
+        <form  onclick="opacity()" action="{{URL::route('b_upload_avatar')}}" class="dropzone dz-clickable" id="b-upload-avatar" method="POST">
+        </form>
+          
+      </div>
+      <div class="modal-footer" style="text-align:center;">
+            <button onclick="bLoadAvatar()" type="button" data-dismiss="modal" class="btn btn-primary" >Đóng</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- upload ajax avatar slide-->
+<div class="modal fade " id="b-modal-slide">
+  <div class="modal-dialog modal-md b-modal-avatar">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <button type="button" onclick="bLoadSlide()" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title text-center">Tải album ảnh</h4>
+      </div>
+      <div class="modal-body">
+        
+        <form  onclick="opacity()" action="{{URL::route('b_upload_slide')}}" class="dropzone dz-clickable" id="b-upload-avatar" method="POST">
+        </form>
+          
+      </div>
+      <div class="modal-footer" style="text-align:center;">
+            <button onclick="bLoadSlide()" type="button" data-dismiss="modal" class="btn btn-primary" >Đóng</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 @endsection()
 @stop()
