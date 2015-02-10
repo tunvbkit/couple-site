@@ -16,6 +16,15 @@ class BusinessController extends \BaseController {
 	public function index()
 	{
 		//
+		$msg = Session::get('msg');
+		$location = BusinessController::getLocation();
+		$categories = BusinessController::getCategory();
+		$id_user = $this->getUser();
+		$vendor = Vendor::where('user',$id_user)->get();
+		return View::make('business.edit')->with('vendor',$vendor)
+												->with('categories',$categories)
+												->with('location',$location)
+												->with('msg',$msg);
 	}
 
 
@@ -25,8 +34,8 @@ class BusinessController extends \BaseController {
 	 * @return Response
 	 */
 	public function create()
-	{
-		//
+	{	
+
 	}
 
 
@@ -87,6 +96,17 @@ class BusinessController extends \BaseController {
 	{
 		//
 	}
+	public static function getUser(){
+		$id_user = User::where( 'email', Session::get('email') )->get()->first()->id;
+		return $id_user;
+	}
+	public static function getVendor(){
+		$id_user = BusinessController::getUser();
+		return Vendor::where('user',$id_user)->get()->first();
+	}
+	public static function getNameCategory($id){
+		return Category::where('id',$id)->get()->first()->name;
+	}
 	public function postVendor(){
 		$rules = array(
 			'company'=>'required|min:2',
@@ -122,7 +142,8 @@ class BusinessController extends \BaseController {
 		
 	}
 	public function dashboard(){
-		return View::make('business.dashboard');
+		$vendor = $this->getVendor();
+		return View::make('business.dashboard')->with('vendor',$vendor);
 	}
 	public function checkEmailCompany(){
 		return (User::where('email',Input::get('email'))->count() == 0 ? 'true':'false');
@@ -172,6 +193,32 @@ class BusinessController extends \BaseController {
 		$view = View::make('business.index');
 		return Response::make($view);
 	}
-
+	public function updateProfile(){
+		$rules = array(
+			'company'=>'required|min:2',
+			'address'=>'required|min:5',
+			'phone'=>'required|min:10'
+			);
+		$validator = Validator::make(Input::all(),$rules);
+		if ($validator->fails()) {
+			$errors = $validator->messages();
+			return Redirect::route('b_update_profile')->with('errors',$errors);
+		} else {
+			Vendor::where('user',$this->getUser())->update(
+				array('name'=>Input::get('company'),
+						'category'=>Input::get('category'),
+						'location'=>Input::get('location'),
+						'address'=>Input::get('address'),
+						'phone'=>Input::get('phone'),
+						'website'=>Input::get('website'),
+						'about'=>Input::get('about'))
+				);
+				$msg = "Cập nhật thông tin thành công";
+			return Redirect::route('business.index')->with('msg',$msg);
+		}
+	}
+	public static function getRating($id_vendor){
+		return	Rating::where('vendor',$id_vendor)->get()->first();
+	}
 
 }

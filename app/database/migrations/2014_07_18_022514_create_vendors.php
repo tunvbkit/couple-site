@@ -20,7 +20,7 @@ class CreateVendors extends Migration {
 			$table->string('address');
 			$table->string('phone');
 			$table->string('website');
-			$table->binary('avatar');
+			$table->string('avatar');
 			$table->longText('about');
 			$table->integer('album');
 			$table->longText('video');

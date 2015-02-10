@@ -25,12 +25,17 @@ Route::group(array('prefix'=>'business'),function(){
 	Route::get('login',array('as'=>'b_login','uses'=>'BusinessController@login'));
 	Route::post('check-email',array('as'=>'b_check_email_company','uses'=>'BusinessController@checkEmailCompany'));
 	Route::post('post-vendor',array('as'=>'post_vendor','uses'=>'BusinessController@postVendor'));
-	Route::get('dashboard',array('before'=>'b_check_login','as'=>'b_dashboard','uses'=>'BusinessController@dashboard'));
 	Route::post('post-login',array('as'=>'b_post_login','uses'=>'BusinessController@postLogin'));
 	Route::get('logout',array('as'=>'b_logout','uses'=>'BusinessController@logout'));
+	Route::get('dashboard',array('before'=>'b_check_login','as'=>'b_dashboard','uses'=>'BusinessController@dashboard'));
+	Route::post('update-business',array('before'=>'b_check_login','as'=>'b_update_profile','uses'=>'BusinessController@updateProfile'));
+});
+Route::group(array('before'=>'b_check_login'),function(){		
+	// Route::get('profile',array('as'=>'b_profile','uses'=>'BusinessController@profile'));
+	Route::resource('business','BusinessController');
 });
 
-Route::resource('business','BusinessController');
+
 // end Business
 
 

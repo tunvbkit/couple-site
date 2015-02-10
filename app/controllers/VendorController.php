@@ -478,7 +478,7 @@ class VendorController extends \BaseController {
 	// get images
 	public static function getImagesVendor($image)
 	{
-		$path 				= storage_path().'/'.$image;
+		$path 				= base_path().'/'.$image;
 		
 		// Read image path, convert to base64 encoding
 		$imageData 			= base64_encode(file_get_contents($path));

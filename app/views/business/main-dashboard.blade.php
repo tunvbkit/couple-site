@@ -15,6 +15,7 @@
 		<script src="{{Asset("assets/js/jquery.min.js")}}"></script>
 		<script type="text/javascript" src="{{Asset("assets/js/bootstrap.min.js")}}"></script>
 		<script src="{{Asset('assets/ckeditor/ckeditor.js')}}"></script>
+		<script src="{{Asset('assets/js/jquery-validate/jquery.validate.js')}}"></script>
 		<!-- custom js -->
 		<script src="{{Asset('assets/js/business.js')}}"></script>
 		<script type="text/javascript" src="{{Asset("assets/js/main.js")}}"></script>	
