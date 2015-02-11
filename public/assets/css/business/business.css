@@ -292,6 +292,9 @@ a.contact-admin:hover{
 	font-weight: normal;
 	font-size: 14px;
 }
+#f-video{
+	margin-top: 3%;
+}
 /*#form_register input{
 	padding: 0px;
 	height: 25px;
@@ -393,7 +396,7 @@ a.contact-admin:hover{
 .b-nav-edit{
 	margin-top: 3%;
 }
-#tab1,#tab3{
+#tab1{
 	margin-top: 3%;
 }
 .b-nav-edit > li.active > a{
@@ -413,8 +416,29 @@ a.contact-admin:hover{
 	font-weight: bold;
 	margin-left: 1.2%; 
 }
+#tab3 h4 {
+	border-bottom: solid 1px #e7e7e7;
+	font-weight: bold;
+	margin-left: 1.2%; 
+}
+#tab4 h4 {
+	border-bottom: solid 1px #e7e7e7;
+	font-weight: bold;
+	margin-left: 1.2%; 
+}
 .photo-vendor button{
 	position: absolute;bottom: 2%;left: 38%; 
+}
+.y-video {
+	margin-bottom: 3%;
+}
+.one-slide{
+	padding: 10px 15px;
+}
+.one-slide span{
+	color: red;
+    float: right;
+    cursor: pointer;
 }
 /*end edit business*/
 /*modal anh dai dien*/
