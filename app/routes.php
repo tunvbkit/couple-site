@@ -36,6 +36,9 @@ Route::group(array('before'=>'b_check_login'),function(){
 	Route::post('b-upload-slide',array('as'=>'b_upload_slide','uses'=>'BusinessController@bUploadSlide'));
 	Route::post('b-load-avatar',array('as'=>'b_load_avatar','uses'=>'BusinessController@bLoadAvatar'));
 	Route::post('b-load-slide',array('as'=>'b_load_slide','uses'=>'BusinessController@bLoadSlide'));
+	Route::post('b-upload-video',array('as'=>'b_upload_video','uses'=>'BusinessController@bUploadVideo'));
+	Route::post('b-upload-map',array('as'=>'b_upload_map','uses'=>'BusinessController@bUploadMap'));
+	Route::post('b-del-slide',array('as'=>'b_del_slide','uses'=>'BusinessController@bDeleteSlide'));
 	Route::resource('business','BusinessController');
 });
 

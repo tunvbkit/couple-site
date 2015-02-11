@@ -254,16 +254,22 @@
            </a>
            <button class="btn btn-responsive btn-primary" data-backdrop="static" data-toggle="modal" data-target='#b-modal-avatar'>Đổi ảnh</button>
           </div>
-          <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-            
+          <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8" style="margin-top:3%;">
+              <p style="font-weight:bold;">Lưu ý: </p>
+              <p>Dung lượng ảnh không quá 2M</p>
+              <p>Kích thước ảnh đại diện 300x300 pixel</p>
+              <p>Kích thước ảnh đại diện 700x450 pixel</p>
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <h4>Album ảnh</h4>
           <div class="grid-slide">
-          @if(!empty( BusinessController::getSlide($vendor->id) ))
+          @if(isset( BusinessController::getSlide($vendor->id) ))
             @foreach(BusinessController::getSlide($vendor->id) as $photo)
-              <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 one-slide">
+              <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 one-slide one-slide{{$photo->id}}">
+                  <span class="btn-delete">
+                    <i class="glyphicon glyphicon-remove-sign" onclick="delSlide({{$photo->id}})"></i>
+                  </span>
                   <img  class="img-responsive img-thumbnail" src="{{Asset("../{$photo->bigpic}")}}">
               </div>
              @endforeach
@@ -277,6 +283,53 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center btn-upload-slide">
           <button class="btn btn-responsive btn-primary" data-backdrop="static" data-toggle="modal" data-target='#b-modal-slide'>Tải ảnh lên</button>
         </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab3">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+         <h4>Video</h4>
+         <form action="{{URL::route('b_upload_video')}}" method="POST" role="form" name="f-video" id="f-video">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              
+            </div>
+           <div class="form-group col-xs-12 col-md-1 col-sm-1 col-lg-1" style="padding:0px;">
+             <label for="">Link video</label>
+           </div> 
+           <div class="form-group col-xs-12 col-md-5 col-sm-5 col-lg-5">
+             <input type="text" class="form-control" name="link-video" id="link-video" placeholder="Sao chép mã nhúng hoặc copy embed code của Youtube">
+           </div>
+           <div class="form-group col-xs-12 col-md-2 col-sm-2 col-lg-2">
+             <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+           </div>
+         </form>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center y-video">
+          <h4  style="margin-top: 1.5%;"></h4>
+          {{$vendor->video}}
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="tab4">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+         <h4>Map</h4>
+         <form action="{{URL::route('b_upload_map')}}" method="POST" role="form" name="f-video" id="f-video">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              
+            </div>
+           <div class="form-group col-xs-12 col-md-1 col-sm-1 col-lg-1" style="padding:0px;">
+             <label for="">Link map</label>
+           </div> 
+           <div class="form-group col-xs-12 col-md-5 col-sm-5 col-lg-5">
+             <input type="text" class="form-control" name="link-map" id="link-map" placeholder="Sao chép mã nhúng hoặc copy embed code của google map">
+           </div>
+           <div class="form-group col-xs-12 col-md-2 col-sm-2 col-lg-2">
+             <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+           </div>
+         </form>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center y-video">
+          <h4  style="margin-top: 1.5%;"></h4>
+          {{$vendor->map}}
       </div>
     </div>
     
@@ -336,6 +389,16 @@
           $('.dz-message').css('opacity',1);
           $('.one-slide').remove();
           $('.grid-slide').append(data);
+          }
+        }); 
+      }
+      function delSlide(id_slide){
+        $.ajax({
+        type:"post",
+        data:{id_slide : id_slide},
+        url:"{{URL::route('b_del_slide')}}",
+        success:function(data){
+          $('.one-slide'+id_slide).remove();
           }
         }); 
       }

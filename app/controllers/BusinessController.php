@@ -276,5 +276,19 @@ class BusinessController extends \BaseController {
 		$slide 	=	PhotoSlide::where('vendor',$vendor)->get();		
 		return View::make('business.my-slide')->with('slide', $slide);
 	}
+	public function bUploadVideo(){
+		$link = Input::get('link-video');
+		Vendor::where('user',$this->getUser())->update(array('video'=>$link));
+		return Redirect::route('business.index');
+	}
+	public function bUploadMap(){
+		$map = Input::get('link-map');
+		Vendor::where('user',$this->getUser())->update(array('map'=>$map));
+		return Redirect::route('business.index');
+	}
+	public function bDeleteSlide(){
+		$id_slide = Input::get('id_slide');
+		PhotoSlide::where('id',$id_slide)->delete();
+	}
 
 }
