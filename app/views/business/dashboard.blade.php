@@ -18,7 +18,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav nav-dashboard">
-        <li class="active"><a href="#">
+        <li class="active"><a href="{{URL::route('b_dashboard')}}">
           <span class="fa fa-home"></span>Trang chủ</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -106,8 +106,12 @@
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 infor-vendor">
         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 avatar-vendor">
-           <a href="">
-              <img  class="img-responsive" src="{{Asset("../{$vendor->avatar}")}}">             
+           <a >
+              @if(empty($vendor->avatar))
+              <img  class="img-responsive img-thumbnail" src="{{Asset('../images/avatar/default.jpg')}}">
+              @else
+              <img  class="img-responsive img-thumbnail" src="{{Asset("../{$vendor->avatar}")}}">
+              @endif              
            </a>
         </div>
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 p-infor-vendor">

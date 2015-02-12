@@ -135,7 +135,6 @@ class BusinessController extends \BaseController {
 			$vendor->phone = Input::get('phone');		
 			$vendor->website = Input::get('website');
 			$vendor->slug = Str::slug(Input::get('company'));
-			$vendor->avatar = 'images/avatar/default.jpg';
 			$vendor->user = User::where('email',Input::get('email'))->get()->first()->id;
 			$vendor->save();
 			Session::put('business',Input::get('email'));

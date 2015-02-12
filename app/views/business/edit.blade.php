@@ -18,7 +18,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav nav-dashboard">
-        <li class="active"><a href="#">
+        <li class="active"><a href="{{URL::route('b_dashboard')}}">
           <span class="fa fa-home"></span>Trang chủ</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

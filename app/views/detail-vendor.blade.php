@@ -153,7 +153,7 @@
 							<h3 id="right-infor name">{{$vendor->name}}</h3>
 							<p id="right-infor address">{{$vendor->address}}<a href="#map" data-toggle="tab" class="outside-link" id="show_map_detail" onclick="show_map_detail()"> |Map.</a></p>
 							<p id="right-infor address"><b>Điện thoại:</b> {{$vendor->phone}}</p>
-							<p id="right-infor web"><b>Website      </b>:<a href="{{$vendor->website}}"id="right-infor link" target="_blank"> Ghé thăm Website của tôi</a></p>
+							<p id="right-infor web"><b>Website      </b>:<a href="{{$vendor->website}}" id="right-infor link" target="_blank"> Ghé thăm Website của tôi</a></p>
 							<p id="right-infor service"><b>Dịch vụ</b>:
 								{{Vendor::find($vendor->id)->category()->get()->first()->name}}
 							</p>
