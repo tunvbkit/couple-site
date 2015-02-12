@@ -97,7 +97,7 @@ class BusinessController extends \BaseController {
 		//
 	}
 	public static function getUser(){
-		$id_user = User::where( 'email', Session::get('email') )->get()->first()->id;
+		$id_user = User::where( 'email', Session::get('business') )->get()->first()->id;
 		return $id_user;
 	}
 	public static function getVendor(){
@@ -138,7 +138,7 @@ class BusinessController extends \BaseController {
 			$vendor->avatar = 'images/default.jpg';
 			$vendor->user = User::where('email',Input::get('email'))->get()->first()->id;
 			$vendor->save();
-			Session::put('email',Input::get('email'));
+			Session::put('business',Input::get('email'));
 			return Redirect::to('business/dashboard');
 		}
 		
@@ -177,7 +177,7 @@ class BusinessController extends \BaseController {
 				
 				if($auth)
 				{
-					Session::put("email",Input::get('name-login'));
+					Session::put("business",Input::get('name-login'));
 
 					// go to view request
 					return Redirect::to('business/dashboard');
@@ -191,7 +191,7 @@ class BusinessController extends \BaseController {
 		}
 	}
 	public function logout(){
-		Session::forget('email');	
+		Session::forget('business');	
 		$view = View::make('business.index');
 		return Response::make($view);
 	}
@@ -258,12 +258,17 @@ class BusinessController extends \BaseController {
 			$years = date("Y");
 			$months = date('m');	
 			File::makeDirectory(base_path('images/slide/'.$years.'/'.$months),$mode = 0775,true,true);
-		  	$filename = $vendor.str_random(10) . '.' .$file->getClientOriginalExtension();
-			$path = base_path('images/slide/'.$years.'/'.$months.'/'.$filename);
-			$pathsave = 'images/slide/'.$years.'/'.$months.'/'.$filename;
-			Image::make($file->getRealPath())->resize(600, 600)->save($path);
+		  	$filename1 = $vendor.str_random(10) . '.' .$file->getClientOriginalExtension();
+		  	$filename2 = $vendor.str_random(10) . '.' .$file->getClientOriginalExtension();
+			$path1 = base_path('images/slide/'.$years.'/'.$months.'/'.$filename1);
+			$path2 = base_path('images/slide/'.$years.'/'.$months.'/'.$filename2);
+			$pathsave1 = 'images/slide/'.$years.'/'.$months.'/'.$filename1;
+			$pathsave2 = 'images/slide/'.$years.'/'.$months.'/'.$filename2;
+			Image::make($file->getRealPath())->resize(700, 450)->save($path1);
+			Image::make($file->getRealPath())->resize(80, 80)->save($path2);
 			$slide->vendor = $vendor;
-			$slide->bigpic = $pathsave;
+			$slide->bigpic = $pathsave1;
+			$slide->smallpic = $pathsave2;
 			$slide->save();   	
    		 }
 	}
@@ -290,9 +295,12 @@ class BusinessController extends \BaseController {
 	}
 	public function bDeleteSlide(){
 		$id_slide = Input::get('id_slide');
-		$name=PhotoSlide::where('id',$id_slide)->get()->first()->bigpic;
-		$path_delete=base_path($name);
-		File::delete($path_delete);
+		$name = PhotoSlide::where('id',$id_slide)->get()->first()->bigpic;
+		$name2 = PhotoSlide::where('id',$id_slide)->get()->first()->smallpic;
+		$path_delete1 = base_path($name1);
+		$path_delete2 = base_path($name2);
+		File::delete($path_delete1);
+		File::delete($path_delete2);
 		PhotoSlide::where('id',$id_slide)->delete();
 	}
 

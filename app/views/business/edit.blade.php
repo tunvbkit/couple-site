@@ -296,7 +296,7 @@
              <label for="">Link video</label>
            </div> 
            <div class="form-group col-xs-12 col-md-5 col-sm-5 col-lg-5">
-             <input type="text" class="form-control" name="link-video" id="link-video" placeholder="Sao chép mã nhúng hoặc copy embed code của Youtube">
+             <input type="text" class="form-control" name="link-video" id="link-video" placeholder='Sao chép mã nhúng (copy emded code) của Youtube' value='{{$vendor->video}}'>
            </div>
            <div class="form-group col-xs-12 col-md-2 col-sm-2 col-lg-2">
              <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
@@ -320,7 +320,7 @@
              <label for="">Link map</label>
            </div> 
            <div class="form-group col-xs-12 col-md-5 col-sm-5 col-lg-5">
-             <input type="text" class="form-control" name="link-map" id="link-map" placeholder="Sao chép mã nhúng hoặc copy embed code của google map">
+             <input type="text" class="form-control" name="link-map" id="link-map" placeholder='Copy phần src=" " (<iframe src="copy"></iframe>) của Google Map' value="{{$vendor->map}}">
            </div>
            <div class="form-group col-xs-12 col-md-2 col-sm-2 col-lg-2">
              <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
@@ -329,7 +329,7 @@
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center y-video">
           <h4  style="margin-top: 1.5%;"></h4>
-          {{$vendor->map}}
+          <iframe src='{{$vendor->map}}' width="600" height="400" frameborder="0" style="border:0"></iframe>
       </div>
     </div>
     

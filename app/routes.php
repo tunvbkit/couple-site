@@ -13,7 +13,7 @@
 // Business
 Route::filter('b_check_login',function(){
 	$view = View::make('business.login');
-		if(!Session::has('email')){
+		if(!Session::has('business')){
 			return Response::make($view);
 		}
 });

@@ -187,7 +187,9 @@
 										@if($check_photoslide>0)	
 										<ul id="thumbs-main">											
 												@foreach($photoslides as $index => $photoslide)
-												<li  rel="{{$index+1}}"><a href="#photos" class="image-outside-link" data-toggle="tab">{{'<img alt="" class="img-responsive" src="data:image/jpeg;base64,' . base64_encode($photoslide->smallpic) . '">'}}</a></li>
+												<li  rel="{{$index+1}}"><a href="#photos" class="image-outside-link" data-toggle="tab">
+													<img class="img-responsive" src="{{Asset("../{$photoslide->smallpic}")}}">
+												</a></li>
 												@endforeach											   
 										</ul>
 											<a style="margin-left:2%;" href="#photos" class="outside-link"data-toggle="tab">Xem thêm</a>
@@ -215,7 +217,7 @@
 
 								<div id="content-video">
 									<h4> Video</h4>
-									<iframe width="600" height="400" src="{{$vendor->video}}" frameborder="0" allowfullscreen></iframe>	
+									{{$vendor->video}}
 								</div>
 						  	</div>
 						  	<div class="tab-pane" id="review">
@@ -473,14 +475,16 @@
 								<div  id="bigPic">
 									@if(!empty($photoslides))
 										@foreach($photoslides as $index => $photoslide)
-												{{'<img alt="" class="container img-responsive" src="data:image/jpeg;base64,' . base64_encode($photoslide->bigpic) . '">'}}
+												<img style="margin:0 auto;" class="img-responsive" src="{{Asset("../{$photoslide->bigpic}")}}">
 										@endforeach
 									@endif			    
 								</div>
-								<ul  id="thumbs">
+								<ul  id="thumbs" style="margin-left:7.5%;">
 										@if(!empty($photoslides))
 											@foreach($photoslides as $index => $photoslide)
-												<li rel="{{$index+1}}">{{'<img alt="" class="img-responsive" src="data:image/jpeg;base64,' . base64_encode($photoslide->smallpic) . '">'}}</li>
+												<li rel="{{$index+1}}">
+													<img class="img-responsive" src="{{Asset("../{$photoslide->smallpic}")}}">
+												</li>
 											@endforeach
 										@endif			   
 								</ul>
@@ -529,7 +533,7 @@
 						  </div>
 						  <div class="tab-pane" id="video">
 				  			<h4>Video</h4>
-				  			<iframe width="600" height="400" src="{{$vendor->video}}" frameborder="0" allowfullscreen></iframe>
+				  			{{$vendor->video}}
 				  			
 						  </div>
 						  <div class="tab-pane" id="FAQ">
