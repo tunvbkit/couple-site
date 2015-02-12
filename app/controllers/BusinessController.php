@@ -135,7 +135,7 @@ class BusinessController extends \BaseController {
 			$vendor->phone = Input::get('phone');		
 			$vendor->website = Input::get('website');
 			$vendor->slug = Str::slug(Input::get('company'));
-			$vendor->avatar = 'images/default.jpg';
+			$vendor->avatar = 'images/avatar/default.jpg';
 			$vendor->user = User::where('email',Input::get('email'))->get()->first()->id;
 			$vendor->save();
 			Session::put('business',Input::get('email'));
@@ -295,7 +295,7 @@ class BusinessController extends \BaseController {
 	}
 	public function bDeleteSlide(){
 		$id_slide = Input::get('id_slide');
-		$name = PhotoSlide::where('id',$id_slide)->get()->first()->bigpic;
+		$name1 = PhotoSlide::where('id',$id_slide)->get()->first()->bigpic;
 		$name2 = PhotoSlide::where('id',$id_slide)->get()->first()->smallpic;
 		$path_delete1 = base_path($name1);
 		$path_delete2 = base_path($name2);
