@@ -450,4 +450,52 @@ a.contact-admin:hover{
 	width: 15%;
 }
 /*end*/
+/*inbox*/
+.head-inbox h4{ 
+	border-bottom: solid 1px #e7e7e7;
+	font-weight: bold;
+	margin-left: 1.2%; 
+}
+.inbox{
+	min-height: 400px;
+}
+/* make sidebar nav vertical */ 
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbar ul:not {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .sidebar-nav{
+  	border: solid 1px #e7e7e7;
+  }
+  .left-inbox{
+	margin-top: 3%;
+}
+}
+.load-inbox a{
+	text-decoration: none;
+}
+.load-inbox a:hover{
+	color: #ef4c9b;
+}
+.menu-inbox >li > a{
+	font-weight: bold;
+	font-size: 16px !important;
+}
+/*end inbox*/
+
 

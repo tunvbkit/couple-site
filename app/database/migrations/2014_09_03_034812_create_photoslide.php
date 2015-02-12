@@ -17,8 +17,8 @@ class CreatePhotoslide extends Migration {
 			{
 				$table->increments("id");
 				$table->integer('vendor');
-				$table->binary('bigpic');
-				$table->binary('smallpic');
+				$table->string('bigpic');
+				$table->string('smallpic');
 				$table->timestamps();
 			});
 	}

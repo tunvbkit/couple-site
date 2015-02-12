@@ -14,6 +14,7 @@ class CreateMessages extends Migration {
 	{
 		Schema::create('messages',function($table){
 			$table->increments("id");
+			$table->string('title');
 			$table->string("content");
 			$table->integer("from_business");
 			$table->integer("to_business");	

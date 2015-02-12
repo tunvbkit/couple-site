@@ -29,6 +29,7 @@ Route::group(array('prefix'=>'business'),function(){
 	Route::get('logout',array('as'=>'b_logout','uses'=>'BusinessController@logout'));
 	Route::get('dashboard',array('before'=>'b_check_login','as'=>'b_dashboard','uses'=>'BusinessController@dashboard'));
 	Route::post('update-business',array('before'=>'b_check_login','as'=>'b_update_profile','uses'=>'BusinessController@updateProfile'));
+	Route::get('inbox',array('before'=>'b_check_login','as'=>'b_inbox','uses'=>'BusinessController@inbox'));
 });
 Route::group(array('before'=>'b_check_login'),function(){		
 	// Route::get('profile',array('as'=>'b_profile','uses'=>'BusinessController@profile'));
@@ -40,6 +41,10 @@ Route::group(array('before'=>'b_check_login'),function(){
 	Route::post('b-upload-map',array('as'=>'b_upload_map','uses'=>'BusinessController@bUploadMap'));
 	Route::post('b-del-slide',array('as'=>'b_del_slide','uses'=>'BusinessController@bDeleteSlide'));
 	Route::resource('business','BusinessController');
+	// inbox
+	Route::post('arrive-inbox',array('as'=>'load_arrive','uses'=>'BusinessController@loadArrive'));
+	Route::post('sent-inbox',array('as'=>'load_sent','uses'=>'BusinessController@loadSent'));
+	Route::post('important-inbox',array('as'=>'load_important','uses'=>'BusinessController@loadImportant'));
 });
 
 

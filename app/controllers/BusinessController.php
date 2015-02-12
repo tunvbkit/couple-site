@@ -302,5 +302,17 @@ class BusinessController extends \BaseController {
 		File::delete($path_delete2);
 		PhotoSlide::where('id',$id_slide)->delete();
 	}
+	public function inbox(){
+		return View::make('business.inbox');
+	}
+	public function loadArrive(){
+		return View::make('business.arrive-inbox');
+	}
+	public function loadSent(){
+		return View::make('business.sent-inbox');
+	}
+	public function loadImportant(){
+		return View::make('business.imp-inbox');
+	}
 
 }
