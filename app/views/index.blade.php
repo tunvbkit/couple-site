@@ -302,9 +302,10 @@
 		<div class="container">
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 des-index-tool">
 				<h5 class="introduce-index">
-					<p>Công cụ cung cấp cho cô dâu và chú rể danh sách những công việc 
-					cần làm trước ngày cưới, chi tiết và gần như đầy đủ.</p>
-					<p>Thuận lợi, sắp xếp một cách khoa học: theo tháng và theo danh mục</p>
+					<p><span style="font-weight: bold;"> Danh sách công việc</span> là công cụ hỗ trợ cho cô dâu và chú rể danh sách những công việc 
+					cần làm trước ngày cưới (chi tiết và gần như đầy đủ)</p>
+					<p>Sử dụng dễ dàng, thuận lợi và sắp xếp một cách khoa học:</p>
+					<p>  + theo tháng và theo danh mục</p>
 					<p>Có thể thêm, xóa, sửa nội dung từng công việc cụ thể</p>
 					<p>In báo cáo bằng file Excel để dễ lưu trữ và kiểm tra tốt hơn</p>
 				</h5>
@@ -325,8 +326,9 @@
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 des-index-tool">
 				<h5 class="introduce-index">
-					<p>Sử dụng dễ dàng, tính toán một cách chính xác, phân bố ngân sách chi tiết, hợp lý.</p>
-
+					<p><span style="font-weight:bold;">Quản lí ngân sách</span> là công cụ quản lí chi tiêu cho đám cưới </p>
+					<p>Ước lượng tổng số tiền phải chi tiêu cho từng hạng mục trong đám cưới</p>
+					<p>Tính năng sử dụng dễ dàng, tính toán một cách chính xác, phân bố ngân sách chi tiết, hợp lý.</p>
 				</h5>
 				<h6 class="use-now">
 					<a class="btn btn-sm btn-use-now" href="{{URL::route('budget')}}" >Miễn phí! Sử dụng ngay</a>
@@ -341,10 +343,11 @@
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 des-index-tool">
 				<h5 class="introduce-index">
-					<p>Có thể thêm nhóm khách, từng khách riêng lẻ.</p>
-					<p>Kiểm tra tình trạng khách mời cho buổi tiệc: đã mời hay chưa mời</p>
+					<p><span style="font-weight:bold;">Danh sách khách mời</span> là công cụ giúp quản lí khách mời cho đám cưới</p>
+					<p>Thêm khách vào từng nhóm với nhau</p>
+					<p>Mời khách đến đám cưới qua Gmail thông qua tính năng "Tham dự"</p>
 					<p>Cung cấp mã xác nhận cho từng khách hàng thông Website cưới của bạn, 
-					được tạo <a href="{{URL::route('website')}}">tại đây</a></p>
+					được tạo <a href="{{URL::route('website')}}">tại đây.</a></p>
 				</h5>
 				<h6 class="use-now">
 					<a class="btn btn-sm btn-use-now" href="{{URL::route('guest-list')}}" >Miễn phí! Sử dụng ngay</a>
@@ -356,9 +359,10 @@
   		<div class="container">
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 des-index-tool">
 				<h5 class="introduce-index">
-					<p>Với một số giao diện của chúng tôi, cho phép bạn tạo ra những giao diện đẹp và bắt mắt.</p>
+					<p><span style="font-weight:bold;">Website cưới</span> là công cụ tạo ra giao diện website dành cho các cặp đôi</p>
+					<p>Với một số giao diện của chúng tôi, cho phép bạn tạo ra những giao diện đẹp và bắt mắt</p>
 					<p>Lưu giữ những câu chuyện tình lãng mạng, chia sẻ những bức ảnh đáng nhớ, 
-					những dòng tâm sự hạnh phúc của 2 bạn với người thân và bạn bè khắp mọi nơi.</p>
+					những dòng tâm sự hạnh phúc của 2 bạn với người thân và bạn bè khắp mọi nơi</p>
 					<p>Thân thiện, miễn phí, dễ sử dụng và đạt thẩm mỹ là những gì chúng tôi hướng đến.</p>
 				</h5>
 				<h6 class="use-now">
