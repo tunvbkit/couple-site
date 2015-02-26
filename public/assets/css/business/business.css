@@ -550,3 +550,11 @@ a.contact-admin:hover{
 .menu-dashboard li a span{
 	padding-right: 5%;
 }
+/*comment*/
+.note{
+	border: solid #e7e7e7 1px;
+}
+.note h4{
+	border-bottom: solid #e7e7e7 1px;
+	font-weight: bold;
+}

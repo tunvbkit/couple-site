@@ -30,6 +30,11 @@ Route::group(array('prefix'=>'business'),function(){
 	Route::get('dashboard',array('before'=>'b_check_login','as'=>'b_dashboard','uses'=>'BusinessController@dashboard'));
 	Route::post('update-business',array('before'=>'b_check_login','as'=>'b_update_profile','uses'=>'BusinessController@updateProfile'));
 	Route::get('inbox',array('before'=>'b_check_login','as'=>'b_inbox','uses'=>'BusinessController@inbox'));
+	// commnet
+	Route::get('comment',array('before'=>'b_check_login','as'=>'b_comment','uses'=>'BusinessController@comment'));
+	Route::get('detail-comment/{id_comment}',array('before'=>'b_check_login','as'=>'detail_comment','uses'=>'BusinessController@detailComment'));
+	Route::get('delete-comment/{id_comment}',array('before'=>'b_check_login','as'=>'delete_comment','uses'=>'BusinessController@deleteComment'));
+	
 });
 Route::group(array('before'=>'b_check_login'),function(){		
 	// Route::get('profile',array('as'=>'b_profile','uses'=>'BusinessController@profile'));
@@ -60,6 +65,9 @@ Route::group(array('before'=>'b_check_login'),function(){
 	Route::post('post-important',array('as'=>'post_important','uses'=>'BusinessController@postImportant'));
 	Route::get('detail-imp-inbox/{id_message}',array('as'=>'detail_imp_inbox','uses'=>'BusinessController@detailImportantlInbox'));
 	Route::post('remove-important',array('as'=>'remove_important','uses'=>'BusinessController@removeImportant'));
+	// comment
+	Route::post('active-comment',array('as'=>'active_comment','uses'=>'BusinessController@activeComment'));
+	
 });
 
 

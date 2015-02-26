@@ -317,7 +317,7 @@ class BusinessController extends \BaseController {
 	public function inbox(){
 		$vendor = $this->getVendor();
 		$id_vendor = $vendor->id;
-		$messages = Message::where('to_business',$id_vendor)->orderBy('created_at', 'DESC')->get();
+		$messages = Message::where('to_business',$id_vendor)->orderBy('created_at', 'DESC')->paginate(10);
 		$n_arrive = $this->countArrive();
 		$n_sent = $this->countSent();
 		$n_important = $this->countImportant();
@@ -332,7 +332,7 @@ class BusinessController extends \BaseController {
 		$n_arrive = $this->countArrive();
 		$n_sent = $this->countSent();
 		$n_important = $this->countImportant();
-		$messages = Message::where('to_business',$id_vendor)->orderBy('created_at', 'DESC')->get();
+		$messages = Message::where('to_business',$id_vendor)->orderBy('created_at', 'DESC')->paginate(10);
 		return View::make('business.arrive-inbox')->with('messages',$messages)
 													->with('n_arrive',$n_arrive)
 													->with('n_sent',$n_sent)
@@ -344,7 +344,7 @@ class BusinessController extends \BaseController {
 		$n_arrive = $this->countArrive();
 		$n_sent = $this->countSent();
 		$n_important = $this->countImportant();
-		$messages = Message::where('from_business',$id_vendor)->orderBy('created_at', 'DESC')->get();
+		$messages = Message::where('from_business',$id_vendor)->orderBy('created_at', 'DESC')->paginate(10);
 		return View::make('business.sent-inbox')->with('messages',$messages)
 													->with('n_arrive',$n_arrive)
 													->with('n_sent',$n_sent)
@@ -356,7 +356,7 @@ class BusinessController extends \BaseController {
 		$n_arrive = $this->countArrive();
 		$n_sent = $this->countSent();
 		$n_important = $this->countImportant();
-		$messages = Message::where('to_business',$id_vendor)->where('important',1)->orderBy('created_at', 'DESC')->get();
+		$messages = Message::where('to_business',$id_vendor)->where('important',1)->orderBy('created_at', 'DESC')->paginate(10);
 		return View::make('business.imp-inbox')->with('messages',$messages)
 												->with('n_arrive',$n_arrive)
 												->with('n_sent',$n_sent)
@@ -472,5 +472,54 @@ class BusinessController extends \BaseController {
 	public function removeImportant(){
 		$id_message = Input::get('id_message');
 		Message::where('id',$id_message)->update(array('important'=>0));
+	}
+	// comment
+	public function comment(){
+		$id_vendor = $this->getVendor()->id;
+		$c_count = $this->countComment();
+		$c_countActive = $this->countCommentActive();
+		$c_countNoActive = $this->countCommentNoActive();
+		$comments = VendorComment::where('vendor',$id_vendor)->orderBy('created_at','DESC')->paginate(10);
+		return View::make('business.comment')->with('comments',$comments)
+												->with('c_count',$c_count)
+												->with('c_countActive',$c_countActive)
+												->with('c_countNoActive',$c_countNoActive);
+	}
+	public static function countComment(){
+		$id_vendor = BusinessController::getVendor()->id;
+		return VendorComment::where('vendor',$id_vendor)->get()->count();
+	}
+	public static function countCommentActive(){
+		$id_vendor = BusinessController::getVendor()->id;
+		return VendorComment::where('vendor',$id_vendor)->where('active',1)->get()->count();
+	}
+	public static function countCommentNoActive(){
+		$id_vendor = BusinessController::getVendor()->id;
+		return VendorComment::where('vendor',$id_vendor)->where('active',0)->get()->count();
+	}
+	public function ActiveComment(){
+		$id_comment = Input::get('id_comment');
+		$active = VendorComment::where('id',$id_comment)->get()->first()->active;
+		if ($active == 1) {
+			VendorComment::where('id',$id_comment)->update(array('active'=>0));
+			return Response::json(array('active'=>0));
+		} else {
+			VendorComment::where('id',$id_comment)->update(array('active'=>1));
+			return Response::json(array('active'=>1));
+		}		
+	}
+	public function detailComment($id_comment){
+		$c_count = $this->countComment();
+		$c_countActive = $this->countCommentActive();
+		$c_countNoActive = $this->countCommentNoActive();
+		$comment = VendorComment::where('id',$id_comment)->get()->first();
+		return View::make('business.detail-comment')->with('comment',$comment)
+													->with('c_count',$c_count)
+													->with('c_countActive',$c_countActive)
+													->with('c_countNoActive',$c_countNoActive);
+	}
+	public function deleteComment($id_comment){
+		VendorComment::where('id',$id_comment)->delete();
+		return Redirect::to('business/comment');
 	}
 }
