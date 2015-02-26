@@ -1,6 +1,6 @@
 @extends('business.main-dashboard')
 @section('title')
-  Hộp thư|thuna.vn
+  Bình luận
 @endsection()
 @section('nav-bar')
 	<nav class="navbar navbar-default">
@@ -89,7 +89,7 @@
             <ul class="dropdown-menu menu-dashboard" role="menu">
               <li><a href="{{URL::route('business.index')}}"><span class="fa fa-wrench"></span>Hồ sơ</a></li>
               <li><a href="{{URL::route('b_inbox')}}"><span class="fa fa-envelope-o"></span>Hộp thư</a></li>
-              <li><a href="{{URL::route('b_comment')}}"><span class="fa fa-comment-o"></span></span>Bình luận</a></li>
+              <li><a href="{{URL::route('b_comment')}}"><span class="fa fa-comment-o"></span>Bình luận</a></li>
               <li><a href="{{URL::route('b_logout')}}"><span class="fa fa-sign-out"></span>Thoát</a></li>
             </ul>
         </li>
@@ -100,82 +100,81 @@
 @section('content')
 	<div class="container inbox">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 head-inbox">
-			<h4>Hộp thư</h4>
+			<h4>Bình luận</h4>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 left-inbox">
-
-		        <div class="sidebar-nav">
-			      <div class="navbar navbar-default" role="navigation">
-			        <div class="navbar-header">
-			          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-			            <span class="sr-only">Toggle navigation</span>
-			            <span class="icon-bar"></span>
-			            <span class="icon-bar"></span>
-			            <span class="icon-bar"></span>
-			          </button>
-			          <span class="visible-xs navbar-brand">Hộp thư</span>
-			        </div>
-			        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-			          <ul class="nav navbar-nav menu-inbox">
-			            <li class="e-inbox"><a href="{{URL::route('write_inbox')}}">Soạn thư mới</a></li>
-			            <li class="a-inbox">
-                    <a href="{{URL::route('load_arrive')}}">
-                      Hộp thư đến (@if(!empty($n_arrive)){{$n_arrive}}@endif)
-                    </a>
-                  </li>
-			            <li class="s-inbox">
-                    <a href="{{URL::route('load_sent')}}">
-                      Hộp thư đi (@if(!empty($n_sent)){{$n_sent}}@endif)
-                    </a>
-                  </li>
-			            <li class="active i-inbox">
-                    <a href="{{URL::route('load_important')}}">
-                      Quan trọng (@if(!empty($n_important)){{$n_important}}@endif)
-                    </a>
-                  </li>
-			          </ul>
-			        </div><!--/.nav-collapse -->
-			      </div>
-			    </div>
-        
-			</div>
-			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 left-inbox">
-        <div class="table-responsive div-table">
-  				<div class="table table-hover text-center table-right">
-  					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detail-title">
-                <p>{{$message->title}}</p>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detail-from">
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                Đến: {{Vendor::where('id',$message->to_business)->get()->first()->name}}
-                ({{User::where('id',Vendor::where('id',$message->to_business)->get()->first()->user)->get()->first()->email}})
-              </div>
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 time-inbox">
-                 <span>{{$message->updated_at}}</span>
-                 <a href="javascript:void(0);" onclick="removeImportart({{$message->id}})" data-toggle="tooltip" data-placement="bottom" title="Bỏ qua" style="margin-left:3%;"><span class="fa fa-star-o"></span></a>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-inbox">
-              {{$message->content}}
-            </div>
-  				
-  				</div>
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 note">
+          <h4>Thống kê</h4>
+          <p>Đã duyệt : {{$c_countActive}}</p>
+          <p>Chưa duyệt : {{$c_countNoActive}}</p>
+          <p>Tổng bình luận : {{$c_count}}</p>
+      </div> 
+      <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+         <div class="table-responsive div-table">
+          <table class="table table-hover text-center table-right">
+            <thead>
+              <tr>
+                <th class="text-center"><input type="checkbox"></th>
+                <th class="text-center">Người gửi</th>
+                <th class="text-center">Nội dung</th>
+                <th class="text-center">Thời gian</th>
+                <th class="text-center">Duyệt</th>
+                <th class="text-center">Xóa</th>
+              </tr>
+            </thead>
+            <tbody class="load-inbox">
+              @if(!empty($comments))
+                @foreach($comments as $comment)
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>{{$comment->user_name}}</td>
+                    <td>
+                        <a href="{{URL::route('detail_comment',array($comment->id))}}">
+                          {{substr($comment->content, 0 ,50)."..."}}                     
+                        </a>
+                    </td>
+                    <td>{{$comment->created_at}}</td>
+                    <td>
+                      @if($comment->active == 1) 
+                        <a onclick="activeComment({{$comment->id}})" href="javascript:void(0);">
+                          <span class="c-active fa fa-check-square-o"></span>
+                        </a> 
+                      @else
+                         <a onclick="activeComment({{$comment->id}})" href="javascript:void(0);">
+                          <span class="c-active fa fa-square-o"></span>
+                        </a> 
+                      @endif
+                    </td>
+                    <td><a href="{{URL::route('delete_comment',array($comment->id))}}"><span class="fa fa-trash"></span></a></td>
+                  </tr>
+                @endforeach
+              @endif
+            </tbody>
+          </table>
         </div>
-			</div>
-		</div>
+        <div class="text-center">{{$comments->links()}}</div>
+      </div> 
+    </div>
 	</div>
 
-  <script type="text/javascript">
-    function removeImportart(id_message){
+	<script type="text/javascript">
+    function activeComment(id_comment){
       $.ajax({
           type:"post",
-          data:{id_message:id_message},
-          url:"{{URL::route('remove_important')}}",
+          data:{id_comment:id_comment},
+          url:"{{URL::route('active_comment')}}",
           success:function(data){
-           }
-          }); 
+            if (data.active == 1) {
+              $('.c-active').removeClass('fa-square-o');
+              $('.c-active').addClass('fa-check-square-o');
+            } else{
+              $('.c-active').removeClass('fa-check-square-o');
+              $('.c-active').addClass('fa-square-o');
+            };          
+          }
+        }); 
     }
-  </script>
+	</script>
+	
 @endsection()
 @stop()

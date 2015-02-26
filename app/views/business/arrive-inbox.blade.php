@@ -176,6 +176,7 @@
 	  					</tbody>
 	  				</table>
 		        </div>
+		        <div class="text-center">{{$messages->links()}}</div>
 			</div>
 		</div>
 	</div>

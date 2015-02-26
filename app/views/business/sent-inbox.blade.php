@@ -141,7 +141,7 @@
         
 			</div>
 			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 left-inbox">
-		        <div class="table-responsive div-table">
+	        <div class="table-responsive div-table">
 	  				<table class="table table-hover text-center table-right">
 	  					<thead>
 	  						<tr>
@@ -166,7 +166,8 @@
 							@endif
 	  					</tbody>
 	  				</table>
-		        </div>
+	        </div>
+          <div class="text-center">{{$messages->links()}}</div>
 			</div>
 		</div>
 	</div>

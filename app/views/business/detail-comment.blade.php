@@ -1,6 +1,6 @@
 @extends('business.main-dashboard')
 @section('title')
-  Hộp thư|thuna.vn
+  Bình luận
 @endsection()
 @section('nav-bar')
 	<nav class="navbar navbar-default">
@@ -89,7 +89,7 @@
             <ul class="dropdown-menu menu-dashboard" role="menu">
               <li><a href="{{URL::route('business.index')}}"><span class="fa fa-wrench"></span>Hồ sơ</a></li>
               <li><a href="{{URL::route('b_inbox')}}"><span class="fa fa-envelope-o"></span>Hộp thư</a></li>
-              <li><a href="{{URL::route('b_comment')}}"><span class="fa fa-comment-o"></span></span>Bình luận</a></li>
+              <li><a href="{{URL::route('b_comment')}}"><span class="fa fa-comment-o"></span>Bình luận</a></li>
               <li><a href="{{URL::route('b_logout')}}"><span class="fa fa-sign-out"></span>Thoát</a></li>
             </ul>
         </li>
@@ -100,82 +100,33 @@
 @section('content')
 	<div class="container inbox">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 head-inbox">
-			<h4>Hộp thư</h4>
+			<h4>Bình luận</h4>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 left-inbox">
-
-		        <div class="sidebar-nav">
-			      <div class="navbar navbar-default" role="navigation">
-			        <div class="navbar-header">
-			          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-			            <span class="sr-only">Toggle navigation</span>
-			            <span class="icon-bar"></span>
-			            <span class="icon-bar"></span>
-			            <span class="icon-bar"></span>
-			          </button>
-			          <span class="visible-xs navbar-brand">Hộp thư</span>
-			        </div>
-			        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-			          <ul class="nav navbar-nav menu-inbox">
-			            <li class="e-inbox"><a href="{{URL::route('write_inbox')}}">Soạn thư mới</a></li>
-			            <li class="a-inbox">
-                    <a href="{{URL::route('load_arrive')}}">
-                      Hộp thư đến (@if(!empty($n_arrive)){{$n_arrive}}@endif)
-                    </a>
-                  </li>
-			            <li class="s-inbox">
-                    <a href="{{URL::route('load_sent')}}">
-                      Hộp thư đi (@if(!empty($n_sent)){{$n_sent}}@endif)
-                    </a>
-                  </li>
-			            <li class="active i-inbox">
-                    <a href="{{URL::route('load_important')}}">
-                      Quan trọng (@if(!empty($n_important)){{$n_important}}@endif)
-                    </a>
-                  </li>
-			          </ul>
-			        </div><!--/.nav-collapse -->
-			      </div>
-			    </div>
-        
-			</div>
-			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 left-inbox">
-        <div class="table-responsive div-table">
-  				<div class="table table-hover text-center table-right">
-  					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detail-title">
-                <p>{{$message->title}}</p>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detail-from">
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                Đến: {{Vendor::where('id',$message->to_business)->get()->first()->name}}
-                ({{User::where('id',Vendor::where('id',$message->to_business)->get()->first()->user)->get()->first()->email}})
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 note">
+          <h4>Thống kê</h4>
+          <p>Đã duyệt : {{$c_countActive}}</p>
+          <p>Chưa duyệt : {{$c_countNoActive}}</p>
+          <p>Tổng bình luận : {{$c_count}}</p>
+      </div> 
+      <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+         <div class="table-responsive div-table">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detail-from">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                  Từ: {{$comment->user_name}}
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 time-inbox">
+                   <span>{{$comment->updated_at}}</span> 
+                       <a href="{{URL::route('delete_comment',array($comment->id))}}" data-toggle="tooltip" data-placement="bottom" title="Xóa" style="margin-left:3%;"><span class="fa fa-trash"></span></a>
+                       <a href="{{URL::route('b_comment')}}" data-toggle="tooltip" data-placement="bottom" title="Quay lại" style="margin-left:3%;"><span class="fa fa-reply"></span></a>
+                </div>
               </div>
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 time-inbox">
-                 <span>{{$message->updated_at}}</span>
-                 <a href="javascript:void(0);" onclick="removeImportart({{$message->id}})" data-toggle="tooltip" data-placement="bottom" title="Bỏ qua" style="margin-left:3%;"><span class="fa fa-star-o"></span></a>
-              </div>
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-inbox">
+                {{$comment->content}}
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-inbox">
-              {{$message->content}}
-            </div>
-  				
-  				</div>
         </div>
-			</div>
-		</div>
-	</div>
-
-  <script type="text/javascript">
-    function removeImportart(id_message){
-      $.ajax({
-          type:"post",
-          data:{id_message:id_message},
-          url:"{{URL::route('remove_important')}}",
-          success:function(data){
-           }
-          }); 
-    }
-  </script>
+      </div> 
+    </div>
+	</div>	
 @endsection()
 @stop()
