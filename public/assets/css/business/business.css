@@ -229,7 +229,7 @@ a.contact-admin:hover{
 @media(min-width: 768px){
 	.contact-index, .demo, .acount{
 	width: 25.333%;	
-	min-height: 270px;
+	min-height: 320px;
 	}
 	.contact-index{
 	margin-left: 6%;
