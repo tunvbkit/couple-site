@@ -110,8 +110,8 @@
     <div class="container introduce-index">
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 contact-index">
         <div>
-          <h3>Liên lạc</h3>
-          <p>Cùng trao đổi! Chúng tôi đang ở đây để trả lời bất kì câu hỏi nào mà bạn yêu cầu, chỉ cần gửi mail cho chúng tôi, chúng tôi sẽ trả lời ngay khi có thể</p>
+          <h3 style="margin-bottom:20px; margin-top:50px;">Liên lạc</h3>
+          <p style="margin-bottom:30px; margin-top:30px;">Cùng trao đổi! Chúng tôi đang ở đây để trả lời bất kì câu hỏi nào mà bạn yêu cầu, chỉ cần gửi mail cho chúng tôi, chúng tôi sẽ trả lời ngay khi có thể</p>
         </div>
         <div class="btn-go">
           <a class="btn" href="">Đến diễn đàn</a>
@@ -119,8 +119,8 @@
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 demo">
         <div>
-          <h3>Xem demo</h3>
-          <p>Khám phá cách thuna.vn có thể giúp doanh nghiệp của bạn quảng cáo tại địa phương và các giải pháp quản lí khách hàng một cách hiệu quả nhất</p>
+          <h3 style="margin-bottom:20px; margin-top:50px;">Xem demo</h3>
+          <p style="margin-bottom:30px; margin-top:30px;">Khám phá cách thuna.vn có thể giúp doanh nghiệp của bạn quảng cáo tại địa phương và các giải pháp quản lí khách hàng một cách hiệu quả nhất</p>
         </div>
         <div class="btn-go">
           <a class="btn" href="">Tạo demo</a>
@@ -128,8 +128,8 @@
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 acount">
         <div>
-          <h3>Tạo tài khoản</h3>
-          <p>Xây dựng quản lí kinh doanh trên thuna.vn mỗi ngày! Thêm hình ảnh, sự kiện, thu thập ý kiến người dùng và tạo ra cửa hàng của riêng bạn</p>
+          <h3 style="margin-bottom:20px; margin-top:50px;">Tạo tài khoản</h3>
+          <p style="margin-bottom:30px; margin-top:30px;">Xây dựng quản lí kinh doanh trên thuna.vn mỗi ngày! Thêm hình ảnh, sự kiện, thu thập ý kiến người dùng và tạo ra cửa hàng của riêng bạn</p>
         </div>
         <div class="btn-go">
           <a class="btn" href="">Đăng kí ngay</a>
