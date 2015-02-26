@@ -46,7 +46,7 @@ label.error{
 	float: none;
 	/*width: 83%;*/
 	margin: 0 auto;
-	padding-left: 7%;
+	padding-left: 13%;
 }
 .navbar-nav > li{
 	/*border-left: 1px dotted #FFFFFF;*/
@@ -849,16 +849,16 @@ a.budget_icon_notes{
 	.navbar-right > li > a {
 		color: #E75280 !important;
 	}
-	.dropdown-menu > li > a {
+	/*.dropdown-menu > li > a {
 		color: #E752AA !important;
-	}
+	}*/
 	/*--------------------*/
 
 }
-.dropdown-menu > li > a {
+/*.dropdown-menu > li > a {
 		color: #E752AA !important;
 	}
-
+*/
 
 .time-count-down {
 	display: block;
@@ -1320,3 +1320,28 @@ div.song_content button{
 .table-hover > tbody > tr.sum-table:hover > th {
   background-color: #555555;
 }
+.images_li {
+    background-position: 9px center, center center;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+    line-height: 32px;
+    padding-left: 41px;
+}
+.oneUl-vendor {
+	text-align: left;
+	width: 220%!important;
+}
+.oneUl-vendor a:hover { color: #EA4398 !important; }
+.oneUl-tool {
+	text-align: left;
+	width: 140%!important;
+}
+.oneUl-tool li a{
+	font-size: 17px;
+	color: #428bca;
+}
+.oneUl-tool span{
+	margin-right: 6%;
+}
+.oneUl-tool a:hover { color: #EA4398 !important; }

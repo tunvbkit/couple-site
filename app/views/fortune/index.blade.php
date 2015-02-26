@@ -28,68 +28,112 @@ Xem ngày cưới | thuna.vn
 			      			Trang chủ
 	 		      		</a>
 			      	</li>
-			      	<li><a href="{{URL::route('website')}}" title="Website cưới">
-			        		Website cưới
-			        	</a>
-			        </li>
-			      	<li><a href="{{URL::route('user-checklist')}}" title="Danh sách công việc">
-			      			Danh sách công việc
-	 		      		</a>
-			      	</li>
-			      	<li><a href="{{URL::route('guest-list')}}" title="Danh sách khác mời">
-			      			Danh sách khách mời
-	 		      		</a>
-			      	</li>
-			      	<li><a href="{{URL::route('budget')}}" title="Quăn lí ngân sách">
-			      			Quản lí ngân sách
-	 		      		</a>
-			      	</li>
 			      	<li class="dropdown">
-				        <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Âm nhạc">
-							Âm nhạc
-				        </a>
-				        <ul class="dropdown-menu oneUl" role="menu">
-				          	<li role="presentation" class="dropdown-header"><span>Nghi lễ</span>
-					            <div class="row">
-					              <div class="col-xs-6">
-					                <ul class="list-unstyled">
-					                  <li><a href="{{URL::route('songs', array('mo-dau'))}}">Mở đầu</a></li>
-					                  <li><a href="{{URL::route('songs', array('doan-ruoc'))}}">Đoàn rước</a></li>
-					                </ul>
-					              </div>
-					              <div class="col-xs-6">
-					                <ul class="list-unstyled">
-					                  <li><a href="{{URL::route('songs', array('nghi-thuc'))}}">Nghi thức</a></li>
-					                  <li><a href="{{URL::route('songs', array('ket-thuc'))}}">Kết thúc</a></li>
-					                </ul>
-					              </div>
-					            </div>
-				          	</li>
-				          	<li role="presentation" class="dropdown-header"><span>Đãi tiệc</span>
-					            <div class="row">
-					              <div class="col-xs-6">
-					                <ul class="list-unstyled">
-					                  <li><a href="{{URL::route('songs', array('khai-tiec'))}}">Khai tiệc</a></li>
-					                  <li><a href="{{URL::route('songs', array('phat-bieu'))}}">Phát biểu</a></li>
-					                  <li><a href="{{URL::route('songs', array('cat-banh'))}}">Cắt bánh</a></li>
-					                </ul>
-					              </div>
-					              <div class="col-xs-6">
-					                <ul class="list-unstyled">
-					                  <li><a href="{{URL::route('songs', array('vao-tiec'))}}">Vào tiệc</a></li>
-					                  <li><a href="{{URL::route('songs', array('chuc-mung'))}}">Chúc mừng</a></li>
-					                  <li><a href="{{URL::route('songs', array('cuoi-tiec'))}}">Cuối tiệc</a></li>
-					                </ul>
-					              </div>
-					            </div>
-				          	</li>
-				        </ul>
-			      	</li> <!--/music-->
+			        <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Nhà cung cấp dich vụ">
+						Nhà cung cấp dịch vụ
+			        </a>
+			        <ul class="dropdown-menu oneUl-vendor" role="menu">
+			          	<li role="presentation" class="dropdown-header">
+				            <div class="row">
+				              <div class="col-xs-6">
+				                <ul class="list-unstyled">
+				                	@foreach(Category::get() as $key=>$category)
+			                		@if($key <7)
+					                  <li class="images_li" style="background-image:url('{{Asset("icon/cat/{$category->images}")}}')">
+					                  	<a href="{{URL::route('category', array($category->slug))}}">
+					                  		{{$category->name}}
+					                  	</a>
+					                  </li>
+				                  	@endif() 
+					         		@endforeach()	
+				                </ul>
+				              </div>
+				              <div class="col-xs-6">
+				                <ul class="list-unstyled">
+					                @foreach(Category::get() as $key=>$category)
+			                		@if($key >=7)
+					                  <li class="images_li" style="background-image:url('{{Asset("icon/cat/{$category->images}")}}')">
+					                  	<a href="{{URL::route('category', array($category->slug))}}">
+					                  		{{$category->name}}
+					                  	</a>
+					                  </li>
+				                  	@endif() 
+					         		@endforeach()				                  
+				                </ul>
+				              </div>
+				            </div>
+			          	</li>
+			        </ul>
+		      	</li> <!--/music-->
+	              <li><a href="{{URL::route('website')}}" title="Website cưới">
+	                  Website cưới
+	                </a>
+	              </li>
+	              <li  class="dropdown">
+		    		<a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Công cụ">
+						Công cụ kế hoạch
+			        </a>
+			        <ul class="dropdown-menu oneUl-tool" role="menu">
+				      	<li><a href="{{URL::route('user-checklist')}}" title="Danh sách công việc">
+				      			<span class="fa fa-file-text-o"></span>Danh sách công việc
+		 		      		</a>
+				      	</li>
+				      	<li><a href="{{URL::route('guest-list')}}" title="Danh sách khác mời">
+				      			<span class="fa fa-group"></span>Danh sách khách mời
+		 		      		</a>
+				      	</li>
+				      	<li><a href="{{URL::route('budget')}}" title="Quăn lí ngân sách">
+				      			<span class="fa fa-dollar"></span>Quản lí ngân sách
+		 		      		</a>
+				      	</li>
+			        </ul>
+		    	</li>
+		      	<li class="dropdown">
+			        <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Âm nhạc">
+						Âm nhạc
+			        </a>
+			        <ul class="dropdown-menu oneUl" role="menu">
+			          	<li role="presentation" class="dropdown-header"><span>Nghi lễ</span>
+				            <div class="row">
+				              <div class="col-xs-6">
+				                <ul class="list-unstyled">
+				                  <li><a href="{{URL::route('songs', array('mo-dau'))}}">Mở đầu</a></li>
+				                  <li><a href="{{URL::route('songs', array('doan-ruoc'))}}">Đoàn rước</a></li>
+				                </ul>
+				              </div>
+				              <div class="col-xs-6">
+				                <ul class="list-unstyled">
+				                  <li><a href="{{URL::route('songs', array('nghi-thuc'))}}">Nghi thức</a></li>
+				                  <li><a href="{{URL::route('songs', array('ket-thuc'))}}">Kết thúc</a></li>
+				                </ul>
+				              </div>
+				            </div>
+			          	</li>
+			          	<li role="presentation" class="dropdown-header"><span>Đãi tiệc</span>
+				            <div class="row">
+				              <div class="col-xs-6">
+				                <ul class="list-unstyled">
+				                  <li><a href="{{URL::route('songs', array('khai-tiec'))}}">Khai tiệc</a></li>
+				                  <li><a href="{{URL::route('songs', array('phat-bieu'))}}">Phát biểu</a></li>
+				                  <li><a href="{{URL::route('songs', array('cat-banh'))}}">Cắt bánh</a></li>
+				                </ul>
+				              </div>
+				              <div class="col-xs-6">
+				                <ul class="list-unstyled">
+				                  <li><a href="{{URL::route('songs', array('vao-tiec'))}}">Vào tiệc</a></li>
+				                  <li><a href="{{URL::route('songs', array('chuc-mung'))}}">Chúc mừng</a></li>
+				                  <li><a href="{{URL::route('songs', array('cuoi-tiec'))}}">Cuối tiệc</a></li>
+				                </ul>
+				              </div>
+				            </div>
+			          	</li>
+			        </ul>
+		      	</li> <!--/music-->
 
-			      	<li  class="active"><a href="{{URL::action('FortuneController@getIndex')}}" title="Xem ngày cưới">
-			      			Xem ngày cưới
-			      		</a>
-			      	</li>
+		      	<li  class="active"><a href="{{URL::action('FortuneController@getIndex')}}" title="Xem ngày cưới">
+		      			Xem ngày cưới
+		      		</a>
+		      	</li>
 			    
 			    </ul>
 		  	</div>

@@ -27,21 +27,65 @@
                   Trang chủ
                 </a>
               </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Nhà cung cấp dich vụ">
+              Nhà cung cấp dịch vụ
+                </a>
+                <ul class="dropdown-menu oneUl-vendor" role="menu">
+                    <li role="presentation" class="dropdown-header">
+                      <div class="row">
+                        <div class="col-xs-6">
+                          <ul class="list-unstyled">
+                            @foreach(Category::get() as $key=>$category)
+                            @if($key <7)
+                              <li class="images_li" style="background-image:url('{{Asset("icon/cat/{$category->images}")}}')">
+                                <a href="{{URL::route('category', array($category->slug))}}">
+                                  {{$category->name}}
+                                </a>
+                              </li>
+                              @endif() 
+                        @endforeach() 
+                          </ul>
+                        </div>
+                        <div class="col-xs-6">
+                          <ul class="list-unstyled">
+                            @foreach(Category::get() as $key=>$category)
+                            @if($key >=7)
+                              <li class="images_li" style="background-image:url('{{Asset("icon/cat/{$category->images}")}}')">
+                                <a href="{{URL::route('category', array($category->slug))}}">
+                                  {{$category->name}}
+                                </a>
+                              </li>
+                              @endif() 
+                        @endforeach()                         
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                </ul>
+              </li> <!--/music-->
               <li><a href="{{URL::route('website')}}" title="Website cưới">
                   Website cưới
                 </a>
               </li>
-              <li><a href="{{URL::route('user-checklist')}}" title="Danh sách công việc">
-                  Danh sách công việc
-                </a>
-              </li>
-              <li><a href="{{URL::route('guest-list')}}" title="Danh sách khác mời">
-                  Danh sách khách mời
-                </a>
-              </li>
-              <li><a href="{{URL::route('budget')}}" title="Quăn lí ngân sách">
-                  Quản lí ngân sách
-                </a>
+              <li  class="dropdown">
+                <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Công cụ">
+                Công cụ kế hoạch
+                  </a>
+                  <ul class="dropdown-menu oneUl-tool" role="menu">
+                    <li><a href="{{URL::route('user-checklist')}}" title="Danh sách công việc">
+                        <span class="fa fa-file-text-o"></span>Danh sách công việc
+                      </a>
+                    </li>
+                    <li><a href="{{URL::route('guest-list')}}" title="Danh sách khác mời">
+                        <span class="fa fa-group"></span>Danh sách khách mời
+                      </a>
+                    </li>
+                    <li><a href="{{URL::route('budget')}}" title="Quăn lí ngân sách">
+                        <span class="fa fa-dollar"></span>Quản lí ngân sách
+                      </a>
+                    </li>
+                  </ul>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Âm nhạc">

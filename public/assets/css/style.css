@@ -2850,6 +2850,18 @@ a.contact-admin:hover{
 #right-infor{
 	margin-top: 6%;
 }
+.oneUl-tool {
+	text-align: left;
+	width: 140%!important;
+}
+.oneUl-tool li a{
+	font-size: 17px;
+	color: #428bca;
+}
+.oneUl-tool span{
+	margin-right: 6%;
+}
+.oneUl-tool a:hover { color: #EA4398 !important; }
 /*end vendor*/
 
 
