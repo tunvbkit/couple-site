@@ -144,7 +144,13 @@ class BusinessController extends \BaseController {
 	}
 	public function dashboard(){
 		$vendor = $this->getVendor();
-		return View::make('business.dashboard')->with('vendor',$vendor);
+		$new_inbox = Message::where('to_business',$vendor->id)->where('active',0)->get()->count();
+		$inbox = $this->countArrive();
+		$c_count = $this->countComment();
+		return View::make('business.dashboard')->with('vendor',$vendor)
+												->with('new_inbox',$new_inbox)
+												->with('inbox',$inbox)
+												->with('c_count',$c_count);
 	}
 	public function checkEmailCompany(){
 		return (User::where('email',Input::get('email'))->count() == 0 ? 'true':'false');

@@ -128,7 +128,6 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 description-vendor thongke" style="margin-bottom:3%;">
         <h4 >Bảng xếp hạng :</h4>
         <p>Tên vendor cao nhất :</p>
-        <p>Xếp hạng :</p>
         <p>Lượt truy cập :</p>
         <p>Đánh giá :</p>
         <p>Lượt bình luận :</p>
@@ -160,8 +159,7 @@
               {{BusinessController::getRating($vendor->id)->rating}}
               @endif
             </p>
-            <p>Xếp hạng :</p>
-            <p>Lượt bình luận :</p>
+            <p>Lượt bình luận : {{$c_count}}</p>
           </div>
       </div>
 
@@ -170,7 +168,8 @@
              <h4>Hộp thư :</h4>
         </div>   
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 thongke">
-              <p>Hộp thư đến :</p>
+              <p>Thư mới : {{$new_inbox}}</p>
+              <p>Hộp thư : {{$inbox}}</p>
          </div>    
          
       </div>
