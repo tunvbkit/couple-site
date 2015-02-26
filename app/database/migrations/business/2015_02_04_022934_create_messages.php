@@ -18,7 +18,10 @@ class CreateMessages extends Migration {
 			$table->string("content");
 			$table->integer("from_business");
 			$table->integer("to_business");	
-			$table->integer('active');	
+			$table->integer('active');
+			$table->integer('important');
+			$table->integer('sent_delete');
+			$table->integer('arrive_delete');	
 			$table->timestamps();
 		});
 	}

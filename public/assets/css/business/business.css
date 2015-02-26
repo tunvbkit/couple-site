@@ -497,5 +497,56 @@ a.contact-admin:hover{
 	font-size: 16px !important;
 }
 /*end inbox*/
-
-
+#go_top {
+    background-color: #f382b7;
+    border-color: #f382b7;
+    border-radius: 10px;
+    bottom: 50px;
+    display: none;
+    position: fixed;
+    right: 15px;
+    width: 60px;
+    z-index: 9999;
+}
+.btn-send{
+	margin-bottom: 3%;
+}
+.btn-send button{
+	width: 15%;
+}
+.result-search{
+	padding: 0px;
+	list-style: none;
+	border: solid #e7e7e7 1px;
+}
+.result-search li{
+	padding-left: 2%;
+}
+.result-search li:hover{
+	background-color: #EEEEEE;
+}
+.detail-title {
+	text-align: left;
+	border-bottom:solid #e7e7e7 1px;
+	white-space: nowrap;
+}
+.detail-title p{
+	font-weight: bold;
+	margin: 0;
+}
+.detail-title a{
+	margin-left: 7%;
+}
+.detail-from{
+	border-bottom: solid #e7e7e7 1px;
+	text-align: left;
+}
+.time-inbox{
+	text-align: right;
+}
+.content-inbox{
+	text-align: justify;
+}
+.menu-dashboard li a span{
+	padding-right: 5%;
+}

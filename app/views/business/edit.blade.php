@@ -87,12 +87,10 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <span class="fa fa-cog"></span></a>
             <ul class="dropdown-menu menu-dashboard" role="menu">
-              <li><a href="{{URL::route('business.index')}}">Hồ sơ</a></li>
-             <li><a href="{{URL::route('b_inbox')}}">Hộp thư</a></li>
-              <li><a href="#"></a></li>
-              <li><a href="#"></a></li>
-              <li><a href="#"></a></li>
-              <li><a href="{{URL::route('b_logout')}}"><span class="fa fa-sign-out"></span>Logout</a></li>
+              <li><a href="{{URL::route('business.index')}}"><span class="fa fa-wrench"></span>Hồ sơ</a></li>
+             <li><a href="{{URL::route('b_inbox')}}"><span class="fa fa-envelope-o"></span>Hộp thư</a></li>
+              <li><a href="#"><span class="fa fa-comment-o"></span>Bình luận</a></li>
+              <li><a href="{{URL::route('b_logout')}}"><span class="fa fa-sign-out"></span>Thoát</a></li>
             </ul>
         </li>
     </div><!-- /.navbar-collapse -->

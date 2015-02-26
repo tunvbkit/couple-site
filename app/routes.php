@@ -42,9 +42,24 @@ Route::group(array('before'=>'b_check_login'),function(){
 	Route::post('b-del-slide',array('as'=>'b_del_slide','uses'=>'BusinessController@bDeleteSlide'));
 	Route::resource('business','BusinessController');
 	// inbox
-	Route::post('arrive-inbox',array('as'=>'load_arrive','uses'=>'BusinessController@loadArrive'));
-	Route::post('sent-inbox',array('as'=>'load_sent','uses'=>'BusinessController@loadSent'));
-	Route::post('important-inbox',array('as'=>'load_important','uses'=>'BusinessController@loadImportant'));
+	Route::get('arrive-inbox',array('as'=>'load_arrive','uses'=>'BusinessController@loadArrive'));
+	Route::get('sent-inbox',array('as'=>'load_sent','uses'=>'BusinessController@loadSent'));
+	Route::get('important-inbox',array('as'=>'load_important','uses'=>'BusinessController@loadImportant'));
+	// Route::post('write-inbox',array('as'=>'send_message','uses'=>'BusinessController@sendMessage'));
+	Route::get('write-inbox',array('as'=>'write_inbox','uses'=>'BusinessController@sendMessage'));
+	Route::post('sub-inbox',array('as'=>'sub_inbox','uses'=>'BusinessController@subInbox'));
+	Route::post('search-vendor',array('as'=>'search_vendor','uses'=>'BusinessController@searchVendor'));
+	Route::post('name-vendor',array('as'=>'name_vendor','uses'=>'BusinessController@getNameVendor'));
+	Route::get('detail-inbox/{id_message}',array('as'=>'detail_inbox','uses'=>'BusinessController@detailInbox'));
+	Route::get('reply-inbox/{id_message}',array('as'=>'reply_inbox','uses'=>'BusinessController@reInbox'));
+	Route::post('sub-reply-inbox',array('as'=>'sub_reply_inbox','uses'=>'BusinessController@postReplyInbox'));
+	Route::post('post-active',array('as'=>'post_active','uses'=>'BusinessController@postActive'));
+	Route::get('detail-send-inbox/{id_message}',array('as'=>'detail_send_inbox','uses'=>'BusinessController@detailSendlInbox'));
+	Route::get('delete-inbox/{id_message}',array('as'=>'delete_inbox','uses'=>'BusinessController@deleteInbox'));
+	Route::get('delete-sent-inbox/{id_message}',array('as'=>'delete_sent_inbox','uses'=>'BusinessController@deleteSentInbox'));
+	Route::post('post-important',array('as'=>'post_important','uses'=>'BusinessController@postImportant'));
+	Route::get('detail-imp-inbox/{id_message}',array('as'=>'detail_imp_inbox','uses'=>'BusinessController@detailImportantlInbox'));
+	Route::post('remove-important',array('as'=>'remove_important','uses'=>'BusinessController@removeImportant'));
 });
 
 

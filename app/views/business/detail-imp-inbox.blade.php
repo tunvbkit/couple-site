@@ -89,7 +89,7 @@
             <ul class="dropdown-menu menu-dashboard" role="menu">
               <li><a href="{{URL::route('business.index')}}"><span class="fa fa-wrench"></span>Hồ sơ</a></li>
               <li><a href="{{URL::route('b_inbox')}}"><span class="fa fa-envelope-o"></span>Hộp thư</a></li>
-              <li><a href="#"><span class="fa fa-comment-o"></span>Bình luận</a></li>
+              <li><a href="#"><span class="fa fa-comment-o"></span></span>Bình luận</a></li>
               <li><a href="{{URL::route('b_logout')}}"><span class="fa fa-sign-out"></span>Thoát</a></li>
             </ul>
         </li>
@@ -120,20 +120,20 @@
 			          <ul class="nav navbar-nav menu-inbox">
 			            <li class="e-inbox"><a href="{{URL::route('write_inbox')}}">Soạn thư mới</a></li>
 			            <li class="a-inbox">
-		                    <a href="{{URL::route('load_arrive')}}">
-		                      Hộp thư đến (@if(!empty($n_arrive)){{$n_arrive}}@endif)
-		                    </a>
-	                  	</li>
-			            <li class="active s-inbox">
-		                    <a href="URL::route('load_sent')">
-		                      Hộp thư đi (@if(!empty($n_sent)){{$n_sent}}@endif)
-		                    </a>
-	                  	</li>
-			            <li class="i-inbox">
-		                    <a href="{{URL::route('load_important')}}">
-		                      Quan trọng (@if(!empty($n_important)){{$n_important}}@endif)
-		                    </a>
-	                  	</li>
+                    <a href="{{URL::route('load_arrive')}}">
+                      Hộp thư đến (@if(!empty($n_arrive)){{$n_arrive}}@endif)
+                    </a>
+                  </li>
+			            <li class="s-inbox">
+                    <a href="{{URL::route('load_sent')}}">
+                      Hộp thư đi (@if(!empty($n_sent)){{$n_sent}}@endif)
+                    </a>
+                  </li>
+			            <li class="active i-inbox">
+                    <a href="{{URL::route('load_important')}}">
+                      Quan trọng (@if(!empty($n_important)){{$n_important}}@endif)
+                    </a>
+                  </li>
 			          </ul>
 			        </div><!--/.nav-collapse -->
 			      </div>
@@ -141,45 +141,41 @@
         
 			</div>
 			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 left-inbox">
-		        <div class="table-responsive div-table">
-	  				<table class="table table-hover text-center table-right">
-	  					<thead>
-	  						<tr>
-                				<th class="text-center"><input type="checkbox"></th>
-	  							<th class="text-center">Người gửi</th>
-	  							<th class="text-center">Chủ đề</th>
-	  							<th class="text-center">Thời gian</th>
-	  						</tr>
-	  					</thead>
-	  					<tbody class="load-inbox">
-				              @if(!empty($messages))
-								@foreach($messages as $message)
-								@if($message->sent_delete == 0)
-							    <tr class="tr-load">
-							      <td><input type="checkbox"></td>
-							      <td><a href="{{URL::route('detail_send_inbox',array($message->id))}}">{{Vendor::where('id',$message->to_business)->get()->first()->name}}</a></td>
-							      <td><a href="{{URL::route('detail_send_inbox',array($message->id))}}">{{$message->title}}</a></td>
-							      <td>{{$message->updated_at}}</td>
-							    </tr>
-							    @endif
-								@endforeach()
-							@endif
-	  					</tbody>
-	  				</table>
-		        </div>
+        <div class="table-responsive div-table">
+  				<div class="table table-hover text-center table-right">
+  					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detail-title">
+                <p>{{$message->title}}</p>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detail-from">
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                Đến: {{Vendor::where('id',$message->to_business)->get()->first()->name}}
+                ({{User::where('id',Vendor::where('id',$message->to_business)->get()->first()->user)->get()->first()->email}})
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 time-inbox">
+                 <span>{{$message->updated_at}}</span>
+                 <a href="javascript:void(0);" onclick="removeImportart({{$message->id}})" data-toggle="tooltip" data-placement="bottom" title="Bỏ qua" style="margin-left:3%;"><span class="fa fa-star-o"></span></a>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-inbox">
+              {{$message->content}}
+            </div>
+  				
+  				</div>
+        </div>
 			</div>
 		</div>
 	</div>
 
-	<script type="text/javascript">
-    function postActive(id_message){
+  <script type="text/javascript">
+    function removeImportart(id_message){
       $.ajax({
           type:"post",
           data:{id_message:id_message},
-          url:"{{URL::route('post_active')}}"
+          url:"{{URL::route('remove_important')}}",
+          success:function(data){
+           }
           }); 
     }
-	</script>
-	
+  </script>
 @endsection()
 @stop()

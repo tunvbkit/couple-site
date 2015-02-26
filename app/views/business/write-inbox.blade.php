@@ -88,8 +88,8 @@
               <span class="fa fa-cog"></span></a>
             <ul class="dropdown-menu menu-dashboard" role="menu">
               <li><a href="{{URL::route('business.index')}}"><span class="fa fa-wrench"></span>Hồ sơ</a></li>
-              <li><a href="{{URL::route('b_inbox')}}"><span class="fa fa-envelope-o"></span>Hộp thư</a></li>
-              <li><a href="#"><span class="fa fa-comment-o"></span>Bình luận</a></li>
+              <li><a href="{{URL::route('b_inbox')}}"><span class="fa fa-envelope-o">Hộp thư</a></li>
+              <li><a href="#"><span class="fa fa-comment-o">Bình luận</a></li>
               <li><a href="{{URL::route('b_logout')}}"><span class="fa fa-sign-out"></span>Thoát</a></li>
             </ul>
         </li>
@@ -118,22 +118,22 @@
 			        </div>
 			        <div class="navbar-collapse collapse sidebar-navbar-collapse">
 			          <ul class="nav navbar-nav menu-inbox">
-			            <li class="e-inbox"><a href="{{URL::route('write_inbox')}}">Soạn thư mới</a></li>
+			            <li class="active e-inbox"><a href="{{URL::route('write_inbox')}}">Soạn thư mới</a></li>
 			            <li class="a-inbox">
-		                    <a href="{{URL::route('load_arrive')}}">
-		                      Hộp thư đến (@if(!empty($n_arrive)){{$n_arrive}}@endif)
-		                    </a>
-	                  	</li>
-			            <li class="active s-inbox">
-		                    <a href="URL::route('load_sent')">
-		                      Hộp thư đi (@if(!empty($n_sent)){{$n_sent}}@endif)
-		                    </a>
-	                  	</li>
+			            	<a href="{{URL::route('load_arrive')}}">
+			            		Hộp thư đến (@if(!empty($n_arrive)){{$n_arrive}}@endif)
+			            	</a>
+			            </li>
+			            <li class="s-inbox">
+			            	<a href="{{URL::route('load_sent')}}">
+			            	Hộp thư đi (@if(!empty($n_sent)){{$n_sent}}@endif)
+			            	</a
+			            ></li>
 			            <li class="i-inbox">
-		                    <a href="{{URL::route('load_important')}}">
-		                      Quan trọng (@if(!empty($n_important)){{$n_important}}@endif)
-		                    </a>
-	                  	</li>
+			            	<a href="{{URL::route('load_important')}}">
+			            		Quan trọng
+			            	</a>
+			            </li>
 			          </ul>
 			        </div><!--/.nav-collapse -->
 			      </div>
@@ -142,44 +142,130 @@
 			</div>
 			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 left-inbox">
 		        <div class="table-responsive div-table">
-	  				<table class="table table-hover text-center table-right">
-	  					<thead>
-	  						<tr>
-                				<th class="text-center"><input type="checkbox"></th>
-	  							<th class="text-center">Người gửi</th>
-	  							<th class="text-center">Chủ đề</th>
-	  							<th class="text-center">Thời gian</th>
-	  						</tr>
-	  					</thead>
-	  					<tbody class="load-inbox">
-				              @if(!empty($messages))
-								@foreach($messages as $message)
-								@if($message->sent_delete == 0)
-							    <tr class="tr-load">
-							      <td><input type="checkbox"></td>
-							      <td><a href="{{URL::route('detail_send_inbox',array($message->id))}}">{{Vendor::where('id',$message->to_business)->get()->first()->name}}</a></td>
-							      <td><a href="{{URL::route('detail_send_inbox',array($message->id))}}">{{$message->title}}</a></td>
-							      <td>{{$message->updated_at}}</td>
-							    </tr>
-							    @endif
-								@endforeach()
-							@endif
-	  					</tbody>
-	  				</table>
+	  				<div class="table-right">
+						<form action="{{URL::route('sub_inbox')}}" method="POST" role="form">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+									<label>Lĩnh vực</label>
+								</div>
+								<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" style="margin-bottom:2%;">
+									<select name="category" id="category">
+										<option value=""></option>
+										@foreach ($categories as $category) 
+											<option value="{{$category->id}}">{{$category->name}}</option>
+										@endforeach										
+									</select>
+								</div>
+							</div>
+							<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+									<label>Người nhận</label>
+								</div>
+								<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 join-search">
+									<input type="text" name="to-business" id="to-business" class="form-control" value="" autocomplete="off" onkeyup="searchVendor()">
+									<input type='hidden' name="id-to-business" value ="" class="id-to-business">
+								</div>
+								
+							</div>
+
+							<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+									<label>Tiêu đề</label>
+								</div>
+								<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+									<input type="text" name="title" id="title" class="form-control" value="">
+								</div>
+							</div>
+
+							<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+									<label>Nội dung</label>
+								</div>
+								<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+									<textarea name="editor" class="ckeditor form-control" cols="80" id="editor" rows="10" tabindex="1"></textarea>
+								</div>			
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn-send">
+								<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+									
+								</div>
+								<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center">
+									<button type="submit" class="btn btn-primary">Gửi thư</button>
+								</div>			
+							</div>		
+						</form>
+					</div>
 		        </div>
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
-    function postActive(id_message){
-      $.ajax({
-          type:"post",
-          data:{id_message:id_message},
-          url:"{{URL::route('post_active')}}"
-          }); 
-    }
+		function loadArrive () {
+			$.ajax({
+	        type:"post",
+	        url:"{{URL::route('load_arrive')}}",
+	        success:function(data){
+	          $('.menu-inbox > li').removeClass('active');
+	          $('.menu-inbox > li.a-inbox').addClass('active');	
+	          $('.table-right').remove();
+	          $('.div-table').append(data);
+	     		 }
+	        }); 
+		}
+		function loadSent () {
+			$.ajax({
+	        type:"post",
+	        url:"{{URL::route('load_sent')}}",
+	        success:function(data){
+	          $('.menu-inbox > li').removeClass('active');
+	          $('.menu-inbox > li.s-inbox').addClass('active');	
+	          $('.table-right').remove();
+	          $('.div-table').append(data);
+	     		 }
+	        }); 
+		}
+		function loadImportant () {
+			$.ajax({
+	        type:"post",
+	        url:"{{URL::route('load_important')}}",
+	        success:function(data){
+	          $('.menu-inbox > li').removeClass('active');
+	          $('.menu-inbox > li.i-inbox').addClass('active');	
+	          $('.table-right').remove();
+	          $('.div-tabl9').append(data);
+	     		 }
+	        }); 
+		}
+		function searchVendor(){
+			var id_cate = $('#category').find(':selected').val();
+			var to_business = $('#to-business').val();
+			$.ajax({
+	        type:"post",
+	        data:{ id_cate:id_cate, to_business:to_business },
+	        url:"{{URL::route('search_vendor')}}",
+	        success:function(data){
+	        	$('.result-search').remove();
+	         	$('.join-search').append(data);
+	     		 }
+	        }); 
+		}
+		function seclectVendor(id){
+			var id_vendor = $('.li-result'+id).val();
+			$.ajax({
+	        type:"post",
+	        data:{ id_vendor: id_vendor},
+	        url:"{{URL::route('name_vendor')}}",
+	        success:function(data){
+	        	$('.id-to-business').val(id_vendor);
+	         	$('#to-business').val(data.name);
+	         	$('.result-search').remove();
+	     		 }
+	        }); 
+		}
 	</script>
 	
 @endsection()
 @stop()
+
+

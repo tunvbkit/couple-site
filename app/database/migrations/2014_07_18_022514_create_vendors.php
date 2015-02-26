@@ -14,6 +14,7 @@ class CreateVendors extends Migration {
 	public function up()
 	{
 		Schema::create('vendors',function($table){
+			$table->engine = 'MyISAM'; 
 			$table->increments('id');
 			$table->string('name');
 			$table->integer('user');
@@ -30,6 +31,7 @@ class CreateVendors extends Migration {
 			$table->string('slug')->nullable();
 			$table->timestamps();
 		});
+		DB::statement('ALTER TABLE vendors ADD FULLTEXT search(name)');
 	}
 
 	/**
@@ -39,6 +41,9 @@ class CreateVendors extends Migration {
 	 */
 	public function down()
 	{
+		 Schema::table('vendors', function($table) {
+	            $table->dropIndex('search');
+	        });
 		Schema::drop('vendors');
 	}
 

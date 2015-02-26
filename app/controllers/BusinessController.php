@@ -302,17 +302,175 @@ class BusinessController extends \BaseController {
 		File::delete($path_delete2);
 		PhotoSlide::where('id',$id_slide)->delete();
 	}
+	public static function countArrive(){
+		$id_vendor = BusinessController::getVendor()->id;
+		return Message::where('to_business',$id_vendor)->where('arrive_delete',0)->get()->count();
+	}
+	public static function countSent(){
+		$id_vendor = BusinessController::getVendor()->id;
+		return Message::where('from_business',$id_vendor)->where('sent_delete',0)->get()->count();
+	}
+	public static function countImportant(){
+		$id_vendor = BusinessController::getVendor()->id;
+		return Message::where('to_business',$id_vendor)->where('important',1)->get()->count();
+	}
 	public function inbox(){
-		return View::make('business.inbox');
+		$vendor = $this->getVendor();
+		$id_vendor = $vendor->id;
+		$messages = Message::where('to_business',$id_vendor)->orderBy('created_at', 'DESC')->get();
+		$n_arrive = $this->countArrive();
+		$n_sent = $this->countSent();
+		$n_important = $this->countImportant();
+		return View::make('business.inbox')->with('messages',$messages)
+											->with('n_arrive',$n_arrive)
+											->with('n_sent',$n_sent)
+											->with('n_important',$n_important);
 	}
 	public function loadArrive(){
-		return View::make('business.arrive-inbox');
+		$vendor = $this->getVendor();
+		$id_vendor = $vendor->id;
+		$n_arrive = $this->countArrive();
+		$n_sent = $this->countSent();
+		$n_important = $this->countImportant();
+		$messages = Message::where('to_business',$id_vendor)->orderBy('created_at', 'DESC')->get();
+		return View::make('business.arrive-inbox')->with('messages',$messages)
+													->with('n_arrive',$n_arrive)
+													->with('n_sent',$n_sent)
+													->with('n_important',$n_important);
 	}
 	public function loadSent(){
-		return View::make('business.sent-inbox');
+		$vendor = $this->getVendor();
+		$id_vendor = $vendor->id;
+		$n_arrive = $this->countArrive();
+		$n_sent = $this->countSent();
+		$n_important = $this->countImportant();
+		$messages = Message::where('from_business',$id_vendor)->orderBy('created_at', 'DESC')->get();
+		return View::make('business.sent-inbox')->with('messages',$messages)
+													->with('n_arrive',$n_arrive)
+													->with('n_sent',$n_sent)
+													->with('n_important',$n_important);
 	}
 	public function loadImportant(){
-		return View::make('business.imp-inbox');
+		$vendor = $this->getVendor();
+		$id_vendor = $vendor->id;
+		$n_arrive = $this->countArrive();
+		$n_sent = $this->countSent();
+		$n_important = $this->countImportant();
+		$messages = Message::where('to_business',$id_vendor)->where('important',1)->orderBy('created_at', 'DESC')->get();
+		return View::make('business.imp-inbox')->with('messages',$messages)
+												->with('n_arrive',$n_arrive)
+												->with('n_sent',$n_sent)
+												->with('n_important',$n_important);
 	}
-
+	public function sendMessage(){
+		$n_arrive = $this->countArrive();
+		$n_sent = $this->countSent();
+		$categories = Category::get();
+		return View::make('business.write-inbox')->with('categories',$categories)
+													->with('n_arrive',$n_arrive)
+													->with('n_sent',$n_sent);
+	}
+	public function subInbox(){
+		$id_vendor = $this->getVendor()->id;
+		$category = Input::get('category');
+		$to_business = Input::get('id-to-business');
+		$title = Input::get('title');
+		$content = Input::get('editor');
+		$message = new Message();
+		$message->title = $title;
+		$message->content = $content;
+		$message->from_business = $id_vendor;
+		$message->to_business = $to_business;
+		$message->save();
+		return Redirect::to('business/inbox');
+	}
+	public function searchVendor(){
+		$id_cate = Input::get('id_cate');
+		$q = Input::get('to_business');
+		if (!empty($id_cate)) {
+			$check = Vendor::where('category',$id_cate)->where('name', 'LIKE', "%$q%")->get()->count();
+			$vendors = Vendor::where('category',$id_cate)->where('name', 'LIKE', "%$q%")->get();
+		} else {
+			$check = Vendor::where('name', 'LIKE', "%$q%")->get()->count();
+			$vendors = Vendor::where('name', 'LIKE', "%$q%")->get();
+		}
+		return View::make('business.search-vendor')->with('vendors',$vendors)
+													->with('check',$check);
+	}
+	public function getNameVendor(){
+		$id_vendor = Input::get('id_vendor');
+		$name = Vendor::where('id',$id_vendor)->get()->first()->name;
+		return Response::json(array('name'=>$name));
+	}
+	public function detailInbox($id_message){
+		$n_arrive = $this->countArrive();
+		$n_sent = $this->countSent();
+		$n_important =$this->countImportant();
+		$message = Message::where('id',$id_message)->get()->first();
+		return view::make('business.detail-inbox')->with('message',$message)
+													->with('n_arrive',$n_arrive)
+													->with('n_sent',$n_sent)
+													->with('n_important',$n_important);
+	}
+	public function reInbox($id_message){
+		$message = Message::where('id',$id_message)->get()->first();
+		$n_arrive = $this->countArrive();
+		$n_sent = $this->countSent();
+		return View::make('business.reply-inbox')->with('message',$message)
+													->with('n_arrive',$n_arrive)
+													->with('n_sent',$n_sent);
+	}
+	public function postReplyInbox(){
+		$id_vendor = $this->getVendor()->id;
+		$to_business = Input::get('id-to-business');
+		$title = Input::get('title');
+		$content = Input::get('editor');
+		$message = new Message();
+		$message->title = $title;
+		$message->content = $content;
+		$message->from_business = $id_vendor;
+		$message->to_business = $to_business;
+		$message->save();
+		return Redirect::to('business/inbox');
+	}
+	public function postActive(){
+		$id_message = Input::get('id_message');
+		Message::where('id',$id_message)->update(array('active'=>1));
+	}
+	public function detailSendlInbox($id_message){
+		$n_arrive = $this->countArrive();
+		$n_sent = $this->countSent();
+		$n_important =$this->countImportant();
+		$message = Message::where('id',$id_message)->get()->first();
+		return view::make('business.detail-sent-inbox')->with('message',$message)
+													->with('n_arrive',$n_arrive)
+													->with('n_sent',$n_sent)
+													->with('n_important',$n_important);
+	}
+	public function detailImportantlInbox($id_message){
+		$n_arrive = $this->countArrive();
+		$n_sent = $this->countSent();
+		$n_important =$this->countImportant();
+		$message = Message::where('id',$id_message)->where('important',1)->get()->first();
+		return view::make('business.detail-imp-inbox')->with('message',$message)
+													->with('n_arrive',$n_arrive)
+													->with('n_sent',$n_sent)
+													->with('n_important',$n_important);
+	}
+	public function deleteInbox($id_message){
+		Message::where('id',$id_message)->update(array('arrive_delete'=>1));
+		return Redirect::to('arrive-inbox');
+	}
+	public function deleteSentInbox($id_message){
+		Message::where('id',$id_message)->update(array('sent_delete'=>1));
+		return Redirect::to('sent-inbox');
+	}
+	public function postImportant(){
+		$id_message = Input::get('id_message');
+		Message::where('id',$id_message)->update(array('important'=>1));
+	}
+	public function removeImportant(){
+		$id_message = Input::get('id_message');
+		Message::where('id',$id_message)->update(array('important'=>0));
+	}
 }

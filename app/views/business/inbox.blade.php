@@ -87,12 +87,10 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <span class="fa fa-cog"></span></a>
             <ul class="dropdown-menu menu-dashboard" role="menu">
-              <li><a href="{{URL::route('business.index')}}">Hồ sơ</a></li>
-              <li><a href="{{URL::route('b_inbox')}}">Hộp thư</a></li>
-              <li><a href="#">Bình luận</a></li>
-              <li><a href="#"></a></li>
-              <li><a href="#"></a></li>
-              <li><a href="{{URL::route('b_logout')}}"><span class="fa fa-sign-out"></span>Logout</a></li>
+              <li><a href="{{URL::route('business.index')}}"><span class="fa fa-wrench"></span>Hồ sơ</a></li>
+              <li><a href="{{URL::route('b_inbox')}}"><span class="fa fa-envelope-o"></span>Hộp thư</a></li>
+              <li><a href="#"><span class="fa fa-comment-o"></span>Bình luận</a></li>
+              <li><a href="{{URL::route('b_logout')}}"><span class="fa fa-sign-out"></span>Thoát</a></li>
             </ul>
         </li>
     </div><!-- /.navbar-collapse -->
@@ -120,76 +118,76 @@
 			        </div>
 			        <div class="navbar-collapse collapse sidebar-navbar-collapse">
 			          <ul class="nav navbar-nav menu-inbox">
-			            <li class="active e-inbox"><a href="#">Soạn thư mới</a></li>
-			            <li class="a-inbox"><a href="#" onclick="loadArrive()">Hộp thư đến</a></li>
-			            <li class="s-inbox"><a href="#" onclick="loadSent()">Hộp thư đi</a></li>
-			            <li class="i-inbox"><a href="#" onclick="loadImportant()">Thư quan trọng</a></li>
+			            <li class="active e-inbox"><a href="{{URL::route('write_inbox')}}">Soạn thư mới</a></li>
+			            <li class="a-inbox">
+                    <a href="{{URL::route('load_arrive')}}">
+                      Hộp thư đến (@if(!empty($n_arrive)){{$n_arrive}}@endif)
+                    </a>
+                  </li>
+			            <li class="s-inbox">
+                    <a href="{{URL::route('load_sent')}}">
+                      Hộp thư đi (@if(!empty($n_sent)){{$n_sent}}@endif)
+                    </a>
+                  </li>
+			            <li class="i-inbox">
+                    <a href="{{URL::route('load_important')}}">
+                      Quan trọng (@if(!empty($n_important)){{$n_important}}@endif)
+                    </a>
+                  </li>
 			          </ul>
 			        </div><!--/.nav-collapse -->
 			      </div>
 			    </div>
         
 			</div>
-			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 left-inbox">
-				<table class="table table-hover text-center">
-					<thead>
-						<tr>
-							<th class="text-center">Người gửi</th>
-							<th class="text-center">Chủ đề</th>
-							<th class="text-center">Thời gian</th>
-							<th class="text-center">Thao tác</th>
-						</tr>
-					</thead>
-					<tbody class="load-inbox">
-						<tr class="tr-load">
-							<td><a >hdhfjdfhdj</a></td>
-							<td><a href="">hdhfjdfhdj</a></td>
-							<td><a >hdhfjdfhdj</a></td>
-							<td><a >hdhfjdfhdj</a></td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 left-inbox">
+        <div class="table-responsive div-table">
+  				<table class="table table-hover text-center table-right">
+  					<thead>
+  						<tr>
+                <th class="text-center"><input type="checkbox"></th>
+  							<th class="text-center">Người gửi</th>
+  							<th class="text-center">Chủ đề</th>
+  							<th class="text-center">Thời gian</th>
+  						</tr>
+  					</thead>
+  					<tbody class="load-inbox">
+              @if(!empty($messages))
+                @foreach($messages as $message)
+                @if($message->arrive_delete ==0)
+                  @if($message->active == 0)
+                  <tr class="tr-load" style="font-weight: bold;">
+                    <td><input type="checkbox"></td>
+                    <td><a href="{{URL::route('detail_inbox',array($message->id))}}">{{Vendor::where('id',$message->from_business)->get()->first()->name}}</a></td>
+                    <td ><a onclick="postActive({{$message->id}})" href="{{URL::route('detail_inbox',array($message->id))}}" >{{$message->title}}</a></td>
+                    <td>{{$message->updated_at}}</td>
+                  </tr>      						
+                  @else
+                    <tr class="tr-load">
+                      <td><input type="checkbox"></td>
+                      <td><a href="{{URL::route('detail_inbox',array($message->id))}}">{{Vendor::where('id',$message->from_business)->get()->first()->name}}</a></td>
+                      <td><a href="{{URL::route('detail_inbox',array($message->id))}}">{{$message->title}}</a></td>
+                      <td>{{$message->updated_at}}</td>
+                    </tr>
+                  @endif
+                @endif
+                @endforeach()
+              @endif
+  					</tbody>
+  				</table>
+        </div>
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
-		function loadArrive () {
-			$.ajax({
-	        type:"post",
-	        url:"{{URL::route('load_arrive')}}",
-	        success:function(data){
-	          $('.menu-inbox > li').removeClass('active');
-	          $('.menu-inbox > li.a-inbox').addClass('active');	
-	          $('.tr-load').remove();
-	          $('.load-inbox').append(data);
-	     		 }
-	        }); 
-		}
-		function loadSent () {
-			$.ajax({
-	        type:"post",
-	        url:"{{URL::route('load_sent')}}",
-	        success:function(data){
-	          $('.menu-inbox > li').removeClass('active');
-	          $('.menu-inbox > li.s-inbox').addClass('active');	
-	          $('.tr-load').remove();
-	          $('.load-inbox').append(data);
-	     		 }
-	        }); 
-		}
-		function loadImportant () {
-			$.ajax({
-	        type:"post",
-	        url:"{{URL::route('load_important')}}",
-	        success:function(data){
-	          $('.menu-inbox > li').removeClass('active');
-	          $('.menu-inbox > li.i-inbox').addClass('active');	
-	          $('.tr-load').remove();
-	          $('.load-inbox').append(data);
-	     		 }
-	        }); 
-		}
+    function postActive(id_message){
+      $.ajax({
+          type:"post",
+          data:{id_message:id_message},
+          url:"{{URL::route('post_active')}}"
+          }); 
+    }
 	</script>
 	
 @endsection()

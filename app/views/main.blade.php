@@ -115,6 +115,11 @@
 			  					Đăng nhập
 			  				</a>
 			  			</li>
+			  			<li><a href="{{URL::route('home_business')}}" style="color: #43609C">
+			  					<i class="fa fa-sign-in"></i>
+			  					Nhà cung cấp?
+			  				</a>
+			  			</li>
 		  			</ul>
 		  			
 		  		@else
@@ -129,6 +134,11 @@
 				  				Đăng nhập
 				  			</a>
 				  		</li>
+				  		<li><a href="{{URL::route('home_business')}}" style="color: #43609C">
+			  					<i class="fa fa-sign-in"></i>
+			  					Nhà cung cấp?
+			  				</a>
+			  			</li>
 				  	</ul>
 		  		@endif
 			</div><!--/.col-xs-10-->

@@ -119,21 +119,21 @@
 			        <div class="navbar-collapse collapse sidebar-navbar-collapse">
 			          <ul class="nav navbar-nav menu-inbox">
 			            <li class="e-inbox"><a href="{{URL::route('write_inbox')}}">Soạn thư mới</a></li>
-			            <li class="a-inbox">
-		                    <a href="{{URL::route('load_arrive')}}">
-		                      Hộp thư đến (@if(!empty($n_arrive)){{$n_arrive}}@endif)
-		                    </a>
-	                  	</li>
-			            <li class="active s-inbox">
-		                    <a href="URL::route('load_sent')">
-		                      Hộp thư đi (@if(!empty($n_sent)){{$n_sent}}@endif)
-		                    </a>
-	                  	</li>
+			            <li class="active a-inbox">
+                    <a href="{{URL::route('load_arrive')}}">
+                      Hộp thư đến (@if(!empty($n_arrive)){{$n_arrive}}@endif)
+                    </a>
+                  </li>
+			            <li class="s-inbox">
+                    <a href="{{URL::route('load_sent')}}">
+                      Hộp thư đi (@if(!empty($n_sent)){{$n_sent}}@endif)
+                    </a>
+                  </li>
 			            <li class="i-inbox">
-		                    <a href="{{URL::route('load_important')}}">
-		                      Quan trọng (@if(!empty($n_important)){{$n_important}}@endif)
-		                    </a>
-	                  	</li>
+                    <a href="{{URL::route('load_important')}}">
+                    Quan trọng (@if(!empty($n_important)){{$n_important}}@endif)
+                  </a>
+                </li>
 			          </ul>
 			        </div><!--/.nav-collapse -->
 			      </div>
@@ -141,42 +141,42 @@
         
 			</div>
 			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 left-inbox">
-		        <div class="table-responsive div-table">
-	  				<table class="table table-hover text-center table-right">
-	  					<thead>
-	  						<tr>
-                				<th class="text-center"><input type="checkbox"></th>
-	  							<th class="text-center">Người gửi</th>
-	  							<th class="text-center">Chủ đề</th>
-	  							<th class="text-center">Thời gian</th>
-	  						</tr>
-	  					</thead>
-	  					<tbody class="load-inbox">
-				              @if(!empty($messages))
-								@foreach($messages as $message)
-								@if($message->sent_delete == 0)
-							    <tr class="tr-load">
-							      <td><input type="checkbox"></td>
-							      <td><a href="{{URL::route('detail_send_inbox',array($message->id))}}">{{Vendor::where('id',$message->to_business)->get()->first()->name}}</a></td>
-							      <td><a href="{{URL::route('detail_send_inbox',array($message->id))}}">{{$message->title}}</a></td>
-							      <td>{{$message->updated_at}}</td>
-							    </tr>
-							    @endif
-								@endforeach()
-							@endif
-	  					</tbody>
-	  				</table>
-		        </div>
+        <div class="table-responsive div-table">
+  				<div class="table table-hover text-center table-right">
+  					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detail-title">
+                <p>{{$message->title}}</p>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 detail-from">
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                Từ: {{Vendor::where('id',$message->from_business)->get()->first()->name}}
+                ({{User::where('id',Vendor::where('id',$message->from_business)->get()->first()->user)->get()->first()->email}})
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 time-inbox">
+                 <span>{{$message->updated_at}}</span> 
+                    <a onclick="importantInbox({{$message->id}})" href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom" title="Thư quan trọng"><span class="fa fa-star-o"></span></a>
+                     <a href="{{URL::route('reply_inbox',array($message->id))}}" data-toggle="tooltip" data-placement="bottom" title="Trả lời thư" style="margin-left:3%;"><span class="fa fa-reply"></span></a>
+                     <a href="{{URL::route('delete_inbox',array($message->id))}}" data-toggle="tooltip" data-placement="bottom" title="Xóa thư" style="margin-left:3%;"><span class="fa fa-trash"></span></a>
+
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-inbox">
+              {{$message->content}}
+            </div>
+  				
+  				</div>
+        </div>
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
-    function postActive(id_message){
+    function importantInbox(id_message){
       $.ajax({
           type:"post",
           data:{id_message:id_message},
-          url:"{{URL::route('post_active')}}"
+          url:"{{URL::route('post_important')}}",
+          success:function(data){
+           }
           }); 
     }
 	</script>
