@@ -69,7 +69,7 @@
 			          	</li>
 			        </ul>
 		      	</li> <!--/music-->
-		      	@if(!empty(Session::has('email')))
+		      	@if(Session::has('email'))
 		      	<li><a href="{{URL::to('website')}}" title="Website cưới">
 		        		Website cưới
 		        	</a>
@@ -80,7 +80,7 @@
 		        	</a>
 		        </li>
 		        @endif
-		        @if(!empty(Session::has('email')))
+		        @if(Session::has('email'))
 			      	<li  class="dropdown">
 			    		<a href="#" class="dropdown-toggle main_menu" data-toggle="dropdown" title="Công cụ">
 							Công cụ kế hoạch
