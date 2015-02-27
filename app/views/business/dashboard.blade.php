@@ -150,12 +150,12 @@
               {{BusinessController::getRating($vendor->id)->rating}}
               @endif
             </p>
-            <p><a href="{{URL::route('b_inbox')}}">Lượt bình luận : </a>{{$c_count}} 
+            <p><a href="{{URL::route('b_comment')}}">Lượt bình luận : </a>{{$c_count}} 
               @if (!empty($countCommentNoActive))
                   <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span>
                 @endif
             </p>
-            <p><a href="{{URL::route('b_comment')}}">Hộp thư : </a>{{$inbox}} 
+            <p><a href="{{URL::route('b_inbox')}}">Hộp thư : </a>{{$inbox}} 
                 @if (!empty($new_inbox))
                   <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span>
                 @endif
