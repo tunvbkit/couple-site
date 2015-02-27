@@ -1,6 +1,6 @@
 @extends('business.main-dashboard')
 @section('title')
-  Hộp thư|thuna.vn
+  Thư quan trọng
 @endsection()
 @section('nav-bar')
 	<nav class="navbar navbar-default">
@@ -131,7 +131,7 @@
                   </li>
 			            <li class="active i-inbox">
                     <a href="{{URL::route('load_important')}}">
-                      Quan trọng (@if(!empty($n_important)){{$n_important}}@endif)
+                      Quan trọng (<span class="span-important">@if(!empty($n_important)){{$n_important}}@endif</span>)
                     </a>
                   </li>
 			          </ul>
@@ -173,6 +173,7 @@
           data:{id_message:id_message},
           url:"{{URL::route('remove_important')}}",
           success:function(data){
+            $('.span-important').text(data.count);
            }
           }); 
     }

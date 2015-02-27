@@ -105,8 +105,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 note">
           <h4>Thống kê</h4>
-          <p>Đã duyệt : {{$c_countActive}}</p>
-          <p>Chưa duyệt : {{$c_countNoActive}}</p>
+          <p>Bình luận chưa xem : {{$c_countNoActive}}</p>
           <p>Tổng bình luận : {{$c_count}}</p>
       </div> 
       <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -123,6 +122,18 @@
             <tbody class="load-inbox">
               @if(!empty($comments))
                 @foreach($comments as $comment)
+                @if($comment->active_business == 0)
+                  <tr style="font-weight: bold;">
+                    <td><input type="checkbox"></td>
+                    <td>{{$comment->user_name}}</td>
+                    <td>
+                        <a onclick="readComment({{$comment->id}})" href="{{URL::route('detail_comment',array($comment->id))}}">
+                          {{substr($comment->content, 0 ,50)."..."}}                     
+                        </a>
+                    </td>
+                    <td>{{$comment->created_at}}</td>
+                  </tr>
+                  @else
                   <tr>
                     <td><input type="checkbox"></td>
                     <td>{{$comment->user_name}}</td>
@@ -133,6 +144,7 @@
                     </td>
                     <td>{{$comment->created_at}}</td>
                   </tr>
+                  @endif
                 @endforeach
               @endif
             </tbody>
@@ -142,5 +154,14 @@
       </div> 
     </div>
 	</div>	
+  <script type="text/javascript">
+    function readComment(id_comment){
+      $.ajax({
+          type:"post",
+          data:{id_comment:id_comment},
+          url:"{{URL::route('read_comment')}}"
+          }); 
+    }
+  </script>
 @endsection()
 @stop()

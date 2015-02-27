@@ -386,6 +386,13 @@ a.contact-admin:hover{
 	padding: 0px;
 	background-color: #d9d9d9;
 }
+.thongke p a{
+	color: #0072ff;
+	text-decoration: none;
+}
+.thongke p a:hover{
+	color: #EF66C9;
+}
 .thongke p{
 	color: #0072ff;
 }

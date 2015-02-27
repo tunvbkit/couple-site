@@ -67,6 +67,7 @@ Route::group(array('before'=>'b_check_login'),function(){
 	Route::post('remove-important',array('as'=>'remove_important','uses'=>'BusinessController@removeImportant'));
 	// comment
 	Route::post('active-comment',array('as'=>'active_comment','uses'=>'BusinessController@activeComment'));
+	Route::post('read-comment',array('as'=>'read_comment','uses'=>'BusinessController@readComment'));
 	
 });
 

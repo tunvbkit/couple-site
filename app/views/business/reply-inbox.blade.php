@@ -1,6 +1,6 @@
 @extends('business.main-dashboard')
 @section('title')
-  Hộp thư|thuna.vn
+  Trả lời thư
 @endsection()
 @section('nav-bar')
 	<nav class="navbar navbar-default">

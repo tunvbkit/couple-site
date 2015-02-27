@@ -147,10 +147,12 @@ class BusinessController extends \BaseController {
 		$new_inbox = Message::where('to_business',$vendor->id)->where('active',0)->get()->count();
 		$inbox = $this->countArrive();
 		$c_count = $this->countComment();
+		$countCommentNoActive = $this->countCommentNoActive();
 		return View::make('business.dashboard')->with('vendor',$vendor)
 												->with('new_inbox',$new_inbox)
 												->with('inbox',$inbox)
-												->with('c_count',$c_count);
+												->with('c_count',$c_count)
+												->with('countCommentNoActive',$countCommentNoActive);
 	}
 	public function checkEmailCompany(){
 		return (User::where('email',Input::get('email'))->count() == 0 ? 'true':'false');
@@ -472,12 +474,18 @@ class BusinessController extends \BaseController {
 		return Redirect::to('sent-inbox');
 	}
 	public function postImportant(){
+		$id_vendor = $this->getVendor()->id;
 		$id_message = Input::get('id_message');
 		Message::where('id',$id_message)->update(array('important'=>1));
+		$count = Message::where('to_business',$id_vendor)->where('important',1)->get()->count();
+		return Response::json(array('count'=>$count));
 	}
 	public function removeImportant(){
+		$id_vendor = $this->getVendor()->id;
 		$id_message = Input::get('id_message');
 		Message::where('id',$id_message)->update(array('important'=>0));
+		$count = Message::where('to_business',$id_vendor)->where('important',1)->get()->count();
+		return Response::json(array('count'=>$count));
 	}
 	// comment
 	public function comment(){
@@ -497,11 +505,22 @@ class BusinessController extends \BaseController {
 	}
 	public static function countCommentActive(){
 		$id_vendor = BusinessController::getVendor()->id;
-		return VendorComment::where('vendor',$id_vendor)->where('active',1)->get()->count();
+		$count_day = 0;
+		$day_now = Carbon::today()->toDateString();
+		$arr_comments = VendorComment::where('vendor',$id_vendor)->get();
+		$count_comment = $arr_comments->count();
+		foreach ($arr_comments as $arr_comment) {
+			$tamp = explode(" ",$arr_comment->created_at);
+			if ( $day_now == $tamp[0] ) {
+			 	$count_day = $count_day + 1;
+			 } 
+		}	
+		
+		return $count_day;
 	}
 	public static function countCommentNoActive(){
 		$id_vendor = BusinessController::getVendor()->id;
-		return VendorComment::where('vendor',$id_vendor)->where('active',0)->get()->count();
+		return VendorComment::where('vendor',$id_vendor)->where('active_business',0)->get()->count();
 	}
 	public function ActiveComment(){
 		$id_comment = Input::get('id_comment');
@@ -527,5 +546,9 @@ class BusinessController extends \BaseController {
 	public function deleteComment($id_comment){
 		VendorComment::where('id',$id_comment)->delete();
 		return Redirect::to('business/comment');
+	}
+	public function readComment(){
+		$id_comment = Input::get('id_comment');
+		VendorComment::where('id',$id_comment)->update(array('active_business'=>1));
 	}
 }

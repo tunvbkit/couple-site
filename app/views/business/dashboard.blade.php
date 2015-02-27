@@ -139,41 +139,30 @@
     </div>
 
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 infor-count">      
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center top-h4">
-              <h4>Hoàn thành website:</h4>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 thongke">
-              <p>Số % hoàn thành :</p>
-              <p>Hoàn thành thông tin :</p>
-          </div>
-      </div>
        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 infor-count">         
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center top-h4">
             <h4>Thông tin vendor</h4>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 thongke">
-            <p>Lượt truy cập :</p>
+            <p>Lượt truy cập : {{$vendor->click}}</p>
            <p>Đánh giá: 
               @if(!empty( BusinessController::getRating($vendor->id)->rating ))
               {{BusinessController::getRating($vendor->id)->rating}}
               @endif
             </p>
-            <p>Lượt bình luận : {{$c_count}}</p>
+            <p><a href="{{URL::route('b_inbox')}}">Lượt bình luận : </a>{{$c_count}} 
+              @if (!empty($countCommentNoActive))
+                  <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span>
+                @endif
+            </p>
+            <p><a href="{{URL::route('b_comment')}}">Hộp thư : </a>{{$inbox}} 
+                @if (!empty($new_inbox))
+                  <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span>
+                @endif
+            </p>
+            
           </div>
       </div>
-
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 infor-count" style="margin-bottom:3%;">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center top-h4">
-             <h4>Hộp thư :</h4>
-        </div>   
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 thongke">
-              <p>Thư mới : {{$new_inbox}}</p>
-              <p>Hộp thư : {{$inbox}}</p>
-         </div>    
-         
-      </div>
-
     </div>
 
 </div>
