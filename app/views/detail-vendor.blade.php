@@ -402,7 +402,7 @@
 								@endif
 
 
-						  		@foreach(VendorComment::where('vendor',$vendor->id)->get() as $cmt)
+						  		@foreach(VendorComment::where('vendor',$vendor->id)->where('active',0)->get() as $cmt)
 								
 								<div class="vendor_comment">
 									<div class="vendor_avatar">

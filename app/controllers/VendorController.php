@@ -175,7 +175,7 @@ class VendorController extends \BaseController {
 		$vendor_comment->content=$cmt;
 		$vendor_comment->save();
 
-		$user_avatar 	= User::where('id',$id_user)->get()->first()->avatar;
+		$user_avatar 	= asset(User::where('id',$id_user)->get()->first()->avatar);
 		// $avatar = base64_decode($user_avatar);
 
 		// get data for show 
@@ -184,7 +184,7 @@ class VendorController extends \BaseController {
 		$html 			= '';
 		$html 			.="<div class='vendor_comment'>
 							<div class='vendor_avatar'>
-								<img src='/".$user_avatar."'>
+								<img src=".$user_avatar.">
 							</div>
 							<div class='vendor_content'>
 								<span style='color: #428bca;''>".$arComment->user_name."</span> nói rằng:<br />
