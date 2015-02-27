@@ -491,6 +491,12 @@ class VendorController extends \BaseController {
 		echo '<img class="img-responsive" src="',$src,'">';
 
 	}
+	// count click
+	public function countClick(){
+		$id_vendor = Input::get('id_vendor');
+		$count = Vendor::where('id',$id_vendor)->get()->first()->click +1 ;		
+		Vendor::where('id',$id_vendor)->update(array('click'=>$count));
+	}
 
 
 	

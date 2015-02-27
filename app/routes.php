@@ -450,5 +450,6 @@ Route::get('gh', function(){
 	return View::make('gh');
 
 });
-
+// dem clcik
+Route::post('count-click',array('as'=>'count_click','uses'=>'VendorController@countClick'));
 

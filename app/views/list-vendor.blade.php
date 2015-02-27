@@ -314,7 +314,7 @@ Danh sách Dịch vụ | thuna.vn
 			                    <div class="thumbnail">
 			                        
 			                        <!-- Vendor Images -->
-			                        <a href="{{URL::route('vendor',array(VendorController::getCategorySlug( VendorController::getVendorCategory($vendor->id) ),$vendor->slug))}}">
+			                        <a onclick="countClick({{$vendor->id}})" href="{{URL::route('vendor',array(VendorController::getCategorySlug( VendorController::getVendorCategory($vendor->id) ),$vendor->slug))}}">
 			                        	<!-- {{VendorController::getImagesVendor($vendor->photo)}} -->
 			                        	@if(empty($vendor->avatar))
 			                        	<img class="img-responsive img-thumbnail" src="{{Asset('../images/avatar/default.jpg')}}">
@@ -468,7 +468,7 @@ Danh sách Dịch vụ | thuna.vn
 
 							<!-- Vendor Images -->
 							<div class="list-avatar">
-								<a href="{{URL::route('vendor',array(VendorController::getCategorySlug( VendorController::getVendorCategory($vendor->id) ),$vendor->slug))}}">
+								<a onclick="countClick({{$vendor->id}})" href="{{URL::route('vendor',array(VendorController::getCategorySlug( VendorController::getVendorCategory($vendor->id) ),$vendor->slug))}}">
 									<!-- {{VendorController::getImagesVendor($vendor->photo)}} -->
 									@if(empty($vendor->avatar))
 		                        	<img class="img-responsive img-thumbnail" src="{{Asset('../images/avatar/default.jpg')}}">
@@ -752,6 +752,16 @@ Danh sách Dịch vụ | thuna.vn
 		});
 		// end vendor_view_more_list
 	});
+function countClick(id_vendor){
+	$.ajax({
+		type:"post",
+		url:"{{URL::route('count_click')}}",
+		data:{id_vendor:id_vendor},
+		success:function(data){
+
+		}
+	});
+}
 
 </script>
 

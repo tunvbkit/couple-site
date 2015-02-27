@@ -29,6 +29,7 @@ class CreateVendors extends Migration {
 			$table->integer('category');
 			$table->integer('location');
 			$table->string('slug')->nullable();
+			$table->integer('click');
 			$table->timestamps();
 		});
 		DB::statement('ALTER TABLE vendors ADD FULLTEXT search(name)');
