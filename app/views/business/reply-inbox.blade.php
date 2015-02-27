@@ -89,7 +89,7 @@
             <ul class="dropdown-menu menu-dashboard" role="menu">
               <li><a href="{{URL::route('business.index')}}"><span class="fa fa-wrench"></span>Hồ sơ</a></li>
               <li><a href="{{URL::route('b_inbox')}}"><span class="fa fa-envelope-o"></span>Hộp thư</a></li>
-              <li><a href="#"><span class="fa fa-comment-o"></span>Bình luận</a></li>
+              <li><a href="{{URL::route('b_comment')}}"><span class="fa fa-comment-o"></span>Bình luận</a></li>
               <li><a href="{{URL::route('b_logout')}}"><span class="fa fa-sign-out"></span>Thoát</a></li>
             </ul>
         </li>
@@ -120,16 +120,16 @@
 			          <ul class="nav navbar-nav menu-inbox">
 			            <li class="active e-inbox"><a href="{{URL::route('write_inbox')}}">Soạn thư mới</a></li>
 			            <li class="a-inbox">
-                    <a href="javascript:void(0)" onclick="loadArrive()">
+                    <a href="{{URL::route('load_arrive')}}">
                       Hộp thư đến (@if(!empty($n_arrive)){{$n_arrive}}@endif)
                     </a>
                   </li>
 			            <li class="s-inbox">
-                    <a href="javascript:void(0)" onclick="loadSent()">
+                    <a href="{{URL::route('load_sent')}}">
                       Hộp thư đi (@if(!empty($n_sent)){{$n_sent}}@endif)
                     </a>
                   </li>
-			            <li class="i-inbox"><a href="javascript:void(0)" onclick="loadImportant()">Quan trọng</a></li>
+			            <li class="i-inbox"><a href="{{URL::route('load_important')}}">Quan trọng</a></li>
 			          </ul>
 			        </div><!--/.nav-collapse -->
 			      </div>
