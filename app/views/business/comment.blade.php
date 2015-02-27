@@ -118,8 +118,6 @@
                 <th class="text-center">Người gửi</th>
                 <th class="text-center">Nội dung</th>
                 <th class="text-center">Thời gian</th>
-                <th class="text-center">Duyệt</th>
-                <th class="text-center">Xóa</th>
               </tr>
             </thead>
             <tbody class="load-inbox">
@@ -134,18 +132,6 @@
                         </a>
                     </td>
                     <td>{{$comment->created_at}}</td>
-                    <td>
-                      @if($comment->active == 1) 
-                        <a onclick="activeComment({{$comment->id}})" href="javascript:void(0);">
-                          <span class="c-active fa fa-check-square-o"></span>
-                        </a> 
-                      @else
-                         <a onclick="activeComment({{$comment->id}})" href="javascript:void(0);">
-                          <span class="c-active fa fa-square-o"></span>
-                        </a> 
-                      @endif
-                    </td>
-                    <td><a href="{{URL::route('delete_comment',array($comment->id))}}"><span class="fa fa-trash"></span></a></td>
                   </tr>
                 @endforeach
               @endif
@@ -155,26 +141,6 @@
         <div class="text-center">{{$comments->links()}}</div>
       </div> 
     </div>
-	</div>
-
-	<script type="text/javascript">
-    function activeComment(id_comment){
-      $.ajax({
-          type:"post",
-          data:{id_comment:id_comment},
-          url:"{{URL::route('active_comment')}}",
-          success:function(data){
-            if (data.active == 1) {
-              $('.c-active').removeClass('fa-square-o');
-              $('.c-active').addClass('fa-check-square-o');
-            } else{
-              $('.c-active').removeClass('fa-check-square-o');
-              $('.c-active').addClass('fa-square-o');
-            };          
-          }
-        }); 
-    }
-	</script>
-	
+	</div>	
 @endsection()
 @stop()

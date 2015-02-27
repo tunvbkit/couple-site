@@ -117,8 +117,6 @@
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 time-inbox">
                    <span>{{$comment->updated_at}}</span> 
-                       <a href="{{URL::route('delete_comment',array($comment->id))}}" data-toggle="tooltip" data-placement="bottom" title="Xóa" style="margin-left:3%;"><span class="fa fa-trash"></span></a>
-                       <a href="{{URL::route('b_comment')}}" data-toggle="tooltip" data-placement="bottom" title="Quay lại" style="margin-left:3%;"><span class="fa fa-reply"></span></a>
                 </div>
               </div>
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-inbox">
