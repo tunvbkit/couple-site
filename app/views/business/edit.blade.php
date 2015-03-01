@@ -262,7 +262,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <h4>Album ảnh</h4>
           <div class="grid-slide">
-          @if( BusinessController::getSlide($vendor->id) )
+          @if(BusinessController::getSlide($vendor->id)==true )
             @foreach(BusinessController::getSlide($vendor->id) as $photo)
               <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 one-slide one-slide{{$photo->id}}">
                   <span class="btn-delete">

@@ -241,7 +241,7 @@ class BusinessController extends \BaseController {
 		$year=date("Y");
 		$month=date('m');
 		if (Input::hasFile('file')) {
-			if (($this->checkHasAvatar())
+			if ($this->checkHasAvatar()==true)
 			 {
 				$path_delete=base_path( $this->checkHasAvatar() );
 				File::delete($path_delete);

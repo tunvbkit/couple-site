@@ -163,7 +163,7 @@ Danh sách Dịch vụ | thuna.vn
 		  		<div class="col-md-6">
 		  			Kết quả tìm kiếm với 
 		  			<span style="color: #19B5BC" >
-		  				@if( !empty(Input::get('name')) )
+		  				@if( Input::get('name')==true )
 			   				{{Input::get('name')}}
 			   				<input id="nameGet" type="hidden" value="{{Input::get('name')}}" />
 			   			@else
@@ -173,7 +173,7 @@ Danh sách Dịch vụ | thuna.vn
 			   		Địa điểm: 
 			   		<span style="color: #19B5BC" >
 			   			
-			   			@if( !empty(Input::get('location')) )
+			   			@if( Input::get('location')==true )
 			   				{{Input::get('location')}}
 			   				<input id="locationGet" type="hidden" value="{{Input::get('location')}}" />
 			   			@else
@@ -190,11 +190,11 @@ Danh sách Dịch vụ | thuna.vn
 			   		Danh mục: 
 			   		<span style="color: #19B5BC" >
 
-			   			@if( !empty(Input::get('category')) )
+			   			@if( Input::get('category')==true )
 			   				{{Input::get('category')}}
 			   				<input id="categoryGet" type="hidden" value="{{Input::get('category')}}" />
 			   			@else
-			   				@if( !empty($category_id) )
+			   				@if($category_id==true )
 				   				{{Category::where("id",$category_id)->get()->first()->name}}
 				   				<input id="categoryGet" type="hidden" value="{{Category::where("id",$category_id)->get()->first()->name}}" />
 				   			@else
@@ -240,7 +240,7 @@ Danh sách Dịch vụ | thuna.vn
 				    	@endforeach
 			    	</select>
 			    	<?php
-				    	if( !empty(Input::get('category')) ){
+				    	if(Input::get('category')==true){
 			   				$nameCategory = Input::get('category');
 				    	}
 			   			elseif( isset($category_id) ) {
