@@ -158,8 +158,8 @@
                   @if($message->active == 0)
                   <tr class="tr-load" style="font-weight: bold;">
                     <td><input type="checkbox"></td>
-                    <td><a href="{{URL::route('detail_inbox',array($message->id))}}">{{Vendor::where('id',$message->from_business)->get()->first()->name}}</a></td>
-                    <td ><a onclick="postActive({{$message->id}})" href="{{URL::route('detail_inbox',array($message->id))}}" >{{$message->title}}</a></td>
+                    <td><a href="javascript:void(0);" onclick="postActive({{$message->id}})">{{Vendor::where('id',$message->from_business)->get()->first()->name}}</a></td>
+                    <td ><a href="javascript:void(0);" onclick="postActive({{$message->id}})" >{{$message->title}}</a></td>
                     <td>{{$message->updated_at}}</td>
                   </tr>      						
                   @else
@@ -183,10 +183,14 @@
 
 	<script type="text/javascript">
     function postActive(id_message){
+      var baseUrl = "<?php echo URL::to('/'); ?>";
       $.ajax({
           type:"post",
           data:{id_message:id_message},
-          url:"{{URL::route('post_active')}}"
+          url:"{{URL::route('post_active')}}",
+          success:function(){
+            window.location.href = baseUrl+ "/detail-inbox/"+id_message;
+          }
           }); 
     }
 	</script>

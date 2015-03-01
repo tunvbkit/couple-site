@@ -127,7 +127,7 @@
                     <td><input type="checkbox"></td>
                     <td>{{$comment->user_name}}</td>
                     <td>
-                        <a onclick="readComment({{$comment->id}})" href="{{URL::route('detail_comment',array($comment->id))}}">
+                        <a onclick="readComment({{$comment->id}})" href="javascript:void(0);">
                           {{substr($comment->content, 0 ,50)."..."}}                     
                         </a>
                     </td>
@@ -154,14 +154,19 @@
       </div> 
     </div>
 	</div>	
+
   <script type="text/javascript">
-    function readComment(id_comment){
-      $.ajax({
-          type:"post",
-          data:{id_comment:id_comment},
-          url:"{{URL::route('read_comment')}}"
-          }); 
-    }
-  </script>
+        var baseUrl = "<?php echo URL::to('/'); ?>";
+        function readComment(id_comment){
+          $.ajax({
+              type:"post",
+              data:{id_comment:id_comment},
+              url:"{{URL::route('read_comment')}}",
+              success:function(){
+                window.location.href = baseUrl+ "/business/detail-comment/"+id_comment;
+              }
+              }); 
+        }
+      </script>
 @endsection()
 @stop()

@@ -550,5 +550,6 @@ class BusinessController extends \BaseController {
 	public function readComment(){
 		$id_comment = Input::get('id_comment');
 		VendorComment::where('id',$id_comment)->update(array('active_business'=>1));
+		return Response::json(array('id_comment',$id_comment));
 	}
 }

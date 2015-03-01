@@ -89,7 +89,7 @@
             <ul class="dropdown-menu menu-dashboard" role="menu">
               <li><a href="{{URL::route('business.index')}}"><span class="fa fa-wrench"></span>Hồ sơ</a></li>
               <li><a href="{{URL::route('b_inbox')}}"><span class="fa fa-envelope-o"></span>Hộp thư</a></li>
-              <li><a href="#"><span class="fa fa-comment-o"></span>Bình luận</a></li>
+              <li><a href="{{URL::route('b_comment')}}"><span class="fa fa-comment-o"></span>Bình luận</a></li>
               <li><a href="{{URL::route('b_logout')}}"><span class="fa fa-sign-out"></span>Thoát</a></li>
             </ul>
         </li>
@@ -158,8 +158,8 @@
 								  @if($message->active == 0)
 								  <tr class="tr-load" style="font-weight: bold;">
 								    <td><input type="checkbox"></td>
-								    <td><a href="{{URL::route('detail_inbox',array($message->id))}}">{{Vendor::where('id',$message->from_business)->get()->first()->name}}</a></td>
-								    <td ><a onclick="postActive({{$message->id}})" href="{{URL::route('detail_inbox',array($message->id))}}">{{$message->title}}</a></td>
+								    <td><a onclick="postActive({{$message->id}})" href="javascript:void(0);">{{Vendor::where('id',$message->from_business)->get()->first()->name}}</a></td>
+								    <td ><a onclick="postActive({{$message->id}})" href="javascript:void(0);">{{$message->title}}</a></td>
 								    <td>{{$message->updated_at}}</td>
 								  </tr>      						
 								  @else
@@ -207,10 +207,14 @@
 	        }); 
 		}
     function postActive(id_message){
+    	var baseUrl = "<?php echo URL::to('/'); ?>";
       $.ajax({
           type:"post",
           data:{id_message:id_message},
-          url:"{{URL::route('post_active')}}"
+          url:"{{URL::route('post_active')}}",
+          success:function(){
+          	 window.location.href = baseUrl+ "/detail-inbox/"+id_message;
+          }
           }); 
     }
 	</script>
