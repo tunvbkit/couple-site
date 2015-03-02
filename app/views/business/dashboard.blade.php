@@ -99,7 +99,7 @@
 @endsection()
 @section('content')
 <div class="container content-dashboard">
-    <h3>Dashboard</h3>
+    <h3>Thông tin vendor</h3>
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 infor-vendor">
@@ -150,15 +150,18 @@
               {{BusinessController::getRating($vendor->id)->rating}}
               @endif
             </p>
-            <p><a href="{{URL::route('b_comment')}}">Lượt bình luận : </a>{{$c_count}} 
-              @if (!empty($countCommentNoActive))
-                  <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span>
-                @endif
+            <p>
+              <a href="{{URL::route('b_comment')}}">Lượt bình luận @if (!empty($countCommentNoActive))
+                  <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
+                @endif  :
+              </a>
+             
+                {{$c_count}}
             </p>
-            <p><a href="{{URL::route('b_inbox')}}">Hộp thư : </a>{{$inbox}} 
-                @if (!empty($new_inbox))
-                  <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span>
-                @endif
+            <p><a href="{{URL::route('b_inbox')}}">Hộp thư  @if (!empty($new_inbox))
+                  <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
+                @endif  : </a>{{$inbox}} 
+               
             </p>
             
           </div>
