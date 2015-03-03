@@ -153,7 +153,7 @@
               </div>
               <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 time-inbox">
                  <span>{{$message->updated_at}}</span>
-                 <a href="{{URL::route('delete_sent_inbox',array($message->id))}}" data-toggle="tooltip" data-placement="bottom" title="Xóa thư" style="margin-left:3%;"><span class="fa fa-trash"></span></a>
+                 <a href="{{URL::route('delete_sent_inbox',array($message->id))}}" data-toggle="tooltip" data-placement="bottom" title="Xóa thư" style="margin-left:3%;"><span class="fa fa-trash-o"></span></a>
               </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-inbox">

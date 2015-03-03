@@ -155,7 +155,7 @@
                  <span>{{$message->updated_at}}</span> 
                     <a onclick="importantInbox({{$message->id}})" href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom" title="Thư quan trọng"><span class="fa fa-star-o"></span></a>
                      <a href="{{URL::route('reply_inbox',array($message->id))}}" data-toggle="tooltip" data-placement="bottom" title="Trả lời thư" style="margin-left:3%;"><span class="fa fa-reply"></span></a>
-                     <a href="{{URL::route('delete_inbox',array($message->id))}}" data-toggle="tooltip" data-placement="bottom" title="Xóa thư" style="margin-left:3%;"><span class="fa fa-trash"></span></a>
+                     <a href="{{URL::route('delete_inbox',array($message->id))}}" data-toggle="tooltip" data-placement="bottom" title="Xóa thư" style="margin-left:3%;"><span class="fa fa-trash-o"></span></a>
 
               </div>
             </div>
