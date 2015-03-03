@@ -565,3 +565,7 @@ a.contact-admin:hover{
 	border-bottom: solid #e7e7e7 1px;
 	font-weight: bold;
 }
+.join-search label{
+	font-weight: normal;
+	color: red;
+}

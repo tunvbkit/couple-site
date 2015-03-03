@@ -143,7 +143,7 @@
 			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 left-inbox">
 		        <div class="table-responsive div-table">
 	  				<div class="table-right">
-						<form action="{{URL::route('sub_inbox')}}" method="POST" role="form">
+						<form id="form-send-inbox" action="{{URL::route('sub_inbox')}}" method="POST" role="form">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
 									<label>Lĩnh vực</label>
@@ -162,7 +162,7 @@
 									<label>Người nhận</label>
 								</div>
 								<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 join-search">
-									<input type="text" name="to-business" id="to-business" class="form-control" value="" autocomplete="off" onkeyup="searchVendor()">
+									<input type="text" name="to_business" id="to-business" class="form-control" value="" autocomplete="off" onkeyup="searchVendor()">
 									<input type='hidden' name="id-to-business" value ="" class="id-to-business">
 								</div>
 								
@@ -201,6 +201,19 @@
 	</div>
 
 	<script type="text/javascript">
+		 $('#form-send-inbox').validate({
+            rules:{
+                to_business:{
+                required:true
+                }
+            },
+            messages:{
+                to_business:{
+                    required:"Chưa chọn người nhận"
+                }
+            }
+        });
+
 		function loadArrive () {
 			$.ajax({
 	        type:"post",
@@ -263,6 +276,8 @@
 	     		 }
 	        }); 
 		}
+
+
 	</script>
 	
 @endsection()
