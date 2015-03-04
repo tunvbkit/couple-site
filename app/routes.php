@@ -68,6 +68,8 @@ Route::group(array('before'=>'b_check_login'),function(){
 	// comment
 	Route::post('active-comment',array('as'=>'active_comment','uses'=>'BusinessController@activeComment'));
 	Route::post('read-comment',array('as'=>'read_comment','uses'=>'BusinessController@readComment'));
+	// article
+	// Route::get('article/')
 	
 });
 

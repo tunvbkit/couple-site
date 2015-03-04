@@ -29,11 +29,29 @@ class DatabaseSeeder extends Seeder {
         $this->call('WeddingWebsiteTableSeeder');
         $this->call('TabWebsiteTableSeeder');
         $this->call('UserCheckListTableSeeder');
+        $this->call('TaxonomyTableSeeder');
 
 	}
 
 }
-// tao photo
+// tao taxonomy
+// tao checklist
+class TaxonomyTableSeeder extends Seeder{
+    public function run()
+    {
+         DB::table('taxonomies')->delete();
+         Taxonomy::create( array(
+            'name'=>'Kinh doanh',
+            'description'=>'kiến thức về kinh doanh'
+            )
+         );
+         Taxonomy::create( array(
+            'name'=>'Quản lí',
+            'description'=>'Quản lí'
+            )
+         );
+    }
+}
 
 // tao checklist
 class UserCheckListTableSeeder extends Seeder{
