@@ -69,8 +69,9 @@ Route::group(array('before'=>'b_check_login'),function(){
 	Route::post('active-comment',array('as'=>'active_comment','uses'=>'BusinessController@activeComment'));
 	Route::post('read-comment',array('as'=>'read_comment','uses'=>'BusinessController@readComment'));
 	// article
-	// Route::get('article/')
-	
+	Route::get('article/{slug_taxonomy}',array('as'=>'list_article','uses'=>'ArticleController@listArticle'));
+	Route::get('article/{slug_taxonomy}/{slug_article}',array('as'=>'detail_article','uses'=>'ArticleController@detailArticle'));
+	Route::get('search-artilce',array('as'=>'search_article','uses'=>'ArticleController@searchArticle'));
 });
 
 

@@ -569,3 +569,64 @@ a.contact-admin:hover{
 	font-weight: normal;
 	color: red;
 }
+/*article*/
+.article{
+	min-height: 400px;
+}
+.taxonomy h4{
+	margin-top: 2%;
+	border-bottom: solid #e7e7e7 1px;
+	font-weight: bold;
+}
+.list-article{
+	border: solid #e7e7e7 1px;
+	margin-bottom: 0%;
+}
+.sub-article{
+	border-bottom: solid #e7e7e7 1px;
+}
+.btn-default{
+	height: 34px;
+}
+.sub-article h6{
+	display: inline;
+}
+.sub-article h4{
+	margin-bottom: 0px;
+}
+.search-detail{
+	margin-top: 2%;
+}
+.sub-article h4 a{
+	text-decoration: none;
+}
+.count-article{
+	border: solid #e7e7e7 1px;
+}
+.detail-content{
+	text-align: justify;
+	margin-top: 2%;
+}
+.other-article{
+	border-top: solid #e7e7e7 1px;
+}
+.ul-other{
+	padding-left: 0%;
+}
+.ul-other li{
+	background: url("../../../icon/dot.gif") no-repeat scroll left 17px rgba(0, 0, 0, 0);
+    padding: 5px 0 0 10px;
+	list-style: none;
+}
+.ul-other li a{
+	text-decoration: none;
+}
+.view-other{
+	margin-bottom: 2%;
+}
+.view-other a{
+	text-decoration: none;
+}
+.print-article h4{
+	font-weight: bold;
+}

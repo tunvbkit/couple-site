@@ -79,8 +79,8 @@
           		Kiến thức</a>
           <ul class="dropdown-menu menu-dashboard" role="menu">
             <li><a href="{{URL::route('list_article',array('kinh-doanh'))}}">Kinh doanh</a></li>
-            <li><a href="#">Quản lí</a></li>
-            <li><a href="#">Đàm phán</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
           </ul>
         </li>
         <li class="dropdown">
@@ -98,77 +98,48 @@
 </nav>
 @endsection()
 @section('content')
-<div class="container content-dashboard">
-    <h3>Thông tin vendor</h3>
+<div class="container article">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 taxonomy">
+    <h4>Kinh doanh</h4>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 infor-vendor">
-        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 avatar-vendor">
-           <a >
-              @if(empty($vendor->avatar))
-              <img  class="img-responsive img-thumbnail" src="{{Asset('../images/avatar/default.jpg')}}">
-              @else
-              <img  class="img-responsive img-thumbnail" src="{{Asset("../{$vendor->avatar}")}}">
-              @endif              
-           </a>
-        </div>
-        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 p-infor-vendor">
-          <p>Tên công ty : {{$vendor->name}}</p>
-          <p>Lĩnh vực : {{Category::where('id',$vendor->category)->get()->first()->name}}</p>
-          <p>Địa điểm : {{Location::where('id',$vendor->location)->get()->first()->name}}</p>
-          <p>Số điện thoại : {{$vendor->phone}}</p>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 description-vendor">
-        <h4 >Mô tả chi tiết</h4>
-        <p>{{$vendor->about}}</p>
-      </div>
-
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 description-vendor thongke" style="margin-bottom:3%;">
-        <h4 >Bảng xếp hạng :</h4>
-        <p>Tên vendor cao nhất :</p>
-        <p>Lượt truy cập :</p>
-        <p>Đánh giá :</p>
-        <p>Lượt bình luận :</p>
-        <div class="text-center btn-search">
-          <a href="" class="btn btn-responsive">Xem thêm các vendor khác</a>
-        </div>
-
-      </div>
+      
     </div>
 
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 infor-count">         
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center top-h4">
-            <h4>Thông tin vendor</h4>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 thongke">
-            <p>Lượt truy cập : {{$vendor->click}}</p>
-           <p>Đánh giá: 
-              @if(!empty( BusinessController::getRating($vendor->id)->rating ))
-              {{BusinessController::getRating($vendor->id)->rating}}
-              @endif
-            </p>
-            <p>
-              <a href="{{URL::route('b_comment')}}">Lượt bình luận @if (!empty($countCommentNoActive))
-                  <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
-                @endif  :
-              </a>
-             
-                {{$c_count}}
-            </p>
-            <p><a href="{{URL::route('b_inbox')}}">Hộp thư  @if (!empty($new_inbox))
-                  <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
-                @endif  : </a>{{$inbox}} 
-               
-            </p>
-            
-          </div>
-      </div>
+        <form action="{{URL::route('search_article')}}" method="GET" role="form">
+          <div class="input-group">
+              <input type="text" name="search_name" class="form-control" placeholder="Từ khóa tìm kiếm">
+              <input type="hidden" name="taxonomy" value="{{$slug_taxonomy}}">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit"><span class="fa fa-search-plus"></span></button>
+              </span>
+            </div><!-- /input-group -->
+        </form>
     </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-article">
+    @foreach($articles as $article)
+    <div class="sub-article">
+      <h4>
+        <a href="{{URL::route('detail_article',array((Taxonomy::where('id',$article->taxonomy)->get()->first()->slug),$article->slug))}}">{{$article->title}}
 
+        </a>
+      </h4>
+      <span><h6>Người đăng: Nguyễn</h6></span> | <span><h6>{{$article->created_at}}</h6></span> | <span><h6>Nhận xét: 10</h6></span>
+      <p>{{$article->description}}</p>
+    </div>
+    @endforeach()
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+    @if(!empty($title))
+      {{$articles->appends(array('name-search' => $title,'taxonomy'=>$slug_taxonomy))->links()}}
+    @else
+      {{$articles->links()}}
+    @endif
+    
+  </div>
 </div>
-
-@endsection()
-@stop()
+@endsection
+@stop
