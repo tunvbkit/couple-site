@@ -1,6 +1,6 @@
 @extends('business.main-dashboard')
 @section('title')
-  Bình luận
+  Nhận xét
 @endsection()
 @section('nav-bar')
 	<nav class="navbar navbar-default">
@@ -89,7 +89,7 @@
             <ul class="dropdown-menu menu-dashboard" role="menu">
               <li><a href="{{URL::route('business.index')}}"><span class="fa fa-wrench"></span>Hồ sơ</a></li>
               <li><a href="{{URL::route('b_inbox')}}"><span class="fa fa-envelope-o"></span>Hộp thư</a></li>
-              <li><a href="{{URL::route('b_comment')}}"><span class="fa fa-comment-o"></span>Bình luận</a></li>
+              <li><a href="{{URL::route('b_comment')}}"><span class="fa fa-comment-o"></span>Nhận xét</a></li>
               <li><a href="{{URL::route('b_logout')}}"><span class="fa fa-sign-out"></span>Thoát</a></li>
             </ul>
         </li>
@@ -100,13 +100,13 @@
 @section('content')
 	<div class="container inbox">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 head-inbox">
-			<h4>Bình luận</h4>
+			<h4>Nhận xét</h4>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 note">
           <h4>Thống kê</h4>
-          <p>Bình luận chưa xem : {{$c_countNoActive}}</p>
-          <p>Tổng bình luận : {{$c_count}}</p>
+          <p>Nhận xét chưa xem : {{$c_countNoActive}}</p>
+          <p>Tổng nhận xét : {{$c_count}}</p>
       </div> 
       <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
          <div class="table-responsive div-table">

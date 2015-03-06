@@ -89,7 +89,7 @@
             <ul class="dropdown-menu menu-dashboard" role="menu">
               <li><a href="{{URL::route('business.index')}}"><span class="fa fa-wrench"></span>Hồ sơ</a></li>
               <li><a href="{{URL::route('b_inbox')}}"><span class="fa fa-envelope-o"></span>Hộp thư</a></li>
-              <li><a href="{{URL::route('b_comment')}}"><span class="fa fa-comment-o"></span>Bình luận</a></li>
+              <li><a href="{{URL::route('b_comment')}}"><span class="fa fa-comment-o"></span>Nhận xét</a></li>
               <li><a href="{{URL::route('b_logout')}}"><span class="fa fa-sign-out"></span>Thoát</a></li>
             </ul>
         </li>
@@ -151,7 +151,7 @@
               @endif
             </p>
             <p>
-              <a href="{{URL::route('b_comment')}}">Lượt bình luận @if (!empty($countCommentNoActive))
+              <a href="{{URL::route('b_comment')}}">Lượt nhận xét @if (!empty($countCommentNoActive))
                   <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
                 @endif  :
               </a>
