@@ -162,7 +162,7 @@
 									<label>Người nhận</label>
 								</div>
 								<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 join-search">
-									<input type="text" name="to_business" id="to-business" class="form-control" value="" autocomplete="off" onkeyup="searchVendor()">
+									<input type="text" name="to_business" id="to-business" class="form-control" value="" autocomplete="off" onkeyup="searchVendor()" style="width:60%;display:inline;">
 									<input type='hidden' name="id-to-business" value ="" class="id-to-business">
 								</div>
 								
@@ -204,12 +204,17 @@
 		 $('#form-send-inbox').validate({
             rules:{
                 to_business:{
-                required:true
+                required:true,
+                remote:{
+                	url:'{{URL::route('check_vendor_in_send')}}',
+                	type:"POST"
+                }
                 }
             },
             messages:{
                 to_business:{
-                    required:"Chưa chọn người nhận"
+                    required:"Chưa chọn người nhận",
+                    remote:"Tên người nhận không tồn tại"
                 }
             }
         });
@@ -272,6 +277,8 @@
 	        success:function(data){
 	        	$('.id-to-business').val(id_vendor);
 	         	$('#to-business').val(data.name);
+	         	$('#to-business').focus();
+	         	$('#to-business').blur();
 	         	$('.result-search').remove();
 	     		 }
 	        }); 

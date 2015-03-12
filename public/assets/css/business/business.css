@@ -568,6 +568,7 @@ a.contact-admin:hover{
 .join-search label{
 	font-weight: normal;
 	color: red;
+	margin-left: 2%;
 }
 /*article*/
 .article{

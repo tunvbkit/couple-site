@@ -378,6 +378,9 @@ class BusinessController extends \BaseController {
 													->with('n_arrive',$n_arrive)
 													->with('n_sent',$n_sent);
 	}
+	public function checkNameSend(){
+		return (Vendor::where("name",Input::get('to_business'))->count()==0? "false": "true");
+	}
 	public function subInbox(){
 		$id_vendor = $this->getVendor()->id;
 		$category = Input::get('category');

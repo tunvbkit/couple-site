@@ -52,6 +52,7 @@ Route::group(array('before'=>'b_check_login'),function(){
 	Route::get('important-inbox',array('as'=>'load_important','uses'=>'BusinessController@loadImportant'));
 	// Route::post('write-inbox',array('as'=>'send_message','uses'=>'BusinessController@sendMessage'));
 	Route::get('write-inbox',array('as'=>'write_inbox','uses'=>'BusinessController@sendMessage'));
+	Route::post('check-vendor-name',array('as'=>'check_vendor_in_send','uses'=>'BusinessController@checkNameSend'));
 	Route::post('sub-inbox',array('as'=>'sub_inbox','uses'=>'BusinessController@subInbox'));
 	Route::post('search-vendor',array('as'=>'search_vendor','uses'=>'BusinessController@searchVendor'));
 	Route::post('name-vendor',array('as'=>'name_vendor','uses'=>'BusinessController@getNameVendor'));
