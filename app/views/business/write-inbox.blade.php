@@ -214,7 +214,7 @@
             messages:{
                 to_business:{
                     required:"Chưa chọn người nhận",
-                    remote:"Tên người nhận không tồn tại"
+                    remote:"Tên nhà cung cấp không tồn tại"
                 }
             }
         });

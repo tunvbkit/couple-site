@@ -525,6 +525,7 @@ a.contact-admin:hover{
 	padding: 0px;
 	list-style: none;
 	border: solid #e7e7e7 1px;
+	width: 60%;
 }
 .result-search li{
 	padding-left: 2%;
