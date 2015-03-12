@@ -5,7 +5,7 @@
 			<input type="hidden" class="li-result{{$vendor->id}}" value='{{$vendor->id}}'>
 		@endforeach()	
 	@else
-		<li>Tên nhà cung cấp không tồn tại</li>
+		<li>Tên người nhận không tồn tại</li>
 	@endif
 </ul>
 
