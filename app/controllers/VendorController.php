@@ -517,6 +517,7 @@ class VendorController extends \BaseController {
 				break;
 			case '2':
 				$request->title = "Hãy gọi cho tôi";
+				$request->phone = $phone;
 				break;
 			default:
 				$request->title = "Trả lời câu hỏi cho tôi";
