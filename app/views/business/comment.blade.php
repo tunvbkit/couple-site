@@ -163,7 +163,7 @@
               data:{id_comment:id_comment},
               url:"{{URL::route('read_comment')}}",
               success:function(){
-                window.location.href = baseUrl+ "/business/detail-comment/"+id_comment;
+                window.location.href = baseUrl+ "/business/detail-review/"+id_comment;
               }
               }); 
         }
