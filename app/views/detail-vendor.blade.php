@@ -728,6 +728,8 @@
 			          	},
 			          url:"{{URL::route('send_contact')}}",
 			          success:function(){
+			          	$('.form').remove();
+			          	$('.contact-me > h6').append('<div style="border :solid 1px #0072ff;margin-top:5%;"><span class="fa fa-check-circle" style="position:absolute;color:0072ff;right:7%;"></span><p style="color:#0072ff;padding:7% 2%;margin:0%;" class="text-center">Yêu cầu của bạn đã được gửi đi</p></div>')
 			           
 			          }
 			          }); 
