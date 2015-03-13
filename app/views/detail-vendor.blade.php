@@ -645,59 +645,20 @@
 									  <option value="3"> Đặt một câu hỏi</option>
 								  </select>
 							    </div><br/>
-							    <div>
-							    <ul style="width:100%;"id="options" >
-							  		<li style="display:none;list-style:none;list-style-position:inside; "><div id="number1" calss="number" ></div></li>
-								    <li style="display:none;list-style:none;list-style-position:inside;"><div id="number2" calss="number" >
-								    	 <div class="form-group">
-											<div class="">
-												   <input  style="margin-left: -19px;" type="text" class="form-control" id="Input-phonenumber" value="" >
-											</div>
-										</div>
-										<p style="margin-left:35px; ">e.g.xxx.xxx.xxxx</p>
-										<h6 style="margin-left:-45px; font-weight:bold " >Thời gian tốt nhất để liên lạc:</h6>
-										<div id="check-call">											
-												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-													<div class="checkbox" style="margin-right: -24px;"  >
-													
-													    <input type="checkbox" value="" >
-														Bất kì thời gian
-												
-													</div>
-
-													<div class="checkbox" >
-													
-													    <input type="checkbox" value="">
-														Hằng ngày
-													  
-													</div>
-												</div>
-												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" >
-													<div class="checkbox">
-													  
-													    <input type="checkbox" value="">
-														Mỗi đêm
-													
-													</div>
-													<div class="checkbox"style="margin-right: -15px;">
-													 
-													    <input type="checkbox" value="">
-														Mỗi cuối tuần
-													
-													</div>
-
-												</div>
-											
-										</div>
-
-								    </div></li><!-- -endcall-div -->
+							    <div class="form-group">
+							    <ul style="width:100%;" id="options" >
+							  		<li style="display:none;list-style:none;list-style-position:inside;margin-top:-12%; ">
+							  		</li>
+								    <li style="display:none;list-style:none;list-style-position:inside;margin-top:-12%;">
+								    	<div class="form-group">											
+											<input  style="margin-left: -24px;width:103%;" type="text" class="form-control" id="input-phonenumber" value="" placeholder="Số điện thoại" >
+									    </div>
+									</li><!-- -endcall-div -->
 								    
-								    <li style="display:none ; list-style:none">
-								    	<div id="number3" class="number">
-								    	 	<div class="form-group">								    	
-								    			<textarea class="form-control" style="margin-left: -17px;width:100%;height:100px;resize: none;"></textarea> 
-								    		</div>
-								   		 </div>
+								    <li style="display:none ; list-style:none; margin-top:-12%;">
+							    	 	<div class="form-group">								    	
+							    			<textarea class="form-control" id="input-content" style="margin-left: -24px;width:103%;height:100px;resize: none;"></textarea> 
+							    		</div>
 									</li>
 								 </ul>
 								 </div>
@@ -711,10 +672,8 @@
 										});
 
 				        			</script>
-							  <div class="form-group" style="margin-left: 60px">
-							    <div class="">
-							      <button type="button" style="margin-top: 14px;" class="btn btn-skin btn-lg" id="btn-contact"> Liên lạc</button>
-							  </div>
+						  	<div class="form-group text-center" style="margin-top:-20%;">
+							    <a onclick='sendContact({{$vendor->id}})' class="btn btn-primary btn-responsive btn-lg" id="btn-contact">Liên lạc</a>
 							</div>
 							 <div class="form-group"style="margin-left:72px">
 							   <a href="" class="compare-btn">
@@ -755,6 +714,24 @@
 				        $("#map"+" iframe").attr("src",src);
 				    }
 				};
+				function sendContact(id){
+					 $.ajax({
+			          type:"post",
+			          data:{id_vendor:id,
+			          		firstname:$('#input-firstname').val(),
+			          		lastname:$('#input-lastname').val(),
+			          		email:$('#input-email').val(),
+			          		weddingdate:$('#input-date').val(),
+			          		phone:$('#input-phonenumber').val(),
+			          		title:$('#selection-contact').val(),
+			          		content:$('#input-content').val()
+			          	},
+			          url:"{{URL::route('send_contact')}}",
+			          success:function(){
+			           
+			          }
+			          }); 
+					}
 			</script>
 		</div>
 @endsection

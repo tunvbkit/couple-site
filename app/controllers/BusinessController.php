@@ -554,4 +554,21 @@ class BusinessController extends \BaseController {
 		$id_comment = Input::get('id_comment');
 		VendorComment::where('id',$id_comment)->update(array('active_business'=>1));
 	}
+	public function request(){
+		$id_vendor = $this->getVendor()->id;
+		$requests = Contact::where('vendor',$id_vendor)->get();
+		return View::make('request.request')->with('requests',$requests);
+	}
+	public function detailRequest($id){
+		$request = Contact::where('id',$id)->get()->first();
+		return View::make('request.detail-request')->with('request',$request);
+	}
+	public function deleteRequest($id){
+		Contact::where('id',$id)->delete();
+		return Redirect::to('business/request');
+	}
+	public function postActiveContact(){
+		$id_request = Input::get('id_request');
+		Contact::where('id',$id_request)->update(array('active'=>1));
+	}
 }

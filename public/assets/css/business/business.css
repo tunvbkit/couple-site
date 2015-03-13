@@ -632,3 +632,27 @@ a.contact-admin:hover{
 .print-article h4{
 	font-weight: bold;
 }
+/*request*/
+.head-contact{
+	border-bottom: solid #e7e7e7 1px;
+}
+.head-contact h4{
+	margin-bottom: 0px;
+	margin-top: 2%;
+	font-weight: bold;
+}
+.detail-title-contact{
+	margin: 0.5% 0%;
+	border-bottom: solid #e7e7e7 1px;
+}
+.detail-title-contact p{
+	font-weight:bold;
+	margin: 0;
+}
+.detail-from-contact{
+	margin: 0.5% 0%;
+	border-bottom: solid #e7e7e7 1px;
+}
+.tab-request a{
+	text-decoration: none;
+}

@@ -34,7 +34,11 @@ Route::group(array('prefix'=>'business'),function(){
 	Route::get('review',array('before'=>'b_check_login','as'=>'b_comment','uses'=>'BusinessController@comment'));
 	Route::get('detail-review/{id_comment}',array('before'=>'b_check_login','as'=>'detail_comment','uses'=>'BusinessController@detailComment'));
 	Route::get('delete-review/{id_comment}',array('before'=>'b_check_login','as'=>'delete_comment','uses'=>'BusinessController@deleteComment'));
-	
+	//request
+	Route::get('request',array('before'=>'b_check_login','as'=>'b_request','uses'=>'BusinessController@request'));
+	Route::get('detail-request/{id}',array('before'=>'b_check_login','as'=>'detail_request','uses'=>'BusinessController@detailRequest'));
+	Route::get('delete-request/{id}',array('before'=>'b_check_login','as'=>'delete_request','uses'=>'BusinessController@deleteRequest'));
+	Route::post('post-active-contact',array('as'=>'post_active_contact','uses'=>'BusinessController@postActiveContact'));
 });
 Route::group(array('before'=>'b_check_login'),function(){		
 	// Route::get('profile',array('as'=>'b_profile','uses'=>'BusinessController@profile'));
@@ -73,6 +77,7 @@ Route::group(array('before'=>'b_check_login'),function(){
 	Route::get('article/{slug_taxonomy}',array('as'=>'list_article','uses'=>'ArticleController@listArticle'));
 	Route::get('article/{slug_taxonomy}/{slug_article}',array('as'=>'detail_article','uses'=>'ArticleController@detailArticle'));
 	Route::get('search-artilce',array('as'=>'search_article','uses'=>'ArticleController@searchArticle'));
+	//request
 });
 
 
@@ -147,6 +152,9 @@ Route::get('comment-vendor/{slug_cate}/{slug_vendor}', array("before"=>"check_lo
 Route::get('reviews/{slug_cate}/{slug_vendor}', array("before"=>"check_login", 'as'=>'reviews', 'uses'=>'VendorController@show'));
 
 Route::post('vendor/rating',array('as'=>'rating','uses'=>'VendorController@ratingVendor'));
+Route::post('vendor/contact',array('as'=>'send_contact','uses'=>'VendorController@sendContact'));
+
+
 /* End Route vendor */
 
 

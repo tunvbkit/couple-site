@@ -497,9 +497,32 @@ class VendorController extends \BaseController {
 		$count = Vendor::where('id',$id_vendor)->get()->first()->click +1 ;		
 		Vendor::where('id',$id_vendor)->update(array('click'=>$count));
 	}
-
-
 	
-
-
+	public function sendContact(){
+		$firstname = Input::get('firstname');
+		$lastname = Input::get('lastname');
+		$email = Input::get('email');
+		$weddingdate = Input::get('weddingdate');
+		$phone = Input::get('phone');
+		$title =Input::get('title');
+		$content = Input::get('content');
+		$request = new Contact();
+		$request->user = $lastname." ".$firstname;
+		$request->weddingdate = $weddingdate;
+		$request->email = $email;
+		$request->vendor = Input::get('id_vendor');
+		switch ($title) {
+			case '1':
+				$request->title = "Gửi thông tin cho tôi";
+				break;
+			case '2':
+				$request->title = "Hãy gọi cho tôi";
+				break;
+			default:
+				$request->title = "Trả lời câu hỏi cho tôi";
+				$request->content = $content;
+				break;
+		}
+		$request->save();
+	}
 }
