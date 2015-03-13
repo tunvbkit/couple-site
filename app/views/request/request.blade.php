@@ -151,6 +151,7 @@
           </tbody>
         </table>
       </div>
+      <div class="text-center">{{$requests->links()}}</div>
     </div>
 	</div>
 

@@ -556,7 +556,7 @@ class BusinessController extends \BaseController {
 	}
 	public function request(){
 		$id_vendor = $this->getVendor()->id;
-		$requests = Contact::where('vendor',$id_vendor)->get();
+		$requests = Contact::where('vendor',$id_vendor)->orderBy('created_at',"DESC")->paginate(10);
 		return View::make('request.request')->with('requests',$requests);
 	}
 	public function detailRequest($id){
