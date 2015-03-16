@@ -69,7 +69,7 @@ Dashboard | thuna.vn
 				        </a>
 				        <ul class="dropdown-menu oneUl-tool" role="menu">
 					      	<li><a href="{{URL::route('user-checklist')}}" title="Danh sách công việc">
-					      			<span class="fa fa-file-text-o"></span>Danh sách công việc
+					      			<span class="fa fa-file-text-o"></span>   Danh sách công việc
 			 		      		</a>
 					      	</li>
 					      	<li><a href="{{URL::route('guest-list')}}" title="Danh sách khác mời">
@@ -77,7 +77,7 @@ Dashboard | thuna.vn
 			 		      		</a>
 					      	</li>
 					      	<li><a href="{{URL::route('budget')}}" title="Quăn lí ngân sách">
-					      			<span class="fa fa-dollar"></span>Quản lí ngân sách
+					      			<span class="fa fa-dollar"></span>     Quản lí ngân sách
 			 		      		</a>
 					      	</li>
 				        </ul>
@@ -87,7 +87,7 @@ Dashboard | thuna.vn
 							Âm nhạc
 				        </a>
 				        <ul class="dropdown-menu oneUl" role="menu">
-				          	<li role="presentation" class="dropdown-header"><span>Nghi lễ</span>
+				          	<li role="presentation" class="dropdown-header"><span style="font-weight: bold;">Nghi lễ</span>
 					            <div class="row">
 					              <div class="col-xs-6">
 					                <ul class="list-unstyled">
@@ -103,7 +103,7 @@ Dashboard | thuna.vn
 					              </div>
 					            </div>
 				          	</li>
-				          	<li role="presentation" class="dropdown-header"><span>Đãi tiệc</span>
+				          	<li role="presentation" class="dropdown-header"><span style="font-weight: bold;">Đãi tiệc</span>
 					            <div class="row">
 					              <div class="col-xs-6">
 					                <ul class="list-unstyled">

@@ -1214,7 +1214,7 @@ div.song_content button{
     color: #ef4c9b !important;
 }
 .navbar-nav > li > a {
-    color: #333333 !important;
+    color: #333 !important;
     outline: medium none;
     white-space: nowrap;
 }
@@ -1318,7 +1318,7 @@ div.song_content button{
 }
 .table-hover > tbody > tr.sum-table:hover > td,
 .table-hover > tbody > tr.sum-table:hover > th {
-  background-color: #555555;
+  background-color: #555;
 }
 .images_li {
     background-position: 9px center, center center;
@@ -1332,16 +1332,16 @@ div.song_content button{
 	text-align: left;
 	width: 220%!important;
 }
-.oneUl-vendor a:hover { color: #EA4398 !important; }
+.oneUl-vendor a:hover { color: #e92d91 !important; }
 .oneUl-tool {
 	text-align: left;
 	width: 140%!important;
 }
 .oneUl-tool li a{
 	font-size: 17px;
-	color: #428bca;
+	color: #333;
 }
 .oneUl-tool span{
 	margin-right: 6%;
 }
-.oneUl-tool a:hover { color: #EA4398 !important; }
+.oneUl-tool a:hover { color: #e92d91 !important; }

@@ -42,7 +42,7 @@ Danh sách công việc | thuna.vn
 							Âm nhạc
 				        </a>
 				        <ul class="dropdown-menu oneUl" role="menu">
-				          	<li role="presentation" class="dropdown-header"><span>Nghi lễ</span>
+				          	<li role="presentation" class="dropdown-header"><span style="font-weight:bold;">Nghi lễ</span>
 					            <div class="row">
 					              <div class="col-xs-6">
 					                <ul class="list-unstyled">
@@ -58,7 +58,7 @@ Danh sách công việc | thuna.vn
 					              </div>
 					            </div>
 				          	</li>
-				          	<li role="presentation" class="dropdown-header"><span>Đãi tiệc</span>
+				          	<li role="presentation" class="dropdown-header"><span style="font-weight:bold;">Đãi tiệc</span>
 					            <div class="row">
 					              <div class="col-xs-6">
 					                <ul class="list-unstyled">

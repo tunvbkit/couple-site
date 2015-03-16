@@ -103,7 +103,7 @@ Danh sách Dịch vụ | thuna.vn
 						Âm nhạc
 			        </a>
 			        <ul class="dropdown-menu oneUl" role="menu">
-			          	<li role="presentation" class="dropdown-header"><span>Nghi lễ</span>
+			          	<li role="presentation" class="dropdown-header"><span style="font-weight:bold;">Nghi lễ</span>
 				            <div class="row">
 				              <div class="col-xs-6">
 				                <ul class="list-unstyled">
@@ -119,7 +119,7 @@ Danh sách Dịch vụ | thuna.vn
 				              </div>
 				            </div>
 			          	</li>
-			          	<li role="presentation" class="dropdown-header"><span>Đãi tiệc</span>
+			          	<li role="presentation" class="dropdown-header"><span style="font-weight:bold;" >Đãi tiệc</span>
 				            <div class="row">
 				              <div class="col-xs-6">
 				                <ul class="list-unstyled">
@@ -161,8 +161,8 @@ Danh sách Dịch vụ | thuna.vn
 		  	<div class="row">
 		  		<div class="col-md-1"></div>
 		  		<div class="col-md-6">
-		  			Kết quả tìm kiếm với 
-		  			<span style="color: #19B5BC" >
+		  			Kết quả tìm kiếm: 
+		  			<span style="color: #e92d91" >
 		  				@if( Input::get('name')==true )
 			   				{{Input::get('name')}}
 			   				<input id="nameGet" type="hidden" value="{{Input::get('name')}}" />
@@ -170,8 +170,8 @@ Danh sách Dịch vụ | thuna.vn
 			   				Từ tìm kiếm
 			   			@endif
 			   		</span> 
-			   		Địa điểm: 
-			   		<span style="color: #19B5BC" >
+			   		- Địa điểm: 
+			   		<span style="color: #e92d91" >
 			   			
 			   			@if( Input::get('location')==true )
 			   				{{Input::get('location')}}
@@ -187,8 +187,8 @@ Danh sách Dịch vụ | thuna.vn
 			   			@endif
 
 			   		</span> 
-			   		Danh mục: 
-			   		<span style="color: #19B5BC" >
+			   		- Danh mục: 
+			   		<span style="color: #e92d91" >
 
 			   			@if( Input::get('category')==true )
 			   				{{Input::get('category')}}
@@ -253,7 +253,7 @@ Danh sách Dịch vụ | thuna.vn
 			   		?>
 	                <input id="searchTxt" name="category" type="text" data-toggle="dropdown" class="input-text form-control input-lg" placeholder="Danh mục" value="{{$nameCategory}}" readonly style="cursor:pointer;" >
 			    	<!-- <input id="searchId" name="category_id" type="hidden"> -->
-			    	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+			    	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="margin-top: 0;padding-left: 15px;top: 187px;">
 					    <li role="presentation">
 					    	<div class="row" id="menu">
 						    	<div class="col-xs-6">
@@ -304,9 +304,9 @@ Danh sách Dịch vụ | thuna.vn
 			<div class="col-md-7 tab-pane active" id="display-photo" class="margin-footer">
 				<div class="row">
 					@if( count($results)==0 )
-						<h2>
+						<h4 style="margin: 30px 0 30px 30px;">
 							Không có kết quả nào được tìm thấy
-						</h2>
+						</h4>
 					@else
 
 						@foreach($results as $key=>$vendor)
