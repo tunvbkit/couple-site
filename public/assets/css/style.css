@@ -36,7 +36,7 @@ body {
     /*font-family: Arial;*/
     font-family: "OpenSan-Regular";
 	font-weight: 300;
-    color: #666;
+    color: #333;
     background-color: #fff;
 	font-size: 16px;
     line-height: 1.6em;
@@ -1063,7 +1063,7 @@ a.btn:focus{
 	font-size: 20px;
 }
 .caption>.name a{
-	color: #19B5BC;
+	color: #428bca;
 }
 .caption>.website{
 	text-align: justify;
@@ -1079,13 +1079,12 @@ a.btn:focus{
 	padding-bottom: 3px;
 	text-transform: uppercase;
 	color: #FFFFFF;
-	background: #AAAAAA;
+	background: #fecd6f;
 	text-align: center;
 }
 
 .ratings {
     padding-right: 10px;
-    padding-left: 10px;
     color: #d17581;
 }
 .thumbnail {
@@ -1099,7 +1098,6 @@ a.btn:focus{
 
 .compare-photo{
 	background-color: #edb97b;
-    border: 1px solid #3cb6bc;
     border-radius: 6px;
     padding: 5px 3px 0;
     margin: 0% 0% 2% 53%;
@@ -1128,15 +1126,15 @@ a.btn:focus{
 }
 .compare-list{
     background-color: #edb97b;
-    border: 1px solid #3cb6bc;
     border-radius: 6px;
-    padding: 1% 0 0 1%;
+    padding: 1% 0 0 0;
     margin-left: 80%;
-    width: 21%;
+    width: 22%;
 }
 
 label.error{
 	color: #000;
+	margin-left: 5px;
 }
 
 
@@ -2858,7 +2856,7 @@ a.contact-admin:hover{
 }
 .oneUl-tool li a{
 	font-size: 17px;
-	color: #428bca;
+	color: #333;
 }
 .oneUl-tool span{
 	margin-right: 6%;

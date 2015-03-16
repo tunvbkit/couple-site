@@ -61,7 +61,7 @@ So sánh dịch vụ
 			        </ul>
 		      	</li> <!--/music-->
 
-		      	@if((Session::has('email'))
+		      	@if(Session::has('email'))
 		      	<li><a href="{{URL::to('website')}}" title="Website cưới">
 		        		Website cưới
 		        	</a>

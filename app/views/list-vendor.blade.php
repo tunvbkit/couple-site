@@ -79,7 +79,7 @@ Danh sách Dịch vụ | thuna.vn
 				        </a>
 				        <ul class="dropdown-menu oneUl-tool" role="menu">
 					      	<li><a href="{{URL::route('user-checklist')}}" title="Danh sách công việc">
-					      			<span class="fa fa-file-text-o"></span>Danh sách công việc
+					      			<span class="fa fa-file-text-o"></span>   Danh sách công việc
 			 		      		</a>
 					      	</li>
 					      	<li><a href="{{URL::route('guest-list')}}" title="Danh sách khác mời">
@@ -87,7 +87,7 @@ Danh sách Dịch vụ | thuna.vn
 			 		      		</a>
 					      	</li>
 					      	<li><a href="{{URL::route('budget')}}" title="Quăn lí ngân sách">
-					      			<span class="fa fa-dollar"></span>Quản lí ngân sách
+					      			<span class="fa fa-dollar"></span>      Quản lí ngân sách
 			 		      		</a>
 					      	</li>
 				        </ul>
@@ -291,7 +291,7 @@ Danh sách Dịch vụ | thuna.vn
 							});
 						</script>	
 				    </ul>
-				    <button type="submit" class="btn btn-skin btn-lg btn-block" id="list-vendor-search">Tìm kiếm</button>			
+				    <button type="submit" class="btn btn-primary btn-lg btn-block" id="list-vendor-search">Tìm kiếm</button>			
 		    	</form>
             </div>
         </div>
