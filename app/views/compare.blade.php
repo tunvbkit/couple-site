@@ -173,19 +173,19 @@ So sánh dịch vụ
 			<div class="compare_tr1">
 				
 			</div>
-			<div class="compare_tr2">
+			<div class="compare_tr2" style="text-align:center">
 				<p class="compare_tr_content"><b>Địa chỉ</b></p>
 			</div>
-			<div class="compare_tr3">
+			<div class="compare_tr3" style="text-align:center">
 				<p class="compare_tr_content"><b>Số điện thoại</b></p>
 			</div>
-			<div class="compare_tr4">
+			<div class="compare_tr4" style="text-align:center">
 				<p class="compare_tr_content"><b> Đánh giá</b></p>
 			</div>
-			<div class="compare_tr5">
+			<div class="compare_tr5" style="text-align:center">
 				<p class="compare_tr_content"><b> Gói dịch vụ</b></p>
 			</div>
-			<div class="compare_tr6">
+			<div class="compare_tr6" style="text-align:center">
 				<p class="compare_tr_content"><b> Nhà cung cấp</b></p>
 			</div>
 		</div>
@@ -282,8 +282,8 @@ So sánh dịch vụ
 									{{Vendor::find($vendor->id)->category()->get()->first()->name}}
 								</div>
 								<div class="compare_tr62">
-									<span style="color: #ff924c"><i class="glyphicon glyphicon-ok"></i></span>
-									<div><button type="button" class="btn btn-skin btn-theme btn-lg"><i class="glyphicon glyphicon-heart-empty"></i> Lưu lại</button></div>
+									<span style="color: #ff924c"><i class="glyphicon glyphicon-ok" style="margin-top: 10px;"></i></span>
+									<div><button type="button" class="btn btn-skin btn-theme btn-lg" style="margin-top: 18px; margin-right= 0px;"><i class="glyphicon glyphicon-heart-empty"></i> Lưu lại</button></div>
 								</div>
 							</div>
 					@endif
