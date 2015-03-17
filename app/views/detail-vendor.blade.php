@@ -291,7 +291,7 @@
 							  				</div>
 							  			@endif
 							  			<div class="text-center" style="margin: 6%">
-							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->get()->count()))
+							  				@if(VendorComment::where('vendor',$vendor->id)->get()->count() == true)
 							  				{{VendorComment::where('vendor',$vendor->id)->get()->count()}} nhận xét
 							  				@else
 							  					0 nhận xét
@@ -302,7 +302,7 @@
 						  			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 start-inline">
 						  				<div class="text-center">
 						  					5 sao <img src="{{Asset('images/star/5.jpg')}}" class="img-responsive" alt="">
-							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->where('rating',5)->get()->count()))
+							  				@if(VendorComment::where('vendor',$vendor->id)->where('rating',5)->get()->count() == true)
 						  						{{VendorComment::where('vendor',$vendor->id)->where('rating',5)->get()->count()}}
 							  				@else
 						  						0
@@ -310,7 +310,7 @@
 						  				</div>
 						  				<div class="text-center">
 						  					4 sao <img src="{{Asset('images/star/4.jpg')}}" class="img-responsive" alt="">
-							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->where('rating',4)->get()->count()))
+							  				@if(VendorComment::where('vendor',$vendor->id)->where('rating',4)->get()->count() == true)
 						  						{{VendorComment::where('vendor',$vendor->id)->where('rating',4)->get()->count()}}
 							  				@else
 						  						0
@@ -318,7 +318,7 @@
 						  				</div>
 						  				<div class="text-center">
 						  					3 sao <img src="{{Asset('images/star/3.jpg')}}" class="img-responsive" alt="">
-							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->where('rating',3)->get()->count()))
+							  				@if(VendorComment::where('vendor',$vendor->id)->where('rating',3)->get()->count() == true)
 						  						{{VendorComment::where('vendor',$vendor->id)->where('rating',3)->get()->count()}}
 							  				@else
 						  						0
@@ -326,7 +326,7 @@
 						  				</div>
 						  				<div class="text-center">
 						  					2 sao <img src="{{Asset('images/star/2.jpg')}}" class="img-responsive" alt="">
-							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->where('rating',2)->get()->count()))
+							  				@if(VendorComment::where('vendor',$vendor->id)->where('rating',2)->get()->count() == true)
 						  						{{VendorComment::where('vendor',$vendor->id)->where('rating',2)->get()->count()}}
 							  				@else
 						  						0
@@ -334,7 +334,7 @@
 						  				</div>
 						  				<div class="text-center">
 						  					1 sao <img src="{{Asset('images/star/1.jpg')}}" class="img-responsive" alt="">
-							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->where('rating',1)->where('rating',1)->get()->count()))
+							  				@if(VendorComment::where('vendor',$vendor->id)->where('rating',1)->where('rating',1)->get()->count() ==true)
 						  						{{VendorComment::where('vendor',$vendor->id)->get()->count()}}
 							  				@else
 						  						0
@@ -342,7 +342,7 @@
 						  				</div>
 						  				<div class="text-center">
 						  					0 sao <img src="{{Asset('images/star/0.jpg')}}" class="img-responsive" alt="">
-							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->where('rating',0)->get()->count()))
+							  				@if(VendorComment::where('vendor',$vendor->id)->where('rating',0)->get()->count() == true)
 						  						{{VendorComment::where('vendor',$vendor->id)->where('rating',0)->get()->count()}}
 							  				@else
 						  						0
