@@ -7,7 +7,7 @@
 					<span><i class="fa fa-file-text-o" style="font-size:3em;color: #b4b4b4"></i></span>				
 				</div>
 				<div class="div-3 text-center" >
-					<span style="color:#F44C9B;font-weight:bold;font-size:16px;">
+					<span style="color:#2a6496;font-weight:bold;font-size:16px;">
 						{{ChecklistController::countTasksComplete()}}/{{ChecklistController::countTasksToDo()}}
 						&nbsp |  &nbsp({{ChecklistController::countTasksCompletePercent()}}%)
 					</span>
@@ -24,7 +24,7 @@
 					<span><i class="fa fa-group" style="font-size:3em;color: #b4b4b4"></i></span>
 				</div>
 				<div class="div-3 text-center">
-					<span style="color:#F44C9B;font-weight:bold;font-size:16px;">
+					<span style="color:#2a6496;font-weight:bold;font-size:16px;">
 						{{GuestController::getGuestInvited()}}/{{GuestController::getAllGuest()}}
 						&nbsp |  &nbsp({{GuestController::getGuestInvitedPercent()}}%)
 					</span>
@@ -41,7 +41,7 @@
 					<span><i class="fa fa fa-dollar" style="font-size:3em;color: #b4b4b4"></i></span>
 				</div>
 				<div class="div-3 text-center">
-					<span style="color:#F44C9B;font-weight:bold;font-size:16px;">
+					<span style="color:#2a6496;font-weight:bold;font-size:16px;">
 						{{UserBudgetController::getDisplayMoneyTotal('pay')}}/{{UserBudgetController::getDisplayMoneyTotal('actual')}}
 						&nbsp |  &nbsp ({{UserBudgetController::getDisplayMoneyTotalPercent()}}%)
 					</span>
@@ -58,7 +58,7 @@
 					<span><i class="fa fa-globe" style="font-size:3em;color: #b4b4b4"></i></span>		
 				</div>
 				<div class="div-3 text-center" >
-					<span style="color:#F44C9B;font-weight:bold;font-size:16px;">
+					<span style="color:#2a6496;font-weight:bold;font-size:16px;">
 						{{WebsiteController::getCountDataPercent()}}%
 					</span>
 				</div>

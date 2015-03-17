@@ -304,7 +304,7 @@ Danh sách Dịch vụ | thuna.vn
 			<div class="col-md-7 tab-pane active" id="display-photo" class="margin-footer">
 				<div class="row">
 					@if( count($results)==0 )
-						<h4>
+						<h4 style="margin: 30px 0 30px 30px;">
 							Không có kết quả nào được tìm thấy
 						</h4>
 					@else
@@ -457,9 +457,9 @@ Danh sách Dịch vụ | thuna.vn
 			<div class="col-md-7 tab-pane " id="display-list">
 
 			@if( count($results)==0 )
-				<h4>
+				<h2>
 					Không có kết quả nào được tìm thấy
-				</h4>
+				</h2>
 				@else
 
 					@foreach($results as $key=>$vendor)
