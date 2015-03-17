@@ -1402,6 +1402,13 @@ div.vendor_content button{
 	width: 270%;
 	text-align: left;
 }
+.oneUl-vendor li a,.oneUl li a{
+	color: #333;
+}
+.oneUl-vendor li a:hover,.oneUl li a:hover{
+	color: #e92d91;
+}
+
 .oneUl a:hover { color: #EA4398 !important; }
 
 
