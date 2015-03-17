@@ -1345,3 +1345,9 @@ div.song_content button{
 	margin-right: 6%;
 }
 .oneUl-tool a:hover { color: #e92d91 !important; }
+.oneUl-vendor li a,.oneUl li a{
+	color: #333;
+}
+.oneUl-vendor li a:hover,.oneUl li a:hover{
+	color: #e92d91;
+}
