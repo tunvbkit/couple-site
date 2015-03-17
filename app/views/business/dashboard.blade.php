@@ -159,6 +159,11 @@
              
                 {{$c_count}}
             </p>
+            <p><a href="{{URL::route('b_inbox')}}">Yêu cầu  @if (!empty($new_countRequest))
+                  <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
+                @endif  : </a>{{$count_request}} 
+               
+            </p>
             <p><a href="{{URL::route('b_inbox')}}">Hộp thư  @if (!empty($new_inbox))
                   <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
                 @endif  : </a>{{$inbox}} 

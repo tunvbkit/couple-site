@@ -148,11 +148,15 @@ class BusinessController extends \BaseController {
 		$inbox = $this->countArrive();
 		$c_count = $this->countComment();
 		$countCommentNoActive = $this->countCommentNoActive();
+		$new_countRequest = Contact::where('vendor',$vendor->id)->where('active',0)->get()->count();
+		$countRequest = $this->countRequest();
 		return View::make('business.dashboard')->with('vendor',$vendor)
 												->with('new_inbox',$new_inbox)
 												->with('inbox',$inbox)
 												->with('c_count',$c_count)
-												->with('countCommentNoActive',$countCommentNoActive);
+												->with('countCommentNoActive',$countCommentNoActive)
+												->with('count_request',$countRequest)
+												->with('new_countRequest',$new_countRequest);
 	}
 	public function checkEmailCompany(){
 		return (User::where('email',Input::get('email'))->count() == 0 ? 'true':'false');
@@ -524,6 +528,10 @@ class BusinessController extends \BaseController {
 	public static function countCommentNoActive(){
 		$id_vendor = BusinessController::getVendor()->id;
 		return VendorComment::where('vendor',$id_vendor)->where('active_business',0)->get()->count();
+	}
+	public static function countRequest(){
+		$id_vendor = BusinessController::getVendor()->id;
+		return Contact::where('vendor',$id_vendor)->get()->count();
 	}
 	public function ActiveComment(){
 		$id_comment = Input::get('id_comment');
