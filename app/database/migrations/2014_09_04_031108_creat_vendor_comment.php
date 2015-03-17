@@ -20,6 +20,7 @@ class CreatVendorComment extends Migration {
 			$table->string("user_name");
 			$table->integer("vendor");
 			$table->string("content");
+			$table->integer("rating");
 			$table->integer('active');
 			$table->integer('active_business');
 			$table->timestamps();

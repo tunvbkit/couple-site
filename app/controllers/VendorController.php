@@ -123,11 +123,11 @@ class VendorController extends \BaseController {
 		$photoslides 		= PhotoSlide::where('vendor',$id)->get();	
 		$vendor 			= Vendor::where('id',$id)->get()->first();
 		
-		$rating_avg 		= Rating::where('vendor',$id)->get()->count();
+		$rating_avg 		= VendorComment::where('vendor',$id)->get()->count();
 		if($rating_avg>0)
 		{
 			$check_rating_avg = true;
-			$avg_rating 	  = round(Rating::where('vendor',$vendor->id)->avg('rating'),1);
+			$avg_rating 	  = round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1);
 		}
 		else
 		{
@@ -525,5 +525,21 @@ class VendorController extends \BaseController {
 				break;
 		}
 		$request->save();
+	}
+	public function postContentReview(){
+		$id_user = $this->id_user();
+		$id_vendor = Input::get('id-vendor-rating');
+		$rating = Input::get('count_rating');
+		$review = Input::get('text_review');
+		$comment = new VendorComment();
+		$comment->user = $id_user;
+		$comment->vendor = $id_vendor;
+		$comment->content = $review;
+		$comment->rating = $rating;
+		$comment->user_name = User::where('id',$id_user)->get()->first()->firstname.User::where('id',$id_user)->get()->first()->lastname;
+		$comment->save();
+		$lug_cate = Category::where('id',Vendor::where('id',$id_vendor)->get()->first()->category)->get()->first()->slug;
+		$slug_vendor = Vendor::where('id',$id_vendor)->get()->first()->slug;
+		return Redirect::to("vendor/$lug_cate/$slug_vendor");
 	}
 }

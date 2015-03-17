@@ -153,6 +153,7 @@ Route::get('reviews/{slug_cate}/{slug_vendor}', array("before"=>"check_login", '
 
 Route::post('vendor/rating',array('as'=>'rating','uses'=>'VendorController@ratingVendor'));
 Route::post('vendor/contact',array('as'=>'send_contact','uses'=>'VendorController@sendContact'));
+Route::post('vendor/review-rating',array('as'=>'post_content_review','uses'=>'VendorController@postContentReview'));
 
 
 /* End Route vendor */

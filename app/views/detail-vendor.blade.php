@@ -225,22 +225,6 @@
 										@else
 												
 										@endif	
-										   
-									
-										<script type="text/javascript">
-										   $(".outside-link").click(function() {
-											    $(".nav li").removeClass("active");
-											    $($(this).attr("data-toggle-tab")).parent("li").addClass("active");
-											});
-										   $(".image-outside-link").click(function() {
-											    $(".nav li").removeClass("active");
-											    $($(this).attr("data-toggle-tab")).parent("li").addClass("active");
-											});
-										</script>
-
-															<!-- Script click to sub Tab -->
-														
-
 								</div>
 								<div style="clear:both"></div>
 
@@ -250,159 +234,188 @@
 								</div>
 						  	</div>
 						  	<div class="tab-pane" id="review">
-						  		<div>
-						  			@if($check_rating_avg)
-							  				<h2>Trung bình:<span class="avg-show-rating"> {{round(Rating::where('vendor',$vendor->id)->avg('rating'),1)}}</span>/5</h2>
-							  				<div class="star-avg-rating">
-							  					@if($avg_rating==0)
-							  						<img src="{{Asset('images/star/0.jpg')}}" class="img-responsive agv-rating " alt="">
-							  					@else
-							  						@if($avg_rating > 0 & $avg_rating < 1)
-							  						<img src="{{Asset('images/star/0.5.jpg')}}" class="img-responsive agv-rating" alt="">
-							  						@endif
-							  						@if($avg_rating == 1)
-							  						<img src="{{Asset('images/star/1.jpg')}}" class="img-responsive agv-rating" alt="">
-							  						@endif
-							  						@if($avg_rating > 1 & $avg_rating < 2)
-							  						<img src="{{Asset('images/star/1.5.jpg')}}" class="img-responsive agv-rating" alt="">
-							  						@endif
-							  						@if($avg_rating == 2)
-							  						<img src="{{Asset('images/star/2.jpg')}}" class="img-responsive agv-rating" alt="">
-							  						@endif
-							  						@if($avg_rating > 2 & $avg_rating < 3)
-							  						<img src="{{Asset('images/star/2.5.jpg')}}" class="img-responsive agv-rating" alt="">
-							  						@endif
-							  						@if($avg_rating == 3)
-							  						<img src="{{Asset('images/star/3.jpg')}}" class="img-responsive agv-rating" alt="">
-							  						@endif
-							  						@if($avg_rating > 3 & $avg_rating < 4)
-							  						<img src="{{Asset('images/star/3.5.jpg')}}" class="img-responsive agv-rating" alt="">
-							  						@endif
-							  						@if($avg_rating == 4)
-							  						<img src="{{Asset('images/star/4.jpg')}}" class="img-responsive agv-rating" alt="">
-							  						@endif
-							  						@if($avg_rating > 4 & $avg_rating < 5)
-							  						<img src="{{Asset('images/star/4.5.jpg')}}" class="img-responsive agv-rating" alt="">
-							  						@endif
-							  						@if($avg_rating == 5)
-							  						<img src="{{Asset('images/star/5.jpg')}}" class="img-responsive agv-rating" alt="">
-							  						@endif
-							  					@endif
-
-							  				</div>		
+						  		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 review-star">
+						  			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" style="border-right:solid 1px #ddd;">
+						  				@if($check_rating_avg)
+						  				<div class="text-center"><h5 style="margin-bottom:0px;">Đánh giá trung bình</h5></div>
+						  				<div class="text-center" style="margin: 6%">
+						  					<span class="avg-show-rating" style="font-size: 30px;font-weight: bold; color: red;"> 
+						  						{{round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1)}}/5
+						  					</span>
+						  				</div>
+						  				<div class="star-avg-rating text-center">
+						  					@if($avg_rating==0)
+						  						<img src="{{Asset('images/star/0.jpg')}}" class="img-responsive agv-rating " alt="">
+						  					@else
+						  						@if($avg_rating > 0 & $avg_rating < 1)
+						  						<img src="{{Asset('images/star/0.5.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($avg_rating == 1)
+						  						<img src="{{Asset('images/star/1.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($avg_rating > 1 & $avg_rating < 2)
+						  						<img src="{{Asset('images/star/1.5.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($avg_rating == 2)
+						  						<img src="{{Asset('images/star/2.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($avg_rating > 2 & $avg_rating < 3)
+						  						<img src="{{Asset('images/star/2.5.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($avg_rating == 3)
+						  						<img src="{{Asset('images/star/3.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($avg_rating > 3 & $avg_rating < 4)
+						  						<img src="{{Asset('images/star/3.5.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($avg_rating == 4)
+						  						<img src="{{Asset('images/star/4.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($avg_rating > 4 & $avg_rating < 5)
+						  						<img src="{{Asset('images/star/4.5.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($avg_rating == 5)
+						  						<img src="{{Asset('images/star/5.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  					@endif
+						  				</div>		
 							  			@else
-							  				<h2>Trung bình:<span class="avg-show-rating "> 0</span>/5</h2>
-							  				<div class="star-avg-rating">
+							  				<div class="text-center"><h5 style="margin-bottom:0px;">Đánh giá trung bình</h5></div>
+							  				<div class="text-center" style="margin: 6%">
+							  					<span class="avg-show-rating" style="font-size: 30px;font-weight: bold; color: red;"> 
+							  						0/5
+							  					</span>
+							  				</div>
+							  				<div class="star-avg-rating text-center">
 							  					<img src="{{Asset('images/star/0.jpg')}}" class="img-responsive agv-rating" alt="">
 							  				</div>
 							  			@endif
-
-						  		</div><br><br>
-
-						  	@if(!Session::has('email'))
-						  		<span><a href="{{URL::route('reviews',array(Category::where('id',Vendor::where('id',$vendor->id)->get()->first()->category)->get()->first()->slug,$vendor->slug))}}">Đánh giá,</a></span>
-								<span><a href="{{URL::route('cmt_vendor', array(Category::where('id',Vendor::where('id',$vendor->id)->get()->first()->category)->get()->first()->slug,$vendor['slug']))}}" >Đăng nhận xét!</a></span>
-							@endif
-
-								@if(Session::has('email'))
-																			
-										<div class="rating" data-rating="{{$ratings}}">
-											   Đánh giá: <div></div><div></div><div></div><div></div><div></div> (<span id='info'>{{$ratings}}</span>/5)<br>
-											   <input class="id-vendor-rating" type="hidden" value="{{$vendor->id}}" name="id-vendor-rating">
+							  			<div class="text-center" style="margin: 6%">
+							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->get()->count()))
+							  				{{VendorComment::where('vendor',$vendor->id)->get()->count()}} nhận xét
+							  				@else
+							  					0 nhận xét
+							  				@endif
+							  				
+							  			</div>
+						  			</div>
+						  			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 start-inline">
+						  				<div class="text-center">
+						  					5 sao <img src="{{Asset('images/star/5.jpg')}}" class="img-responsive" alt="">
+							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->where('rating',5)->get()->count()))
+						  						{{VendorComment::where('vendor',$vendor->id)->where('rating',5)->get()->count()}}
+							  				@else
+						  						0
+					  						@endif
+						  				</div>
+						  				<div class="text-center">
+						  					4 sao <img src="{{Asset('images/star/4.jpg')}}" class="img-responsive" alt="">
+							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->where('rating',4)->get()->count()))
+						  						{{VendorComment::where('vendor',$vendor->id)->where('rating',4)->get()->count()}}
+							  				@else
+						  						0
+						  					@endif
+						  				</div>
+						  				<div class="text-center">
+						  					3 sao <img src="{{Asset('images/star/3.jpg')}}" class="img-responsive" alt="">
+							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->where('rating',3)->get()->count()))
+						  						{{VendorComment::where('vendor',$vendor->id)->where('rating',3)->get()->count()}}
+							  				@else
+						  						0
+							  				@endif
+						  				</div>
+						  				<div class="text-center">
+						  					2 sao <img src="{{Asset('images/star/2.jpg')}}" class="img-responsive" alt="">
+							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->where('rating',2)->get()->count()))
+						  						{{VendorComment::where('vendor',$vendor->id)->where('rating',2)->get()->count()}}
+							  				@else
+						  						0
+							  				@endif
+						  				</div>
+						  				<div class="text-center">
+						  					1 sao <img src="{{Asset('images/star/1.jpg')}}" class="img-responsive" alt="">
+							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->where('rating',1)->where('rating',1)->get()->count()))
+						  						{{VendorComment::where('vendor',$vendor->id)->get()->count()}}
+							  				@else
+						  						0
+							  				@endif
+						  				</div>
+						  				<div class="text-center">
+						  					0 sao <img src="{{Asset('images/star/0.jpg')}}" class="img-responsive" alt="">
+							  				@if(!empty(VendorComment::where('vendor',$vendor->id)->where('rating',0)->get()->count()))
+						  						{{VendorComment::where('vendor',$vendor->id)->where('rating',0)->get()->count()}}
+							  				@else
+						  						0
+							  				@endif
+						  				</div>
+						  			</div>
+						  			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+						  				<div class="text-center">
+						  					<h5 style="margin-bottom:0px;">Chia sẻ nhận xét</h5>
+						  				</div>
+						  				<div class="text-center btn-review">
+						  					<a href="javascript:void(0);" onclick="showReview({{Session::has('email')?'true':'false'}})" class="btn btn-responsive btn-primary btn-write">
+						  						Viết nhận xét của bạn
+						  					</a>
+						  					<a href="javascript:void(0);" class="btn btn-responsive btn-primary btn-close">
+						  						Đóng lại
+						  					</a>
+						  				</div>
+						  			</div>
+						  		</div>
+						  		<script type="text/javascript">
+						  			function showReview(check){
+						  				var email = check;
+						  				if (email) {
+						  					$('.div-review').show();
+							  				$('.btn-write').hide();
+							  				$('.btn-close').show();
+						  				} else{
+						  					$('.div-hide-review').show();
+							  				$('.btn-write').hide();
+							  				$('.btn-close').show();
+						  				};
+						  			};
+						  			$('.btn-close').click(function(){
+						  				$('.div-review').hide();
+						  				$('.div-hide-review').hide();
+						  				$('.btn-write').show();
+						  				$('.btn-close').hide();
+						  			});
+						  		</script>
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 div-review">
+									<h5>Gửi nhận xét của bạn</h5>
+									<form action="{{URL::route('post_content_review')}}" method="POST" role="form" id="send-review">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 send-start">
+											<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+												<label for="">1.Đánh giá:</label>
+											</div>
+											<div class="col-xs-12 col-sm-10 col-md-6 col-lg-10" style="padding-left:0px;">
+												<div class="rating" data-rating="">
+											   		<div></div><div></div><div></div><div></div><div></div><span style="margin:-3px 5px;">(<span id='info'></span>/5)<br></span> 
+													   <input class="id-vendor-rating" type="hidden" value="{{$vendor->id}}" name="id-vendor-rating">
+													   <input class="count-rating" type="hidden" value="" name="count_rating">
+												</div>
+											</div>
 										</div>
-									
-											
-									
-									<script type="text/javascript">
-										function ShowRating($element, rating){
-											    $stars = $element.find('div');
-											    $stars.removeClass('selected highlighted');
-											    rating = parseInt(rating);
-											    if(rating < 1 || rating > $stars.length) return false;
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 send-content">
+											<label for="">2.Viết nhận xét của bạn bên dưới:</label>
+											<textarea type="text" class="form-control text-review" name="text_review" style="width:100%;"></textarea>
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+											<button type="submit" class="btn btn-primary">Đăng nhận xét</button>
+										</div>										
+									</form>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center div-hide-review">
+									<div>
+										<h6>Bạn phải đăng nhập để đăng nhận xét của bạn.</h6>
+										<a class="btn btn-responsive btn-primary" href="{{URL::route('register')}}">Đăng kí</a>
+										<a class="btn btn-responsive btn-primary" href="{{URL::route('login')}}">Đăng nhập</a>
+									</div>
+								</div>
 
-											    $stars.eq(rating-1).addClass('selected')
-											        .prevAll().addClass('highlighted');
-											    return true;
-											}
-
-											$('.rating').each(function(){
-											    var $this = $(this);
-											    ShowRating($this, $this.data('rating'));
-											}).bind({
-											    mouseleave: function(){
-											        var $this = $(this);
-											        ShowRating($this, $this.data('rating'));
-											    }
-											}).find('div').bind({
-											    mouseenter: function(){
-											        var $this = $(this);
-											        ShowRating($this.parent(), $this.index() + 1);
-											    },
-											    click: function(){
-											        var $this = $(this);
-											        var $parent = $this.parent();
-											        var idx = $this.index() + 1;
-											        if($parent.data('rating') == idx){
-											            // Remove rating
-											            ShowRating($parent, 0);
-											            $parent.data('rating', 0);
-											        } else {
-											            // Set rating
-											            ShowRating($parent, idx);
-											            $parent.data('rating', idx);
-											        }
-											        
-											        $('#info').text($parent.data('rating'));
-											    }
-											});
-									</script>
-									<script type="text/javascript">
-									$('.rating').click(function(){
-														
-											$.ajax({
-												type:"POST",
-												url:"{{URL::route('rating')}}",
-												data:{
-													rating:$('#info').text(),
-													vendor:	$('.id-vendor-rating').val()	
-												},
-												success:function(data){
-													var obj= JSON.parse(data);
-													$('.avg-show-rating').text(obj.avg_rating);
-													if(obj.avg_rating==0)
-														$('.agv-rating').attr('src','{{Asset('images/star/0.jpg')}}');
-													if(obj.avg_rating>0 &&obj.avg_rating<1)
-														$('.agv-rating').attr('src','{{Asset('images/star/0.5.jpg')}}');
-													if(obj.avg_rating==1)
-														$('.agv-rating').attr('src','{{Asset('images/star/1.jpg')}}');
-													if(obj.avg_rating>1 &&obj.avg_rating<2)
-														$('.agv-rating').attr('src','{{Asset('images/star/1.5.jpg')}}');
-													if(obj.avg_rating==2)
-														$('.agv-rating').attr('src','{{Asset('images/star/2.jpg')}}');	
-													if(obj.avg_rating>2 &&obj.avg_rating<3)
-														$('.agv-rating').attr('src','{{Asset('images/star/2.5.jpg')}}');
-													if(obj.avg_rating==3)	
-														$('.agv-rating').attr('src','{{Asset('images/star/3.jpg')}}');									
-													if(obj.avg_rating>3 &&obj.avg_rating<4)
-														$('.agv-rating').attr('src','{{Asset('images/star/3.5.jpg')}}');	
-													if(obj.avg_rating==4)	
-														$('.agv-rating').attr('src','{{Asset('images/star/4.jpg')}}');	
-													if(obj.avg_rating>4 &&obj.avg_rating<5)
-														$('.agv-rating').attr('src','{{Asset('images/star/4.5.jpg')}}');
-													if(obj.avg_rating==5)	
-														$('.agv-rating').attr('src','{{Asset('images/star/5.jpg')}}');
-												}													
-											});
-										});
-
-									</script>
-
-
-
-								@endif
-
-
-						  		@foreach(VendorComment::where('vendor',$vendor->id)->where('active',0)->get() as $cmt)
+						  		@foreach(VendorComment::where('vendor',$vendor->id)->where('active',0)->orderBy('created_at','DESC')->get() as $cmt)
 								
 								<div class="vendor_comment">
 									<div class="vendor_avatar">
@@ -410,93 +423,54 @@
 										$user_avatar_old = User::where('id', $cmt['user'])->get()->first()->avatar;
 										?>
 										<img src="{{Asset("{$user_avatar_old}")}}">
-									</div>
+									</div>										
+
 									<div class="vendor_content">
+
 										<span style="color: #428bca;">{{$cmt['user_name']}}</span> nhận xét:<br />
+										<span>
+
+						  					@if($cmt->rating == 0)
+						  						<img src="{{Asset('images/star/0.jpg')}}" class="img-responsive agv-rating " alt="">
+						  					@else
+						  						@if($cmt->rating > 0 & $cmt->rating < 1)
+						  						<img src="{{Asset('images/star/0.5.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($cmt->rating == 1)
+						  						<img src="{{Asset('images/star/1.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($cmt->rating > 1 & $cmt->rating < 2)
+						  						<img src="{{Asset('images/star/1.5.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($cmt->rating == 2)
+						  						<img src="{{Asset('images/star/2.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($cmt->rating > 2 & $cmt->rating < 3)
+						  						<img src="{{Asset('images/star/2.5.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($cmt->rating == 3)
+						  						<img src="{{Asset('images/star/3.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($cmt->rating > 3 & $cmt->rating < 4)
+						  						<img src="{{Asset('images/star/3.5.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($cmt->rating == 4)
+						  						<img src="{{Asset('images/star/4.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($cmt->rating > 4 & $cmt->rating < 5)
+						  						<img src="{{Asset('images/star/4.5.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  						@if($cmt->rating == 5)
+						  						<img src="{{Asset('images/star/5.jpg')}}" class="img-responsive agv-rating" alt="">
+						  						@endif
+						  					@endif
+										</span>
 										
 										{{$cmt['content']}}
 									</div>
 								</div>
-								
 								@endforeach
-								<div id="your_cmt"></div> <!-- add comment -->
-
-								@if(Session::has('email'))
-
-								<div class="vendor_comment">
-									<div class="vendor_avatar">
-										<img src="{{Asset("{$user_avatar}")}}">
-										<span style="color: #428bca;">{{$user_name}}</span>
-									</div>
-									<div class="vendor_content">
-										<input type="text" id="vendor_comment" placeholder="Nhận xét của bạn..."></input><br />
-										<button class="btn btn-primary btn_post_cmt" onclick="post_comment({{UserController::id_user()}})">Đăng</button>
-									</div>
-								</div>
-						
-								@endif
-								<br><br>
-							@if(Session::has('email'))	
-							<!-- -facebookcommnet -->	
-								<div id="fb-root"></div>
-								<script>(function(d, s, id) {
-									  var js, fjs = d.getElementsByTagName(s)[0];
-									  if (d.getElementById(id)) return;
-									  js = d.createElement(s); js.id = id;
-									  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=1450451991884119&version=v2.0";
-									  fjs.parentNode.insertBefore(js, fjs);
-									}(document, 'script', 'facebook-jssdk'));
-								</script>
-								<div class="fb-comments" data-href=""  data-numposts="5" data-width="100%"data-order-by="social" data-mobile="auto-detect" data-colorscheme="light"></div>												
-
-								<script>
-								    $(document).ready(function() {
-								        $('.fb-comments').attr("data-href", document.URL);
-								    });
-								</script>
-							<!-- -End facebookcommnet -->
-							@endif	
-								<script type="text/javascript">
-
-									$(document).ready(function(){
-									    $('.btn_post_cmt').attr('disabled',true);
-
-									    $('#vendor_comment').keyup(function(){
-									        if($(this).val().length !=0){
-									            $('.btn_post_cmt').attr('disabled', false);
-									        }
-									        else
-									        {
-									            $('.btn_post_cmt').attr('disabled', true);        
-									        }
-									    })
-									});
-
-									function post_comment (id_user) {
-										var cmt = $("#vendor_comment").val(); 
-										if(cmt == ""){
-											return false;
-										}
-										else
-										{
-											
-											$("#vendor_comment").val("");
-
-											$.ajax({
-												type: "post",
-												url: "{{URL::route('vendor_comment', array('id_vendor'=>$vendor['id']))}}",
-												data: {
-													id_user:id_user,
-													cmt:cmt
-												},
-												success: function(data){
-													$('#your_cmt').replaceWith(data);
-												}
-
-											});
-										}
-									}
-								</script>
+							<div id="your_cmt"></div> <!-- add comment -->
 						  	</div>
 						  	<div class=" tab-pane" id="photos">
 						  			<h4>{{Lang::get('messages.Photo')}}</h4>
@@ -517,48 +491,6 @@
 											@endforeach
 										@endif			   
 								</ul>
-																
-								<!-- script slides		 -->		
-								<script type="text/javascript"> 
-									var currentImage;
-									var currentIndex = -1;
-									var interval;
-									function showImage(index){
-										if(index < $('#bigPic img').length){
-											var indexImage = $('#bigPic img')[index]
-											if(currentImage){   
-												if(currentImage != indexImage ){
-													$(currentImage).css('z-index',2);
-														clearTimeout(myTimer);
-													$(currentImage).fadeIn(250, function() 
-													{
-														myTimer = setTimeout("showNext()", 3000);
-													$(this).css({'display':'none','z-index':1})
-												 	});
-												}
-									  		}
-											$(indexImage).css({'display':'block', 'opacity':1});
-											currentImage = indexImage;
-											currentIndex = index;
-											$('#thumbs li').removeClass('active');
-											$($('#thumbs li')[index]).addClass('active');
-										}
-									}
-									function showNext(){
-										var len = $('#bigPic img').length;
-										var next = currentIndex < (len-1) ? currentIndex + 1 : 0;
-									 	showImage(next);
-									}
-									var myTimer;
-									$(document).ready(function() {
-										myTimer = setTimeout("showNext()", 3000);
-										showNext(); //Load first image
-										$('#thumbs li').bind('click',function(e){
-											var count = $(this).attr('rel');
-											showImage(parseInt(count)-1);
-										});
-									});
-								</script>
 						  </div>
 						  <div class="tab-pane" id="video">
 				  			<h4>Video</h4>
@@ -624,16 +556,6 @@
 							      	<input data-format="yyyy-MM-dd" type="text"   id="input-date" class="form-control  " placeholder="" value="{{$weddingdate}}"tabindex="3">
 							    	@else
 							    	<input data-format="yyyy-MM-dd" type="text"   id="input-date" class="form-control  " placeholder="Ngày cưới" tabindex="3">
-							      <script type="text/javascript">
-						                $(function() {
-						                  $('#input-date').datetimepicker({
-						                    format: 'd-m-Y',
-						                    timepicker:false
-						                  });
-						                  
-										  
-						                });
-						              </script>
 						         @endif
 							    </div>
 							  </div>
@@ -664,14 +586,6 @@
 								 </div>
 								    <!-- -script show select -->
 								<br>	
-								  <script >
-
-									$("#selection-contact").change(function(){
-										      var index = $(this).children(":selected").index();
-										      $("#options").children().hide().eq(index).show();
-										});
-
-				        			</script>
 						  	<div class="form-group text-center" style="margin-top:-20%;">
 							    <a onclick='sendContact({{$vendor->id}})' class="btn btn-primary btn-responsive btn-lg" id="btn-contact">Liên lạc</a>
 							</div>
@@ -734,6 +648,173 @@
 			          }
 			          }); 
 					}
+					$('#vendor_comment').keypress(function(event){
+						var keycode = (event.keyCode ? event.keyCode : event.which);
+						if(keycode == '13'){
+							$('.btn_post_cmt').trigger('click');
+						}
+					});
+					function ShowRating($element, rating){
+					    $stars = $element.find('div');
+					    $stars.removeClass('selected highlighted');
+					    rating = parseInt(rating);
+					    if(rating < 1 || rating > $stars.length) return false;
+
+					    $stars.eq(rating-1).addClass('selected')
+					        .prevAll().addClass('highlighted');
+					    return true;
+					}
+
+					$('.rating').each(function(){
+					    var $this = $(this);
+					    ShowRating($this, $this.data('rating'));
+					}).bind({
+					    mouseleave: function(){
+					        var $this = $(this);
+					        ShowRating($this, $this.data('rating'));
+					    }
+					}).find('div').bind({
+					    mouseenter: function(){
+					        var $this = $(this);
+					        ShowRating($this.parent(), $this.index() + 1);
+					    },
+					    click: function(){
+					        var $this = $(this);
+					        var $parent = $this.parent();
+					        var idx = $this.index() + 1;
+					        if($parent.data('rating') == idx){
+					            // Remove rating
+					            ShowRating($parent, 0);
+					            $parent.data('rating', 0);
+					        } else {
+					            // Set rating
+					            ShowRating($parent, idx);
+					            $parent.data('rating', idx);
+					        }
+					        
+					        $('#info').text($parent.data('rating'));
+					    }
+					});
+					$('.rating').click(function(){
+						var count = $('#info').text();
+						$('.count-rating').val(count);
+				});
+				
+				$(document).ready(function(){
+				    $('.btn_post_cmt').attr('disabled',true);
+
+				    $('#vendor_comment').keyup(function(){
+				        if($(this).val().length !=0){
+				            $('.btn_post_cmt').attr('disabled', false);
+				        }
+				        else
+				        {
+				            $('.btn_post_cmt').attr('disabled', true);        
+				        }
+				    })
+				});
+
+				function post_comment (id_user) {
+					var cmt = $("#vendor_comment").val(); 
+					if(cmt == ""){
+						return false;
+					}
+					else
+					{
+						
+						$("#vendor_comment").val("");
+
+						$.ajax({
+							type: "post",
+							url: "{{URL::route('vendor_comment', array('id_vendor'=>$vendor['id']))}}",
+							data: {
+								id_user:id_user,
+								cmt:cmt
+							},
+							success: function(data){
+								$('#your_cmt').replaceWith(data);
+							}
+
+						});
+					}
+				}
+				var currentImage;
+				var currentIndex = -1;
+				var interval;
+				function showImage(index){
+					if(index < $('#bigPic img').length){
+						var indexImage = $('#bigPic img')[index]
+						if(currentImage){   
+							if(currentImage != indexImage ){
+								$(currentImage).css('z-index',2);
+									clearTimeout(myTimer);
+								$(currentImage).fadeIn(250, function() 
+								{
+									myTimer = setTimeout("showNext()", 3000);
+								$(this).css({'display':'none','z-index':1})
+							 	});
+							}
+				  		}
+						$(indexImage).css({'display':'block', 'opacity':1});
+						currentImage = indexImage;
+						currentIndex = index;
+						$('#thumbs li').removeClass('active');
+						$($('#thumbs li')[index]).addClass('active');
+					}
+				}
+				function showNext(){
+					var len = $('#bigPic img').length;
+					var next = currentIndex < (len-1) ? currentIndex + 1 : 0;
+				 	showImage(next);
+				}
+				var myTimer;
+				$(document).ready(function() {
+					myTimer = setTimeout("showNext()", 3000);
+					showNext(); //Load first image
+					$('#thumbs li').bind('click',function(e){
+						var count = $(this).attr('rel');
+						showImage(parseInt(count)-1);
+					});
+				});
+				$(function() {
+                  $('#input-date').datetimepicker({
+                    format: 'd-m-Y',
+                    timepicker:false
+                  });
+                  
+				  
+                });
+                $("#selection-contact").change(function(){
+				      var index = $(this).children(":selected").index();
+				      $("#options").children().hide().eq(index).show();
+				});
+				$(".outside-link").click(function() {
+				    $(".nav li").removeClass("active");
+				    $($(this).attr("data-toggle-tab")).parent("li").addClass("active");
+				});
+			   $(".image-outside-link").click(function() {
+				    $(".nav li").removeClass("active");
+				    $($(this).attr("data-toggle-tab")).parent("li").addClass("active");
+				});
+			    $('#send-review').validate({
+			    	ignore: "",
+			        rules:{
+			            count_rating:{
+			              required:true
+			            },
+			            text_review:{
+			            	required:true
+			            }
+			        },
+			        messages:{
+			            count_rating:{
+			             required:"Bạn phải đánh giá kèm nhận xét"
+			            },
+			            text_review:{
+			            	required:"Bạn chưa nhận xét"
+			            }
+			        }
+			      })
 			</script>
 		</div>
 @endsection

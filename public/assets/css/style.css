@@ -1306,7 +1306,7 @@ ul#thumbs-main li{
 div.vendor_comment{
 	width: 100%;
 	border-bottom: 1px solid #ccc;
-	margin: 10px 0px;
+	margin: 0px 0px;
 	display: inline-block;
 }
 div.vendor_avatar{
@@ -2101,8 +2101,28 @@ a.guest_list_icon_trash{
 .highlighted { background-image: url('../../images/star-rating/full-star.jpg') !important; }
 .star-avg-rating
 {
-	margin-left: 175px;
-	margin-top: -20px;
+	/*margin-left: 175px;
+	margin-top: -20px;*/
+
+}
+.star-avg-rating img {
+	margin: 0 auto;
+}
+.review-star{
+	padding: 2%;
+	border: solid 1px #ddd;
+}
+.start-inline img{
+	display: inline;
+}
+.start-inline{
+	border-right: solid 1px #ddd;
+}
+.btn-review{
+	margin: 10%;
+}
+.btn-review a{
+text-transform: none;
 }
 
 
@@ -2863,6 +2883,39 @@ a.contact-admin:hover{
 }
 .oneUl-tool a:hover { color: #EA4398 !important; }
 /*end vendor*/
+/*new review*/
+.review-star{
+	margin-bottom: 3%;
+}
+#send-review .send-content{
+	padding-left: 0px;
+}
+.div-review h5{
+	border-bottom: 1px solid #ddd;
+	margin: 2% 0%;
+}
+#send-review button{
+	margin-top: 2%;
+	text-transform: none;
+}
+.div-review{
+	display: none;
+	padding-left: 0px;
+	margin-bottom: 5%;
+}
+.btn-close{
+	display: none;
+}
+.div-hide-review{
+	display: none;
+	margin-bottom: 5%;
+}
+.div-hide-review a{
+	text-transform: none;
+}
+.div-hide-review h6{
+	margin: 2% auto;
+}
 
 
 
