@@ -30,13 +30,13 @@ class VendorController extends \BaseController {
 	{
 		$id_user 				= VendorController::id_user();
 		$id_vendor 				= Input::get('vendor');
-		$check 					= Rating::where('user',$id_user)->where('vendor',$id_vendor)->get()->count();
+		$check 					= VendorComment::where('user',$id_user)->where('vendor',$id_vendor)->get()->count();
 		if($check)
 		{
-			$rating_up 			= Rating::where('user',$id_user)->where('vendor',$id_vendor)->get()->first();
+			$rating_up 			= VendorComment::where('user',$id_user)->where('vendor',$id_vendor)->get()->first();
 			$rating_up->rating  = Input::get('rating');
 			$rating_up->save();
-			$avg_rating 		= round(Rating::where('vendor',$id_vendor)->avg('rating'),1);
+			$avg_rating 		= round(VendorComment::where('vendor',$id_vendor)->avg('rating'),1);
 		}
 		else
 		{
@@ -45,7 +45,7 @@ class VendorController extends \BaseController {
 			$rating_add->rating = Input::get('rating');
 			$rating_add->vendor = Input::get('vendor');
 			$rating_add->save();
-			$avg_rating 		= round(Rating::where('vendor',$id_vendor)->avg('rating'),1);
+			$avg_rating 		= round(VendorComment::where('vendor',$id_vendor)->avg('rating'),1);
 		}
 		echo json_encode(array('avg_rating'=>$avg_rating));
 		exit();
@@ -105,9 +105,9 @@ class VendorController extends \BaseController {
 		}
 		if(Session::has('email'))
 		{
-			$check_rating 	= Rating::where('user',$id_user)->where('vendor',$id)->get()->count();
+			$check_rating 	= VendorComment::where('user',$id_user)->where('vendor',$id)->get()->count();
 			if($check_rating>0){
-				$ratings 	= Rating::where('user',$id_user)->where('vendor',$id)->get()->first()->rating;
+				$ratings 	= VendorComment::where('user',$id_user)->where('vendor',$id)->get()->first()->rating;
 			}
 			else
 			{

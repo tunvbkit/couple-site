@@ -342,38 +342,38 @@ Danh sách Dịch vụ | thuna.vn
 			                        <div class="ratings">
 			                            <span class="pull-right">{{VendorComment::where('vendor',$vendor->id)->get()->count()}} Nhận xét</span>
 			   				            <p>
-			                                @if(Rating::where('vendor',$vendor->id)->get()->count()>0)
-			                                	@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1)==0)
+			                                @if(VendorComment::where('vendor',$vendor->id)->get()->count()>0)
+			                                	@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1)==0)
 						  							<img src="{{Asset('images/star/0.jpg')}}" class="img-responsive agv-rating " alt="">
 						  						@else
-							  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) > 0 & round(Rating::where('vendor',$vendor->id)->avg('rating'),1) < 1)
+							  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) > 0 & round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) < 1)
 							  							<img src="{{Asset('images/star/0.5.jpg')}}" class="img-responsive agv-rating" alt="">
 							  						@endif
-							  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) == 1)
+							  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) == 1)
 							  							<img src="{{Asset('images/star/1.jpg')}}" class="img-responsive agv-rating" alt="">
 							  						@endif
-							  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) > 1 & round(Rating::where('vendor',$vendor->id)->avg('rating'),1) < 2)
+							  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) > 1 & round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) < 2)
 							  							<img src="{{Asset('images/star/1.5.jpg')}}" class="img-responsive agv-rating" alt="">
 							  						@endif
-							  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) == 2)
+							  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) == 2)
 							  							<img src="{{Asset('images/star/2.jpg')}}" class="img-responsive agv-rating" alt="">
 							  						@endif
-							  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) > 2 & round(Rating::where('vendor',$vendor->id)->avg('rating'),1) < 3)
+							  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) > 2 & round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) < 3)
 							  							<img src="{{Asset('images/star/2.5.jpg')}}" class="img-responsive agv-rating" alt="">
 							  						@endif
-							  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) == 3)
+							  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) == 3)
 							  							<img src="{{Asset('images/star/3.jpg')}}" class="img-responsive agv-rating" alt="">
 							  						@endif
-							  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) > 3 & round(Rating::where('vendor',$vendor->id)->avg('rating'),1) < 4)
+							  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) > 3 & round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) < 4)
 							  							<img src="{{Asset('images/star/3.5.jpg')}}" class="img-responsive agv-rating" alt="">
 							  						@endif
-							  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) == 4)
+							  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) == 4)
 							  							<img src="{{Asset('images/star/4.jpg')}}" class="img-responsive agv-rating" alt="">
 							  						@endif
-							  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) > 4 & round(Rating::where('vendor',$vendor->id)->avg('rating'),1) < 5)
+							  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) > 4 & round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) < 5)
 							  							<img src="{{Asset('images/star/4.5.jpg')}}" class="img-responsive agv-rating" alt="">
 							  						@endif
-							  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) == 5)
+							  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) == 5)
 							  							<img src="{{Asset('images/star/5.jpg')}}" class="img-responsive agv-rating" alt="">
 							  						@endif
 						  						@endif
@@ -510,38 +510,38 @@ Danh sách Dịch vụ | thuna.vn
 							<div class="ratings">
 	                           	<span class="pull-right">{{VendorComment::where('vendor',$vendor->id)->get()->count()}} Nhận xét</span>
 		   				            <p>
-		                                @if(Rating::where('vendor',$vendor->id)->get()->count()>0)
-		                                	@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1)==0)
+		                                @if(VendorComment::where('vendor',$vendor->id)->get()->count()>0)
+		                                	@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1)==0)
 					  							<img src="{{Asset('images/star/0.jpg')}}" class="img-responsive agv-rating " alt="">
 					  						@else
-						  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) > 0 & round(Rating::where('vendor',$vendor->id)->avg('rating'),1) < 1)
+						  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) > 0 & round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) < 1)
 						  							<img src="{{Asset('images/star/0.5.jpg')}}" class="img-responsive agv-rating" alt="">
 						  						@endif
-						  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) == 1)
+						  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) == 1)
 						  							<img src="{{Asset('images/star/1.jpg')}}" class="img-responsive agv-rating" alt="">
 						  						@endif
-						  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) > 1 & round(Rating::where('vendor',$vendor->id)->avg('rating'),1) < 2)
+						  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) > 1 & round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) < 2)
 						  							<img src="{{Asset('images/star/1.5.jpg')}}" class="img-responsive agv-rating" alt="">
 						  						@endif
-						  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) == 2)
+						  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) == 2)
 						  							<img src="{{Asset('images/star/2.jpg')}}" class="img-responsive agv-rating" alt="">
 						  						@endif
-						  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) > 2 & round(Rating::where('vendor',$vendor->id)->avg('rating'),1) < 3)
+						  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) > 2 & round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) < 3)
 						  							<img src="{{Asset('images/star/2.5.jpg')}}" class="img-responsive agv-rating" alt="">
 						  						@endif
-						  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) == 3)
+						  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) == 3)
 						  							<img src="{{Asset('images/star/3.jpg')}}" class="img-responsive agv-rating" alt="">
 						  						@endif
-						  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) > 3 & round(Rating::where('vendor',$vendor->id)->avg('rating'),1) < 4)
+						  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) > 3 & round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) < 4)
 						  							<img src="{{Asset('images/star/3.5.jpg')}}" class="img-responsive agv-rating" alt="">
 						  						@endif
-						  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) == 4)
+						  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) == 4)
 						  							<img src="{{Asset('images/star/4.jpg')}}" class="img-responsive agv-rating" alt="">
 						  						@endif
-						  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) > 4 & round(Rating::where('vendor',$vendor->id)->avg('rating'),1) < 5)
+						  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) > 4 & round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) < 5)
 						  							<img src="{{Asset('images/star/4.5.jpg')}}" class="img-responsive agv-rating" alt="">
 						  						@endif
-						  						@if(round(Rating::where('vendor',$vendor->id)->avg('rating'),1) == 5)
+						  						@if(round(VendorComment::where('vendor',$vendor->id)->avg('rating'),1) == 5)
 						  							<img src="{{Asset('images/star/5.jpg')}}" class="img-responsive agv-rating" alt="">
 						  						@endif
 					  						@endif
