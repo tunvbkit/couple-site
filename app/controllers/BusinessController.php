@@ -227,7 +227,7 @@ class BusinessController extends \BaseController {
 		}
 	}
 	public static function getRating($id_vendor){
-		return	Rating::where('vendor',$id_vendor)->get()->first();
+		return	VendorComment::where('vendor',$id_vendor)->get();
 	}
 	public static function getSlide($id_vendor){
 		return PhotoSlide::where('vendor',$id_vendor)->get();

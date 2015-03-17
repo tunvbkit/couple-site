@@ -2917,5 +2917,23 @@ a.contact-admin:hover{
 	margin: 2% auto;
 }
 
+.send-start,.send-start div{
+	padding-left: 0px;
+}
+.rating .error,.send-content .error{
+	font-weight: normal;
+	color: red;
+	margin-left: 2%;
+	margin-top: -3px;
+}
+.rating{	
+	width: 100%;
+	padding-top: 4px;
+}
+@media (min-width: 768px){
+	.rating{
+		display: inline-flex;
+	}
+}
 
 
