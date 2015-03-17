@@ -159,7 +159,7 @@
              
                 {{$c_count}}
             </p>
-            <p><a href="{{URL::route('b_inbox')}}">Yêu cầu  @if (!empty($new_countRequest))
+            <p><a href="{{URL::route('b_request')}}">Yêu cầu  @if (!empty($new_countRequest))
                   <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
                 @endif  : </a>{{$count_request}} 
                
