@@ -147,7 +147,7 @@
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 thongke">
             <p>Lượt truy cập : {{$vendor->click}}</p>
            <p>Đánh giá: 
-              @if(!empty( VendorComment::where('vendor',$vendor->id)->avg('rating') ))
+              @if( VendorComment::where('vendor',$vendor->id)->avg('rating') ==true)
               {{VendorComment::where('vendor',$vendor->id)->avg('rating')}}
               @endif
             </p>
