@@ -288,12 +288,12 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #333;
+  color: #428bca;
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #e92d91;
+  color: #2a6496;
   text-decoration: underline;
 }
 a:focus {
@@ -451,7 +451,7 @@ h2,
 }
 h3,
 .h3 {
-  font-size: 32px;
+  font-size: 24px;
 }
 h4,
 .h4 {
@@ -3090,9 +3090,9 @@ input[type="button"].btn-block {
 .dropdown-header {
   display: block;
   padding: 3px 20px;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 1.42857143;
-  color: #333;
+  color: #999;
 }
 .dropdown-backdrop {
   position: fixed;
@@ -4421,7 +4421,7 @@ a.thumbnail.active {
   border-color: #428bca;
 }
 .thumbnail .caption {
-  padding: 8px;
+  padding: 9px;
   color: #333;
   margin-bottom: -15px;
 }

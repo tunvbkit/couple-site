@@ -3,8 +3,11 @@ a:focus {
     color: #EF8DB7;
 }
 
-a,.tp-caption a.btn:hover {
+.tp-caption a.btn:hover {
 	color: #e92d91;
+}
+a:hover{
+	color:#e92d91;
 }
 .top-nav-collapse {
 	background: #E3E142;
