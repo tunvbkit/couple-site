@@ -93,7 +93,7 @@
 							Âm nhạc
 				        </a>
 				        <ul class="dropdown-menu oneUl" role="menu">
-				          	<li role="presentation" class="dropdown-header"><span style="font-weight: bold;">Nghi lễ</span>
+				          	<li role="presentation" class="dropdown-header"><span style="font-size: 18px;color:#333; font-weight:bold;">Nghi lễ</span>
 					            <div class="row">
 					              <div class="col-xs-6">
 					                <ul class="list-unstyled">
@@ -109,7 +109,7 @@
 					              </div>
 					            </div>
 				          	</li>
-				          	<li role="presentation" class="dropdown-header"><span style="font-weight: bold;">Đãi tiệc</span>
+				          	<li role="presentation" class="dropdown-header"><span style="font-size: 18px;color:#333; font-weight:bold;">Đãi tiệc</span>
 					            <div class="row">
 					              <div class="col-xs-6">
 					                <ul class="list-unstyled">
@@ -152,7 +152,7 @@
 			<div class="col-lg-7 col-xs-12 col-xs-offset-1">
 		@endif
 			<h2>Âm nhạc: {{$cat['name']}}</h2>
-			<h6>{{$cat['description']}}</h6>
+			<h4 style="color: #428bca;">{{$cat['description']}}</h4>
 
 			<table class="table-song">
 				<thead>
@@ -178,16 +178,16 @@
 				<div class="col-xs-12">Nghi lễ</div>
 			</div>
 			
-			<div class="col-xs-12 song-record-item">
+			<div class="col-xs-6 song-record-item">
 				<a href="{{URL::route('songs', array('mo-dau'))}}"><i class="fa fa-music"></i> Mở đầu</a>
 			</div>
-			<div class="col-xs-12 song-record-item">
+			<div class="col-xs-6 song-record-item" style="padding-right: 5px;">
 				<a href="{{URL::route('songs', array('doan-ruoc'))}}"><i class="fa fa-music"></i> Đoàn rước</a>
 			</div>
-			<div class="col-xs-12 song-record-item">
+			<div class="col-xs-6 song-record-item">
 				<a href="{{URL::route('songs', array('nghi-thuc'))}}"><i class="fa fa-music"></i> Nghi thức</a>
 			</div>
-			<div class="col-xs-12 song-record-item">
+			<div class="col-xs-6 song-record-item">
 				<a href="{{URL::route('songs', array('ket-thuc'))}}"><i class="fa fa-music"></i> Kết thúc</a>
 			</div>
 		</div><!--/.song-menu-right-->
@@ -198,22 +198,22 @@
 				<div class="col-xs-12">Đãi tiệc</div>
 			</div>
 
-			<div class="col-xs-12 song-record-item">
+			<div class="col-xs-6 song-record-item">
 				<a href="{{URL::route('songs', array('khai-tiec'))}}"><i class="fa fa-music"></i> Khai tiệc</a>
 			</div>
-			<div class="col-xs-12 song-record-item">
+			<div class="col-xs-6 song-record-item">
 				<a href="{{URL::route('songs', array('phat-bieu'))}}"><i class="fa fa-music"></i> Phát biểu</a>
 			</div>
-			<div class="col-xs-12 song-record-item">
+			<div class="col-xs-6 song-record-item">
 				<a href="{{URL::route('songs', array('cat-banh'))}}"><i class="fa fa-music"></i> Cắt bánh</a>
 			</div>
-			<div class="col-xs-12 song-record-item">
+			<div class="col-xs-6 song-record-item">
 				<a href="{{URL::route('songs', array('vao-tiec'))}}"><i class="fa fa-music"></i> Vào tiệc</a>
 			</div>
-			<div class="col-xs-12 song-record-item">
+			<div class="col-xs-6 song-record-item" style="padding-right: 0;">
 				<a href="{{URL::route('songs', array('chuc-mung'))}}"><i class="fa fa-music"></i> Chúc mừng</a>
 			</div>
-			<div class="col-xs-12 song-record-item">
+			<div class="col-xs-6 song-record-item">
 				<a href="{{URL::route('songs', array('cuoi-tiec'))}}"><i class="fa fa-music"></i> Cuối tiệc</a>
 			</div>
 		</div><!--/.song-menu-right-->

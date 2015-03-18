@@ -403,6 +403,9 @@ a.contact-admin:hover{
 .margin-footer{
 	min-height: 370px;
 }
+.margin-footer h2{
+	margin-top: 0px;
+}
 /*end footer*/
 
 
@@ -961,11 +964,12 @@ div.song_content button{
 
 .table-song{
 	width: 100%;
-	margin: 10px 0px 20px 0px;
+	margin: 40px 0px 20px 0px;
+	border-radius: 5px;
 }
 .table-song th{
 	padding: 10px;
-	color: #6d849f;
+	color: #428bca;
 	background-color: #FFFFFF;
 	border: none;
 }
@@ -974,8 +978,8 @@ div.song_content button{
 }
 
 .table-song tbody{
-	background-color: #ecf4f8;
-	border: 1px solid #a6b1ca;
+	background-color: #fff;
+	border: 1px solid #428bca;
 	overflow: auto;
 }
 .table-song td{
@@ -984,18 +988,22 @@ div.song_content button{
 }
 .table-song td.last{
 	text-align: right;
-	color: #51b5c4;
+	color: #428bca;
 }
-
+.table-song a{
+	color: #333;
+}
+.song-menu-right a{
+	color: #333;
+}
 .song-menu-right {
-	background-color: #ecf4f8;
+	border: solid 1px #428bca;
 	border-radius: 5px;
-	box-shadow: 0 5px #b9cdd8;
 	margin-bottom: 2%;
 }
 .song-record-title {
-	background-color: #49a6fa;
-    color: #ffffff;
+	
+    color: #428bca;
     font-size: 17px;
     font-weight: bold;
     height: 35px;
@@ -1003,7 +1011,7 @@ div.song_content button{
     text-align: center;
     text-transform: uppercase;
     border-radius: 5px 5px 0 0;
-    border-bottom: 5px solid #b9cdd8;
+   
 }
 .song-record-item {
 	font-size: 17px;

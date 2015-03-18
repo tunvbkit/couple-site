@@ -34,7 +34,7 @@
 body {
     
     /*font-family: Arial;*/
-    font-family: "OpenSan-Regular";
+    font-family: "OpenSan-Regular" !important;
 	font-weight: 300;
     color: #333;
     background-color: #fff;
@@ -78,7 +78,7 @@ h6 {
     margin: 0 0 30px;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-	color: #111;
+	color: #333;
 }
 
 h1.h-xlight,h2.h-xlight,h3.h-xlight ,h4.h-xlight ,h5.h-xlight ,h6.h-xlight  {
@@ -146,6 +146,7 @@ a:focus {  text-decoration: none !important; }
 	border-radius: 0 !important;
 	margin: 0 auto !important;
 	width: 100%;
+	font-family: "opensan-regular" !important;
 }
 .navbar-nav {
 	padding-left: 12%;
@@ -788,6 +789,7 @@ hr.bold {
 	font-size: 17px;
 	color: black;
 }
+
 ul.footer-menu {
 	list-style: none;
 }
@@ -1376,6 +1378,8 @@ div.vendor_content button{
 	min-height: 50px;
 	/*padding: 10px 0;*/
 	border: 1px solid #b4b4b4;
+	font-family: "OpenSan-Regular";
+
 }
 
 .btn-action-user { text-align: right; }
@@ -1912,8 +1916,9 @@ div.song_content button{
 	margin: 10px 0px 20px 0px;
 }
 .table-song th{
-	padding: 10px;
-	color: #6d849f;
+	padding-top: 40px;
+	padding-bottom: 10px; 
+	color: #333 !important;
 	background-color: #FFFFFF;
 	border: none;
 }
@@ -1943,7 +1948,7 @@ div.song_content button{
 }
 .song-record-title {
 	background-color: #49a6fa;
-    color: #ffffff;
+    color: #fff;
     font-size: 17px;
     font-weight: bold;
     height: 35px;
@@ -2953,5 +2958,9 @@ a.contact-admin:hover{
 		display: inline-flex;
 	}
 }
-
-
+.table-song th {
+	color: #428bca;
+}
+.row a{
+	color: #333;
+}
