@@ -279,7 +279,7 @@
                   <input type="type" class="i-name-album form-control name-edit-album{{$album->id}}" value="{{$album->name}}" onblur="updateAlbum({{$album->id}})">
                 </p> 
                 <p class="text-center detail-album"><a onclick="showAlbum({{$album->id}})" href="javascript:void(0);">Ảnh(
-                      @if(!empty(PhotoSlide::where('album',$album->id)->get()->count()))
+                      @if(PhotoSlide::where('album',$album->id)->get()->count() == true)
                         {{PhotoSlide::where('album',$album->id)->get()->count();}}
                     @else
                       0
