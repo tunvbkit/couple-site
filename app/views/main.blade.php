@@ -41,7 +41,7 @@
     <link rel="stylesheet" type="text/css" href="{{Asset("assets/css/bootstrap/bootstrap.css")}}">
     <link href="{{Asset("assets/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
    	
-	<!-- <link href="{{Asset("assets/css/animate.css")}}" rel="stylesheet" /> -->
+	<link href="{{Asset("assets/css/animate.css")}}" rel="stylesheet" />
     <link href="{{Asset("assets/css/style.css")}}" rel="stylesheet">
     <link href="{{Asset("assets/css/social-buttons.css")}}" rel="stylesheet">
 	<link href="{{Asset("assets/color/default.css")}}" rel="stylesheet">
@@ -51,18 +51,18 @@
 	
 	<!-- Core JavaScript Files -->
 	<script src="{{Asset("assets/js/jquery.min.js")}}"></script>
-	<!-- // <script src="{{Asset("assets/js/sweet-alert.min.js")}}"></script> -->
+	 <script src="{{Asset("assets/js/sweet-alert.min.js")}}"></script>
 	<script type="text/javascript" src="{{Asset("assets/js/bootstrap.min.js")}}"></script>
 	<script type="text/javascript" src="{{Asset("assets/js/main.js")}}"></script>	 
-	<!-- // <script src="{{Asset("assets/js/jquery.sticky.js")}}"></script> -->
+	 <script src="{{Asset("assets/js/jquery.sticky.js")}}"></script>
 
-    <!-- // <script src="{{Asset("assets/js/jquery.easing.min.js")}}"></script>	 -->
+     <script src="{{Asset("assets/js/jquery.easing.min.js")}}"></script>
 	<script src="{{Asset("assets/js/jquery.scrollTo.js")}}"></script>
 
 	<!-- checklist -->
 	<link href="{{Asset("assets/css/jquery.datetimepicker.css")}}" rel="stylesheet">
 	<script src="{{Asset('assets/js/jquery.js')}}"></script>
-	<!-- // <script src="{{Asset('assets/js/jquery.datetimepicker.js')}}"></script> -->
+	 <script src="{{Asset('assets/js/jquery.datetimepicker.js')}}"></script>
 	<script src="{{Asset('assets/js/jquery-validate/jquery.validate.min.js')}}"></script>
 	<script src="{{Asset('assets/js/jquery.number.min.js')}}"></script>
 
