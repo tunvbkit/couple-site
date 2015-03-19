@@ -5,13 +5,17 @@
 	color: #E75280;
 }
 .arrow{
-	padding-top: 15px;
+	padding-top: 12px;
 }
 .tab-step2,.tab-step3,.tab-step4{
 	display: none;
 }
+.show-url-step {
+	margin-top: 5px;
+}
 .show-url-step a{
 	font-size: 20px;
+	color: #e92d91;
 
 }
 
@@ -19,14 +23,15 @@
 	min-height: 296px;
 }
 #design-about h6,#design-img h6,#design-url h6{
-	color: #E85280;
+	color: #333;
 	margin-top: 2%;
 	margin-bottom: 2%;
 }
 .about-infor label, .setting-url label, .about-img label{
 	margin-top: 10px!important;
-	color: #19B5BC;
+	color: #333;
 	font-weight: normal;
+	font-size: 18px;
 }
 .padding-images{
 	padding: 3px 3px 3px 3px;
@@ -83,7 +88,7 @@
 @media only screen  and (min-width: 1280px) {
   .btn-change-bg {
 	position: absolute;
-	bottom: 2%;
+	bottom: 5%;
 	left: 43%;
 } 
 }
