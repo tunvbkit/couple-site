@@ -1,6 +1,6 @@
 @extends('business.main-dashboard')
 @section('title')
-  Profile|thuna.vn
+  Hồ sơ
 @endsection()
 @section('nav-bar')
 <nav class="navbar navbar-default">
@@ -260,26 +260,41 @@
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h4>Album ảnh</h4>
+          <h4 class="title-album">Album ảnh</h4>
           <div class="grid-slide">
-          @if(BusinessController::getSlide($vendor->id)==true )
-            @foreach(BusinessController::getSlide($vendor->id) as $photo)
-              <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 one-slide one-slide{{$photo->id}}">
-                  <span class="btn-delete">
-                    <i class="glyphicon glyphicon-remove-sign" onclick="delSlide({{$photo->id}})"></i>
-                  </span>
-                  <img  class="img-responsive img-thumbnail" src="{{Asset("../{$photo->bigpic}")}}">
+            @foreach($albums as $album)
+              <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 remove-album delete-album{{$album->id}}">
+                <?php $photo = BusinessController::getFirstPhoto($album->id); ?>
+                @if(!empty($photo))
+                  <a href="javascript:void(0);" onclick="showAlbum({{$album->id}})">
+                    <img  class="img-responsive img-thumbnail" src="{{Asset("../{$photo->bigpic}")}}">
+                  </a>
+                @else
+                  <a href="javascript:void(0);" onclick="showAlbum({{$album->id}})">
+                    <img  class="img-responsive img-thumbnail" src="{{Asset("../images/avatar/Album.png")}}">
+                  </a>        
+                @endif   
+                <p class="text-center detail-album">
+                  <a class="a-name-album{{$album->id}}" href="javascript:void(0);" onclick="editAlbum({{$album->id}})">{{$album->name}}</a>
+                  <input type="type" class="i-name-album form-control name-edit-album{{$album->id}}" value="{{$album->name}}" onblur="updateAlbum({{$album->id}})">
+                </p> 
+                <p class="text-center detail-album"><a onclick="showAlbum({{$album->id}})" href="javascript:void(0);">Ảnh(
+                      @if(!empty(PhotoSlide::where('album',$album->id)->get()->count()))
+                        {{PhotoSlide::where('album',$album->id)->get()->count();}}
+                    @else
+                      0
+                    @endif
+                      )</a></p>
+                <p class="text-center detail-album"><a href="javascript:void(0);" onclick="editAlbum({{$album->id}})">Chỉnh sửa</a>|<a href="javascript:void(0);" onclick="delAlbum({{$album->id}})">Xóa</a></p>
               </div>
-             @endforeach
-           @else
-             <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-                <img  class="img-responsive img-thumbnail" src="{{Asset("../images/avatar/default.jpg")}}">
-              </div>
-           @endif
+            @endforeach
+            
+             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center btn-add-album">
+                <a class="create-album btn btn-responsive btn-primary" href="javascript:void(0);">
+                  Tạo album
+                </a>               
+             </div>
            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center btn-upload-slide">
-          <button class="btn btn-responsive btn-primary" data-backdrop="static" data-toggle="modal" data-target='#b-modal-slide'>Tải ảnh lên</button>
         </div>
       </div>
     </div>
@@ -379,14 +394,18 @@
         }); 
       }
       function bLoadSlide(){
+        var id_album = $('.id-album').val();
         $.ajax({
         type:"post",
+        data:{
+          id_album:id_album
+        },
         url:"{{URL::route('b_load_slide')}}",
         success:function(data){
           $('.dz-preview').remove();
           $('.dz-message').css('opacity',1);
-          $('.one-slide').remove();
-          $('.grid-slide').append(data);
+          $('.append-load').children().remove();
+          $('.append-load').append(data);
           }
         }); 
       }
@@ -396,10 +415,100 @@
         data:{id_slide : id_slide},
         url:"{{URL::route('b_del_slide')}}",
         success:function(data){
-          $('.one-slide'+id_slide).remove();
+          $('.remove-photo'+id_slide).remove();
           }
         }); 
       }
+      Dropzone.options.bUploadAvatar = {
+          maxFiles: 10,
+          accept: function(file, done) {
+            console.log("uploaded");
+            done();
+          },
+          init: function() {
+            this.on("maxfilesexceeded", function(file){
+                alert("Mỗi album bạn chỉ được tải 10 ảnh");
+            });
+          }
+        };
+        // create-album
+        function delAlbum(id_album){
+            $.ajax({
+                type:'POST',
+                url:'{{URL::route('delete_album')}}',
+                data:{id_album: id_album},
+                success:function(data){
+                 $('.delete-album'+id_album).remove();
+                 $('.append-load').children().remove()
+                }
+            });
+          }
+          function sendIdAlbum(id){
+            $('.id-album').val(id);
+          };
+          function showAlbum(id){
+            $.ajax({
+                type:'POST',
+                url:'{{URL::route('show_album')}}',
+                data:{id: id},
+                success:function(data){
+                  $('.grid-slide').children().remove();
+                  $('.grid-slide').append(data);
+                }
+            });
+          };
+          $('.create-album').click(function(event){
+              var name = $('.name-album').val();
+             var baseUrl = "<?php echo URL::to('/'); ?>";
+             var child = $('.grid-slide').children().length;
+             if (name == false) {
+                    event.preventDefault();
+                    alert('Bạn chưa đặt tên cho albums');
+             } else{
+                    if (child <= 4) {
+                      $('.btn-add-album').before('<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 remove-album"><img class="img-responsive img-thumbnail" src="'+baseUrl+'/../images/avatar/Album.png"><input type="text" class="form-control name-album" value="" placeholder="Tên album" onBlur="createAlbum()"></div>')
+                      $('.name-album').focus();
+                   } else{
+                    alert('Bạn chỉ được tạo tối đa 5 album')
+                   };
+             };
+          });
+          function createAlbum(){
+            var name = $('.name-album').val();
+            if (name == false) {
+              alert('Bạn chưa đặt tên cho album');
+            } else{
+               $.ajax({
+                type:'POST',
+                url:'{{URL::route('create_album')}}',
+                data:{name: name},
+                success:function(data){
+                  $('.remove-album').remove();
+                  $('.btn-add-album').before(data);
+                }
+            });
+            };
+          };
+          function editAlbum(id_album){
+            $('.a-name-album'+id_album).hide();
+            $('.name-edit-album'+id_album).show();
+            $('.name-edit-album'+id_album).focus();
+          };
+          function updateAlbum(id_album){
+            var name =  $('.name-edit-album'+id_album).val();
+            $.ajax({
+                type:'POST',
+                url:'{{URL::route('update_album')}}',
+                data:{id_album: id_album,
+                      name: name },
+                success:function(data){
+                 $('.a-name-album'+id_album).text(name);
+                  $('.a-name-album'+id_album).show();
+                  $('.name-edit-album'+id_album).hide();
+                }
+            });
+          };
+
   </script>
 
 <!-- upload ajax avatar -->
@@ -434,8 +543,8 @@
       <div class="modal-body">
         
         <form  onclick="opacity()" action="{{URL::route('b_upload_slide')}}" class="dropzone dz-clickable" id="b-upload-avatar" method="POST">
+          <input type="hidden" value="" class="id-album" name="id-album">
         </form>
-          
       </div>
       <div class="modal-footer" style="text-align:center;">
             <button onclick="bLoadSlide()" type="button" data-dismiss="modal" class="btn btn-primary" >Đóng</button>

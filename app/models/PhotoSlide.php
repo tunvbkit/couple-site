@@ -15,9 +15,9 @@ class PhotoSlide extends Eloquent {
 	 *
 	 * @var array
 	 */
-	public function vendor()
+	public function album()
 	{
-		return $this->belongsTo('Vendor','vendor');
+		return $this->belongsTo('Album','vendor');
 	}
 
 	

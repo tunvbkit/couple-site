@@ -16,9 +16,9 @@ class CreatePhotoslide extends Migration {
 		Schema::create('photoslide',function($table)
 			{
 				$table->increments("id");
-				$table->integer('vendor');
 				$table->string('bigpic');
 				$table->string('smallpic');
+				$table->integer('album');
 				$table->timestamps();
 			});
 	}
