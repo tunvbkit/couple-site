@@ -471,4 +471,5 @@ Route::get('gh', function(){
 });
 // dem clcik
 Route::post('count-click',array('as'=>'count_click','uses'=>'VendorController@countClick'));
+Route::post('show-slide',array('as'=>'show_slide','uses'=>'VendorController@showSlide'));
 

@@ -277,7 +277,7 @@ class BusinessController extends \BaseController {
 			$path2 = base_path('images/slide/'.$years.'/'.$months.'/'.$filename2);
 			$pathsave1 = 'images/slide/'.$years.'/'.$months.'/'.$filename1;
 			$pathsave2 = 'images/slide/'.$years.'/'.$months.'/'.$filename2;
-			Image::make($file->getRealPath())->resize(700, 450)->save($path1);
+			Image::make($file->getRealPath())->resize(700, 525)->save($path1);
 			Image::make($file->getRealPath())->resize(80, 80)->save($path2);
 			$slide->album = $id_album;
 			$slide->bigpic = $pathsave1;
