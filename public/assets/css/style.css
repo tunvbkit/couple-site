@@ -1224,6 +1224,10 @@ display: block;
 	border-right: none;
 	border-bottom: none;
 	margin-bottom: 20px;
+	margin-top: 3%!important;
+}
+#content-video h4{
+	margin-top: 2%;
 }
 #content-photo
 {
@@ -1306,11 +1310,18 @@ ul#thumbs img{
 ul#thumbs-main li{
 	float:left;
 	margin-bottom:1.2%;
-	border:1px solid #CCC;	
+	margin-right: 1%;	
 	padding:3px;
 	cursor:pointer;
 	list-style:none;
 	position: relative;
+	width: 30%;
+}
+ul#thumbs-main p{
+	margin-bottom: 0px;
+	margin-top: 5%;
+	text-transform: capitalize;
+	color: #428bca;
 }
 /*- comment in detail vendor -*/
 div.vendor_comment{

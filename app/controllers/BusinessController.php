@@ -21,10 +21,12 @@ class BusinessController extends \BaseController {
 		$categories = BusinessController::getCategory();
 		$id_user = $this->getUser();
 		$vendor = Vendor::where('user',$id_user)->get();
+		$albums = $this->getAlbum();
 		return View::make('business.edit')->with('vendor',$vendor)
 												->with('categories',$categories)
 												->with('location',$location)
-												->with('msg',$msg);
+												->with('msg',$msg)
+												->with('albums',$albums);
 	}
 
 
@@ -234,7 +236,7 @@ class BusinessController extends \BaseController {
 		return	VendorComment::where('vendor',$id_vendor)->get();
 	}
 	public static function getSlide($id_vendor){
-		return PhotoSlide::where('vendor',$id_vendor)->get();
+		 // return PhotoSlide::where('vendor',$id_vendor)->get();
 	}
 	public static function checkHasAvatar(){
 		return Vendor::where('user',BusinessController::getUser())->get()->first()->avatar;
@@ -262,7 +264,7 @@ class BusinessController extends \BaseController {
 	}
 	public function bUploadSlide(){
 		$file = Input::file('file');
-		$id_user = $this->getUser();
+		$id_album = Input::get('id-album');
 		$vendor = $this->getVendor()->id;
 	 	 if(Input::hasFile('file')){
 			$slide = new PhotoSlide();
@@ -275,9 +277,9 @@ class BusinessController extends \BaseController {
 			$path2 = base_path('images/slide/'.$years.'/'.$months.'/'.$filename2);
 			$pathsave1 = 'images/slide/'.$years.'/'.$months.'/'.$filename1;
 			$pathsave2 = 'images/slide/'.$years.'/'.$months.'/'.$filename2;
-			Image::make($file->getRealPath())->resize(700, 450)->save($path1);
+			Image::make($file->getRealPath())->resize(700, 525)->save($path1);
 			Image::make($file->getRealPath())->resize(80, 80)->save($path2);
-			$slide->vendor = $vendor;
+			$slide->album = $id_album;
 			$slide->bigpic = $pathsave1;
 			$slide->smallpic = $pathsave2;
 			$slide->save();   	
@@ -290,9 +292,11 @@ class BusinessController extends \BaseController {
  		return Response::json(array('image'=>$image));
 	}
 	public function bLoadSlide(){
-		$vendor	= 	$this->getVendor()->id;
-		$slide 	=	PhotoSlide::where('vendor',$vendor)->get();		
-		return View::make('business.my-slide')->with('slide', $slide);
+		$id_album = Input::get('id_album');
+		$title = Album::where('id',$id_album)->get()->first()->name;
+		$slide 	=	PhotoSlide::where('album',$id_album)->get();		
+		return View::make('business.my-slide')->with('slide', $slide)
+											->with('title',$title);
 	}
 	public function bUploadVideo(){
 		$link = Input::get('link-video');
@@ -578,5 +582,53 @@ class BusinessController extends \BaseController {
 	public function postActiveContact(){
 		$id_request = Input::get('id_request');
 		Contact::where('id',$id_request)->update(array('active'=>1));
+	}
+
+	public function createAlbum(){
+		$id_vendor = $this->getVendor()->id;
+		$name = Input::get('name');
+		$album = new Album();
+		$album->vendor = $id_vendor;
+		$album->name = $name;
+		$album->save();
+		$albums = $this ->getAlbum();
+		return View::make('business.album')->with('albums',$albums);
+	}
+	public static function getFirstPhoto($id_album){
+		return  PhotoSlide::where('album',$id_album)->get()->first();
+	}
+	public static function getAlbum(){
+		$id_vendor = BusinessController::getVendor()->id;
+		 return Album::where('vendor',$id_vendor)->get();
+	}
+	public function showAlbum(){
+		$id_album = Input::get('id');
+		$title = Album::where('id',$id_album)->get()->first()->name;
+		$photos = PhotoSlide::where('album',$id_album)->get();
+		$albums = $this->getAlbum();
+		return View::make('business.show-photo')->with('photos',$photos)
+												->with('albums',$albums)
+												->with('title',$title)
+												->with('id_album',$id_album);
+	}
+	public function deleteAlbum(){
+		$id_album = Input::get('id_album');
+		$album = Album::where('id',$id_album)->get()->first();
+		$photos = PhotoSlide::where('album',$id_album)->get();
+		foreach ($photos as $photo) {
+			$name1 = $photo->bigpic;
+			$name2 = $photo->smallpic;
+			$path1 = base_path($name1);
+			$path2 = base_path($name2);
+			File::delete($path1);
+			File::delete($path2);
+			$photo->delete();
+		}
+		$album->delete();
+	}
+	public function updateAlbum(){
+		$id_album = Input::get('id_album');
+		$name = Input::get('name');
+		Album::where('id',$id_album)->update(array('name'=>$name));
 	}
 }

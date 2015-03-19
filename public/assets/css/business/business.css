@@ -454,7 +454,6 @@ a.contact-admin:hover{
 }
 .btn-upload-slide button{
 	margin: 2%;
-	width: 15%;
 }
 /*end*/
 /*inbox*/
@@ -655,4 +654,62 @@ a.contact-admin:hover{
 }
 .tab-request a{
 	text-decoration: none;
+}
+.btn-add-album a{
+	text-decoration: none;
+}
+.btn-add-album{
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+.name-album{
+	margin: 1%;
+}
+.remove-album{
+	margin-top: 0.5%;
+	margin-bottom: 0.5%
+}
+.btn-upload-slide{
+	border-bottom: solid 1px  #e7e7e7;
+	margin-left: 1.5%;
+
+}
+.remove-photo{
+	margin-top: 1%;
+}
+.btn-delete-album{
+	color: red;
+    cursor: pointer;
+    right: 7%;
+    top: 0.2%;
+    position: absolute;
+}
+.btn-delete{
+	color: red;
+    cursor: pointer;
+    right: 11%;
+    top: 1%;
+    position: absolute;
+}
+.btn-delete{
+	display: none;
+}
+.btn-delete-album{
+	display: none;
+}
+.grid-slide .remove-album:hover .btn-delete-album{
+	display: block;
+}
+.append-load .remove-photo:hover .btn-delete{
+	display: block;
+}
+.detail-album a{
+	text-decoration: none;
+}
+.detail-album a:hover{
+	color: #e92d91;
+}
+.i-name-album{
+	display: none;
+	margin-top: 1%;
 }

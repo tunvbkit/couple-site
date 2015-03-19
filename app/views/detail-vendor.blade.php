@@ -212,19 +212,40 @@
 									<p>{{$vendor->about}}.</p>
 								</div>
 								<div id="content-photo">
-									<h4>Ảnh</h4>
-										@if($check_photoslide>0)	
+									<h4>Album ảnh</h4>
+										@if($check_album>0)	
 										<ul id="thumbs-main">											
-												@foreach($photoslides as $index => $photoslide)
-												<li  rel="{{$index+1}}"><a href="#photos" class="image-outside-link" data-toggle="tab">
-													<img class="img-responsive" src="{{Asset("../{$photoslide->smallpic}")}}">
-												</a></li>
+												@foreach($albums as $index => $album)
+												<?php $photo = VendorController::getFirstAlbum($album->id); ?>
+												<li  rel="{{$index+1}}">
+													<a href="#photos" onclick="showSlide({{$album->id}})" class="image-outside-link" data-toggle="tab">
+													@if(!empty($photo))
+														<img class="img-responsive" src="{{Asset("../{$photo->bigpic}")}}">
+													@else
+														<img  class="img-responsive" src="{{Asset("../images/avatar/Album.png")}}">
+													@endif
+													
+												</a>
+												<p class="text-center">{{$album->name}}</p>
+											</li>
 												@endforeach											   
 										</ul>
-											<a style="margin-left:2%;" href="#photos" class="outside-link"data-toggle="tab">Xem thêm</a>
 										@else
 												
 										@endif	
+										<script type="text/javascript">
+										function showSlide(id_album){
+											$.ajax({
+								                type:'POST',
+								                url:'{{URL::route('show_slide')}}',
+								                data:{id_album: id_album},
+								                success:function(data){
+								                 $('#photos').children().remove();
+								                 $('#photos').append(data);
+								                }
+								            });
+										}
+										</script>
 								</div>
 								<div style="clear:both"></div>
 
@@ -473,25 +494,8 @@
 							<div id="your_cmt"></div> <!-- add comment -->
 						  	</div>
 						  	<div class=" tab-pane" id="photos">
-						  			<h4>{{Lang::get('messages.Photo')}}</h4>
-						  			  <!-- Wrapper for slides -->
-								<div  id="bigPic">
-									@if(!empty($photoslides))
-										@foreach($photoslides as $index => $photoslide)
-												<img style="margin:0 auto;" class="img-responsive" src="{{Asset("../{$photoslide->bigpic}")}}">
-										@endforeach
-									@endif			    
-								</div>
-								<ul  id="thumbs" style="margin-left:7.5%;">
-										@if(!empty($photoslides))
-											@foreach($photoslides as $index => $photoslide)
-												<li rel="{{$index+1}}">
-													<img class="img-responsive" src="{{Asset("../{$photoslide->smallpic}")}}">
-												</li>
-											@endforeach
-										@endif			   
-								</ul>
-						  </div>
+						  			
+						  	</div>
 						  <div class="tab-pane" id="video">
 				  			<h4>Video</h4>
 				  			{{$vendor->video}}

@@ -119,8 +119,8 @@ class VendorController extends \BaseController {
 			$ratings = 0;
 		}
 		
-		$check_photoslide 	= PhotoSlide::where('vendor',$id)->count();
-		$photoslides 		= PhotoSlide::where('vendor',$id)->get();	
+		$check_album 	= Album::where('vendor',$id)->count();
+		$albums 		= Album::where('vendor',$id)->get();	
 		$vendor 			= Vendor::where('id',$id)->get()->first();
 		
 		$rating_avg 		= VendorComment::where('vendor',$id)->get()->count();
@@ -145,9 +145,18 @@ class VendorController extends \BaseController {
 										->with('ratings',$ratings)
 										->with('avg_rating',$avg_rating)
 										->with('weddingdate',$weddingdate)
-										->with('check_photoslide',$check_photoslide)
-										->with('photoslides',$photoslides);
+										->with('check_album',$check_album)
+										->with('albums',$albums);
 				
+	}
+	public function showSlide(){
+		$id_album = Input::get('id_album');
+		$name = Album::where('id',$id_album)->get()->first()->name;
+		$slides = PhotoSlide::where('album',$id_album)->get();
+		return View::make('album-slide')->with('slides',$slides)->with('name',$name);
+	}
+	public static function getFirstAlbum($id_album){
+	 return	PhotoSlide::where('album',$id_album)->get()->first();
 	}
 	public static function getDates(){
 		$id_user 		= ChecklistController::id_user();

@@ -39,6 +39,11 @@ Route::group(array('prefix'=>'business'),function(){
 	Route::get('detail-request/{id}',array('before'=>'b_check_login','as'=>'detail_request','uses'=>'BusinessController@detailRequest'));
 	Route::get('delete-request/{id}',array('before'=>'b_check_login','as'=>'delete_request','uses'=>'BusinessController@deleteRequest'));
 	Route::post('post-active-contact',array('as'=>'post_active_contact','uses'=>'BusinessController@postActiveContact'));
+	// create album
+	Route::post('create-album',array('before'=>'b_check_login','as'=>'create_album','uses'=>'BusinessController@createAlbum'));
+	Route::post('show-album',array('before'=>'b_check_login','as'=>'show_album','uses'=>'BusinessController@showAlbum'));
+	Route::post('delete-album',array('before'=>'b_check_login','as'=>'delete_album','uses'=>'BusinessController@deleteAlbum'));
+	Route::post('update-album',array('before'=>'b_check_login','as'=>'update_album','uses'=>'BusinessController@updateAlbum'));
 });
 Route::group(array('before'=>'b_check_login'),function(){		
 	// Route::get('profile',array('as'=>'b_profile','uses'=>'BusinessController@profile'));
@@ -466,4 +471,5 @@ Route::get('gh', function(){
 });
 // dem clcik
 Route::post('count-click',array('as'=>'count_click','uses'=>'VendorController@countClick'));
+Route::post('show-slide',array('as'=>'show_slide','uses'=>'VendorController@showSlide'));
 

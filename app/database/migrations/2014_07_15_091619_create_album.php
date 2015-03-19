@@ -13,10 +13,11 @@ class CreateAlbum extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('album',function($table)
+		Schema::create('albums',function($table)
 			{
 				$table->increments("id");
-				$table->integer("album");
+				$table->string('name');
+				$table->integer("vendor");
 				$table->timestamps();
 			});
 	}
@@ -28,7 +29,7 @@ class CreateAlbum extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('album');
+		Schema::drop('albums');
 	}
 
 }
