@@ -242,15 +242,16 @@
       <div id="tab2">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <h4>Ảnh đại diện</h4>
-          <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 photo-vendor">
+          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 photo-vendor">
+            <?php $avatar = Avatar::where('vendor',$vendor->id)->where('active',1)->get()->first(); ?>
             <a>
-              @if(empty($vendor->avatar))
+              @if(empty($avatar->avatar))
               <img  class="img-responsive img-thumbnail" src="{{Asset('../images/avatar/default.jpg')}}">
               @else
-              <img  class="img-responsive img-thumbnail" src="{{Asset("../{$vendor->avatar}")}}">
+              <img  class="img-responsive img-thumbnail" src="{{Asset("../{$avatar->avatar}")}}">
               @endif  
            </a>
-           <button class="btn btn-responsive btn-primary" data-backdrop="static" data-toggle="modal" data-target='#b-modal-avatar'>Đổi ảnh</button>
+           <button class="btn btn-responsive btn-primary" data-toggle="modal" data-target='#change-avatar'>Đổi ảnh</button>
           </div>
           <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8" style="margin-top:3%;">
               <p style="font-weight:bold;">Lưu ý: </p>
@@ -259,7 +260,25 @@
               <p>Kích thước ảnh đại diện 700x450 pixel</p>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 space-tab2" >
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4></h4>
+          <div class="grid-avatar">
+              @if(!empty($avatars))
+              @foreach($avatars as $avatar)
+              <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 remove-avatar remove-avatar{{$avatar->id}}">
+                <span class="btn-delete-avatar" title="Xóa ảnh đại diện">
+                  <i onclick="deleteAvatar({{$avatar->id}})" class="fa fa-times"></i>
+                </span>
+                <img  class="img-responsive img-thumbnail" src="{{Asset("../{$avatar->avatar}")}}">
+              </div>
+              @endforeach
+              @endif
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <a class="btn btn-responsive btn-primary btn-add-avatar" data-backdrop="static" data-toggle="modal" data-target='#b-modal-avatar'>Thêm ảnh đại diện</a>
+              </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <h4 class="title-album">Album ảnh</h4>
           <div class="grid-slide">
             @foreach($albums as $album)
@@ -389,7 +408,9 @@
         success:function(data){
           $('.dz-preview').remove();
           $('.dz-message').css('opacity',1);
-          $('.photo-vendor a').html('<img class="img-responsive img-thumbnail" src="'+data.image+'">');
+          $('.grid-avatar').children().remove();
+          $('.grid-avatar').append(data);
+
           }
         }); 
       }
@@ -428,6 +449,7 @@
           init: function() {
             this.on("maxfilesexceeded", function(file){
                 alert("Mỗi album bạn chỉ được tải 10 ảnh");
+                this.removeFile(file);
             });
           }
         };
@@ -508,6 +530,27 @@
                 }
             });
           };
+          function deleteAvatar(id_avatar){
+              $.ajax({
+                type:"post",
+                data:{id_avatar : id_avatar},
+                url:"{{URL::route('b_del_avatar')}}",
+                success:function(data){
+                  $('.remove-avatar'+id_avatar).remove();
+                  }
+                }); 
+            };
+            function changeAvatar(id_avatar){
+              $.ajax({
+                  type:"post",
+                  data:{id_avatar : id_avatar},
+                  url:"{{URL::route('b_change_avatar')}}",
+                  success:function(data){
+                    $('.photo-vendor').children().remove();
+                    $('.photo-vendor').append('<img class="img-responsive img-thumbnail" src="'+data.src_img+'"><button class="btn btn-responsive btn-primary" data-toggle="modal" data-target="#change-avatar">Đổi ảnh</button>')
+                    }
+                  }); 
+          };
 
   </script>
 
@@ -517,7 +560,7 @@
     <div class="modal-content ">
       <div class="modal-header">
         <button type="button" onclick="bLoadAvatar()" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title text-center">Thay đổi ảnh đại diện</h4>
+        <h4 class="modal-title text-center">Thêm ảnh đại diện</h4>
       </div>
       <div class="modal-body">
         
@@ -553,5 +596,29 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<!-- change avatar-->
+<div class="modal fade " id="change-avatar">
+  <div class="modal-dialog modal-md ">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title text-center">Thay đổi ảnh đại diện</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row grid-modal-avatar">
+          @if(!empty($avatars))
+          @foreach($avatars as $avatar)
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <a href="javascript:void(0);" onclick="changeAvatar({{$avatar->id}})" data-dismiss="modal">
+              <img  class="img-responsive img-thumbnail" src="{{Asset("../{$avatar->avatar}")}}">
+            </a>
+          </div>
+          @endforeach
+          @endif
+        </div>        
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 @endsection()
 @stop()

@@ -713,3 +713,20 @@ a.contact-admin:hover{
 	display: none;
 	margin-top: 1%;
 }
+.btn-add-avatar{
+	margin-top: 2%;
+
+}
+.btn-delete-avatar{
+	color: red;
+    cursor: pointer;
+    right: 11%;
+    top: 1%;
+    position: absolute;
+}
+.btn-delete-avatar{
+	display: none;
+}
+.remove-avatar:hover .btn-delete-avatar{
+	display: block;
+}

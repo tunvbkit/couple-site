@@ -21,12 +21,14 @@ class BusinessController extends \BaseController {
 		$categories = BusinessController::getCategory();
 		$id_user = $this->getUser();
 		$vendor = Vendor::where('user',$id_user)->get();
+		$avatars = Avatar::where('vendor',$vendor->first()->id)->get();
 		$albums = $this->getAlbum();
 		return View::make('business.edit')->with('vendor',$vendor)
 												->with('categories',$categories)
 												->with('location',$location)
 												->with('msg',$msg)
-												->with('albums',$albums);
+												->with('albums',$albums)
+												->with('avatars',$avatars);
 	}
 
 
@@ -238,28 +240,28 @@ class BusinessController extends \BaseController {
 	public static function getSlide($id_vendor){
 		 // return PhotoSlide::where('vendor',$id_vendor)->get();
 	}
-	public static function checkHasAvatar(){
-		return Vendor::where('user',BusinessController::getUser())->get()->first()->avatar;
+	public function checkHasAvatar(){
+		return   (Avatar::where('vendor',BusinessController::getVendor()->id)->count() < 2 ? 1: 0);
 	}
 	public function bUploadAvatar(){
 		$file = Input::file('file');
-		$id_user = $this->getUser();
+		$id_vendor = $this->getVendor()->id;
 		$year=date("Y");
 		$month=date('m');
 		if (Input::hasFile('file')) {
-			if ($this->checkHasAvatar()==true)
+			if (BusinessController::checkHasAvatar() == 1)
 			 {
-				$path_delete=base_path( $this->checkHasAvatar() );
-				File::delete($path_delete);
-			} 
+				
 				File::makeDirectory(base_path('images/avatar/'.$year.'/'.$month),$mode = 0775,true,true);
-				$filename = $id_user.'vendor' .str_random(10).'.' .$file->getClientOriginalExtension();
+				$filename = $id_vendor.'vendor' .str_random(10).'.' .$file->getClientOriginalExtension();
 				$pathsave = 'images/avatar/'.$year.'/'.$month.'/'.$filename;
 				$path = base_path('images/avatar/'.$year.'/'.$month.'/'.$filename);
-				Image::make($file->getRealPath())->resize(300, 300)->save($path);
-				Vendor::where('user',$id_user)->update(
-						array('avatar'=>$pathsave)					
-						);
+				Image::make($file->getRealPath())->resize(500, 375)->save($path);
+				$avatar = new Avatar();
+				$avatar->vendor = $id_vendor;
+				$avatar->avatar = $pathsave;
+				$avatar->save();
+			} 
 		}
 	}
 	public function bUploadSlide(){
@@ -286,10 +288,18 @@ class BusinessController extends \BaseController {
    		 }
 	}
 	public function bLoadAvatar(){
-		$id_user = $this->getUser();
-		$vendor = Vendor::where('user',$id_user)->get()->first();			
- 		$image = asset('../'.$vendor->avatar);
- 		return Response::json(array('image'=>$image));
+		$id_vendor = $this->getVendor()->id;
+		$avatars = Avatar::where('vendor',$id_vendor)->get();			
+ 		return View::make('business.load-avatar')->with('avatars',$avatars);
+	}
+	public function bChangeAvatar(){
+		$id_vendor = $this->getVendor()->id;
+		Avatar::where('vendor',$id_vendor)->where('active',1)->update(array('active'=>0));
+		$id_avatar = Input::get('id_avatar');
+		Avatar::where('id',$id_avatar)->update(array('active'=>1));
+		$avatar = Avatar::where('id',$id_avatar)->where('active',1)->get()->first()->avatar;
+		$src_img = asset('../'.$avatar);
+		return Response::json(array('src_img'=>$src_img));
 	}
 	public function bLoadSlide(){
 		$id_album = Input::get('id_album');
@@ -318,6 +328,13 @@ class BusinessController extends \BaseController {
 		File::delete($path_delete1);
 		File::delete($path_delete2);
 		PhotoSlide::where('id',$id_slide)->delete();
+	}
+	public function bDeleteAvatar(){
+		$id_avatar = Input::get('id_avatar');
+		$name = Avatar::where('id',$id_avatar)->get()->first()->avatar;
+		$path_delete = base_path($name);
+		File::delete($path_delete);
+		Avatar::where('id',$id_avatar)->delete();
 	}
 	public static function countArrive(){
 		$id_vendor = BusinessController::getVendor()->id;

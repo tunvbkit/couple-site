@@ -42,6 +42,9 @@ class Vendor extends Eloquent implements SluggableInterface
       return $this->hasMany('Message','vendor');
     }
     public function album(){
-      return $this->hasMany('album','vendor');
+      return $this->hasMany('Album','vendor');
+    }
+    public function avatar(){
+      return $this->hasMany('Avatars','vendor');
     }
 }
