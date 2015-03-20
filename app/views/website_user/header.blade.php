@@ -128,7 +128,7 @@ Website cưới
 	};
 </script>
 <div class="container body-step">
-	<ul class="nav nav-tabs" role="tablist" style="margin:0% 25%;">
+	<ul class="nav nav-tabs" role="tablist" style="margin:0% 37%; border:none;">
 	  	<li class="step1" style="display: inline-flex;">
 	  		<a href="javascript:void(0);" >Bước 1</a>
 	  		<span class="glyphicon glyphicon-arrow-right arrow"></span>
@@ -154,7 +154,7 @@ Website cưới
 				<div class="load-avatar-bride">
 					<img  class="img-responsive" src="{{Asset('images/website/themes1/girl.jpg')}}">
 				</div>
-				<div class="text-center btn-change-img">
+				<div class="text-center btn-change-img" style="margin-bottom:5px;">
 					<button type="button" class="btn btn-responsive btn-primary"  onclick="send_check(111)" data-backdrop="static" data-toggle="modal" data-target='#modal-wedding'>Đổi ảnh</button>
 				</div>
 				<div class="about-infor">
@@ -168,7 +168,7 @@ Website cưới
 				<div class="load-avatar-groom">
 					<img  class="img-responsive" src="{{Asset('images/website/themes1/boy.jpg')}}">
 				</div>
-				<div class="text-center btn-change-img-groom">
+				<div class="text-center btn-change-img-groom" style="margin-bottom:5px;">
 					<button type="button" class="btn btn-responsive btn-primary"  onclick="send_check(222)" data-backdrop="static" data-toggle="modal" data-target='#modal-wedding'>Đổi ảnh</button>
 				</div>
 				<div class="about-infor">
@@ -265,7 +265,7 @@ Website cưới
 			</div>
 		</div>
 		<div class="row">
-			<p style="margin-left:3%;color:#66B5CD;">URL là link dùng để chia sẻ trang web của bạn với bạn bè</p>
+			<p style="margin-left:3%;color:#428bca;">URL là link dùng để chia sẻ trang web của bạn với bạn bè</p>
 		</div>
 
 		<nav class="text-center">

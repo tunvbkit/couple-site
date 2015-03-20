@@ -8,7 +8,7 @@
             </span>
 			@if(!empty($photo))
 				<a href="javascript:void(0);" onclick="showAlbum({{$album->id}})">
-					<img  class="img-responsive img-thumbnail" src="{{Asset("../{$photo->bigpic}")}}">
+					<img  class="img-responsive img-thumbnail" style="margin-bottom:5%;" src="{{Asset("../{$photo->bigpic}")}}">
 				</a>
 			@else
 				<a href="javascript:void(0);" onclick="showAlbum({{$album->id}})">

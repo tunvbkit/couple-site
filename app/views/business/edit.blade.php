@@ -132,7 +132,7 @@
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
             
           </div>
-          <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+          <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" style="padding-right: 0;">
             <label for="">Lĩnh vực kinh doanh</label>
           </div>
           <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
@@ -259,7 +259,7 @@
               <p>Kích thước ảnh đại diện 700x450 pixel</p>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 space-tab2" >
           <h4 class="title-album">Album ảnh</h4>
           <div class="grid-slide">
             @foreach($albums as $album)
@@ -267,25 +267,25 @@
                 <?php $photo = BusinessController::getFirstPhoto($album->id); ?>
                 @if(!empty($photo))
                   <a href="javascript:void(0);" onclick="showAlbum({{$album->id}})">
-                    <img  class="img-responsive img-thumbnail" src="{{Asset("../{$photo->bigpic}")}}">
+                    <img  class="img-responsive img-thumbnail"  style="margin-bottom:5%;" src="{{Asset("../{$photo->bigpic}")}} ">
                   </a>
                 @else
                   <a href="javascript:void(0);" onclick="showAlbum({{$album->id}})">
-                    <img  class="img-responsive img-thumbnail" src="{{Asset("../images/avatar/Album.png")}}">
+                    <img  class="img-responsive img-thumbnail" src="{{Asset("../images/avatar/Album.png")}}" style="margin-bottom: 5%;">
                   </a>        
                 @endif   
                 <p class="text-center detail-album">
                   <a class="a-name-album{{$album->id}}" href="javascript:void(0);" onclick="editAlbum({{$album->id}})">{{$album->name}}</a>
                   <input type="type" class="i-name-album form-control name-edit-album{{$album->id}}" value="{{$album->name}}" onblur="updateAlbum({{$album->id}})">
                 </p> 
-                <p class="text-center detail-album"><a onclick="showAlbum({{$album->id}})" href="javascript:void(0);">Ảnh(
-                      @if(PhotoSlide::where('album',$album->id)->get()->count() == true)
+                <p class="text-center detail-album"><a onclick="showAlbum({{$album->id}})" href="javascript:void(0);" style="color: #333">Ảnh (
+                    @if(PhotoSlide::where('album',$album->id)->get()->count() == true)
                         {{PhotoSlide::where('album',$album->id)->get()->count();}}
                     @else
-                      0
+                    0
                     @endif
-                      )</a></p>
-                <p class="text-center detail-album"><a href="javascript:void(0);" onclick="editAlbum({{$album->id}})">Chỉnh sửa</a>|<a href="javascript:void(0);" onclick="delAlbum({{$album->id}})">Xóa</a></p>
+                    )</a></p>
+                <p class="text-center detail-album"><a href="javascript:void(0);" onclick="editAlbum({{$album->id}})" style="color: #333;">Chỉnh sửa</a>|<a href="javascript:void(0);" onclick="delAlbum({{$album->id}})" style="color: #333">Xóa</a></p>
               </div>
             @endforeach
             

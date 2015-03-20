@@ -25,21 +25,21 @@
 				</a>
 			@else
 				<a href="javascript:void(0);" onclick="showAlbum({{$album->id}})">
-					<img  class="img-responsive img-thumbnail" src="{{Asset("../images/avatar/Album.png")}}">
+					<img  class="img-responsive img-thumbnail" src="{{Asset("../images/avatar/Album.png")}}" style="margin-bottom: 5px;">
 				</a>				
 			@endif
 			<p class="text-center detail-album">
                   <a class="a-name-album{{$album->id}}" href="javascript:void(0);" onclick="editAlbum({{$album->id}})">{{$album->name}}</a>
                   <input type="type" class="i-name-album form-control name-edit-album{{$album->id}}" value="{{$album->name}}" onblur="updateAlbum({{$album->id}})">
                 </p> 
-                <p class="text-center detail-album"><a onclick="showAlbum({{$album->id}})" href="javascript:void(0);">Ảnh(
+                <p class="text-center detail-album"><a onclick="showAlbum({{$album->id}})" href="javascript:void(0);" style="color: #333">Ảnh(
                       @if(PhotoSlide::where('album',$album->id)->get()->count() == true)
                         {{PhotoSlide::where('album',$album->id)->get()->count();}}
                     @else
                       0
                     @endif
                       )</a></p>
-                <p class="text-center detail-album"><a href="javascript:void(0);" onclick="editAlbum({{$album->id}})">Chỉnh sửa</a>|<a href="javascript:void(0);" onclick="delAlbum({{$album->id}})">Xóa</a></p>				
+                <p class="text-center detail-album"><a href="javascript:void(0);" onclick="editAlbum({{$album->id}})" style="color: #333">Chỉnh sửa</a>|<a href="javascript:void(0);" onclick="delAlbum({{$album->id}})" style="color: #333">Xóa</a></p>				
 		</div>
 	@endforeach
 @endif

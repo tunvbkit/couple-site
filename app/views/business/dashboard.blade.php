@@ -114,10 +114,18 @@
            </a>
         </div>
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 p-infor-vendor">
-          <p>Tên công ty : {{$vendor->name}}</p>
-          <p>Lĩnh vực : {{Category::where('id',$vendor->category)->get()->first()->name}}</p>
-          <p>Địa điểm : {{Location::where('id',$vendor->location)->get()->first()->name}}</p>
-          <p>Số điện thoại : {{$vendor->phone}}</p>
+          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 p-title-infor-vendor">
+            <p>Tên công ty :</p>
+            <p>Lĩnh vực :</p>
+            <p>Địa điểm :</p>
+            <p>Số điện thoại :</p>
+          </div>
+          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 p-content-infor-vendor">
+            <p><a style="color: #e92d91;" href="#">{{$vendor->name}}</a></p>
+            <p><a style="color: #428bca;" href="#">{{Category::where('id',$vendor->category)->get()->first()->name}}</a></p>
+            <p>{{Location::where('id',$vendor->location)->get()->first()->name}}</p>
+            <p>{{$vendor->phone}}</p>
+          </div>
         </div>
       </div>
 
@@ -142,34 +150,40 @@
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 infor-count">         
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center top-h4">
-            <h4>Thông tin vendor</h4>
+            <h4 style="font-weight: bold;">Thông tin vendor</h4>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 thongke">
-            <p>Lượt truy cập : {{$vendor->click}}</p>
-           <p>Đánh giá: 
-              @if( VendorComment::where('vendor',$vendor->id)->avg('rating') ==true)
-              {{VendorComment::where('vendor',$vendor->id)->avg('rating')}}
-              @endif
-            </p>
-            <p>
-              <a href="{{URL::route('b_comment')}}">Lượt nhận xét @if (!empty($countCommentNoActive))
-                  <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
-                @endif  :
-              </a>
-             
-                {{$c_count}}
-            </p>
-            <p><a href="{{URL::route('b_request')}}">Yêu cầu  @if (!empty($new_countRequest))
-                  <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
-                @endif  : </a>{{$count_request}} 
-               
-            </p>
-            <p><a href="{{URL::route('b_inbox')}}">Hộp thư  @if (!empty($new_inbox))
-                  <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
-                @endif  : </a>{{$inbox}} 
-               
-            </p>
-            
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+              <p>Lượt truy cập:</p>
+              <p>Đánh giá:</p>
+              <p><a href="{{URL::route('b_comment')}}">Lượt nhận xét @if (!empty($countCommentNoActive))
+                    <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
+                  @endif  :
+                </a>
+              </p>
+              <p><a href="{{URL::route('b_request')}}">Yêu cầu  @if (!empty($new_countRequest))
+                    <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
+                  @endif  : </a>
+              </p>
+              <p>
+                <a href="{{URL::route('b_inbox')}}">Hộp thư  @if (!empty($new_inbox))
+                    <span style="position:absolute;"><img src="{{Asset('icon/new.png')}}"></span> &nbsp &nbsp &nbsp &nbsp
+                  @endif  : </a>
+              </p>
+            </div>
+
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 p-statistic-vendor">
+              <p> {{$vendor->click}}</p>
+              <p> 
+                @if( VendorComment::where('vendor',$vendor->id)->avg('rating') ==true)
+                {{VendorComment::where('vendor',$vendor->id)->avg('rating')}}
+                @else 0
+                @endif
+              </p>
+              <p>{{$c_count}}</p>
+              <p>{{$count_request}}</p>
+              <p>{{$inbox}}</p>
+            </div>    
           </div>
       </div>
     </div>
