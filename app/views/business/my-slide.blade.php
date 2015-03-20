@@ -12,3 +12,6 @@
 	</div>
 	@endforeach
 @endif
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center btn-upload-slide">
+	  <button class="btn btn-responsive btn-primary" data-backdrop="static" data-toggle="modal" data-target='#b-modal-slide' onclick="sendIdAlbum({{$id_album}})">Tải ảnh lên</button>
+	</div>

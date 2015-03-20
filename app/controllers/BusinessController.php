@@ -296,7 +296,8 @@ class BusinessController extends \BaseController {
 		$title = Album::where('id',$id_album)->get()->first()->name;
 		$slide 	=	PhotoSlide::where('album',$id_album)->get();		
 		return View::make('business.my-slide')->with('slide', $slide)
-											->with('title',$title);
+											->with('title',$title)
+											->with('id_album',$id_album);
 	}
 	public function bUploadVideo(){
 		$link = Input::get('link-video');
