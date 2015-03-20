@@ -564,7 +564,7 @@
       </div>
       <div class="modal-body">
         
-        <form  onclick="opacity()" action="{{URL::route('b_upload_avatar')}}" class="dropzone dz-clickable" id="b-upload-avatar" method="POST">
+        <form  onclick="opacity()" action="{{URL::route('b_upload_avatar')}}" class="dropzone dz-clickable" id="b-add-avatar" method="POST">
         </form>
           
       </div>

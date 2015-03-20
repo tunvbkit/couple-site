@@ -316,10 +316,11 @@ Danh sách Dịch vụ | thuna.vn
 			                        <!-- Vendor Images -->
 			                        <a href="javascript:void(0);" onclick="countClick({{$vendor->id}},'{{VendorController::getCategorySlug( VendorController::getVendorCategory($vendor->id))}}','{{$vendor->slug}}')">
 			                        	<!-- {{VendorController::getImagesVendor($vendor->photo)}} -->
-			                        	@if(empty($vendor->avatar))
+			                        	<?php $avatar = Avatar::where('vendor',$vendor->id)->where('active',1)->get()->first(); ?>
+			                        	@if(empty($avatar->avatar))
 			                        	<img class="img-responsive img-thumbnail" src="{{Asset('../images/avatar/default.jpg')}}">
 			                        	@else
-			                        	<img class="img-responsive img-thumbnail" src="{{Asset("../{$vendor->avatar}")}}">
+			                        	<img class="img-responsive img-thumbnail" src="{{Asset("../{$avatar->avatar}")}}">
 			                        	@endif()
 			                        	
 			                        </a>
@@ -470,10 +471,11 @@ Danh sách Dịch vụ | thuna.vn
 							<div class="list-avatar">
 								<a href="javascript:void(0);" onclick="countClick({{$vendor->id}},'{{VendorController::getCategorySlug( VendorController::getVendorCategory($vendor->id))}}','{{$vendor->slug}}')">
 									<!-- {{VendorController::getImagesVendor($vendor->photo)}} -->
-									@if(empty($vendor->avatar))
+									<?php $avatar = Avatar::where('vendor',$vendor->id)->where('active',1)->get()->first(); ?>
+									@if(empty($avatar->avatar))
 		                        	<img class="img-responsive img-thumbnail" src="{{Asset('../images/avatar/default.jpg')}}">
 		                        	@else
-		                        	<img class="img-responsive img-thumbnail" src="{{Asset("../{$vendor->avatar}")}}">
+		                        	<img class="img-responsive img-thumbnail" src="{{Asset("../{$avatar->avatar}")}}">
 		                        	@endif()
 								</a>
 							</div>

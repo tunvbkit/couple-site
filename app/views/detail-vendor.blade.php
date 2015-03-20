@@ -155,28 +155,29 @@
 @section('content')
 		<div class="row" id="infor-vendor">
 			<div class="container body-detailvendor">
-			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-9" id="body-left">
-				<div class="row" id="top-left">
+				<div class="col-xs-12 col-sm-8 col-md-8 col-lg-9" id="body-left">
+					<div class="row" id="top-left">
 						<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5" id="left-infor">
 							<a href="" onclick="history.go(-1);return false" id="left-infor title-infor">{{Vendor::find($vendor->id)->category()->get()->first()->name}} tại {{Vendor::find($vendor->id)->location()->get()->first()->name}}:</a>
 							<div id="left-infor avata-vendor" >
-								@if(empty($vendor->avatar))
+								<?php $avatar = Avatar::where('vendor',$vendor->id)->where('active',1)->get()->first(); ?>
+								@if(empty($avatar->avatar))
 	                        	<img class="img-responsive img-thumbnail" src="{{Asset('../images/avatar/default.jpg')}}">
 	                        	@else
-	                        	<img class="img-responsive img-thumbnail" src="{{Asset("../{$vendor->avatar}")}}">
+	                        	<img class="img-responsive img-thumbnail" src="{{Asset("../{$avatar->avatar}")}}">
 	                        	@endif()
 								<div class="fb-like" data-layout="standard" data-action="like" data-show-faces="false" data-share="false"></div>
-						</div>
 							</div>
-							<div id="fb-root"></div>
-								<script>(function(d, s, id) {
-								  var js, fjs = d.getElementsByTagName(s)[0];
-								  if (d.getElementById(id)) return;
-								  js = d.createElement(s); js.id = id;
-								  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.0";
-								  fjs.parentNode.insertBefore(js, fjs);
-								}(document, 'script', 'facebook-jssdk'));
-								</script>
+						</div>
+						<div id="fb-root"></div>
+							<script>(function(d, s, id) {
+							  var js, fjs = d.getElementsByTagName(s)[0];
+							  if (d.getElementById(id)) return;
+							  js = d.createElement(s); js.id = id;
+							  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.0";
+							  fjs.parentNode.insertBefore(js, fjs);
+							}(document, 'script', 'facebook-jssdk'));
+							</script>
 								
 						<div calss="col-xs-12 col-sm-7 col-md-7 col-lg-7" id="right-infor">
 							<h3 id="right-infor name">{{$vendor->name}}</h3>
@@ -190,6 +191,16 @@
 						</div>
 
 					</div><!-- -End infor vendor -->
+					<div class="row" style="margin-top:2%;">
+						<?php $avatars = Avatar::where('vendor',$vendor->id)->get(); ?>
+						@if(!empty($avatars))
+						@foreach($avatars as $avatar)
+						<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+							<img class="img-responsive img-thumbnail" src="{{Asset("../{$avatar->avatar}")}}">
+						</div>
+						@endforeach
+						@endif
+					</div>
 					<div class="tab-content">
 					
 						<div class="tab-menu"  id="tabs">
