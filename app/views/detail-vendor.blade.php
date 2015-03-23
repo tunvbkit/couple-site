@@ -164,7 +164,7 @@
 								@if(empty($avatar->avatar))
 	                        	<img class="img-responsive img-thumbnail" src="{{Asset('../images/avatar/default.jpg')}}">
 	                        	@else
-	                        	<img class="img-responsive img-thumbnail" src="{{Asset("../{$avatar->avatar}")}}">
+	                        	<img class="img-responsive img-thumbnail img-avatar" src="{{Asset("../{$avatar->avatar}")}}">
 	                        	@endif()
 								<div class="fb-like" data-layout="standard" data-action="like" data-show-faces="false" data-share="false"></div>
 							</div>
@@ -196,10 +196,18 @@
 						@if(!empty($avatars))
 						@foreach($avatars as $avatar)
 						<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-							<img class="img-responsive img-thumbnail" src="{{Asset("../{$avatar->avatar}")}}">
+							<a href="javascript:void(0);" onclick = "showAvatar({{$avatar->id}})">
+								<img class="img-responsive img-thumbnail getimg{{$avatar->id}}" src="{{Asset("../{$avatar->avatar}")}}" >
+							</a>
 						</div>
 						@endforeach
 						@endif
+						<script type="text/javascript">
+							function showAvatar(id_avatar){								
+								var src_img = $('.getimg'+id_avatar).attr('src');
+								$('.img-avatar').attr('src',src_img);
+							}
+						</script>
 					</div>
 					<div class="tab-content">
 					
