@@ -266,27 +266,34 @@ class BusinessController extends \BaseController {
 			} 
 		}
 	}
+	public function checkCountAlbum($id_album){
+		$count = PhotoSlide::where('album',$id_album)->get()->count();
+		return $count;
+	}
 	public function bUploadSlide(){
 		$file = Input::file('file');
 		$id_album = Input::get('id-album');
 		$vendor = $this->getVendor()->id;
+		$count = BusinessController::checkCountAlbum($id_album);
 	 	 if(Input::hasFile('file')){
-			$slide = new PhotoSlide();
-			$years = date("Y");
-			$months = date('m');	
-			File::makeDirectory(base_path('images/slide/'.$years.'/'.$months),$mode = 0775,true,true);
-		  	$filename1 = $vendor.str_random(10) . '.' .$file->getClientOriginalExtension();
-		  	$filename2 = $vendor.str_random(10) . '.' .$file->getClientOriginalExtension();
-			$path1 = base_path('images/slide/'.$years.'/'.$months.'/'.$filename1);
-			$path2 = base_path('images/slide/'.$years.'/'.$months.'/'.$filename2);
-			$pathsave1 = 'images/slide/'.$years.'/'.$months.'/'.$filename1;
-			$pathsave2 = 'images/slide/'.$years.'/'.$months.'/'.$filename2;
-			Image::make($file->getRealPath())->resize(700, 525)->save($path1);
-			Image::make($file->getRealPath())->resize(80, 80)->save($path2);
-			$slide->album = $id_album;
-			$slide->bigpic = $pathsave1;
-			$slide->smallpic = $pathsave2;
-			$slide->save();   	
+	 	 	if ($count < 10) {
+	 	 		$slide = new PhotoSlide();
+				$years = date("Y");
+				$months = date('m');	
+				File::makeDirectory(base_path('images/slide/'.$years.'/'.$months),$mode = 0775,true,true);
+			  	$filename1 = $vendor.str_random(10) . '.' .$file->getClientOriginalExtension();
+			  	$filename2 = $vendor.str_random(10) . '.' .$file->getClientOriginalExtension();
+				$path1 = base_path('images/slide/'.$years.'/'.$months.'/'.$filename1);
+				$path2 = base_path('images/slide/'.$years.'/'.$months.'/'.$filename2);
+				$pathsave1 = 'images/slide/'.$years.'/'.$months.'/'.$filename1;
+				$pathsave2 = 'images/slide/'.$years.'/'.$months.'/'.$filename2;
+				Image::make($file->getRealPath())->resize(700, 525)->save($path1);
+				Image::make($file->getRealPath())->resize(80, 80)->save($path2);
+				$slide->album = $id_album;
+				$slide->bigpic = $pathsave1;
+				$slide->smallpic = $pathsave2;
+				$slide->save();  
+		 	 	}			 	
    		 }
 	}
 	public function bLoadAvatar(){

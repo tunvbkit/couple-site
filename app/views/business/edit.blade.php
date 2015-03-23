@@ -253,10 +253,13 @@
            </a>
            <button onclick="loadChangeAvatar()" class="btn btn-responsive btn-primary" data-toggle="modal" data-target='#change-avatar'>Đổi ảnh</button>
           </div>
-          <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8" style="margin-top:3%;">
+          <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
               <p style="font-weight:bold;">Lưu ý: </p>
-              <p>Dung lượng ảnh không quá 2M</p>
+              <p>Ảnh đại diện tối đa 3 ảnh</p>
               <p>Kích thước ảnh đại diện 300x300 pixel</p>
+              <p>Chỉ được tạo tối đa 5 album</p>
+              <p>Mỗi album gồm 10 ảnh</p>
+              <p>Dung lượng ảnh không quá 2M</p>
               <p>Kích thước ảnh đại diện 700x450 pixel</p>
           </div>
         </div>
@@ -440,19 +443,19 @@
           }
         }); 
       }
-      Dropzone.options.bUploadAvatar = {
-          maxFiles: 10,
-          accept: function(file, done) {
-            console.log("uploaded");
-            done();
-          },
-          init: function() {
-            this.on("maxfilesexceeded", function(file){
-                alert("Mỗi album bạn chỉ được tải 10 ảnh");
-                this.removeFile(file);
-            });
-          }
-        };
+      // Dropzone.options.bUploadAvatar = {
+      //     maxFiles: 10,
+      //     accept: function(file, done) {
+      //       console.log("uploaded");
+      //       done();
+      //     },
+      //     init: function() {
+      //       this.on("maxfilesexceeded", function(file){
+      //           alert("Mỗi album bạn chỉ được tải 10 ảnh");
+      //           this.removeFile(file);
+      //       });
+      //     }
+      //   };
         // create-album
         function delAlbum(id_album){
             $.ajax({
