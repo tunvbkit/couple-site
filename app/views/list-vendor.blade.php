@@ -1,6 +1,6 @@
 @extends('main')
 @section('title')
-Danh sách Dịch vụ | thuna.vn
+{{$slug_cate}}
 @endsection
 @section('nav-bar')
 

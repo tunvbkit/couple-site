@@ -256,7 +256,8 @@ class VendorController extends \BaseController {
 		$results 			= Vendor::where('category', $id_cate)->where('location',$id_location)->get();
 		return View::make('list-vendor')->with('results', $results)
 											->with('category_id', $id_cate)
-											->with('compares', $compares);
+											->with('compares', $compares)
+											->with('slug_cate',$slug_cate);
 		// return $results;
 	}
 
