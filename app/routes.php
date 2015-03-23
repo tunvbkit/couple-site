@@ -56,6 +56,7 @@ Route::group(array('before'=>'b_check_login'),function(){
 	Route::post('b-del-slide',array('as'=>'b_del_slide','uses'=>'BusinessController@bDeleteSlide'));
 	Route::post('b-del-avatar',array('as'=>'b_del_avatar','uses'=>'BusinessController@bDeleteAvatar'));
 	Route::post('b-change-avatar',array('as'=>'b_change_avatar','uses'=>'BusinessController@bChangeAvatar'));
+	Route::post('b--load-change-avatar',array('as'=>'b_load_change_avatar','uses'=>'BusinessController@bLoadChangeAvatar'));
 	Route::resource('business','BusinessController');
 	// inbox
 	Route::get('arrive-inbox',array('as'=>'load_arrive','uses'=>'BusinessController@loadArrive'));

@@ -251,7 +251,7 @@
               <img  class="img-responsive img-thumbnail" src="{{Asset("../{$avatar->avatar}")}}">
               @endif  
            </a>
-           <button class="btn btn-responsive btn-primary" data-toggle="modal" data-target='#change-avatar'>Đổi ảnh</button>
+           <button onclick="loadChangeAvatar()" class="btn btn-responsive btn-primary" data-toggle="modal" data-target='#change-avatar'>Đổi ảnh</button>
           </div>
           <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8" style="margin-top:3%;">
               <p style="font-weight:bold;">Lưu ý: </p>
@@ -550,6 +550,16 @@
                     $('.photo-vendor').append('<img class="img-responsive img-thumbnail" src="'+data.src_img+'"><button class="btn btn-responsive btn-primary" data-toggle="modal" data-target="#change-avatar">Đổi ảnh</button>')
                     }
                   }); 
+          };
+          function loadChangeAvatar(){
+              $.ajax({
+                  type:"post",
+                  url:"{{URL::route('b_load_change_avatar')}}",
+                  success:function(data){
+                    $('.grid-modal-avatar').children().remove();
+                    $('.grid-modal-avatar').append(data);
+                  }
+              }); 
           };
 
   </script>

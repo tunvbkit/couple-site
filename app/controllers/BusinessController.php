@@ -241,15 +241,17 @@ class BusinessController extends \BaseController {
 		 // return PhotoSlide::where('vendor',$id_vendor)->get();
 	}
 	public function checkHasAvatar(){
-		return   (Avatar::where('vendor',BusinessController::getVendor()->id)->count() < 2 ? 1: 0);
+		$count = Avatar::where('vendor',BusinessController::getVendor()->id)->get()->count();
+		return $count;
 	}
 	public function bUploadAvatar(){
 		$file = Input::file('file');
 		$id_vendor = $this->getVendor()->id;
 		$year=date("Y");
 		$month=date('m');
+		$count = BusinessController::checkHasAvatar();
 		if (Input::hasFile('file')) {
-			if (BusinessController::checkHasAvatar() == 1)
+			if ($count <= 2)
 			 {
 				
 				File::makeDirectory(base_path('images/avatar/'.$year.'/'.$month),$mode = 0775,true,true);
@@ -300,6 +302,11 @@ class BusinessController extends \BaseController {
 		$avatar = Avatar::where('id',$id_avatar)->where('active',1)->get()->first()->avatar;
 		$src_img = asset('../'.$avatar);
 		return Response::json(array('src_img'=>$src_img));
+	}
+	public function bLoadChangeAvatar(){
+		$id_vendor = $this->getVendor()->id;
+		$avatars = Avatar::where('vendor',$id_vendor)->get();
+		return View::make('business.load-change-avatar')->with('avatars',$avatars);
 	}
 	public function bLoadSlide(){
 		$id_album = Input::get('id_album');
