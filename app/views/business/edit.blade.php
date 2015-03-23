@@ -255,12 +255,12 @@
           </div>
           <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
               <p style="font-weight:bold;">Lưu ý: </p>
-              <p>Ảnh đại diện tối đa 3 ảnh</p>
-              <p>Kích thước ảnh đại diện 300x300 pixel</p>
-              <p>Chỉ được tạo tối đa 5 album</p>
-              <p>Mỗi album gồm 10 ảnh</p>
-              <p>Dung lượng ảnh không quá 2M</p>
-              <p>Kích thước ảnh đại diện 700x450 pixel</p>
+              <p>Ảnh đại diện tối đa 3 ảnh.</p>
+              <p>Kích thước ảnh đại diện 300x300 pixel.</p>
+              <p>Chỉ được tạo tối đa 5 album.</p>
+              <p>Mỗi album gồm 10 ảnh.</p>
+              <p>Dung lượng ảnh không quá 2M.</p>
+              <p>Kích thước ảnh đại diện 700x450 pixel.</p>
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
