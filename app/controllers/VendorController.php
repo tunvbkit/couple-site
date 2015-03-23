@@ -552,4 +552,7 @@ class VendorController extends \BaseController {
 		$slug_vendor = Vendor::where('id',$id_vendor)->get()->first()->slug;
 		return Redirect::to("vendor/$lug_cate/$slug_vendor");
 	}
+	public function searchVendor(){
+		return View::make('form-search');
+	}
 }

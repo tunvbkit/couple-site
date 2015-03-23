@@ -133,7 +133,7 @@ Route::post('get_location', array('as'=>'get_location', function(){
 	$id = Location::where('name',$name)->get()->first()->id;
 	Session::put('location',$id);
 }));
-
+Route::get('vendor/search',array('as'=>'form_search_vendor','uses'=>'VendorController@searchVendor'));
 
 Route::get('category-vendor',array('as'=>'category-vendor', "uses"=>"VendorController@index"));
 
@@ -475,4 +475,5 @@ Route::get('gh', function(){
 // dem clcik
 Route::post('count-click',array('as'=>'count_click','uses'=>'VendorController@countClick'));
 Route::post('show-slide',array('as'=>'show_slide','uses'=>'VendorController@showSlide'));
+// search vendor
 
