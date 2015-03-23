@@ -39,10 +39,12 @@ class ArticleController extends \BaseController {
 		$slug_taxonomy = Input::get('taxonomy');
 		$id_taxonomy = $this->getTaxonomyArticle($slug_taxonomy)->id;
 		$title = Input::get('search_name');
-		$articles = Article::where('taxonomy',$id_taxonomy)->where('title', 'LIKE' ,"%$title%")->paginate(10);
+		$articles = Article::where('taxonomy',$id_taxonomy)->where('title', 'LIKE' ,"%$title%")->paginate(5);
+		$count = Article::where('taxonomy',$id_taxonomy)->where('title', 'LIKE' ,"%$title%")->count();
 		return View::make('article.list-article')->with('articles',$articles)
 													->with('slug_taxonomy',$slug_taxonomy)
-													->with('title',$title);
+													->with('title',$title)
+													->with('count',$count);
 
 	}
 

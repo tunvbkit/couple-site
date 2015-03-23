@@ -119,6 +119,11 @@
         </form>
     </div>
   </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    @if(!empty($title))
+      <h4>Kết quả tìm kiếm "{{$title}}".</h4>
+    @endif
+  </div>
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 list-article">
     @foreach($articles as $article)
     <div class="sub-article">
@@ -134,12 +139,16 @@
   </div>
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
     @if(!empty($title))
-      {{$articles->appends(array('name-search' => $title,'taxonomy'=>$slug_taxonomy))->links()}}
+      {{$articles->appends(Request::except('page'))->links()}}
     @else
       {{$articles->links()}}
-    @endif
-    
+    @endif   
   </div>
+  @if(empty($count))
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <h4>Không tìm thấy bài viết.</h4>
+  </div>
+  @endif
 </div>
 @endsection
 @stop
