@@ -550,7 +550,7 @@
                   url:"{{URL::route('b_change_avatar')}}",
                   success:function(data){
                     $('.photo-vendor').children().remove();
-                    $('.photo-vendor').append('<img class="img-responsive img-thumbnail" src="'+data.src_img+'"><button class="btn btn-responsive btn-primary" data-toggle="modal" data-target="#change-avatar">Đổi ảnh</button>')
+                    $('.photo-vendor').append('<img class="img-responsive img-thumbnail" src="'+data.src_img+'"><button onclick="loadChangeAvatar()" class="btn btn-responsive btn-primary" data-toggle="modal" data-target="#change-avatar">Đổi ảnh</button>')
                     }
                   }); 
           };
