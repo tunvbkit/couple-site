@@ -180,13 +180,14 @@
 							</script>
 								
 						<div calss="col-xs-12 col-sm-7 col-md-7 col-lg-7" id="right-infor">
-							<h3 id="right-infor name">{{$vendor->name}}</h3>
-							<p id="right-infor address">{{$vendor->address}}<a href="#map" data-toggle="tab" class="outside-link" id="show_map_detail" onclick="show_map_detail()"> |Map.</a></p>
-							<p id="right-infor address"><b>Điện thoại:</b> {{$vendor->phone}}</p>
-							<p id="right-infor web"><b>Website      </b>:<a href="{{$vendor->website}}" id="right-infor link" target="_blank"> Ghé thăm Website của tôi</a></p>
-							<p id="right-infor service"><b>Dịch vụ</b>:
+							<h3 id="right-infor name" style="color:#e92d91">{{$vendor->name}}</h3>
+							<p id="right-infor service"><b>Dịch vụ </b>:
 								{{Vendor::find($vendor->id)->category()->get()->first()->name}}
 							</p>
+							<p id="right-infor address"><b>Địa chỉ </b>: {{$vendor->address}}<a href="#map" data-toggle="tab" class="outside-link" id="show_map_detail" onclick="show_map_detail()"> |Map.</a></p>
+							<p id="right-infor address"><b>Điện thoại </b>: {{$vendor->phone}}</p>
+							<p id="right-infor web"><b>Website      </b>:<a href="{{$vendor->website}}" id="right-infor link" target="_blank"> Ghé thăm Website của tôi</a></p>
+							
 							
 						</div>
 
@@ -609,7 +610,7 @@
 								 </div>
 								    <!-- -script show select -->
 								<br>	
-						  	<div class="form-group text-center" style="margin-top:-20%;">
+						  	<div class="form-group text-center" style="margin-top:-30%;">
 							    <a onclick='sendContact({{$vendor->id}})' class="btn btn-primary btn-responsive btn-lg" id="btn-contact">Liên lạc</a>
 							</div>
 							 <div class="form-group"style="margin-left:72px">

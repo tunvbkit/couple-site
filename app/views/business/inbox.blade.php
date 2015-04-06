@@ -103,7 +103,7 @@
 			<h4>Hộp thư</h4>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 left-inbox">
+			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 right-inbox">
 
 		        <div class="sidebar-nav">
 			      <div class="navbar navbar-default" role="navigation">
@@ -118,7 +118,7 @@
 			        </div>
 			        <div class="navbar-collapse collapse sidebar-navbar-collapse">
 			          <ul class="nav navbar-nav menu-inbox">
-			            <li class="active e-inbox"><a href="{{URL::route('write_inbox')}}">Soạn thư mới</a></li>
+			            <li class="active e-inbox"><button type="button" class="btn btn-primary" style="margin-left:6%">Soạn thư mới</button></li>
 			            <li class="a-inbox">
                     <a href="{{URL::route('load_arrive')}}">
                       Hộp thư đến (@if(!empty($n_arrive)){{$n_arrive}}@endif)

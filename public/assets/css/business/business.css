@@ -327,12 +327,22 @@ a.contact-admin:hover{
 /*index dashboard*/
 .content-dashboard{
 	min-height: 500px;
-	background-color: #e7e7e7;
+	
 	margin:3% auto;
 }
 .content-dashboard h3 {
 	margin-left: 1.2%;
+	margin-bottom: 2%;
 	color: #EF4CAB;
+}
+.p-title-infor-vendor p {
+	font-weight: bold;
+}
+.p-content-infor-vendor a {
+	text-decoration: none;
+}
+.p-statistic-vendor p {
+	color: #333 !important;
 }
 .nav-index{
 	padding-left: 8%;
@@ -362,6 +372,7 @@ a.contact-admin:hover{
 .description-vendor h4{
 	border-bottom: solid 1px #e7e7e7;
 	font-weight: bold;
+	padding-bottom: 1%;
 } 
  .btn-search{
  	margin-bottom: 1%;
@@ -369,6 +380,7 @@ a.contact-admin:hover{
 .btn-search a{
 	color: white;
 	background-color: #ef4c9b;
+	margin-top: 2%;
 }
 .btn-search a:hover{
 	color: white;
@@ -385,6 +397,10 @@ a.contact-admin:hover{
 .infor-count .top-h4 {
 	padding: 0px;
 	background-color: #d9d9d9;
+}
+.thongke {
+	border: solid 1px #ddd;
+	padding: 3%;
 }
 .thongke p a{
 	color: #0072ff;
@@ -418,23 +434,28 @@ a.contact-admin:hover{
 	font-weight: normal;
 	font-size: 14px;
 }
+.space-tab2 {
+	margin: 2% 0;
+}
+.tab {
+	margin: 2% 0;
+}
 #tab2 h4 {
 	border-bottom: solid 1px #e7e7e7;
 	font-weight: bold;
 	margin-left: 1.2%; 
+	padding-bottom: 0.5%;
 }
 #tab3 h4 {
-	border-bottom: solid 1px #e7e7e7;
 	font-weight: bold;
 	margin-left: 1.2%; 
 }
 #tab4 h4 {
-	border-bottom: solid 1px #e7e7e7;
 	font-weight: bold;
 	margin-left: 1.2%; 
 }
 .photo-vendor button{
-	position: absolute;bottom: 2%;left: 38%; 
+	position: absolute;bottom: 5%;left: 70%; 
 }
 .y-video {
 	margin-bottom: 3%;
@@ -457,13 +478,19 @@ a.contact-admin:hover{
 }
 /*end*/
 /*inbox*/
+.head-inbox {
+	margin-bottom: 2%;
+}
 .head-inbox h4{ 
 	border-bottom: solid 1px #e7e7e7;
 	font-weight: bold;
 	margin-left: 1.2%; 
+	padding-bottom: 1%;
+	
 }
 .inbox{
 	min-height: 400px;
+	padding-top: 5%;
 }
 /* make sidebar nav vertical */ 
 @media (min-width: 768px) {
@@ -486,12 +513,15 @@ a.contact-admin:hover{
     padding-bottom: 12px;
   }
   .sidebar-nav{
-  	border: solid 1px #e7e7e7;
+  	
   }
   .left-inbox{
-	margin-top: 3%;
+  	background-color: #F1F3E8;
 }
+.right-inbox{
+
 }
+
 .load-inbox a{
 	text-decoration: none;
 }
@@ -659,8 +689,7 @@ a.contact-admin:hover{
 	text-decoration: none;
 }
 .btn-add-album{
-	margin-top: 1%;
-	margin-bottom: 1%;
+	margin: 2% 0;
 }
 .name-album{
 	margin: 1%;
@@ -703,6 +732,9 @@ a.contact-admin:hover{
 .append-load .remove-photo:hover .btn-delete{
 	display: block;
 }
+.detail-album {
+	word-wrap: break-word;
+}
 .detail-album a{
 	text-decoration: none;
 }
@@ -729,4 +761,17 @@ a.contact-admin:hover{
 }
 .remove-avatar:hover .btn-delete-avatar{
 	display: block;
+}
+.tab-content{
+	margin: 5% auto;
+}
+
+li.e-inbox .e-inbox-text {
+	color: #fff !important;
+	padding: 10px 0 !important;
+	width: 66%;
+}
+li.e-inbox .e-inbox-text:hover {
+	color: #fff !important;
+	background-color: #3276b1 !important;
 }

@@ -281,7 +281,7 @@
               </div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 5%;">
           <h4 class="title-album">Album ảnh</h4>
           <div class="grid-slide">
             @foreach($albums as $album)
